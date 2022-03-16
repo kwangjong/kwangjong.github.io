@@ -82,7 +82,7 @@ class Board extends React.Component {
       
       status = winner === -1 ? 'You Won!' : 'Computer Won!';
     } else if (winner === 0) {
-      status = "tie";
+      status = "Tie";
     } else {
       status = this.state.active ? 'Your turn' : 'Computer\'s turn';
       if(!this.state.active) {
@@ -113,7 +113,7 @@ class Board extends React.Component {
   }
 }
 
-//implement ai using random
+//implement ai using minimax
 function ai(board) {
   const squares = board.state.squares.slice();
   let i = minimax(squares, 0, true)[1];
