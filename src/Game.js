@@ -1,6 +1,8 @@
 import React from 'react';
 import './Game.css';
 
+const PLAYER = 'X'
+const AI = 'O'
 
 function Square(props) {
   return (
@@ -9,8 +11,15 @@ function Square(props) {
     </label>
   );
 }
-
+/**
+ * 'X' wins: -1
+ * 'O' wins: 1
+ *  tie : 0
+ * @param  {[type]} squares [description]
+ * @return {[type]}         [description]
+ */
 function calculateWinner(squares) {
+  //all possible wins
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -25,10 +34,17 @@ function calculateWinner(squares) {
   for (let i=0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return squares[a] === 'X' ? -1 : 1;
     }
   }
-  return null;
+
+  //check for tie
+  let availableSpot = 0;
+  for(let i=0; i < squares.length; i++) {
+    if(!squares[i])
+      availableSpot++;
+  }
+  return availableSpot === 0 ? 0 : null;
 }
 
 class Board extends React.Component {
@@ -36,7 +52,6 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      xIsNext: true,
       active: true,
     };
   }
@@ -46,8 +61,8 @@ class Board extends React.Component {
     if (!this.state.active || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({squares: squares, xIsNext: !this.state.xIsNext, active: !this.state.active});
+    squares[i] = PLAYER;
+    this.setState({squares: squares, active: !this.state.active});
   }
 
   renderSquare(i) {
@@ -57,12 +72,17 @@ class Board extends React.Component {
   }
 
   render() {
-    let winner = calculateWinner(this.state.squares); //check for winne
+    let winner = calculateWinner(this.state.squares); //check for winner
 
     let status;
-    if (winner) {
-      this.setState({active: false}); //deactivate click if there is a winner
-      status = winner === 'X' ? 'You Won!' : 'Computer Won';
+    if (winner === -1 || winner === 1) {
+      if (this.state.active) {
+        this.setState({active: false}); //deactivate click if there is a winner
+      }
+      
+      status = winner === -1 ? 'You Won!' : 'Computer Won!';
+    } else if (winner === 0) {
+      status = "tie";
     } else {
       status = this.state.active ? 'Your turn' : 'Computer\'s turn';
       if(!this.state.active) {
@@ -96,19 +116,54 @@ class Board extends React.Component {
 //implement ai using random
 function ai(board) {
   const squares = board.state.squares.slice();
-
-  let i = randomMove(squares)
-  squares[i] = board.state.xIsNext ? 'X' : 'O';
-  board.setState({squares: squares, xIsNext: !board.state.xIsNext, active: !board.state.active});
+  let i = minimax(squares, 0, true)[1];
+  squares[i] = AI;
+  board.setState({squares: squares, active: !board.state.active});
 }
 
-function randomMove(squares) {
-  let i;
-  do {
-    i = Math.floor(Math.random() * squares.length)
-  } while(squares[i])
+//returns bestScore and index of the move as an array
+function minimax(squares, depth, isMaxizing) {
+  let result = calculateWinner(squares);
+  if(result !== null) {
+    return [result, null];
+  }
 
-  return i;
+  if(isMaxizing) {
+    let xx = squares.slice();
+    let maxI;
+    let maxScore = -Infinity;
+    for (let i=0; i<squares.length; i++) {
+      if (!squares[i]) {
+        squares[i] = AI;
+        let score = minimax(squares, depth+1, false)[0];
+        squares[i] = null;
+
+        xx[i] = score;
+
+        if (score > maxScore) {
+          maxScore = score;
+          maxI = i;
+        }
+      }
+    }
+    return [maxScore, maxI];
+  } else {
+    let minI;
+    let minScore = Infinity;
+    for (let i=0; i<squares.length; i++) {
+      if (!squares[i]) {
+        squares[i] = PLAYER
+        let score = minimax(squares, depth+1, true)[0];
+        squares[i] = null;
+
+        if (score < minScore) {
+          minScore = score;
+          minI = i;
+        }
+      }
+    }
+    return [minScore, minI];
+  }
 }
 
 class Game extends React.Component {
