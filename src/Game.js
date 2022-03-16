@@ -61,7 +61,7 @@ class Board extends React.Component {
 
     let status;
     if (winner) {
-      this.state.active = false; //deactivate click if there is a winner
+      this.setState({active: false}); //deactivate click if there is a winner
       status = winner === 'X' ? 'You Won!' : 'Computer Won';
     } else {
       status = this.state.active ? 'Your turn' : 'Computer\'s turn';
