@@ -129,7 +129,6 @@ function minimax(squares, depth, isMaxizing) {
   }
 
   if(isMaxizing) {
-    let xx = squares.slice();
     let maxI;
     let maxScore = -Infinity;
     for (let i=0; i<squares.length; i++) {
