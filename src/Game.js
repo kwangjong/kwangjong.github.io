@@ -138,8 +138,6 @@ function minimax(squares, depth, isMaxizing) {
         let score = minimax(squares, depth+1, false)[0];
         squares[i] = null;
 
-        xx[i] = score;
-
         if (score > maxScore) {
           maxScore = score;
           maxI = i;
