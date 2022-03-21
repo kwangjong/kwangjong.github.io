@@ -1,8 +1,8 @@
 ---
-layout: default
+layout: page
+permalink: /cscheatsheet/
+title: CSCheatSheat
 ---
-
-{% include home-header.html %}
 
 <div class="posts">
   {% for post in site.categories.ComputerScienceCheatSheet %}

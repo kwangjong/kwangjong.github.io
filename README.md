@@ -1,5 +1,6 @@
 # Kwangjong.github.io
-My personal dev profolio and blog.
+My personal dev portfolio and blog website
+
 https://kwangjong.github.io
 
 ## Built with

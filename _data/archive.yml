@@ -1,9 +1,16 @@
 - type: page
-  title: CSCheatSheet
+  title: About
+  url: /
+
+- type: page
+  title: Projects
+  url:
+
+- type: page
+  title: Blog
   url: /blog/
-#- type: categories
-#  title: Categories
-#  url: /categories/
-- type: tags
-  title: Tags
-  url: /tags/
+
+- type: page
+  title: CSCheatSheet
+  url: /cscheatsheet/
+
