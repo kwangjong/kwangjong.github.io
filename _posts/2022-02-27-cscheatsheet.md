@@ -1,8 +1,10 @@
 ---
 layout: post
 title: ComputerScienceCheatSheet
-tags: study, programming
+tags: study, programming, CSCheatSheet
 date: 2022-02-27 15:32 +0800
+toc: true
+categories: ComputerScienceCheatSheet
 ---
 
 # ComputerScienceCheatSheet
@@ -52,7 +54,7 @@ me. -- If you find any mistakes (syntax, logic, or grammar), criticisms are alwa
 ## Array / List
 ***Array*** stores data in sequential order. Each element can be accessed using an ***index*** usually starting from 0.
 
-![array](/img/array.png)
+![array](/img/cscheatsheet/array.png)
 
 Time Complexity:
 * Indexing: O(1)
@@ -75,7 +77,7 @@ Time Complexity:
 ***Doubly Linked List***: each Node has two pointers: one pointing to the next Node, another pointing to the previous Node. Can traverse in both directions.<br/>
 ***Circular Linked List***: "last" node of the list points to the "first" node of the list. Can traverse the list infinitely looping around the list.<br/>
 
-![linked-list](/img/linked-list.png)
+![linked-list](/img/cscheatsheet/linked-list.png)
 
 
 ## Stack
@@ -99,7 +101,7 @@ Time Complexity:
 ## HashTable / HashMap
 ***Hash table*** is a data structure that stores unordered items by mapping (or hashing) each item to a location in an array (or vector). It maps a unique ***key*** to an index using a ***hash function***. Each hash table array element is called ***bucket***. A common example of a ***hash function*** uses the modulo operator.
 
-![hash-table](/img/hash-table.png)
+![hash-table](/img/cscheatsheet/hash-table.png)
 
 Time Complexity:
 * Indexing: **O(1)**
@@ -119,14 +121,14 @@ Iterating through a sequential *i* values to obtain the desired table is called 
 ## Tree
 ***Tree*** is an ADT that simulates hiearchial structure by a set of linked nodes. Each Node stores its value and sets of its "child" nodes.
 
-![tree](/img/tree-1.png)
+![tree](/img/cscheatsheet/tree-1.png)
 
 * ***Parent and Child Node***: A link between the nodes in the tree are described with a parent-child relationship. If Node 'A' stores pointers to the Node 'B'. Node 'A' is a parent of Node 'B', and Node 'B' is a child of Node 'A'.
 * ***Root***: A node with no parent. There can be only one root node in a tree.
 * ***Leaf***: a tree node with no children.
 * ***Internal node***: a node with at least one child.
 
-![tree](/img/tree-2.png)
+![tree](/img/cscheatsheet/tree-2.png)
 
 * ***Edge***: a link from a node to a child
 * ***Depth***: the number of edges from the root to the node
@@ -140,7 +142,7 @@ In ***Binary Tree***, each node can only have up to two child nodes (*left and r
 * A binary tree is ***complete*** if all level, except the last level, are full and all node in the last level are as far left as possible.
 * A binary tree is ***perfect*** if all internal node have 2 child nodes and all leaf nodes are at the same level.
 
-![binary-tree](/img/binary-tree.png)
+![binary-tree](/img/cscheatsheet/binary-tree.png)
 
 ### Binary Search Tree
 ***Binary Search Tree*** is a special type if a binary tree that has an ordering property. All the keys of any nodes's left subtree are less than the node's key, and all the keys of any node's right subtree are greater than the node's key. This property can make searching a key in the tree fast.
@@ -191,7 +193,7 @@ A very simple searching algorithm. It starts from one end checking every element
 * It can be performed in an unsorted list.
 * Time Complexity : **O(n<sup>2</sup>)**
 
-![linear-search](/img/linear-search.gif)
+![linear-search](/img/cscheatsheet/linear-search.gif)
 
 
 ### Binary Search
@@ -201,7 +203,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/binary-search.py)
 
-![binary-search](/img/binary-search.gif)
+![binary-search](/img/cscheatsheet/binary-search.gif)
   
   
 ## Sorting Algorithms
@@ -213,7 +215,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/selection-sort.py)
 
-![selection-sort](/img/selection-sort.gif)
+![selection-sort](/img/cscheatsheet/selection-sort.gif)
 
 
 ### Insertion Sort
@@ -225,7 +227,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/insertion-sort.py)
 
-![insertion-sort](/img/insertion-sort.gif)
+![insertion-sort](/img/cscheatsheet/insertion-sort.gif)
 
 
 ### Quick Sort
@@ -238,7 +240,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/quick-sort.py)
 
-![quick-sort](/img/quick-sort.gif)
+![quick-sort](/img/cscheatsheet/quick-sort.gif)
 
 
 ### Merge Sort
@@ -249,7 +251,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/merge-sort.py)
 
-![merge-sort](/img/merge-sort.gif)
+![merge-sort](/img/cscheatsheet/merge-sort.gif)
 
 ## Others
 ### [Minimax](https://github.com/Kwangjong/Unbeatable-TicTacToe#minimax-algorithm)

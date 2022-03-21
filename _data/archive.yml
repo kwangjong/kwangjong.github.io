@@ -1,6 +1,6 @@
-- type: dates
-  title: Dates
-  url: /dates/
+- type: page
+  title: CSCheatSheet
+  url: /blog/
 #- type: categories
 #  title: Categories
 #  url: /categories/

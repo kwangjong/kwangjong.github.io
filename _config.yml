@@ -2,10 +2,10 @@
 title: KJ Choi
 description: under construction
 url: https://kwangjong.github.io
-avatar: /avatar.jpeg
+avatar: /img/avatar.jpeg
 paginate: 5
 permalink: pretty
-cover_image: /bg.jpeg
+cover_image: /img/bg.jpeg
 
 # Gems
 plugins:
