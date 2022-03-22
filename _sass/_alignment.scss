@@ -31,3 +31,27 @@ figcaption.align-left {
 figcaption.align-center {
   text-align: center;
 }
+
+.inline-block {
+  display: inline-block
+}
+
+.no-margin {
+  margin: 0
+}
+
+.float-right {
+  float: right
+}
+
+.badge {
+  margin: 0;
+  display: inline-block;
+}
+
+.badge-right {
+  margin: 0;
+  display: inline-block;
+  float: right;
+  margin-left: 0.3rem;
+}

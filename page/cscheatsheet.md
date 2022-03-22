@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /cscheatsheet/
-title: ComputerScienceCheatSheet
+title: Computer Science Cheat Sheet
 ---
 
 <div>
