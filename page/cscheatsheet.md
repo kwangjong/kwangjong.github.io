@@ -1,8 +1,14 @@
 ---
 layout: page
 permalink: /cscheatsheet/
-title: CSCheatSheat
+title: ComputerScienceCheatSheet
 ---
+
+<div>
+  <p>a quick guide and study notes for basic algorithms, datastructure, and etc. basically, my summary for core comp sci classes i tooked at the college.
+Python is used for the example codes.
+</p><br/>
+</div>
 
 <div class="posts">
   {% for post in site.categories.ComputerScienceCheatSheet %}
@@ -12,7 +18,6 @@ title: CSCheatSheat
         {{ post.title }}
       </a>
     </h2>
-
     <div class="post-meta">
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
       {%- if jekyll.environment == "production" and site.disqus -%}
@@ -22,24 +27,9 @@ title: CSCheatSheat
         </a>
       {%- endif -%}
     </div>
-
-    <p>{{ post.excerpt | strip_html }}</p>
   </section>
   {% endfor %}
   {%- if jekyll.environment == "production" and site.disqus -%}
     <script id="dsq-count-scr" src="//{{ site.disqus }}.disqus.com/count.js" async></script>
   {%- endif -%}
-</div>
-
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: relative_url }}">Newer</a>
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
 </div>

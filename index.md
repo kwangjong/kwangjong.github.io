@@ -1,15 +1,15 @@
 ---
 layout: page
 ---
-![header](https://capsule-render.vercel.app/api?type=rect&color=auto&height=200&section=header&text=KJ&fontSize=90)
+<img src ="https://capsule-render.vercel.app/api?type=rect&color=auto&height=200&section=header&text=KJ&fontSize=90"/>
 
 👋 Hi! My name is Kwangjong Choi. I also go by KJ. <br/>
-I’m a aspiring software engineer studying CS in University of Wisconsin Madison. <br/>
-I am interested in various fields including front-end programming, data science, and research.
+I’m an aspiring software engineer studying CS in the University of Wisconsin Madison. <br/>
+I am interested in various fields including front-end development, data science, and research.
  
 
 ## 🛠 Skillsets
-Techs I've used at lease once
+Techs I've used at least once
 
 <!-- Python -->
 <div>
@@ -57,7 +57,7 @@ Techs I've used at lease once
   <h3 style = "margin: 0; display: inline-block;">Molecular Imaging/Magnetic Resonance Technology Lab</h3>
   <p style = "margin: 0; display: inline-block; float: right;">2019.12 – 2020.04</p>
 </div>
-– Participated in deep learning research using brain MRI data. The research involved building and image classification model using labeled brain datasets.<br/>
+– Participated in deep learning research using brain MRI data. The research involved building an image classification model using labeled brain datasets.<br/>
 – Learned deep learning basics using Keras and Tensorflow and how to work with
 2D and 3D image data using NumPy and Matplotlib ([imshowlib](https://github.com/Kwangjong/imshowlib)).<br/>
 <!--roka-->
