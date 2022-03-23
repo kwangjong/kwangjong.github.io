@@ -42,6 +42,7 @@ Techs I've used at least once
   <p class ="no-margin inline-block float-right">Sep 2018 – Present</p>
 </div>
 – B.S. in Computer Science, Certificate in Mathematics<br/>
+– Expected Graduation: June 2024<br/>
 <!--kcis-->
 <div>
   <i class ="fas fa-school inline-block"></i>
