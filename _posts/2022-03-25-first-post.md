@@ -25,8 +25,8 @@ First, I needed a server to host my website. There are many web hosting services
 Jekyll has many free fully-customizable templates provided by the open-source community. I could build from scratch, but it building from the existing template greatly saved my time.
 
 You can find free templates here:<br/>
-https://jekyllthemes.io/free<br/>
-http://jekyllthemes.org/<br/>
+[https://jekyllthemes.io/free](https://jekyllthemes.io/free)<br/>
+[http://jekyllthemes.org/](http://jekyllthemes.org/)<br/>
 
 
 ![not-pure-pole](https://raw.githubusercontent.com/vszhub/not-pure-poole/master/screenshot.png)
