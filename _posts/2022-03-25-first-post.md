@@ -17,7 +17,7 @@ First, I needed a server to host my website. There are many web hosting services
 **Github Pages** is a free web page hosting service provided by Github. It can host static web pages with a 'github.io' domain. And, it is built automatically when you push your source to the Github repository. This was the best fit for me because maintenance is easier using git, it does not require a lot of extra setups to build and deploy my website, and it costs nothing to host my website.
 
 ## What tools to use?
-![jekyll](https://github.com/jekyll/brand/blob/master/jekyll-logo-black-red-transparent.png)
+![jekyll](https://jekyll.github.io/brand/jekyll-logo-black-red-transparent.png)
 
 **Jekyll** is a static website generator written in ruby. It is one of the widely used for creating a blog on github pages. Jekyll renders Markdowns, HTML & CSS, and Liquids into a website. This allows me to easily write a new post using github's markdown editor without in need of building admin page. I can write a new post on any computer, and possibly on my phone.
 
