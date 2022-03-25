@@ -60,7 +60,7 @@ bundle exec jekyll serve
 When a new commit is pushed, github will automatically build and deploy.
 
 
-## Write a new post
+## Writing a new post
 All posts are stored in `\posts` directory in a markdown. The name of the file should follow this format: `YYYY-MM-DD-TITLE.md'.<br/>
 For my blog, all files have the following header:
 ```
