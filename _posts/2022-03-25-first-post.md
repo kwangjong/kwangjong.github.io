@@ -1,6 +1,6 @@
 ---
 layout: post
-title: First Blog Post: Building Blogging Website
+title: "First Blog Post Building Blogging Website"
 tags: blog, front-end, jekyll
 date: 2022-03-25 15:30 +0800
 ---
