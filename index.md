@@ -6,7 +6,12 @@ layout: page
 👋 Hi! My name is Kwangjong Choi. I also go by KJ. <br/>
 I’m an aspiring software engineer studying CS in the University of Wisconsin Madison. <br/>
 I am interested in various fields including front-end development, data science, and research.
- 
+
+## ✉️ Contact
+**Kwangjong Choi** / **최광종**<br/>
+**Email**: choikj0903@gmail.com<br/>
+**TEL**: +82 10-2860-9895<br/>
+**Resume**: [Link](https://docs.google.com/viewer?url=https://docs.google.com/document/d/1ZpQPi7zlRwQCc3H-t2wtb1QnDaBDTSIdT8zFFGG5e-U/export?format=pdf)
 
 ## 🛠 Skillsets
 Techs I've used at least once
@@ -69,9 +74,3 @@ Techs I've used at least once
 </div>
 – Sergeant, Front Guardian, Honorably Discharged<br/>
 – Served at the central front of the North and South Korean border and worked as a guard and an operator.<br/>
-
-## ✉️ Contact
-**Kwangjong Choi** / **최광종**<br/>
-**Email**: choikj0903@gmail.com<br/>
-**TEL**: +82 10-2860-9895<br/>
-**Resume**: [Link](https://docs.google.com/viewer?url=https://docs.google.com/document/d/1ZpQPi7zlRwQCc3H-t2wtb1QnDaBDTSIdT8zFFGG5e-U/export?format=pdf)
