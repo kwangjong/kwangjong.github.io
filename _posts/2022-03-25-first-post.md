@@ -60,13 +60,13 @@ When a new commit is pushed, github will automatically build and deploy.
 
 
 ## Writing a new post
-All posts are stored in `\posts` directory in a markdown. The name of the file should follow this format: `YYYY-MM-DD-TITLE.md'.<br/>
+All posts are stored in `\posts` directory as a markdown. The name of the file should follow this format: `YYYY-MM-DD-TITLE.md'.<br/>
 For my blog, all files have the following header:
 ```
 ---
 layout: post
-title: "First Blog Post: Building Blogging Website"
-tags: blog, front-end, jekyll
-date: 2022-03-25 15:30 +0800
+title: TITLE
+tags: TAGS
+date: YYYY-MM-DD HH:mm +0800
 ---
 ```
