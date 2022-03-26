@@ -2,7 +2,7 @@
 layout: post
 title: "First Blog Post: Building Blogging Website"
 tags: blog, front-end, jekyll
-date: 2022-03-25 15:30 +0800
+date: 2022-03-25 15:30 +0900
 ---
 
 I am finally writing my first blog post on my new blogging website. All the posts before this are imported from my github. My goal for this dev blog is to archive everything going on in my life as a CS enthusiast from studying, side-projects, or journaling. I will try to write most of my posts in English, but since I feel more comfortable thinking in Korean some of my journaling posts might be in Korean. I hope through this blog I can be more organized on my journey to the CS.
