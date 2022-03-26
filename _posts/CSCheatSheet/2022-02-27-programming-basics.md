@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Data Structure
-tags: CSCheatSheet, datastructure
-date: 2022-03-01 15:32 +0900
+title: Programming Basics
+tags: CSCheatSheet
+date: 2022-02-27 00:00 +0900
 toc: true
 categories: ComputerScienceCheatSheet
 hidden: true
