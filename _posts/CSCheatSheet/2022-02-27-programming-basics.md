@@ -10,6 +10,28 @@ hidden: true
 
 Collection of some fundamental concepts in programming.
 
+## Procedural Programming vs Object-Oriented Programming
+
+### Procedural Programming
+***Procedural Programming*** is a programming model that uses **top-down approach**. It is based upon the concept of calling **functions**. A function is also known as procedure, routine, or subroutine. The program follows step-by-step instructions provided by the functions. Examples of procedural programming languages are Cobol, Fortran, and C.
+
+### Object-Oriented Programming
+***Object-Oriented Programming*** is a programming model based upon the concept of **objects**. An **object** is a component of a program that consists of data called **attributes** and code called **methods**. The program relies on the interaction between objects or different components of the program to achieve its goal.
+
+## Fundamentals of Object-Oriented Programming
+There are four fundamental concepts of Object-Oriented Programming: **Encapsulation**, **Abstraction**, **Polymorphism**, and **Inheritance**.
+
+### Encapsulation
+***Encapsulation*** is a concept of bundling related variables and methods into an object. This restricts direct access to some of the object's components which protect them from being modified incorrectly. Refer to the diagram below.
+
++ diagram
+
+A bank account class bundles account data and account actions into an object. Account's balance cannot be changed directly, but using deposit and withdraw methods, you can add or subtract from the balance.
+
+## Abstraction
+In Object-Oriented Programming, an object shows only essential elements. This property is called ***Abstraction***. ***Abstraction*** makes the interface of an object simpler and reduces the chances of the object's attributes being modified incorrectly. 
+
+
 ## Memory Regions
 There are four different regions in a typical program's memory.
 
