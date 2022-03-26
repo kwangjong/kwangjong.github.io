@@ -20,7 +20,7 @@ There are four different regions in a typical program's memory.
 
 ![memory-regions](https://kwangjong.github.io/CSCheatSheet/img/memory-regions.png)
 
-### Garbage Collectiom
+### Garbage Collection
 When heap memory is handled poorly by the programmer, issues like out-of-memory or memory leaks can happen. Most high-level languages use an automatic memory management mechanism called ***Garbage Collection***. It searches for unused data in heap and de-allocates them.
 
 To determine which unnecessary data for **Garbage Collector** to de-allocate, the program needs to keep track of which objects are being used. Programming languages like Java and Python use a technique called ***reference counting***. 
