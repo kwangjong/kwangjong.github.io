@@ -2,7 +2,7 @@
 layout: post
 title: Algorithm
 tags: CSCheatSheet, algorithm
-date: 2022-03-10 15:32 +0800
+date: 2022-03-10 15:32 +0900
 toc: true
 categories: ComputerScienceCheatSheet
 hidden: true
