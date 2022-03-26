@@ -67,6 +67,6 @@ For my blog, all files have the following header:
 layout: post
 title: TITLE
 tags: TAGS
-date: YYYY-MM-DD HH:mm +0800
+date: YYYY-MM-DD HH:mm +TIMEZONE
 ---
 ```
