@@ -24,12 +24,14 @@ There are four fundamental concepts of Object-Oriented Programming: **Encapsulat
 ### Encapsulation
 ***Encapsulation*** is a concept of bundling related variables and methods into an object. This restricts direct access to some of the object's components which protect them from being modified incorrectly. Refer to the diagram below.
 
-+ diagram
+![animal.png](https://kwangjong.github.io/CSCheatSheet/img/animal.png)
 
-A bank account class bundles account data and account actions into an object. Account's balance cannot be changed directly, but using deposit and withdraw methods, you can add or subtract from the balance.
+Animal class bundles its attributes and actions into an object. It restrict direct read and write access to its attributes 'name' and 'food', but it is used during the execution of the class's methods.
 
-## Abstraction
-In Object-Oriented Programming, an object shows only essential elements. This property is called ***Abstraction***. ***Abstraction*** makes the interface of an object simpler and reduces the chances of the object's attributes being modified incorrectly. 
+### Abstraction
+In Object-Oriented Programming, an object shows only essential elements. This property is called ***Abstraction***. ***Abstraction*** makes the interface of an object simpler. In the Animal class, method digest() and consume_food() are hidden. These methods are called inside other methods. Only public methods like eat() and walk() are visible to any external class. This allows more intuitive and simpler interface.
+
+### Inheritance
 
 
 ## Memory Regions
