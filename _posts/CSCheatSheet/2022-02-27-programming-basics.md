@@ -102,4 +102,6 @@ To determine which unnecessary data for **Garbage Collector** to de-allocate, th
 The program keeps track of the number of reference variables that are currently referring to an object. If the reference count is zero the object is considered **unreachable object** which is freed by the **garbage collector**.
 
 ## Author
-All implementations and visual aids are created by me.--If you find any mistakes (syntax, logic, or grammar), criticisms are always welcomed! Feel free to reach out to me.
+All implementations and visual aids are created by me.<br/>
+If you find any mistakes on syntax, logic, or even english grammar, criticisms are always welcomed.<br/> 
+Feel free to reach out to me.

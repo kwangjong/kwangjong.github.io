@@ -92,4 +92,6 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 
 ## Author
-All implementations and visual aids are created by me.--If you find any mistakes (syntax, logic, or grammar), criticisms are always welcomed! Feel free to reach out to me.
+All implementations and visual aids are created by me.<br/>
+If you find any mistakes on syntax, logic, or even english grammar, criticisms are always welcomed.<br/> 
+Feel free to reach out to me.
