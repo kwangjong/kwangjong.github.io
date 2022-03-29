@@ -46,7 +46,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 ## Sorting Algorithms
 ### Selection Sort
 ***Selection Sort*** is a comparison based algorithms. It divides the list into a sorted part and an unsorted part, and repeatedly searches the unsorted part and "select" the smallest or greates element to move from the unsorted part to the end of the sorted part.
-* Optimized for small lists (fewer than 10-20elements).
+* Optimized for small lists (fewer than 10-20 elements).
 * It may require many comparisions for big lists.
 * Time Complexity: **O(n<sup>2</sup>)**
 
@@ -57,7 +57,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 
 ### Insertion Sort
 ***Insertion Sort*** is a comparision based algorithm that searches the sorted part for the next element in the unsorted list to be "inserted".
-* Optimized for small lists (fewer than 10-20elements).
+* Optimized for small lists (fewer than 10-20 elements).
 * It may require many comparisions for big lists.
 * It may require lesser comparision compare to ***selection sort***. ***Insertion sort*** only scans as many as it need to place ith element, while **selection sort*** always scans all elements in the unsorted part. ***Insertion sort*** is typically very efficient for list that are "nearly sorted".
 * Time Complexity: **O(n<sup>2</sup>)**
@@ -95,12 +95,14 @@ A search algorithm that repeatedly divides the search interval in half until the
 Traversing a tree can be classified into two categories: ***Breath-First Search*** and ***Depth-First Search***.
 
 ### Breath-First Search
-***Breath-First Search*** is also known as ***level-order traversal***. Starting from the root of the tree, it visits the nodes in the same level first then move on to nodes in the next level. It is commonly implemented using a queue.
+***Breath-First Search*** is also known as ***level-order traversal***. Starting from the root of the tree, it visits the nodes in the same level first then moves on to nodes in the next level. It is commonly implemented using a queue.
 
 ![bfs](https://kwangjong.github.io/CSCheatSheet/img/bfs.png)
 
+[Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/tree-traversal.py)
+
 ### Depth-First Search
-***Depth-First Search*** visits the deepest node in each branch before moving on to the other branches. **DFS** can be implemented using the recursive algorithm. At each node, the algorithm visits left node, right node, and current node according to which order it is implemented. 
+***Depth-First Search*** visits the deepest node in each branch before moving on to the other branches. **DFS** can be implemented using the recursive algorithm. At each node, the algorithm visits the left node, right node, and current node according to the order it is implemented. 
 
 There are three different order in which **DFS** can be implemented: **pre-order**, **in-order**, and **post-order**.<br/>
 **Pre-order** visits current node first, then visits left-node and right node respectively.<br/>
@@ -112,6 +114,8 @@ Refer to the diagram below. Let's assume the algorithm returns a string of lette
 ![bfs](https://kwangjong.github.io/CSCheatSheet/img/bfs.png)
 
 When traversing the tree above using **pre-order**, the resulting output of the traversal is "ABDEHICFGJ". For **in-order**, the output is "BDEHIACFGJ". **Post-order** outputs "ACFGJBDEHI".
+
+[Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/tree-traversal.py)
 
 
 ## Author

@@ -98,6 +98,7 @@ Iterating through a sequential *i* values to obtain the desired table is called 
 * ***Level***: all nodes with the same depth
 * ***Height***: the largest depth of any node.
 
+[Tree Traversal](/computersciencecheatsheet/2022/03/10/algorithm/#tree-traversal)
 
 ### Binary Tree
 In ***Binary Tree***, each node can only have up to two child nodes (*left and right child*).
