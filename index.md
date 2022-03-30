@@ -1,7 +1,7 @@
 ---
 layout: page
 ---
-<img src ="https://capsule-render.vercel.app/api?type=rect&color=auto&height=200&section=header&text=KJ&fontSize=90"/>
+<img style ="width: 100%" src ="https://capsule-render.vercel.app/api?type=rect&color=auto&height=200&section=header&text=KJ&fontSize=90"/>
 
 👋 Hi! My name is Kwangjong Choi. I also go by KJ. <br/>
 I’m an aspiring software engineer studying CS in the University of Wisconsin Madison. <br/>
