@@ -119,17 +119,11 @@ Time complexity:
 
 <!---### Heap
 
-### AVL Tree
+  ### AVL Tree
 
-### Red-Black BST
+  ### Red-Black BST
 
-### B-trees
-
-traversal
-depth first search
--preorder, inorder, postorder
-breath first search
--level-order
+  ### B-trees
 
 ## Graph--->
 ## Author
