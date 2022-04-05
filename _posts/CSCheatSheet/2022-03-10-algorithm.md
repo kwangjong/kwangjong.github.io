@@ -84,7 +84,7 @@ A search algorithm that repeatedly divides the search interval in half until the
 ***Merge Sort*** is a divide and conquer algorithm that divides a list into two halves, recursively sorts each half and merges the sorted halves. Recursive partitioning happens until only one element is in the partition.
 * It requires additional memory during merging process.
 * It is not highly affected by the distribution of the array given.
-* Time Complexity: **O(n log n)**
+* Time Complexity: **O(n)**
 
 [Implementation](https://github.com/Kwangjong/CSCheatSheet/blob/main/implementation/merge-sort.py)
 
