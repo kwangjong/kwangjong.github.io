@@ -117,6 +117,10 @@ Time complexity:
 * Searching: **O(h)**
 
 
+## Graph
+[Graph](/computersciencecheatsheet/2022/04/11/graph)
+
+
 <!---### Heap
 
   ### AVL Tree
@@ -125,7 +129,7 @@ Time complexity:
 
   ### B-trees
 
-## Graph--->
+--->
 ## Author
 All implementations and visual aids are created by me.<br/>
 If you find any mistakes on syntax, logic, or even english grammar, criticisms are always welcomed.<br/> 
