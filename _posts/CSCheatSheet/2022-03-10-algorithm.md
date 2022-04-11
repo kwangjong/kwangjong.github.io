@@ -111,7 +111,7 @@ There are three different order in which **DFS** can be implemented: **pre-order
 
 Refer to the diagram below. Let's assume the algorithm returns a string of letters in the order it traverses. 
 
-![bfs](https://kwangjong.github.io/CSCheatSheet/img/bfs.png)
+![bfs](https://kwangjong.github.io/CSCheatSheet/img/dfs.png)
 
 When traversing the tree above using **pre-order**, the resulting output of the traversal is "ABDEHICFGJ". For **in-order**, the output is "BDEHIACFGJ". **Post-order** outputs "ACFGJBDEHI".
 
