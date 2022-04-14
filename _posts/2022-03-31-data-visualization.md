@@ -5,7 +5,7 @@ tags: blog, datascience, datavisualization
 date: 2022-03-31 16:35 +0900
 ---
 
-I decided to review my data science knowledge. My goal is to build my own ML project. Before I get into the dirty part, Let's start with a very simple course: Data Visualization.
+I decided to review my data science knowledge. My goal is to build my own ML project. Before I get into the dirty part, Let's start with a very simple course: Data Visualization. I took an brief overview on Data Visualization using Kaggle.
 
 <br/>
 
