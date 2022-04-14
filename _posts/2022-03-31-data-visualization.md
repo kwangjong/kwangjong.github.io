@@ -196,5 +196,6 @@ Oceania is showing the highest vaccination rate, while Africa has the lowest vac
 
 The scatter plot between vaccination rate and GDP per capita shows a positive slope. This means GDP per capita plays a role in the vaccination rate. However, many countries with low GDP per capita show high vaccination rates.
 
-## Link to my notebook
-You can view my kaggle notebook [here](https://www.kaggle.com/code/kwangjongchoi/data-visualization-practice-covid-19).
+## Links
+* [Link to my notebook](https://www.kaggle.com/code/kwangjongchoi/data-visualization-practice-covid-19)
+* [Data Visualization Course on Kaggle](https://www.kaggle.com/learn/data-visualization)
