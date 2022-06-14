@@ -41,6 +41,7 @@ Random Forest are prediction model consisting multitple decision trees. It makes
 ## Handling Missing Values
 1) drop columns with missing values
    - model uses a lot of potentially useful information
+
 ``` python   
 # Get names of columns with missing values
 cols_with_missing = [col for col in X_train.columns
