@@ -31,17 +31,17 @@ Model validation is a process of evalutating your model to see how good it is. A
 ![mae](https://i.imgur.com/8H7FOGm.png)
 
 
-# Random Forest
+## Random Forest
 
 Random Forest are prediction model consisting multitple decision trees. It makes prediction my averaging the prediciton of each component tree. It generally produces more accurate prediction than a single decision tree.
 
 ![rf](https://i.imgur.com/XW9kBrr.png)
 
 
-# Handling Missing Values
+## Handling Missing Values
 1) drop columns with missing values
    - model uses a lot of potentially useful information
-```   
+``` python   
 # Get names of columns with missing values
 cols_with_missing = [col for col in X_train.columns
                      if X_train[col].isnull().any()]
@@ -57,7 +57,7 @@ print(score_dataset(reduced_X_train, reduced_X_valid, y_train, y_valid))
 2) imputation
    - imputed value won't be exact, but it produces more accurate model than dropping columns
 
-```
+``` python
 from sklearn.impute import SimpleImputer
 
 # Imputation
@@ -76,7 +76,7 @@ print(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))
 3) extension to imputation
    - in some cases, this can be a meaningful improvement, but in other cases it doesn't help at all
 
-```
+``` python
 # Make copy to avoid changing original data (when imputing)
 X_train_plus = X_train.copy()
 X_valid_plus = X_valid.copy()
@@ -102,4 +102,4 @@ print(score_dataset(imputed_X_train_plus, imputed_X_valid_plus, y_train, y_valid
 ## Links
 * [Link to my notebook](---)
 * [Intro to ML Course on Kaggle](https://www.kaggle.com/learn/intro-to-machine-learning)
-* [Intermediate ML Course on Kaggle] (https://www.kaggle.com/learn/intermediate-machine-learning)
+* [Intermediate ML Course on Kaggle](https://www.kaggle.com/learn/intermediate-machine-learning)
