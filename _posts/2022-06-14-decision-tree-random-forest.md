@@ -39,8 +39,13 @@ Random Forest are prediction model consisting multitple decision trees. It makes
 
 
 ## Handling Missing Values
-1) drop columns with missing values
-   - model uses a lot of potentially useful information
+
+![NaN](https://i.imgur.com/ed0QtI5.png)
+
+#### 1) Drop columns with missing values
+The simplest solution. But the model may lose access to some potnetially important informations.
+
+![missing](https://i.imgur.com/BOhFRSd.png)
 
 ``` python   
 # Get names of columns with missing values
@@ -55,8 +60,10 @@ print("MAE from Approach 1 (Drop columns with missing values):")
 print(score_dataset(reduced_X_train, reduced_X_valid, y_train, y_valid))
 ```
 
-2) imputation
-   - imputed value won't be exact, but it produces more accurate model than dropping columns
+#### 2) Imputation
+Fill in missing values with some numbers. Numbers may not be exact, but it performs better than dropping entire columns.
+
+![imputation](https://i.imgur.com/9crXb9i.png)
 
 ``` python
 from sklearn.impute import SimpleImputer
@@ -74,8 +81,10 @@ print("MAE from Approach 2 (Imputation):")
 print(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))
 ```
 
-3) extension to imputation
-   - in some cases, this can be a meaningful improvement, but in other cases it doesn't help at all
+#### 3) Extension to imputation
+Provide the model with information on which values are imputed. In some cases, this can be a meaningful improvement, but in other cases it doesn't help at all.
+
+![with_extension](https://i.imgur.com/5yHgPWv.png)
 
 ``` python
 # Make copy to avoid changing original data (when imputing)
@@ -101,6 +110,5 @@ print(score_dataset(imputed_X_train_plus, imputed_X_valid_plus, y_train, y_valid
 ```
 
 ## Links
-* [Link to my notebook](---)
 * [Intro to ML Course on Kaggle](https://www.kaggle.com/learn/intro-to-machine-learning)
 * [Intermediate ML Course on Kaggle](https://www.kaggle.com/learn/intermediate-machine-learning)
