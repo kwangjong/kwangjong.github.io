@@ -3,10 +3,6 @@
   url: /
 
 - type: page
-  title: Projects
-  url: /projects/
-
-- type: page
   title: Blog
   url: /blog/
 
@@ -14,3 +10,6 @@
   title: CSCheatSheet
   url: /cscheatsheet/
 
+- type: page
+  title: Projects
+  url: /projects/
