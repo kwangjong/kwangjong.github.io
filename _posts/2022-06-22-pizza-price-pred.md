@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pizza Price Prediction🍕"
+title: "🍕Pizza Price Prediction🍕"
 tags: blog, datascience, machinelearning
 date: 2022-06-22 04:03 +0900
 ---
