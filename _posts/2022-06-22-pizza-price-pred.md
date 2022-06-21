@@ -13,7 +13,7 @@ The purpose of this project is to use this dataset to obstain interesting insigh
 
 ![hungry-homer](https://i.imgur.com/P8aqLFy.gif)
 
-[Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction)
+[Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction)<br>
 [Link to the dataset](https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction)
 
 
