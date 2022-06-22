@@ -76,7 +76,7 @@ df['diameter'] = list(map(inch_to_float, df.diameter))
 ## Exploring Data
 
 ### Price
-![price-distribution](https://i.imgur.com/T0nnXe5.png)
+![price-distribution](https://i.imgur.com/ho5GtzD.png)
 ```
 mean: 87151.16279069768
 mode: 72000.0
@@ -86,7 +86,7 @@ max: 248000.0
 **The price of pizzas** ranges from `23500 to 24800 rupiahs`, but the `majority of the pizza was around 23500 to 150000 rupiahs`. The average price of pizza is `87151 rupiah`, and `72000-rupiahs pizzas are sold the most`.
 
 ### Company
-![companies](https://i.imgur.com/CGHRRzL.png)
+![companies](https://i.imgur.com/A9rWrAD.png)
 Five companies sold a fairly even amount of pizzas. **Company D** has the **least** orders, while **Company C** and **E** has the **most** orders. 
 The **most expensive** company is **Company A**, and the **cheapest** companies are **Company C** and **E**. <br>
 
@@ -95,11 +95,11 @@ The **average price** at **Company A** costs `131440 rupiahs`, and **Company C**
 Although **Company C** and **E** sold the most, **Company A** with the highest average price is the **third** in the number of pizzas sold. We can assume that `price isn't the only factor that attracts the customers`.
 
 ### Diameter
-![diameter](https://i.imgur.com/2YUUf9A.png)
+![diameter](https://i.imgur.com/id07Vxp.png)
 **Diameters** range from `8 to 22 inches`, and **12-inch pizzas** are the most popular. **Diameters** shows positive correlations to the **price of the pizzas**. We can infer that generally bigger pizzas will cost more than smaller pizzas. However, take a look at the prices of 12-inch pizzas. They vary up to about 75000 rupiahs. We can conclude that **diameters generally show positive correlations to the prices of pizzas**, however **there are other factors that highly affect the prices of pizzas**.
 
 ### Size
-![size](https://i.imgur.com/QA7iIg3.png)
+![size](https://i.imgur.com/Q0cApT9.png)
 Variable`Size` has six unique values: `small`, `medium`, `large`, `XL`, `reguler (regular)`, and `jumbo`. We can easily compare **small** , **medium**, **large**, and **XL**, but it is unclear if **regular** is smaller than **large** or **jumbo** bigger than **XL**. 
 
 We can assume from the left chart that this is caused by the different size systems used by each company. **Company A** uses `regular-jumbo` system, while **Company B**, **C**, and **E** use `small-medium-large-XL` system. And for some reason, **Company D** uses all six sizes.
@@ -107,7 +107,7 @@ We can assume from the left chart that this is caused by the different size syst
 Luckily, we can simply ignore **size**. The universal measurement for the size of pizzas is **diameters**. Since we have **diameter** measurements in our dataset, **size** is **redundant** and can be **ignored** in training.
 
 ### Topping and Variant
-![toppingnvariant](https://i.imgur.com/9gsCpgG.png)
+![toppingnvariant](https://i.imgur.com/bZrJXRC.png)
 Both `topping` and `variant` are broken down into a lot of unique options. Some of them overlap among five companies, but some do not. There are also separate values that describe the same thing: [`meat_lover`, `meat_eater`] or [`spicy tuna`, `spicy_tuna`].
 
 When categorical variables are divided into many small subsets, obtaining useful insight can be hard. We can improve the qualities of data analysis by grouping similar categories. Let's cluster similar categories into bigger groups.
@@ -143,11 +143,11 @@ for key, value in group_variant.items():
     
     print(key, ": ", value, sep="")
 ```
-![toppingnvariant](https://i.imgur.com/LbSF1iN.png)
+![toppingnvariant](https://i.imgur.com/0yN6RJn.png)
 The charts above shows **price distributions** for each **topppings** and **variants**. **Price distributions of toppings** appears to be in the similar range. While there exists few outliers, `in most cases, toppings don't affect the price of the pizza`. On the flipside, **double** pizzas are in **the highest price ranges** among other variants, and **classic** are in **the lowest price range**. We can say `variants has more affect on the price of pizza then toppings`.
 
 ### Extra Sauce, Cheese, and Mushrooms
-![extras](https://i.imgur.com/vCjgmeh.png)
+![extras](https://i.imgur.com/3UdUj57.png)
 We see that `most customers prefer adding extras`. The number of pizza orders with extra cheese is **twice** as much as the orders without extra cheese.
 `There is a little increase in the average prices with adding extras` although it is not a lot.
 
@@ -245,10 +245,10 @@ RMSE 15894.109896484142
 R2: 0.8937504975604872
 ```
 
-![truevspred](https://i.imgur.com/WRDxf3z.png)
+![truevspred](https://i.imgur.com/MpztJ5I.png)
 **Xgboost** and **random forest** both shows similar performances yielding R2 score between `0.8 to 0.9`.
 
-![featureimportance](https://i.imgur.com/LVLkUTg.png)
+![featureimportance](https://i.imgur.com/81vb4Az.png)
 We can see that, for **xgboost**, `variant_double` is the most importance features followed by `diameter`. For **random forest** `diameter` is the dominant feature with 70% of feature importance.
 
 
