@@ -5,13 +5,13 @@ tags: blog, datascience, machinelearning
 date: 2022-06-22 04:03 +0900
 ---
 
+![hungry-homer](https://i.imgur.com/P8aqLFy.gif)
+
 **Pizza** is probably one of the most consumed meals all over the world. Personally, it served a great portion of meals me and my roommate ate back in college. Every Saturday evening, we would get `$5.99 three-toppings medium pizza` from **Domino's** located right behind our apartment. It was the **cheapest** and **delicious** food we could get around the campus.
 
 Although **Domino's** sells pizzas for a cheap price, pizzas can be **pricy** depending on their **sizes**, **toppings**, and the **restaurant** that makes them. Price can easily go above `$20 to $30`. To understand factors that affect the price of a pizza, a user on Kaggle gathered data on pizza orders from five different companies.
 
 The purpose of this project is to use this dataset to obstain interesting insights about pizza orders and prices. The data collected includes sizes, topping variations, price, etc. The data will be analyzed and trained to build a prediction model for pizza prices.
-
-![hungry-homer](https://i.imgur.com/P8aqLFy.gif)
 
 [Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction)
 [Link to the dataset](https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction)
