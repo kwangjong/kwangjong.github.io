@@ -2,7 +2,7 @@
 layout: post
 title: "Deep Learning Review"
 tags: blog, datascience, deeplearning
-date: 2022-06-23 14:50 +0900
+date: 2022-06-23 21:45 +0900
 ---
 
 ![deeplearning](https://i.imgur.com/ZTwsQGu.jpg)
@@ -53,7 +53,7 @@ model.compile(
 ```
 **Adam** is a self-tuning optimizer great for general-purpose use.
 
-![animated_sdg](https://i.imgur.com/rFI1tIk.mp4)
+![animated_sdg](https://i.imgur.com/rFI1tIk.gif)
 
 ### Train Model
 ```python
