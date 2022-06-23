@@ -75,7 +75,7 @@ history_df.loc[5:, ['loss']].plot();
 ![loss](https://i.imgur.com/RWG8rFm.png)
 
 ### How training works: Backpropagation
-**Backpropagation** is the key steps to the training of a neural network. It calculates the *gradient* of the loss function with respect to the *weights* of the network. In other words, it determines *how much* weights of each unit need to change to minimize the *loss*. Check out [3Blue1Brown's video] if you want to dig into the math behind backpropagation.
+**Backpropagation** is the key steps to the training of a neural network. It calculates the *gradient* of the loss function with respect to the *weights* of the network. In other words, it determines *how much* weights of each unit need to change to minimize the *loss*. Check out [3Blue1Brown's video](https://www.youtube.com/watch?v=tIeHLnjs5U8&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=4&ab_channel=3Blue1Brown) if you want to dig into the math behind backpropagation.
 
 
 ##  Underfitting and Overfitting
