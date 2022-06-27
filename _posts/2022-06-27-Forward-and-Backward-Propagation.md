@@ -3,6 +3,7 @@ layout: post
 title: "Forward and Backward Propagation"
 tags: blog, datascience, deeplearning
 date: 2022-06-27 23:45 +0900
+use_math: true
 ---
 
 ![deeplearning](https://i.imgur.com/ZTwsQGu.jpg)
