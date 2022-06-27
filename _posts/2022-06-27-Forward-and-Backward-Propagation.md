@@ -20,6 +20,7 @@ a_{n}^{(L)} = \sigma(z_{n}^{(L)}) = \sigma(\sum\limits_{i}^{}w_{n,i}^{(L-1)}a_{i
 $$
 
 For instance, the activations of the two neurons in layer 1 is: 
+
 $$
 a_{0}^{(1)} = \sigma( w_{0,0}^{(0)} a_{0}^{(0)} + w_{0,1}^{(0)} a_{1}^{(0)} + b_{0}^{(0)} )
 $$
@@ -29,6 +30,7 @@ a_{1}^{(1)} = \sigma( w_{1,0}^{(0)} a_{0}^{(0)} + w_{1,1}^{(0)} a_{1}^{(0)} + b_
 $$
 
 In fact, these two activations above can be calculated using matrix multiplication:
+
 $$ \begin{bmatrix} a_{0}^{(1)}\\ a_{1}^{(1)} \end{bmatrix} = \sigma
 \begin{pmatrix}
   \begin{bmatrix} w_{0,0}^{(0)} & w_{0,1}^{(0)}\\ w_{1,0}^{(0)} & w_{1,1}^{(0)} \end{bmatrix}
@@ -37,6 +39,7 @@ $$ \begin{bmatrix} a_{0}^{(1)}\\ a_{1}^{(1)} \end{bmatrix} = \sigma
 $$
 
 Let's replace the vectors and matrix with symbols.
+
 $$
 a^{(L)} = \begin{bmatrix} a_{0}^{(L)}\\ a_{1}^{(L)}\\ \vdots\\ a_{n}^{(L)} \end{bmatrix},
 W^{(L)} = 
@@ -50,6 +53,7 @@ b^{(L)} = \begin{bmatrix} b_{0}^{(L)}\\ b_{1}^{(L)}\\ \vdots\\ b_{n}^{(L)} \end{
 $$
 
 Activations for all neurons in layer $L$ is caculated as:
+
 $$
 a^{(L)} = \sigma(W^{(L-1)} a^{(L-1)} + b^{(L-1)})
 $$
@@ -60,17 +64,18 @@ i.e. it is a *linear transformation of weights with respect to its basis passed 
 
 
 ## Implementing Forward Propagation
-​
+
 Before implementing the forward propagation, let's set activation and loss functions first. **Sigmoid** will be used for activation, and **mean squared error** will be used for calculating the loss. 
-​
+
 $$\sigma = \frac{1}{1+e^{-x}}$$
-​
+
 $$mse = \frac{1}{2}\sum(\hat y - y)^2$$
-​
+
 We also need test input and initialize weights. I set`[0.5, 0.35]` as the input and `[0.85]` as the target value. Initial weights will be chosen randomly number from standard normal distribution.
-​
+
 #### Using row-vectors
 Vectors are commonly implemented as row-vector using an array. The activation vectors and weight matrices are transposed and calculated as:
+
 $$
 (a'^{(L)})= \sigma((a'^{(L-1)}W'^{(L-1)}) + b'^{(L-1)}
 $$
@@ -105,6 +110,7 @@ prediction: [[0.7338931]] loss: [[0.01348081]]
 
 ### Chain Rule
 Given the cost of forward propagation function as with respect to the weights of the last hidden layer:
+
 $$
 C(w^{(L-1)}) = C(a^{(L)}(z^{(L)}(w^{(L-1)})))
 $$
@@ -114,16 +120,19 @@ C = (\hat y - y)^2, \quad a^{(L)} = \sigma(z^{(L)}), \quad z^{(L)} = W^{(L-1)} a
 $$
 
 The gradient is calculated using the chain rule.
+
 $$
 C'(w^{(L-1)}) = \frac{\partial z^{(L)}}{\partial w^{(L-1)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial C}{\partial a^{(L)}}
 $$
 
 Let's calculate the partial derivatives.
+
 $$
 \frac{\partial C}{\partial a^{(L)}} = (\hat y - y), \quad \frac{\partial a^{(L)}}{\partial z^{(L)}} = \sigma'(z^{(L)}) = \sigma(z^{(L)}) \cdot (1-\sigma(z^{(L)})), \quad \frac{\partial z^{(L)}}{w^{(L-1)}} = a^{(L-1)} 
 $$
 
 Then, 
+
 $$
 C'(w^{(L-1)}) =  (a^{(L-1)})^T \cdot (\hat y - y) \odot \sigma'(z^{(L)})
 $$
@@ -131,11 +140,13 @@ $a^{(L-1)}$ is transposed to match the dimension.
 
 
 The gradient with respect to weights in second to last hiden layer is:
+
 $$
 C'(w^{(L-2)}) =  (a^{(L-2)})^T \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)})
 $$
 
 And the gradient with respect to the first weight is:
+
 $$
 C'(w^{(0)}) =  (X)^T \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
 $$
@@ -148,12 +159,13 @@ $$
 
 After the gradients have been caculated, update weights in proportion to the gradients.
 
-$$w_{new}^{(L)} = w^{(L)} - \text{learning_rate} * C'(w^{(L)})$$
+$$w_{new}^{(L)} = w^{(L)} - (\text{learning rate}) * C'(w^{(L)})$$
 
 
 ## Implementing Backpropagation
 
 Derivatives of sigmoid and mean squared error are:
+
 $$
 \sigma '(x) = \sigma(x) \cdot (1-\sigma(x))
 $$
