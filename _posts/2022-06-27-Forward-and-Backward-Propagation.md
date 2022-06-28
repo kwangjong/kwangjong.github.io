@@ -94,7 +94,7 @@ B = [np.random.randn(1,2), np.random.randn(1,2), np.random.randn(1,1)]
 ```
 ```python
 sig = lambda x: 1/(1+np.exp(-x)) #sigmoid
-mse = lambda x, y: np.square(x-y) # loss funcition
+mse = lambda x, y: 0.5*np.square(x-y).sum() # loss funcition
 
 def forward_pass(X, W, B):
     for i,w in enumerate(W):
@@ -105,7 +105,7 @@ pred = forward_pass(X, W, B)
 print("prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-prediction: [[0.64781373]] loss: [[0.00595772]]
+prediction: [[0.92872969]] loss: 0.020752894164543605
 ```
 
 ## Backpropagation
@@ -222,16 +222,16 @@ for i in range(500):
         print("epoch:", i, "prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-epoch: 0 prediction: [[0.65004613]] loss: [[0.00561808]]
-epoch: 20 prediction: [[0.68203572]] loss: [[0.00184593]]
-epoch: 40 prediction: [[0.69932789]] loss: [[0.00065906]]
-epoch: 60 prediction: [[0.70927479]] loss: [[0.00024728]]
-epoch: 80 prediction: [[0.71522174]] loss: [[9.56143789e-05]]
-epoch: 100 prediction: [[0.71886314]] loss: [[3.76610032e-05]]
-epoch: 120 prediction: [[0.72112623]] loss: [[1.50060717e-05]]
-epoch: 140 prediction: [[0.7225459]] loss: [[6.02262624e-06]]
-epoch: 160 prediction: [[0.72344172]] loss: [[2.42822846e-06]]
-epoch: 180 prediction: [[0.72400911]] loss: [[9.81862277e-07]]
+epoch: 0 prediction: [[0.92781287]] loss: 0.020566530274120164
+epoch: 20 prediction: [[0.905579]] loss: 0.016304388500941083
+epoch: 40 prediction: [[0.87479558]] loss: 0.011219357272989432
+epoch: 60 prediction: [[0.8365647]] loss: 0.0062233407958832395
+epoch: 80 prediction: [[0.79768056]] loss: 0.002641231915429014
+epoch: 100 prediction: [[0.76677692]] loss: 0.0008726555483768716
+epoch: 120 prediction: [[0.74697139]] loss: 0.00024137093931222604
+epoch: 140 prediction: [[0.73597113]] loss: 6.018285720779081e-05
+epoch: 160 prediction: [[0.73033162]] loss: 1.4213060803977675e-05
+epoch: 180 prediction: [[0.72755635]] loss: 3.26744994678405e-06
 ```
 
 You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.725`.
