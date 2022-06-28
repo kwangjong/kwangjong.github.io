@@ -6,7 +6,7 @@ date: 2022-06-27 23:45 +0900
 math: true
 ---
 
-On the last blog post, I went over the basics of neural network and implementing it with Keras. On this post, I'll dive deep into the math behind it. 
+In the last blog post, I went over the basics of the neural network and the implementation with Keras. In this post, I'll dive deep into the math behind the neural network. 
 
 ![deeplearning](https://i.imgur.com/vfYfJ4A.jpg)
 
@@ -16,13 +16,13 @@ On the last blog post, I went over the basics of neural network and implementing
 
 ## Forward Propagation
 
-Take a look at the diagram of a neural network with two hidden layers. Each *neuron* or unit has its own *state* denoted with $a_{n}^{(L)}$ where $n$ and $L$ indicates which neuron in which layer the state $a$ belongs to. This state of a neuron is called **activations**. It is the *output of weighted sum of its inputs plus a bias passed through an activation function*. The most commonly used activation function is sigmoid $\sigma$.The weighted sum plus bias is represented as $z_{n}^{(L)}$. 
+Take a look at the diagram of a neural network with two hidden layers. Each *neuron* or unit has its own *state* denoted with $a_{n}^{(L)}$ where $n$ and $L$ indicate which neuron in which layer the state $a$ belongs to. This state of a neuron is called **activation**. It is the *output of weighted sum of its inputs plus a bias passed through an activation function*. The most commonly used activation function is sigmoid $\sigma$.The weighted sum plus bias is represented as $z_{n}^{(L)}$. 
 
 $$
 a_{n}^{(L)} = \sigma(z_{n}^{(L)}) = \sigma(\sum\limits_{i}^{}w_{n,i}^{(L-1)}a_{i}^{(L-1)}+b_{n}^{(L-1)})
 $$
 
-For instance, the activations of the two neurons in layer 1 is: 
+For instance, the activations of the two neurons in layer 1 are: 
 
 $$
 a_{0}^{(1)} = \sigma( w_{0,0}^{(0)} a_{0}^{(0)} + w_{0,1}^{(0)} a_{1}^{(0)} + b_{0}^{(0)} )
@@ -32,7 +32,7 @@ $$
 a_{1}^{(1)} = \sigma( w_{1,0}^{(0)} a_{0}^{(0)} + w_{1,1}^{(0)} a_{1}^{(0)} + b_{1}^{(0)} )
 $$
 
-In fact, these two activations above can be calculated using matrix multiplication:
+These two activations above can also be calculated using matrix multiplication:
 
 $$ 
 \begin{bmatrix} a_{0}^{(1)}\\ a_{1}^{(1)} \end{bmatrix} = \sigma
@@ -42,7 +42,7 @@ $$
 \end{pmatrix}
 $$
 
-Let's replace the vectors and matrix with symbols.
+Let's replace the vectors and the matrix with symbols.
 
 $$
 a^{(L)} = \begin{bmatrix} a_{0}^{(L)}\\ a_{1}^{(L)}\\ \vdots\\ a_{n}^{(L)} \end{bmatrix},
@@ -56,7 +56,7 @@ W^{(L)} =
 b^{(L)} = \begin{bmatrix} b_{0}^{(L)}\\ b_{1}^{(L)}\\ \vdots\\ b_{n}^{(L)} \end{bmatrix}
 $$
 
-Activations for all neurons in layer $L$ is caculated as:
+Activations for all neurons in layer $L$ are caculated as:
 
 $$
 a^{(L)} = \sigma(W^{(L-1)} a^{(L-1)} + b^{(L-1)})
@@ -64,18 +64,18 @@ $$
 
 i.e. it is a *linear transformation of weights with respect to its basis passed through an activation function*.
 
-**Forward propagation** is *the entire process of calculating of activations of each layer "propagating" input data forward to the output which is the network's prediction*.
+**Forward propagation** is *the calculation of each layer’s activations "propagating" input data forward to the output*.
 
 
 ## Implementing Forward Propagation
 
-Before implementing the forward propagation, let's set activation and loss functions first. **Sigmoid** will be used for activation, and **mean squared error** will be used for calculating the loss. 
+Before implementing the forward propagation, let's set activation and loss functions first. **Sigmoid** is used for activation, and **mean squared error** is used for calculating the loss. 
 
 $$\sigma = \frac{1}{1+e^{-x}}$$
 
 $$mse = \frac{1}{2}\sum(\hat y - y)^2$$
 
-We also need test input and initialize weights. I set`[0.5, 0.35]` as the input and `[0.85]` as the target value. Initial weights will be chosen randomly number from standard normal distribution.
+We also need to prepare test input and initialize weights. I set`[0.5, 0.35]` as the input and `[0.85]` as the target value. Initial weights are chosen randomly from the standard normal distribution.
 
 #### Using row-vectors
 Vectors are commonly implemented as row-vector using an array. The activation vectors and weight matrices are transposed and calculated as:
@@ -110,10 +110,10 @@ prediction: [[0.7338931]] loss: [[0.01348081]]
 
 ## Backpropagation
 
-**Backpropagation** is algorithm that trains neural network by minimizing the cost function. It does so by adjusting each weights in proportion to the gradient of loss functions. Intuitively, gradient of each weight represents how much it contributes to overall error. For the weights that contributes more to the output, weight will change in greater value.
+**Backpropagation** is an algorithm that trains the neural network by minimizing a cost function. It does so by *adjusting each weight in proportion to the gradient of loss functions*. Intuitively, the gradient of each weight represents how much it contributes to the overall error. The algorithm adjusts each weight in proportion to its contribution. Refer to [3Blue1Brown's video](https://www.youtube.com/watch?v=Ilg3gGewQ5U&t=123s&ab_channel=3Blue1Brown) for better explanation.
 
 ### Chain Rule
-Given the cost of forward propagation function as with respect to the weights of the last hidden layer:
+Given the cost of forward propagation with respect to weights in the last hidden layer as:
 
 $$
 C(w^{(L-1)}) = C(a^{(L)}(z^{(L)}(w^{(L-1)})))
@@ -123,10 +123,10 @@ $$
 C = (\hat y - y)^2, \quad a^{(L)} = \sigma(z^{(L)}), \quad z^{(L)} = W^{(L-1)} a^{(L-1)}
 $$
 
-The gradient is calculated using the chain rule.
+The gradients are calculated using the chain rule.
 
 $$
-C'(w^{(L-1)}) = \frac{\partial z^{(L)}}{\partial w^{(L-1)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial C}{\partial a^{(L)}}
+C'(w^{(L-1)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial w^{(L-1)}}
 $$
 
 Let's calculate the partial derivatives.
@@ -141,22 +141,22 @@ $$
 C'(w^{(L-1)}) =  (a^{(L-1)})^T \cdot (\hat y - y) \odot \sigma'(z^{(L)})
 $$
 
-$a^{(L-1)}$ is transposed to match the dimension.
+$a^{(L-1)}$ is transposed and multiplied to the left side to match the dimension.
 
 
-The gradient with respect to weights in second to last hiden layer is:
+The gradients with respect to weights in the second to last hidden layer are:
 
 $$
 C'(w^{(L-2)}) =  (a^{(L-2)})^T \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)})
 $$
 
-And the gradient with respect to the first weight is:
+And the gradients with respect to weights in the first layer are:
 
 $$
 C'(w^{(0)}) =  (X)^T \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
 $$
 
-To calculate the gradient with respect to the bias, replace $\frac{\partial z^{(n+1)}}{\partial w^{(n)}}$ with $\frac{\partial z^{(n+1)}}{\partial b^{(n)}}$ which is $1$:
+To calculate the gradients with respect to the bias, replace $\frac{\partial z^{(n+1)}}{\partial w^{(n)}}$ with $\frac{\partial z^{(n+1)}}{\partial b^{(n)}}$ which equals to $1$:
 
 $$
 C'(b^{(0)}) =  (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
@@ -184,7 +184,7 @@ dsig = lambda A: A * (1-A) #derivative of sigmoid
 dmse = lambda x, y: (x-y) #derivative of mse
 ```
 
-For faster computation, let's modify forward propagation so that it stores  $a^{(L)}$ and $\sigma'(z^{(L)})$.
+For faster computation, let's modify the forward propagation function so that it stores  $a^{(L)}$ and $\sigma'(z^{(L)})$.
 
 ```python
 def forward_pass(X, W, B, A, dA):
@@ -243,7 +243,7 @@ epoch: 900 prediction: [[0.84999999]] loss: [[3.6387656e-17]]
 epoch: 950 prediction: [[0.85]] loss: [[5.89191639e-18]]
 ```
 
-You can see that after each backpropagation loss is minimizing, and prediction is approaching to the target value `0.85`.
+You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.85`.
 
 Links
 * [Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/forward-and-backward-propagation)
