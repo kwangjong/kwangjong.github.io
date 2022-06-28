@@ -5,7 +5,7 @@ layout: page
 
 👋 Hi! My name is Kwangjong Choi. I also go by KJ. <br/>
 I’m an aspiring software engineer studying CS in the University of Wisconsin Madison. <br/>
-I am interested in various fields including front-end development, data science, and research.
+My current interests are data science and deep learning.
 
 ## 🛠 Skillsets
 Techs I've used at least once
