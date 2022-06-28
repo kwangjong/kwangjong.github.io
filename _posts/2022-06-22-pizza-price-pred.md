@@ -5,6 +5,8 @@ tags: blog, datascience, machinelearning
 date: 2022-06-22 04:03 +0900
 ---
 
+Analysis of pizza price data using EDA and Machine Learning
+
 ![hungry-homer](https://i.imgur.com/P8aqLFy.gif)
 
 **Pizza** is probably one of the most consumed meals all over the world. Personally, it served a great portion of meals me and my roommate ate back in college. Every Saturday evening, we would get `$5.99 three-toppings medium pizza` from **Domino's** located right behind our apartment. It was the **cheapest** and **delicious** food we could get around the campus.

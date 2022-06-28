@@ -6,9 +6,9 @@ date: 2022-06-27 23:45 +0900
 math: true
 ---
 
-![deeplearning](https://i.imgur.com/ZTwsQGu.jpg)
-
 On the last blog post, I went over the basics of neural network and implementing it with Keras. On this post, I'll dive deep into the math behind it. 
+
+![deeplearning](https://i.imgur.com/vfYfJ4A.jpg)
 
 ![2x2](https://i.imgur.com/r5ahUTR.png)
 
@@ -32,7 +32,8 @@ $$
 
 In fact, these two activations above can be calculated using matrix multiplication:
 
-$$ \begin{bmatrix} a_{0}^{(1)}\\ a_{1}^{(1)} \end{bmatrix} = \sigma
+$$ 
+\begin{bmatrix} a_{0}^{(1)}\\ a_{1}^{(1)} \end{bmatrix} = \sigma
 \begin{pmatrix}
   \begin{bmatrix} w_{0,0}^{(0)} & w_{0,1}^{(0)}\\ w_{1,0}^{(0)} & w_{1,1}^{(0)} \end{bmatrix}
   \begin{bmatrix} a_{0}^{(0)}\\ a_{1}^{(0)} \end{bmatrix} + \begin{bmatrix} b_{0}^{(0)}\\ b_{1}^{(0)} \end{bmatrix}
@@ -137,6 +138,7 @@ Then,
 $$
 C'(w^{(L-1)}) =  (a^{(L-1)})^T \cdot (\hat y - y) \odot \sigma'(z^{(L)})
 $$
+
 $a^{(L-1)}$ is transposed to match the dimension.
 
 
