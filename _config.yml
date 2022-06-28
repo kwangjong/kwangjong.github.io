@@ -47,3 +47,10 @@ author:
   name: KJ Choi
   url: https://github.com/kwangjong/
   email: choikj0903@gmail.com
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
