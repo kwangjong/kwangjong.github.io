@@ -105,7 +105,7 @@ pred = forward_pass(X, W, B)
 print("prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-prediction: [[0.59309647]] loss: [[0.01739854]]
+prediction: [[0.64781373]] loss: [[0.00595772]]
 ```
 
 ## Backpropagation
@@ -210,7 +210,8 @@ def backward_pass(X, W, B, A, dA, pred, Y, learning_rate=0.5):
         dw = np.dot(A[i].T, E)
         W[i] -= dw * learning_rate
         B[i] -= E * learning_rate
-        E = np.dot(E, w.T) * dA[i]
+        if i>0:
+            E = np.dot(E, w.T) * dA[i]
 
 A, dA = [],[]
 pred = forward_pass(X, new_W, B, A, dA)
@@ -221,16 +222,16 @@ for i in range(500):
         print("epoch:", i, "prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-epoch: 0 prediction: [[0.59745475]] loss: [[0.01626779]]
-epoch: 50 prediction: [[0.69454691]] loss: [[0.00092739]]
-epoch: 100 prediction: [[0.71589937]] loss: [[8.28214095e-05]]
-epoch: 150 prediction: [[0.72210407]] loss: [[8.38639604e-06]]
-epoch: 200 prediction: [[0.72406049]] loss: [[8.82687581e-07]]
-epoch: 250 prediction: [[0.7246933]] loss: [[9.40650153e-08]]
-epoch: 300 prediction: [[0.72489968]] loss: [[1.00647302e-08]]
-epoch: 350 prediction: [[0.72496716]] loss: [[1.07832289e-09]]
-epoch: 400 prediction: [[0.72498925]] loss: [[1.15580054e-10]]
-epoch: 450 prediction: [[0.72499648]] loss: [[1.23901995e-11]]
+epoch: 0 prediction: [[0.65004613]] loss: [[0.00561808]]
+epoch: 20 prediction: [[0.68203572]] loss: [[0.00184593]]
+epoch: 40 prediction: [[0.69932789]] loss: [[0.00065906]]
+epoch: 60 prediction: [[0.70927479]] loss: [[0.00024728]]
+epoch: 80 prediction: [[0.71522174]] loss: [[9.56143789e-05]]
+epoch: 100 prediction: [[0.71886314]] loss: [[3.76610032e-05]]
+epoch: 120 prediction: [[0.72112623]] loss: [[1.50060717e-05]]
+epoch: 140 prediction: [[0.7225459]] loss: [[6.02262624e-06]]
+epoch: 160 prediction: [[0.72344172]] loss: [[2.42822846e-06]]
+epoch: 180 prediction: [[0.72400911]] loss: [[9.81862277e-07]]
 ```
 
 You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.725`.
