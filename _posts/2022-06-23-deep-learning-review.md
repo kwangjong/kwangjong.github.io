@@ -75,13 +75,12 @@ history_df.loc[5:, ['loss']].plot();
 ![loss](https://i.imgur.com/RWG8rFm.png)
 
 ### How training works: Backpropagation
-**Backpropagation** is the key steps to the training of a neural network. It calculates the *gradient* of the loss function with respect to the *weights* of the network. In other words, it determines *how much* weights of each unit need to change to minimize the *loss*. Check out [3Blue1Brown's video](https://www.youtube.com/watch?v=tIeHLnjs5U8&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=4&ab_channel=3Blue1Brown) if you want to dig into the math behind backpropagation.
-
+**Backpropagation** is the key step to the training of a neural network. It calculates the *gradient* of the loss function with respect to the *weights* of the network. In other words, it determines *how much* the weight of each unit needs to change to minimize the *loss*. 
 
 ##  Underfitting and Overfitting
-Information accquired from training data are two kinds: *signal* and *noise*. **Underfitting** occurs if the model fails to learn enough *signal*. **Overfitting** occurs when the model learned too much *noise*.
+Information acquired from training data are two kinds: *signal* and *noise*. **Underfitting** occurs if the model fails to learn enough *signal*. **Overfitting** occurs when the model learned too much *noise*.
 
-If the network *underfits*, we can try increasing **capacity** (making the network *wider* or *deeper*). Also to prevent *overfitting*, we can adding early stopping through *callback*.
+If the network *underfits*, we can try increasing **capacity** (making the network *wider* or *deeper*). Also to prevent *overfitting*, we can add early stopping through *callback*.
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -103,7 +102,7 @@ history = model.fit(
 ```
 
 ## Dropout
-**Dropout** is a technique to *"drop out"* fraction of hidden layers to improve training qualities and prevent overfitting. It is commonly described as `creating a kind of ensemble of networks`.
+**Dropout** is a technique to *"drop out"* a fraction of hidden layers to improve training qualities and prevent overfitting. It is commonly described as `creating a kind of ensemble of networks`.
 
 ![dropout](https://i.imgur.com/a86utxY.gif)
 
@@ -118,7 +117,7 @@ keras.Sequential([
 
 ## Batch Normalization
 
-**Batch normalization** is a special kind of layer that helps the optimization process and prevent training to get "stuck". Batch normalization is believed to solve *internal covariate shift* which is change in distribution of data during training process.
+**Batch normalization** is a special kind of layer that helps the optimization process and prevents training to get "stuck". Batch normalization is believed to solve *internal covariate shift* which is a change in the distribution of data during the training process.
 
 ![batch-nornm](https://i.imgur.com/ZlqADvu.jpg)
 
