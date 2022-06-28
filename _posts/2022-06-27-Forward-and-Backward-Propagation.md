@@ -10,11 +10,13 @@ On the last blog post, I went over the basics of neural network and implementing
 
 ![deeplearning](https://i.imgur.com/vfYfJ4A.jpg)
 
+[Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/forward-and-backward-propagation)
+
 ![2x2](https://i.imgur.com/r5ahUTR.png)
 
 ## Forward Propagation
 
-Take a look at the diagram of a neural network with two hidden layers. Each *neuron* or unit has its own *state* denoted with \(a_{n}^{(L)}\) where $n$ and \(L\) indicates which neuron in which layer the state $a$ belongs to. This state of a neuron is called **activations**. It is the *output of weighted sum of its inputs plus a bias passed through an activation function*. The most commonly used activation function is sigmoid $\sigma$.The weighted sum plus bias is represented as \(z_{n}^{(L)}\). 
+Take a look at the diagram of a neural network with two hidden layers. Each *neuron* or unit has its own *state* denoted with $a_{n}^{(L)}$ where $n$ and $L$ indicates which neuron in which layer the state $a$ belongs to. This state of a neuron is called **activations**. It is the *output of weighted sum of its inputs plus a bias passed through an activation function*. The most commonly used activation function is sigmoid $\sigma$.The weighted sum plus bias is represented as $z_{n}^{(L)}$. 
 
 $$
 a_{n}^{(L)} = \sigma(z_{n}^{(L)}) = \sigma(\sum\limits_{i}^{}w_{n,i}^{(L-1)}a_{i}^{(L-1)}+b_{n}^{(L-1)})
@@ -154,7 +156,7 @@ $$
 C'(w^{(0)}) =  (X)^T \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
 $$
 
-To calculate the gradient with respect to the bias, replace \(\frac{\partial z^{(n+1)}}{\partial w^{(n)}}$ with $\frac{\partial z^{(n+1)}}{\partial b^{(n)}}\) which is $1$:
+To calculate the gradient with respect to the bias, replace $\frac{\partial z^{(n+1)}}{\partial w^{(n)}}$ with $\frac{\partial z^{(n+1)}}{\partial b^{(n)}}$ which is $1$:
 
 $$
 C'(b^{(0)}) =  (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
@@ -182,7 +184,7 @@ dsig = lambda A: A * (1-A) #derivative of sigmoid
 dmse = lambda x, y: (x-y) #derivative of mse
 ```
 
-For faster computation, let's modify forward propagation so that it stores  \(a^{(L)}\) and \(\sigma'(z^{(L)})\).
+For faster computation, let's modify forward propagation so that it stores  $a^{(L)}$ and $\sigma'(z^{(L)})$.
 
 ```python
 def forward_pass(X, W, B, A, dA):
@@ -241,7 +243,10 @@ epoch: 900 prediction: [[0.84999999]] loss: [[3.6387656e-17]]
 epoch: 950 prediction: [[0.85]] loss: [[5.89191639e-18]]
 ```
 
+You can see that after each backpropagation loss is minimizing, and prediction is approaching to the target value `0.85`.
+
 Links
+* [Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/forward-and-backward-propagation)
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Neural Networks Demystified by Welch Labs](https://www.youtube.com/watch?v=GlcnxUlrtek&ab_channel=WelchLabs)
 
