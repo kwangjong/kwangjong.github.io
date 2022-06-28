@@ -75,7 +75,7 @@ $$\sigma = \frac{1}{1+e^{-x}}$$
 
 $$mse = \frac{1}{2}\sum(\hat y - y)^2$$
 
-We also need to prepare test input and initialize weights. I set`[0.5, 0.35]` as the input and `[0.85]` as the target value. Initial weights are chosen randomly from the standard normal distribution.
+We also need to prepare test input and initialize weights. I set`[0.5, 0.35]` as the input and `[0.725]` as the target value. Initial weights are chosen randomly from the standard normal distribution.
 
 #### Using row-vectors
 Vectors are commonly implemented as row-vector using an array. The activation vectors and weight matrices are transposed and calculated as:
@@ -87,7 +87,7 @@ $$
 ```python
 import numpy as np # linear algebra
 
-Y = [[0.85]] # target value
+Y = [[0.725]] # target value
 X = np.array([[0.5, 0.35]]) # test data
 W = [np.random.randn(2,2), np.random.randn(2,2), np.random.randn(2,1)] # initialize weights with standard normal distribution
 B = [np.random.randn(1,2), np.random.randn(1,2), np.random.randn(1,1)]
@@ -105,7 +105,7 @@ pred = forward_pass(X, W, B)
 print("prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-prediction: [[0.7338931]] loss: [[0.01348081]]
+prediction: [[0.59309647]] loss: [[0.01739854]]
 ```
 
 ## Backpropagation
@@ -214,36 +214,26 @@ def backward_pass(X, W, B, A, dA, pred, Y, learning_rate=0.5):
 
 A, dA = [],[]
 pred = forward_pass(X, new_W, B, A, dA)
-for i in range(1000):
+for i in range(500):
     backward_pass(X, new_W, B, A, dA, pred, Y)
     pred = forward_pass(X, new_W, B, A, dA)
     if i %50 == 0:
         print("epoch:", i, "prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-epoch: 0 prediction: [[0.45828646]] loss: [[0.1534395]]
-epoch: 50 prediction: [[0.80206431]] loss: [[0.00229783]]
-epoch: 100 prediction: [[0.83524438]] loss: [[0.00021773]]
-epoch: 150 prediction: [[0.84456951]] loss: [[2.94901935e-05]]
-epoch: 200 prediction: [[0.84788703]] loss: [[4.46465182e-06]]
-epoch: 250 prediction: [[0.84916089]] loss: [[7.04107819e-07]]
-epoch: 300 prediction: [[0.84966412]] loss: [[1.12818446e-07]]
-epoch: 350 prediction: [[0.84986513]] loss: [[1.81909124e-08]]
-epoch: 400 prediction: [[0.84994577]] loss: [[2.94050943e-09]]
-epoch: 450 prediction: [[0.84997819]] loss: [[4.75805858e-10]]
-epoch: 500 prediction: [[0.84999122]] loss: [[7.70217759e-11]]
-epoch: 550 prediction: [[0.84999647]] loss: [[1.24700525e-11]]
-epoch: 600 prediction: [[0.84999858]] loss: [[2.01907108e-12]]
-epoch: 650 prediction: [[0.84999943]] loss: [[3.26923717e-13]]
-epoch: 700 prediction: [[0.84999977]] loss: [[5.29353603e-14]]
-epoch: 750 prediction: [[0.84999991]] loss: [[8.57130958e-15]]
-epoch: 800 prediction: [[0.84999996]] loss: [[1.38787145e-15]]
-epoch: 850 prediction: [[0.84999999]] loss: [[2.24725105e-16]]
-epoch: 900 prediction: [[0.84999999]] loss: [[3.6387656e-17]]
-epoch: 950 prediction: [[0.85]] loss: [[5.89191639e-18]]
+epoch: 0 prediction: [[0.59745475]] loss: [[0.01626779]]
+epoch: 50 prediction: [[0.69454691]] loss: [[0.00092739]]
+epoch: 100 prediction: [[0.71589937]] loss: [[8.28214095e-05]]
+epoch: 150 prediction: [[0.72210407]] loss: [[8.38639604e-06]]
+epoch: 200 prediction: [[0.72406049]] loss: [[8.82687581e-07]]
+epoch: 250 prediction: [[0.7246933]] loss: [[9.40650153e-08]]
+epoch: 300 prediction: [[0.72489968]] loss: [[1.00647302e-08]]
+epoch: 350 prediction: [[0.72496716]] loss: [[1.07832289e-09]]
+epoch: 400 prediction: [[0.72498925]] loss: [[1.15580054e-10]]
+epoch: 450 prediction: [[0.72499648]] loss: [[1.23901995e-11]]
 ```
 
-You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.85`.
+You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.725`.
 
 Links
 * [Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/forward-and-backward-propagation)
