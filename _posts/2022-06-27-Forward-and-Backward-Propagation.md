@@ -105,7 +105,7 @@ pred = forward_pass(X, W, B)
 print("prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-prediction: [[0.92872969]] loss: 0.020752894164543605
+prediction: [[0.24512972]] loss: 0.11513774169863143
 ```
 
 ## Backpropagation
@@ -161,9 +161,10 @@ To calculate the gradients with respect to the bias, replace $\frac{\partial z^{
 $$
 C'(b^{(0)}) =  [1, 1, 1, \cdots] \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
 $$
+
 A $1 \times n$ matrix withh all ones is multiplied for the batch sum.
 
-After the gradients have been caculated, update weights in proportion to the gradients.
+After the gradients have been calculated, update weights in proportion to the gradients.
 
 $$w_{new}^{(L)} = w^{(L)} - (\text{learning rate}) * C'(w^{(L)})$$
 
@@ -224,16 +225,32 @@ for i in range(500):
         print("epoch:", i, "prediction:", pred, "loss:", mse(pred, Y))
 ```
 ```
-epoch: 0 prediction: [[0.92781287]] loss: 0.020566530274120164
-epoch: 20 prediction: [[0.905579]] loss: 0.016304388500941083
-epoch: 40 prediction: [[0.87479558]] loss: 0.011219357272989432
-epoch: 60 prediction: [[0.8365647]] loss: 0.0062233407958832395
-epoch: 80 prediction: [[0.79768056]] loss: 0.002641231915429014
-epoch: 100 prediction: [[0.76677692]] loss: 0.0008726555483768716
-epoch: 120 prediction: [[0.74697139]] loss: 0.00024137093931222604
-epoch: 140 prediction: [[0.73597113]] loss: 6.018285720779081e-05
-epoch: 160 prediction: [[0.73033162]] loss: 1.4213060803977675e-05
-epoch: 180 prediction: [[0.72755635]] loss: 3.26744994678405e-06
+epoch: 0 prediction: [[0.26206966]] loss: 0.10715224875433976
+epoch: 20 prediction: [[0.56510157]] loss: 0.012783753641463615
+epoch: 40 prediction: [[0.66383467]] loss: 0.0018705989093751665
+epoch: 60 prediction: [[0.69754805]] loss: 0.00037680488010479623
+epoch: 80 prediction: [[0.7117886]] loss: 8.727055221715389e-05
+epoch: 100 prediction: [[0.71843509]] loss: 2.1549052822002712e-05
+epoch: 120 prediction: [[0.72168694]] loss: 5.488181527431076e-06
+epoch: 140 prediction: [[0.72331511]] loss: 1.4194236184139503e-06
+epoch: 160 prediction: [[0.7241398]] loss: 3.6997171363399e-07
+epoch: 180 prediction: [[0.72455997]] loss: 9.681446495914698e-08
+epoch: 200 prediction: [[0.72477468]] loss: 2.5385611306852804e-08
+epoch: 220 prediction: [[0.72488456]] loss: 6.663201142057146e-09
+epoch: 240 prediction: [[0.72494084]] loss: 1.7498772336994115e-09
+epoch: 260 prediction: [[0.72496968]] loss: 4.5967379324490785e-10
+epoch: 280 prediction: [[0.72498446]] loss: 1.2076806992748317e-10
+epoch: 300 prediction: [[0.72499203]] loss: 3.1731117689103174e-11
+epoch: 320 prediction: [[0.72499592]] loss: 8.337472866171438e-12
+epoch: 340 prediction: [[0.72499791]] loss: 2.1907438745709694e-12
+epoch: 360 prediction: [[0.72499893]] loss: 5.756426120239408e-13
+epoch: 380 prediction: [[0.72499945]] loss: 1.5125731778394313e-13
+epoch: 400 prediction: [[0.72499972]] loss: 3.974485774696661e-14
+epoch: 420 prediction: [[0.72499986]] loss: 1.0443499710032055e-14
+epoch: 440 prediction: [[0.72499993]] loss: 2.7441728137204566e-15
+epoch: 460 prediction: [[0.72499996]] loss: 7.210692946507104e-16
+epoch: 480 prediction: [[0.72499998]] loss: 1.894709489296153e-16
+epoch: 500 prediction: [[0.72499999]] loss: 4.978612098339798e-17
 ```
 
 You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.725`.
