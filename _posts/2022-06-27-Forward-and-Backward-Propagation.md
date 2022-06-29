@@ -159,8 +159,9 @@ $$
 To calculate the gradients with respect to the bias, replace $\frac{\partial z^{(n+1)}}{\partial w^{(n)}}$ with $\frac{\partial z^{(n+1)}}{\partial b^{(n)}}$ which equals to $1$:
 
 $$
-C'(b^{(0)}) =  (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
+C'(b^{(0)}) =  [1, 1, 1, \cdots] \cdot (\hat y - y) \odot \sigma'(z^{(L)}) \cdot (w^{(L-1)})^T \odot \sigma'(z^{(L-1)} \cdots (w^{(1)})^T \odot \sigma'(z^{(1)})
 $$
+A $1 \times n$ matrix withh all ones is multiplied for the batch sum.
 
 After the gradients have been caculated, update weights in proportion to the gradients.
 
@@ -208,8 +209,9 @@ def backward_pass(X, W, B, A, dA, pred, Y, learning_rate=0.5):
     E = dmse(pred, Y) * dA[-1]
     for i, w in reversed(list(enumerate(W))):
         dw = np.dot(A[i].T, E)
+        db = np.dot(np.ones(shape=(1, E.shape[0])), E)
         W[i] -= dw * learning_rate
-        B[i] -= E * learning_rate
+        B[i] -= db * learning_rate
         if i>0:
             E = np.dot(E, w.T) * dA[i]
 
