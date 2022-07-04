@@ -13,7 +13,7 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 		<a href ="/cscheatsheet">
   		<h2 class ="post-title badge">Computer Science Cheat Sheet</h2>
   	</a>
-		<p class ="badge-right">Feb 2022 – Ongoing</p>
+		<p class ="badge-right">Feb 2022 – Apr 2022</p>
 	</div>
 	<!--links-->
 	<div style ="height: 28px;">
