@@ -8,6 +8,7 @@ date: 2022-06-23 21:45 +0900
 ![deeplearning](https://i.imgur.com/ZTwsQGu.jpg)
 
 ## Single Neuron
+
 ![neuron](https://i.imgur.com/1TjA90k.png)
 
 A neuron "learns" by adjusting its **weight** and **bias**.
@@ -25,7 +26,8 @@ model = keras.Sequential([
 ## Activation Function
 An ***activation Function*** enables a neural network to have **non-linearity**.
 
-!(relu)[https://i.imgur.com/JlW89IR.png]
+![relu](https://i.imgur.com/JlW89IR.png)
+
 ReLu is the most commonly used activation function.
 
 ## Fully Connected Network
