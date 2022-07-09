@@ -3,6 +3,7 @@ layout: post
 title: "HomeCooked Neural Network"
 tags: blog, datascience, deeplearning
 date: 2022-07-09 23:55 +0900
+math: true
 ---
 
 My attempt on building a neural network from scratch.
