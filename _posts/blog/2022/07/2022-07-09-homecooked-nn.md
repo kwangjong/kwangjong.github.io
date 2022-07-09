@@ -9,8 +9,8 @@ My attempt on building a neural network from scratch.
 
 ![homecooked-nn](https://i.imgur.com/H2dx5KO.png)
 
-* [link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
-* [code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
+[link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)<br>
+[code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
 
 
 #### He Initialization: 
@@ -35,9 +35,8 @@ $$
 <img src="https://i.imgur.com/HDdc9I5.png" alt="adam" width="600" style="margin-left: auto; margin-right: auto"/>
 
 
-Go to my github or kaggle to see my implementation.
-* [link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
-* [code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
+## Implementation
+Go to my [github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py) or [kaggle](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook) to see my implementation.
 
 
 ## Testing my neural net
@@ -255,7 +254,6 @@ plt.show()
 
 
 Links
-* [Link to my kaggle notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
 * [Optimization for Training DeepModels, Deep Learning (Ian Goodfellow et al)](https://www.deeplearningbook.org/contents/optimization.html)
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Neural Networks Demystified by Welch Labs](https://www.youtube.com/watch?v=GlcnxUlrtek&ab_channel=WelchLabs)
