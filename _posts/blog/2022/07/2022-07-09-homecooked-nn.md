@@ -14,14 +14,18 @@ My attempt on building a neural network from scratch.
 
 
 #### He Initialization: 
+
 $$W ~ N(0, Var(W)), \text{where } Var(W) = \sqrt{\frac{2}{n_{in}}} \text{and } n_{in} = \text{size of layer input}$$
 
 #### Forward Propagation: 
+
 $$a^{(L)} = \sigma(z^{(L)}) = \sigma(W^{(L-1)}a^{(L-1)}+b^{(L-1)})$$
 
 #### Backpropagation: 
+
 $$C'(w^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial w^{(0)}} $$
-$$ C'(b^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial b^{(0)}} 
+
+$$C'(b^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial b^{(0)}} 
 $$
 
 #### Stochastic Gradient Descent:
