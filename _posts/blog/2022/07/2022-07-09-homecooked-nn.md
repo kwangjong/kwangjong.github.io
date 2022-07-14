@@ -3,25 +3,30 @@ layout: post
 title: "HomeCooked Neural Network"
 tags: blog, datascience, deeplearning
 date: 2022-07-09 23:55 +0900
+math: true
 ---
 
 My attempt on building a neural network from scratch.
 
 ![homecooked-nn](https://i.imgur.com/H2dx5KO.png)
 
-* [link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
-* [code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
+[link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)<br>
+[code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
 
 
 #### He Initialization: 
+
 $$W ~ N(0, Var(W)), \text{where } Var(W) = \sqrt{\frac{2}{n_{in}}} \text{and } n_{in} = \text{size of layer input}$$
 
 #### Forward Propagation: 
+
 $$a^{(L)} = \sigma(z^{(L)}) = \sigma(W^{(L-1)}a^{(L-1)}+b^{(L-1)})$$
 
 #### Backpropagation: 
+
 $$C'(w^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial w^{(0)}} $$
-$$ C'(b^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial b^{(0)}} 
+
+$$C'(b^{(0)}) = \frac{\partial C}{\partial a^{(L)}} \cdot \frac{\partial a^{(L)}}{\partial z^{(L)}} \cdot \frac{\partial z^{(L)}}{\partial a^{(L-1)}} \cdots \frac{\partial a^{(1)}}{\partial z^{(1)}} \cdot \frac{\partial z^{(1)}}{\partial b^{(0)}} 
 $$
 
 #### Stochastic Gradient Descent:
@@ -35,9 +40,8 @@ $$
 <img src="https://i.imgur.com/HDdc9I5.png" alt="adam" width="600" style="margin-left: auto; margin-right: auto"/>
 
 
-Go to my github or kaggle to see my implementation.
-* [link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
-* [code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
+## Implementation
+Go to my [github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py) or [kaggle](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook) to see my implementation.
 
 
 ## Testing my neural net
@@ -255,7 +259,6 @@ plt.show()
 
 
 Links
-* [Link to my kaggle notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)
 * [Optimization for Training DeepModels, Deep Learning (Ian Goodfellow et al)](https://www.deeplearningbook.org/contents/optimization.html)
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Neural Networks Demystified by Welch Labs](https://www.youtube.com/watch?v=GlcnxUlrtek&ab_channel=WelchLabs)
