@@ -255,7 +255,7 @@ epoch: 500 prediction: [[0.72499999]] loss: 4.978612098339798e-17
 
 You can see that, after each backpropagation, the loss is minimized, and prediction is approaching the target value `0.725`.
 
-Links
+## Links
 * [Link to the notebook](https://www.kaggle.com/code/kwangjongchoi/forward-and-backward-propagation)
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Neural Networks Demystified by Welch Labs](https://www.youtube.com/watch?v=GlcnxUlrtek&ab_channel=WelchLabs)

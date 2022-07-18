@@ -135,7 +135,7 @@ layers.BatchNormalization(),
 layers.Activation('relu'),
 ```
 
-Links
+## Links
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Batch-Normalization by Jinsol Kim](https://gaussian37.github.io/dl-concept-batchnorm/)
 * [Intro to Deep Learning Course on Kaggle](https://www.kaggle.com/learn/intro-to-deep-learning)
