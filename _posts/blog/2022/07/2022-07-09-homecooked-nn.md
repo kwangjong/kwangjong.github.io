@@ -259,7 +259,7 @@ plt.show()
 
 
 Links
-* [Optimization for Training DeepModels, Deep Learning (Ian Goodfellow et al)](https://www.deeplearningbook.org/contents/optimization.html)
+* [Optimization for Training DeepModels, Deep Learning (Ian Goodfellow et al.)](https://www.deeplearningbook.org/contents/optimization.html)
 * [Neural Networks by 3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
 * [Neural Networks Demystified by Welch Labs](https://www.youtube.com/watch?v=GlcnxUlrtek&ab_channel=WelchLabs)
 
