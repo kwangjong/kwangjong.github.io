@@ -19,8 +19,8 @@ date: 2022-07-20 01:34 +0900
 
 ## Inference on Traffic Video
 
-<video width=420 controls autoplay loop src="https://i.imgur.com/ukX5mED.mp4"></video>
-<video width=420 controls autoplay loop src="https://i.imgur.com/P6H8g0z.mp4"></video>
+<video width=400 controls autoplay loop src="https://i.imgur.com/ukX5mED.mp4"></video>
+<video width=400 controls autoplay loop src="https://i.imgur.com/P6H8g0z.mp4"></video>
 
 ## Links
 * [my colab notebook](https://colab.research.google.com/drive/17v7MeCEXPVqAYpG5WwxwFNTuMXj7E57I#scrollTo=lrqovzPXy-Z8)
