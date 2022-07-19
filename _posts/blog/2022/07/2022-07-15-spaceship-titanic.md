@@ -7,6 +7,8 @@ date: 2022-07-15 00:50 +0900
 
 Predict which passengers are transported to an alternate dimension
 
+![spaceship-t](https://i.imgur.com/voGgul0.png)
+
 ## Introduction
 
 > Welcome to the year 2912, where your data science skills are needed to solve a cosmic mystery. We've received a transmission from four lightyears away and things aren't looking good.
@@ -18,8 +20,6 @@ Predict which passengers are transported to an alternate dimension
 >To help rescue crews and retrieve the lost passengers, you are challenged to predict which passengers were transported by the anomaly using records recovered from the spaceship’s damaged computer system.
 >
 >Help save them and change history!
-
-![spaceship-t](https://i.imgur.com/voGgul0.png)
 
 ## Feature Engineering
 
