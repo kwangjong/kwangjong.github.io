@@ -111,14 +111,16 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 	</div>
 </section>
 
-<!--ScreenLock-->
+
+<!--
+<!~~ScreenLock>
 <section class="post-entry">
-	<!--project header-->
+	<!~~project header~~>
 	<div>
   	<h2 class ="post-title badge" >Screen Lock</h2>
 		<p class ="badge-right">Feb 2019</p>
 	</div>
-	<!--links-->
+	<!~~links~~>
 	<div style ="height: 28px;">
 		<a href ="https://github.com/Kwangjong/ScreenLock">
 			<img class ="badge-right" alt="Github" src ="https://img.shields.io/badge/Github-181717.svg?&style=for-the-badge&logo=Github&logoColor=white"> 
@@ -127,13 +129,13 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 			<img class ="badge-right" alt="PlayStore" src ="https://img.shields.io/badge/PlayStore-009382.svg?&style=for-the-badge&logo=GooglePlay&logoColor=white"> 
 		</a>
 	</div>
-	<!--description-->
+	<!~~description~~>
   <p>
   	Developed a screensaver application for android.<br/>
   	The application prevents unnecessary touch input and saves battery by drawing screen overlay over the entire screen and dimming the display brightness.<br/>
   	It also utilizes the proximity sensor to prevent screen-saver from unlocking inside your pocket.
   </p>
-  <!--tech-->
+  <!~~tech~~>
   <div>
   	<p class ="no-margin">Tech Used: </p>
 		<img class ="badge" alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/> 
@@ -142,24 +144,24 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 </section>
 
 
-<!--Simple Calculator-->
+<!~~Simple Calculator~~>
 <section class="post-entry">
-	<!--project header-->
+	<!~~project header~~>
 	<div>
   	<h2 class ="post-title badge">Simple Calculator</h2>
 		<p class ="badge-right">Mar 2018</p>
 	</div>
-	<!--links-->
+	<!~~links~~>
 	<div style ="height: 28px;">
 		<a href ="https://github.com/Kwangjong/Simple-Calculator">
 			<img class ="badge-right" alt="Github" src ="https://img.shields.io/badge/Github-181717.svg?&style=for-the-badge&logo=Github&logoColor=white"> 
 		</a>
 	</div>
-	<!--description-->
+	<!~~description~~>
   <p>
   	Implemented GUI calculator using Java and Processing library.
   </p>
-  <!--tech-->
+  <!~~tech~~>
   <div>
   	<p class ="no-margin">Tech Used: </p>
 		<img class ="badge" alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/> 
@@ -168,3 +170,4 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
   	</a>
 	</div>
 </section>
+-->
