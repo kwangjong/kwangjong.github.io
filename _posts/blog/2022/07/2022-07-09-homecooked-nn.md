@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "HomeCooked Neural Network"
+title: "🍳HomeCooked Neural Network"
 tags: blog, datascience, deeplearning
 date: 2022-07-09 23:55 +0900
 math: true
@@ -10,6 +10,7 @@ My attempt on building a neural network from scratch.
 
 ![homecooked-nn](https://i.imgur.com/H2dx5KO.png)
 
+[demo](https://huggingface.co/spaces/kwangjong/homecooked-nn)<br>
 [link to the notebook](https://www.kaggle.com/code/kwangjongchoi/homecooked-nn/notebook)<br>
 [code on github](https://github.com/Kwangjong/homecooked-nn/blob/main/neuralnet.py)
 
