@@ -11,7 +11,7 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 	<!--project header-->
 	<div>
 		<a href ="https://huggingface.co/spaces/kwangjong/homecooked-nn">
-  		<h2 class ="post-title badge">HomeCooked NeuralNet✏</h2>
+  		<h2 class ="post-title badge">HomeCooked NeuralNet</h2>
   	</a>
 		<p class ="badge-right">Jul 2022</p>
 	</div>
