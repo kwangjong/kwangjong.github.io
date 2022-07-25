@@ -2,6 +2,11 @@
 //
 // Styles for the sidebar.
 
+.sidebar-color {
+  color: var(--sidebar-color);
+  background-color: var(--sidebar-bg)
+}
+
 .masthead {
   text-align: center;
   margin: auto;
@@ -25,7 +30,7 @@
 .masthead-title {
   padding: 0;
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 900;
 
   a:hover,

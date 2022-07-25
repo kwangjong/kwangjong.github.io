@@ -2,9 +2,7 @@
 title: KJ
 description: my dev portfolio and blog
 url: https://kwangjong.github.io
-avatar: /img/avatar.jpeg
 permalink: pretty
-cover_image: /img/bg.jpeg
 
 # Pagination
 paginate_path: "blog/:num/"

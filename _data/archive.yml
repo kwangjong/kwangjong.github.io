@@ -1,4 +1,8 @@
 - type: page
+  title: About
+  url: /
+
+- type: page
   title: Blog
   url: /blog/
 
@@ -9,7 +13,3 @@
 - type: page
   title: Project
   url: /projects/
-
-- type: page
-  title: About
-  url: /

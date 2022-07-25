@@ -5,7 +5,7 @@ title: Computer Science Cheat Sheet
 ---
 
 <div>
-  <p>a quick guide and study notes for basic algorithms, datastructure, and etc. basically, my summary for core comp sci classes i tooked at the college.
+  <p>A quick guide and study notes for basic algorithms, datastructure, and etc.<br>Basically, my summary for core comp sci classes i tooked at the college.
 Python and Java is used for the example codes.
 </p><br/>
 </div>
