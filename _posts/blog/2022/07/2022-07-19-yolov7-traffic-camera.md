@@ -26,12 +26,22 @@ date: 2022-07-20 01:34 +0900
 
 ### Isanpo Interchange CCTV
 
-<video width=400 controls autoplay loop src="https://i.imgur.com/ukX5mED.mp4"></video>
-<video width=400 controls autoplay loop src="https://i.imgur.com/P6H8g0z.mp4"></video>
+<table>
+	<tr style="background-color: transparent;">
+		<td style="border: 0px">
+			<video width=400 controls autoplay loop src="https://i.imgur.com/ukX5mED.mp4"></video>
+		</td>
+		<td style="border: 0px">
+			<video width=400 controls autoplay loop src="https://i.imgur.com/P6H8g0z.mp4"></video>
+		</td>
+	</tr>
+</table>
 
 ### Rainy Seoul Street
 
-<iframe width=800 height="450" src="https://www.youtube-nocookie.com/embed/76fpOiVdTM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="text-align:center;">
+	<iframe style="margin-right: auto; margin-left: auto;" width=800 height="450" src="https://www.youtube-nocookie.com/embed/76fpOiVdTM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 original video from [`@SeoulWalker`](https://www.youtube.com/watch?v=Y6mLZBouFwU&t=63s)
 
