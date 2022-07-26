@@ -21,7 +21,7 @@ date: 2022-07-20 01:34 +0900
 | Video | Model | Image Size | # frames | elapsed time | fps |
 | :-- | :-: | :-: | :-: | :-: | :-: |
 | [**Isanpo Interchange Day**](https://i.imgur.com/SDEdDq9.mp4) | **YOLOv7** | 640px | 191 *frames* | 56 *fps* | 3.41 *sec* |
-| [**Isanpo Intercahnge Night**](https://i.imgur.com/rdygvod.mp4)| **YOLOv7** | 640px | 194 *frames* | 56 *fps* | 3.43 *sec* |
+| [**Isanpo Interchange Night**](https://i.imgur.com/rdygvod.mp4)| **YOLOv7** | 640px | 194 *frames* | 56 *fps* | 3.43 *sec* |
 | [**Rainy Seoul Street**](https://youtu.be/fTvrTu8dons) | **YOLOv7-E6E** | 1280px | 4606 *frames* | 16 *fps* | 287.05 *sec* |
 
 ### Isanpo Interchange CCTV
