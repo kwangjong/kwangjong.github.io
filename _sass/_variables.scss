@@ -10,6 +10,7 @@
   --gray-800: #343a40;
   --gray-900: #212529;
 
+  --white: #ffffff;
   --red: #fa5252;
   --pink: #e64980;
   --grape: #be4bdb;
@@ -30,9 +31,9 @@
   --body-font-size: 18px;
   --body-line-height: 1.5;
   --body-color: var(--gray-900);
-  --body-bg: var(--gray-000);
+  --body-bg: var(--white);
 
-  --sidebar-color: var(--gray-000);
+  --sidebar-color: var(--white);
   --sidebar-bg: var(--gray-900);
 
   --link-color: var(--blue);
@@ -54,7 +55,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --body-color: var(--gray-000);
+    --body-color: var(--white);
     --body-bg: var(--gray-900);
 
     --heading-color: #fff;
