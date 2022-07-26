@@ -8,14 +8,14 @@ I’m an aspiring software engineer studying CS in the University of Wisconsin M
 My current interests are data science and deep learning.
 
 ## 🛠 Skillsets
-Techs I've used at least once
+Techs I've used
 
 <!-- Python -->
 <div>
   <img class ="badge" alt="Python" src ="https://img.shields.io/badge/Python-3776AB.svg?&style=for-the-badge&logo=Python&logoColor=white"/> 
   <img class ="badge" alt="NumPy" src ="https://img.shields.io/badge/NumPy-013243.svg?&style=for-the-badge&logo=NumPy&logoColor=white"/> 
   <img class ="badge" alt="TensorFlow" src ="https://img.shields.io/badge/TensorFlow-FF6F00.svg?&style=for-the-badge&logo=TensorFlow&logoColor=white"/> 
-  <img class ="badge" alt="Keras" src ="https://img.shields.io/badge/Keras-D00000.svg?&style=for-the-badge&logo=Keras&logoColor=white"/> 
+  <img class ="badge" alt="PyTorch" src ="https://img.shields.io/badge/PyTorch-ee4c2c.svg?&style=for-the-badge&logo=PyTorch&logoColor=white"/> 
   <br/>
 </div>
 <!-- Web -->
