@@ -33,7 +33,7 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 	<!--description-->
 	<div>
   	<p>
-  		My attempt on building a neural network from scratch. Implemented feed-forward neural network with stochastic gradient descent and adam optimizer and integrated into Huggingface Spaces using Streamlit for the demonstration.
+  		My attempt on building a neural network from scratch. Implemented feed-forward network capable of regression and binary classification with an option to use Stochastic Gradient Descent or Adam for optimization. Integrated into Huggingface Spaces using Streamlit for the demonstration.
   	</p>
   </div>
   <!--tech-->
