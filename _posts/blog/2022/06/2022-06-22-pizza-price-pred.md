@@ -65,15 +65,15 @@ df['diameter'] = list(map(inch_to_float, df.diameter))
 ```
 
 #### Variable Overview
-* **Company**: Five unique companies(or restaurants) the pizzas were sold.
-* **Price**: prices of piazzas in rupiahs.
-* **Diameter**: diameters of piazzas in inches.
-* **Topping**: 12 different toppings for pizzas.
-* **Variants**: 20 different variants choice for pizzas.
-* **Size**: pizza size choices: small, medium, large, xl, jumbo, reguler(or regular).
-* **Extra Sauce**: yes or no.
-* **Extra Cheese**: yes or no.
-* **Extra Mushrooms**: yes or no.
+* `Company`: Five unique companies(or restaurants) the pizzas were sold.
+* `Price`: prices of piazzas in rupiahs.
+* `Diameter`: diameters of piazzas in inches.
+* `Topping`: 12 different toppings for pizzas.
+* `Variants`: 20 different variants choice for pizzas.
+* `Size`: pizza size choices: small, medium, large, xl, jumbo, reguler(or regular).
+* `Extra Sauce`: yes or no.
+* `Extra Cheese`: yes or no.
+* `Extra Mushrooms`: yes or no.
 
 ## Exploring Data
 
