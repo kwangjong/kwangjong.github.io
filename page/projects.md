@@ -26,7 +26,7 @@ blogicon_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6i
 			<img class ="badge-right" alt="Blog" src ="https://img.shields.io/badge/Blog-42cf8d.svg?&style=flat&logo={{page.blogicon_url}}"> 
 		</a>
 		<!--demo-->
-		<a href ="https://huggingface.co/spaces/kwangjong/homecooked-nn">
+		<a href ="https://hf.space/streamlit/kwangjong/homecooked-nn/+/">
 			<img class ="badge-right" alt="Demo" src ="https://img.shields.io/badge/%F0%9F%A4%97%20Demo-blue?&style=flat"> 
 		</a>
 	</div>
