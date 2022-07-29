@@ -10,12 +10,13 @@ math: true
 
 <!--kaggle-->
 <a href ="https://www.kaggle.com/code/kwangjongchoi/mobilenetv3large-81-584/notebook">
-    <img class ="badge-right" alt="Kaggle" src ="https://img.shields.io/badge/Kaggle-20BEFF.svg?&style=flat"> 
+    <img class ="badge" alt="Kaggle" src ="https://img.shields.io/badge/Kaggle-20BEFF.svg?&style=flat"> 
 </a>
 <!--demo-->
 <a href ="https://huggingface.co/spaces/kwangjong/food-classifier-MobileNetV3">
-    <img class ="badge-right" alt="Demo" src ="https://img.shields.io/badge/%F0%9F%A4%97%20Demo-blue?&style=flat"> 
+    <img class ="badge" alt="Demo" src ="https://img.shields.io/badge/%F0%9F%A4%97%20Demo-blue?&style=flat"> 
 </a>
+<br>
 
 While browsing around kaggle, I found this interesting food dataset which reminded me of Jin Yang's App in Silicon Valley. The dataset has huge amount of food pictures in 101 different classes. I tried training them with MobileNetV3.
 
