@@ -1,12 +1,21 @@
 ---
 layout: post
-title: "MobileNetV3Large: 🍽Shazam for Food?"
+title: "🍽Food Classifier using MobileNetV3: Shazam for Food?"
 tags: blog, datascience, deeplearning
 date: 2022-07-29 02:39 +0900
 math: true
 ---
 
 ![mobilenet](https://i.imgur.com/NJe6z0i.png)
+
+<!--kaggle-->
+<a href ="https://www.kaggle.com/code/kwangjongchoi/mobilenetv3large-81-584/notebook">
+    <img class ="badge-right" alt="Kaggle" src ="https://img.shields.io/badge/Kaggle-20BEFF.svg?&style=flat"> 
+</a>
+<!--demo-->
+<a href ="https://huggingface.co/spaces/kwangjong/food-classifier-MobileNetV3">
+    <img class ="badge-right" alt="Demo" src ="https://img.shields.io/badge/%F0%9F%A4%97%20Demo-blue?&style=flat"> 
+</a>
 
 While browsing around kaggle, I found this interesting food dataset which reminded me of Jin Yang's App in Silicon Valley. The dataset has huge amount of food pictures in 101 different classes. I tried training them with MobileNetV3.
 
@@ -104,8 +113,11 @@ I tried training 10 more epochs to see if the network can train more. However, t
 
 ![history2](https://i.imgur.com/cGhouSN.png)
 
+## Demo
+Integrated into [Huggingface Spaces](https://huggingface.co/spaces/kwangjong/food-classifier-MobileNetV3) 🤗 using Gradio.
 
 ## Links
 * [My Kaggle Notebook](https://www.kaggle.com/code/kwangjongchoi/mobilenetv3large-81-584/notebook)
+* [Huggingface Space Repository](https://huggingface.co/spaces/kwangjong/food-classifier-MobileNetV3)
 * [Food Images (Food-101)](https://www.kaggle.com/datasets/kmader/food41)
 * [Searching for MobileNetV3](https://arxiv.org/pdf/1905.02244.pdf)
