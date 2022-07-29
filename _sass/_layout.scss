@@ -33,12 +33,12 @@ footer {
   margin-bottom: var(--spacer-3);
 }
 
-@media (min-width: $md-width) {
+@media (min-width: $lg-width) {
   .content {
     padding-top: var(--spacer-3);
     padding-left: var(--spacer-3);
     padding-right: var(--spacer-2);
-    margin-left: 20%;
+    margin-left: 25%;
   }
 
   .sidebar-left {
@@ -52,25 +52,25 @@ footer {
   }
 }
 
-@media (min-width: $lg-width) {
+@media (min-width: $xl-width) {
   .sidebar-right {
     display: block;
   }
 }
 
-@media (max-width: $lg-width) {
+@media (max-width: $xl-width) {
   .sidebar-right {
     display: none;
   }
 }
 
-@media (max-width: $md-width) {
+@media (max-width: $lg-width) {
   .content {
     width: 100%;
   }
 }
 
-@media (min-width: $md-width) and (max-width: $lg-width) {
+@media (min-width: $lg-width) and (max-width: $xl-width) {
   .content {
     width: 75%;
   }
