@@ -110,7 +110,7 @@ Despite that one spike on epoch 3, overall training results were good.
 
 ## Ten more?
 
-I tried training 10 more epochs to see if the network can train more. However, the model did not train at all and validation accuracy declined splitly. So my best result was 20 epochs.
+I tried training 10 more epochs to see if the network can train more. However, the model did not train at all and validation accuracy declined slightly. The model was at its maximum capacity in 20th epoch.
 
 ![history2](https://i.imgur.com/cGhouSN.png)
 
