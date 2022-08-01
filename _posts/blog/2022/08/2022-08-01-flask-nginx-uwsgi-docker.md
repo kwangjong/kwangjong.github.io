@@ -11,10 +11,10 @@ math: true
 ## Nginx-uWSGI-Flask
 
 **`Nginx-uWSGI-Flask`** is a commonly used server setup for light python web applications or ML applications. 
-**Flask**, a light web framework, is chained with a web server **uWSGI** and **Nginx** as a reverse proxy. 
-**Flask** is in integrated as a callable object for **uWSGI** to call and run the app. And **Nginx** and **uWSGI** communicates via unix socket or tcp port.
+**`Flask`**, a light web framework, is chained with a web server **`uWSGI`** and **`Nginx`** as a reverse proxy. 
+**`Flask`** is integrated as a callable object for **`uWSGI`** to call and run the app. And **`Nginx`** and **`uWSGI`** communicates via unix socket or tcp port.
 
-```shell
+```
              ┌───────────────────────────────────────────────┐
              | server:                                       |
              |                                               |
@@ -24,22 +24,22 @@ clients <---------> nginx <---------> uwsgi <--------> flask |
 ```
 
 ## Docker
-For easier deployment migration to different machines or server, let's use **Docker**. **Docker** is a container-based platform for building and deploying applications. 
-**Docker** isolates and virtualize applications using containers. Unlike virtual machines, containers isolates processes by enabling multiple applications to share 
-the resources of a single instance of the host OS without the needs of virtualizing entire operationg system.
-It is **lighter**, **faster**, and **efficient** than virtual machines. It is possible to create and run containers without **Docker**, but **Docker** makes it way easier.
+For easier deployment and migration to different machines or server, let's use **`Docker`**. **`Docker`** is a container-based platform for building and deploying applications. 
+**`Docker`** isolates and virtualizes applications using containers. Unlike virtual machines, containers isolates processes by enabling multiple applications to share 
+the resources of a single instance of the host OS without virtualizing entire operationg system.
+It is **`lighter`**, **`faster`**, and **`efficient`** than virtual machines. It is possible to create and run containers without **`Docker`**, but **`Docker`** makes it way easier.
 
 ## Building a Simple Web Server
-Here's how I built the servers using Docker on `Ubuntu 22.04 LTS`
+Here's how I built the server using Docker on `Ubuntu 22.04 LTS`
 I used `docker-compose` which is a tool for building a multi-container Docker app.
 
-I set nginx to listen to port `5000` and communicate with uwsgi with unix socket `./uwsgi.sock.` Flask will be called by uwsgi as a callable object
-```shell
+I set nginx to listen to port `5000` and communicate with uwsgi via `5050`. Flask will be called by uwsgi as a callable object. Because `uwsgi` and `nginx` are executed in different containers, pot `5050` is used instead of unix socket.
+```
              ┌───────────────────────────────────────────────┐
              | server:                                       |
              |                                               |
 clients <---------> nginx <---------> uwsgi <--------> flask |
-           5000           ./uwsgi.sock    callable object    |
+           5000               5050        callable object    |
              └───────────────────────────────────────────────┘
 ```
 
@@ -65,10 +65,10 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 server
 ├── docker-compose.yml
 ├── flask
-│   ├── Dockerfile
-│   ├── app.py
-│   ├── requirements.txt
-│   └── uwsgi.ini
+│ ├── Dockerfile
+│ ├── app.py
+│ ├── requirements.txt
+│ └── uwsgi.ini
 └── nginx
     ├── Dockerfile
     └── nginx.conf
@@ -93,6 +93,11 @@ if __name__ == '__main__':
 `requirements.txt`
 ```python
 flask==2.1.*
+click==8.0.*
+itsdangerous==2.1.*
+jinja2==3.0.*
+markupsafe==2.1.*
+werkzeug==2.2.*
 uwsgi==2.0.*
 ```
 
@@ -104,6 +109,8 @@ WORKDIR /app
 
 ADD . /app
 RUN pip install -r requirements.txt
+
+CMD ["uwsgi","uwsgi.ini"]
 ```
 
 `uwsgi.ini`
@@ -111,7 +118,7 @@ RUN pip install -r requirements.txt
 [uwsgi]
 wsgi-file = app.py
 callable = app
-socket = ./uwsgi.sock
+socket = :5050
 processes = 2
 threads = 2
 master = true
@@ -130,7 +137,7 @@ server {
 	
 	location / {
 		include uwsgi_params;
-		uwsgi_pass ./uwsgi.sock;
+		uwsgi_pass flask:5050;
 	}
 }
 ```
@@ -144,9 +151,41 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/
 ```
 
-## Build and start containers
+### `docker-compose.yml`
+```python
+version: "3.7"
+
+services: 
+    flask:
+        build: ./flask
+        container_name: flask
+        restart: always
+        environment: 
+            - APP_NAME=FlaskTest
+        expose:
+            - 5050
+
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        restart: always
+        ports:
+            - "5000:5000"
+```
+
+### Build and start containers
 ```shell
 $ docker-compose up -d --build
 ```
 * `-d`: run containers in the background
 * `--build`: build images before starting containers
+
+
+## Open url in browser
+
+[sample-run](https://i.imgur.com/tD5xPJ5.png)
+
+
+## Links
+* [github](https://github.com/Kwangjong/docker-flask-nginx-uwsgi-web_server)
+
