@@ -183,7 +183,7 @@ $ docker-compose up -d --build
 
 ## Open url in browser
 
-[sample-run](https://i.imgur.com/tD5xPJ5.png)
+![sample-run](https://i.imgur.com/tD5xPJ5.png)
 
 
 ## Links
