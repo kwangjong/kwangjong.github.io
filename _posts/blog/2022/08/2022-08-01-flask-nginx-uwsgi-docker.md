@@ -181,8 +181,8 @@ $ docker-compose up -d --build
 * `--build`: build images before starting containers
 
 
-## Open url in browser
-
+## Open in browser
+Now, let's check if our web server is working properly. Open your server domain or IP with port `5000`": `http://example.com:5000`. Your web server should return `hello docker🐳`
 ![sample-run](https://i.imgur.com/tD5xPJ5.png)
 
 
