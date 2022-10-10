@@ -121,14 +121,17 @@ Time complexity:
 [Graph](/computersciencecheatsheet/2022/04/11/graph)
 
 
-<!---### Heap
+<!--- TODO
+  ### Priority queue
+  ### write stack, queue implementation again
 
+  ### Heap
+ 
   ### AVL Tree
 
   ### Red-Black BST
 
   ### B-trees
-
 --->
 ## Author
 All implementations and visual aids are created by me.<br/>
