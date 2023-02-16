@@ -100,8 +100,3 @@ When heap memory is handled poorly by the programmer, issues like out-of-memory 
 
 To determine which unnecessary data for **Garbage Collector** to de-allocate, the program needs to keep track of which objects are being used. Programming languages like Java and Python use a technique called ***reference counting***. 
 The program keeps track of the number of reference variables that are currently referring to an object. If the reference count is zero the object is considered **unreachable object** which is freed by the **garbage collector**.
-
-## Author
-All implementations and visual aids are created by me.<br/>
-If you find any mistakes on syntax, logic, or even english grammar, criticisms are always welcomed.<br/> 
-Feel free to reach out to me.

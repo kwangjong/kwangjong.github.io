@@ -133,7 +133,3 @@ Time complexity:
 
   ### B-trees
 --->
-## Author
-All implementations and visual aids are created by me.<br/>
-If you find any mistakes on syntax, logic, or even english grammar, criticisms are always welcomed.<br/> 
-Feel free to reach out to me.

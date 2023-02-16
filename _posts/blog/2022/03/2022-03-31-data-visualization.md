@@ -3,6 +3,7 @@ layout: post
 title: "Data Science Review: Data Visualization"
 tags: blog, datascience, datavisualization
 date: 2022-03-31 16:35 +0900
+hidden: true
 ---
 
 I decided to review my data science knowledge. Before I get into the dirty part, Let's start with a very simple course: Data Visualization. I took an brief overview on Data Visualization using Kaggle.
