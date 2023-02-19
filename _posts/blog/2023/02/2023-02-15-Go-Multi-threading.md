@@ -7,6 +7,8 @@ date: 2023-02-15 21:49 -0500
 
 When working on concurrent projects, it can be helpful to use a worker pool to manage a group of worker threads that can process tasks asynchronously. In this blog post, we'll take a look at how to implement a worker pool in Go using channels.
 
+[demo](https://go.dev/play/p/sxjcSgnJaXy).
+
 The worker pool allows you to manage a group of worker threads that can process tasks asynchronously. Here's how I implemented a worker pool in Go using channels.
 
 The worker pool design consists of a pool of worker threads and a channel that holds tasks that need to be executed. Workers read from the task channel and execute each task asynchronously. In addition, each worker has its own exit channel, which allows it to gracefully terminate when the worker pool needs to be shut down.
@@ -75,9 +77,7 @@ func (w *Worker) close() {
 	w.exitChan <- true
 }
 ```
-When a task is received on the worker's task channel, the worker executes the task and sends a signal on the task's done channel to indicate that the task has been completed.
-
-Here is a link to its [demo](https://go.dev/play/p/sxjcSgnJaXy).
+When a task is received on the worker's task channel, the worker executes the task and sends a signal on the task's done channel to indicate that the task has been completed. Here is a link to its [demo](https://go.dev/play/p/sxjcSgnJaXy).
 
 This is design idea for concurrent workers using channel for [open-sourced project](https://github.com/open-lambda/open-lambda/tree/s23).
 The design was built upon some existing code within the project. 
