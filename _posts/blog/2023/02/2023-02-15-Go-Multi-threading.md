@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Concurrency: Worker Pool Design for Go
+title: Worker Pool Design for Go
 tags: Go, Multi-threading
 date: 2023-02-15 21:49 -0500
 ---
