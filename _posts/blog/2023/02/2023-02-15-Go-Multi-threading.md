@@ -36,7 +36,7 @@ type Worker struct {
 The task channel is shared among all worker objects and is used to receive incoming tasks. Each worker object also has its own exit channel, which is used to signal that it should stop processing tasks.
 
 When a new worker is created, it is added to the worker pool map, and its task channel is set to the shared task channel.
-```
+```go
 func (wp *WorkerPool) CreateWorker() {
 	w := &Worker{
 		id:       wp.nextId,
@@ -52,7 +52,7 @@ func (wp *WorkerPool) CreateWorker() {
 }
 ```
 The worker objects are launched in separate goroutines and execute their `task()` function indefinitely until they receive a signal on their exit channel.
-```
+```go
 func (wp *WorkerPool) StopWorker(id int) {
 	fmt.Printf("[pool] stopping worker-%d...\n", id)
 	wp.pool[id].close()
