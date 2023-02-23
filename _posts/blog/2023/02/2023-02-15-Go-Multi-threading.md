@@ -14,7 +14,7 @@ The worker pool allows you to manage a group of worker threads that can process 
 The worker pool design consists of a pool of worker threads and a channel that holds tasks that need to be executed. Workers read from the task channel and execute each task asynchronously. In addition, each worker has its own exit channel, which allows it to gracefully terminate when the worker pool needs to be shut down.
 
 ## Implementation Details
-The implementation of the worker pool and worker objects is relatively simple. The worker pool maintains a map of worker objects, each with its own task channel and exit channel.
+The implementation of the worker pool and worker objects is relatively simple. The worker pool maintains a map of worker objects, each with its task channel and exit channel.
 ```go
 type Task struct {
 	task string
