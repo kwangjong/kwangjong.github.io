@@ -9,7 +9,7 @@ Hi! My name is KJ. I’m an aspiring software engineer studying CS & DS in the U
   - [OpenLambda](https://github.com/Kwangjong/open-lambda)
 
 - I’m currently learning ...
-  - Introduction to Algorithms(CS577), Data Science Modeling II (STAT230)
+  - Introduction to Algorithms(CS577), Data Science Modeling II (STAT340)
   - MongoDB, full-stack web development
 
 - How to reach me ...
