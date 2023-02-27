@@ -10,6 +10,7 @@ Hi! My name is KJ. I’m an aspiring software engineer studying CS & DS in the U
 
 - I’m currently learning ...
   - Introduction to Algorithms(CS577), Data Science Modeling II (STAT230)
+  - MongoDB, full-stack web development
 
 - How to reach me ...
   - Email: [choikj0903@gmail.com](choikj0903@gmail.com)
