@@ -1,5 +1,5 @@
 # Kwangjong.github.io
-My personal dev portfolio and blog website
+My blog website
 
 https://kwangjong.github.io
 
