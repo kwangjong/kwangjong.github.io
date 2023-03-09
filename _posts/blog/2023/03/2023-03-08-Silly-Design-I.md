@@ -5,7 +5,7 @@ tags: go, silly-design, oop
 date: 2023-03-08 23:55 -0500
 ---
 
-## Silly Design
+# Silly Design
 ![meme1](https://i.imgur.com/T1XQUEI.png)
 This is my silly mistake to implement inheritance in Go.
 I replicated an overly simplified version of the code base I was working on. The code base initially contained others' work, and I was trying to add another type support.
@@ -132,29 +132,29 @@ func (png PNG) save() {
 
 In composition, you insert smaller or more specific groupings into the bigger set. Intead of extending `Image` by it's child classes, you insert functionalities of `JPEG` and `PNG` to `Image`. So, Why is Go forcing you to use composition over inheritance?
 
-## Composition over Inheritance
+# Composition over Inheritance
 ![composition-vs-inheritance](https://i.imgur.com/B0xMXGM.png)
 
 Composition over inheritance (or composite reuse principle) in OOP is the principle that classes should achieve polymorphic behavior and code reuse by composition rather than inheritance from a base or parent class. This has been popularized by an influential book, [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) (1994).
 
 In composition, objects are built by combining smaller, more specific components, which are often described as "has-a" relationships. For example, an image "has-a" JPEG or PNG type support and a car "has-a" engine. Instead of creating a parent-child hierarchy of classes, you can start by defining interfaces that represent the behaviors your objects should have. Then, you can add classes that implement these interfaces as needed to build your objects.
 
-### Pros
+## Pros
 
-Composition provides flexibility in modifying the behavior of objects at runtime.
-It allows for more specific, targeted reuse of code.
-It avoids the issues of tight coupling that can arise with inheritance.
+* Composition provides flexibility in modifying the behavior of objects at runtime.
+* It allows for more specific, targeted reuse of code.
+* It avoids the issues of tight coupling that can arise with inheritance.
 
-### Cons
+## Cons
 
-It can lead to more code and complexity.
-It may be less intuitive and harder to understand for those new to OOP.
+* It can lead to more code and complexity.
+* It may be less intuitive and harder to understand for those new to OOP.
 
-### Why does Go force programmers to use composition?
+## Why does Go force programmers to use composition?
 
 Go is designed to be a simpler, more efficient language. By forcing programmers to use composition rather than inheritance, it avoids some of the complexities and pitfalls that can arise with inheritance-based code. Additionally, composition allows for more flexible code that can be modified at runtime, which aligns with Go's focus on concurrency and efficient memory usage.
 
-## Takeaway
+# Takeaway
 
 So basically, I tried to implement inheritance in Go but ended up writing a more complicated design. I thought I could use inheritance using struct embedding but ended up unable to access the parent class's attributes.
 
