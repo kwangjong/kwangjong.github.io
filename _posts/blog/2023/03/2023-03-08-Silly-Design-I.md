@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Silly Design I : Inheritance in Go? (Composition is Better)
-tags: Go, , Silly Design, OOP
+title: Silly Design I: Inheritance vs Composition in Go
+tags: Go, Silly Design, OOP
 date: 2023-03-08 23:55 -0500
 ---
-
 
 ## Silly Design
 ![meme1](https://i.imgur.com/T1XQUEI.png)
