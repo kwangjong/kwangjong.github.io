@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Silly Design I: Inheritance vs Composition in Go
-tags: Go, Silly Design, OOP
+title: "Silly Design I: Inheritance vs Composition in Go"
+tags: go, silly-design, oop
 date: 2023-03-08 23:55 -0500
 ---
 
