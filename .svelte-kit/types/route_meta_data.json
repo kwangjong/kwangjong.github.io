@@ -1,0 +1,13 @@
+{
+	"/": [
+		"src/routes/+page.ts"
+	],
+	"/blog": [],
+	"/blog/[slug]": [
+		"src/routes/blog/[slug]/+page.ts"
+	],
+	"/tags": [],
+	"/tags/[slug]": [
+		"src/routes/tags/[slug]/+page.ts"
+	]
+}
