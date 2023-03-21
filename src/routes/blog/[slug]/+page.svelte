@@ -1,6 +1,7 @@
 <script lang="ts">
-    export let data: {slug: string};
+    //export let data: {slug: string};
+    import './post.scss';
+    export let data: {content: string}
 </script>
 
-<h1>blog</h1>
-<p>{data.slug}</p>
+{@html data.content }
