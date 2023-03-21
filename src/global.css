@@ -21,11 +21,13 @@ body {
 body.light {
 	--background-color: #ffffff;
 	--primary-color: #1d1e20;
+	--secondary-color: #4a4a4c;
 	--highlight-color: #0073ff;
 }
 body.dark {
 	--background-color: #1d1e20;
-	--primary-color: #dadadb;
+	--primary-color: #e5e5e5;
+	--secondary-color: #b2b2b2;
 	--highlight-color: #1a81ff;
 }
 

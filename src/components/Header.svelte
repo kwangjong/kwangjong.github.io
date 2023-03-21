@@ -3,7 +3,7 @@
 
     let is_dark: boolean;
 
-    function toggle_theme(match) {
+    function toggle_theme(match: Boolean) {
         if (match) {
     	    is_dark = true;
 		    window.document.body.classList.add('dark');
@@ -109,10 +109,6 @@
 				text-decoration: none;
 				color: var(--primary-color);
 			}
-
-            a:hover {
-                color: var(--highlight-color);
-            }
 			
             button {
                 margin: 0;
@@ -156,5 +152,9 @@
             }
             
 		}
+
+        a:active {
+            color: var(--secondary-color);
+        }
 	}
 </style>

@@ -52,8 +52,8 @@
 			color: var(--primary-color);
 		}
 
-		.social-icon:hover {
-			color: var(--highlight-color);
+		.social-icon:active {
+			color: var(--secondary-color);
 		}
 	}
 
