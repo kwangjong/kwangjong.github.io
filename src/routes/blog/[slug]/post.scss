@@ -1,0 +1,14 @@
+.post{
+    .title {
+        margin-bottom: 0.2em;
+    }
+    .datePublished {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    img {
+		display: block;
+		width: 100%;
+	}
+}
