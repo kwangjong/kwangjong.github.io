@@ -50,10 +50,10 @@
 			vertical-align: middle;
 			width: 1.7em;
 			color: var(--primary-color);
-		}
 
-		.social-icon:active {
-			color: var(--secondary-color);
+			:active {
+				color: var(--secondary-color);
+			}
 		}
 	}
 

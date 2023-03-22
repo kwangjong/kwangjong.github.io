@@ -21,13 +21,14 @@ body {
 body.light {
 	--background-color: #ffffff;
 	--primary-color: #1d1e20;
-	--secondary-color: #4a4a4c;
-	--highlight-color: #0073ff;
+	--secondary-color: #606164;
+	--highlight-color: #1a81ff;
 }
+
 body.dark {
 	--background-color: #1d1e20;
 	--primary-color: #e5e5e5;
-	--secondary-color: #b2b2b2;
+	--secondary-color: #aeaeae;
 	--highlight-color: #1a81ff;
 }
 
@@ -37,5 +38,5 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
