@@ -1,14 +1,18 @@
 .post{
     .title {
-        margin-bottom: 0.2em;
+        margin-bottom: 0;
     }
-    .datePublished {
+    .date{
         color: var(--secondary-color);
-        font-weight: 600;
+        font-size: 0.9em;
     }
 
     img {
 		display: block;
 		width: 100%;
 	}
+
+    pre {
+        font-size: 0.8em;
+    }
 }

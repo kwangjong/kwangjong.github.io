@@ -1,16 +1,19 @@
 <script lang="ts">
 	import '../global.css'
 	import { onMount } from 'svelte';
+	import { _isDark } from './+layout';;
 
     let is_dark: boolean;
+    _isDark.subscribe(value =>{
+        is_dark = value;
+    })
 
-    function toggle_theme(match: Boolean) {
+    function toggle_theme(match: boolean) {
+		_isDark.update(() => match);
         if (match) {
-    	    is_dark = true;
 			window.document.body.classList.add('dark');
             window.document.body.classList.remove('light');
   	    } else {
-    	    is_dark = false;
 			window.document.body.classList.remove('dark');
             window.document.body.classList.add('light') 
   	    }

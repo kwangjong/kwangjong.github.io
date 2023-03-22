@@ -1,8 +1,3 @@
-<script lang="ts">
-	//import { marked } from "marked"
-	//export let data;
-</script>
-
 <h1>KJ's Blog</h1>
 <img src="./banner.png" alt="kj"/>
 <div class="social">
