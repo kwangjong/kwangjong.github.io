@@ -20,7 +20,12 @@
 	});
 
     onMount(async () => {
-        hljs.highlightAll();
+        document.querySelectorAll('code').forEach((block) => {
+            if(block.classList.length==0) {
+                hljs.configure({languages: ['plaintext']});
+            }
+            hljs.highlightBlock(block);
+        });
     })
 </script>
 
