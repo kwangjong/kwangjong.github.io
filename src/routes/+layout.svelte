@@ -7,12 +7,12 @@
     function toggle_theme(match: Boolean) {
         if (match) {
     	    is_dark = true;
-		    window.document.body.classList.add('dark');
+			window.document.body.classList.add('dark');
             window.document.body.classList.remove('light');
   	    } else {
     	    is_dark = false;
-            window.document.body.classList.remove('dark');
-            window.document.body.classList.add('light')  
+			window.document.body.classList.remove('dark');
+            window.document.body.classList.add('light') 
   	    }
         triggerSpin(650);
     }
@@ -29,9 +29,10 @@
     }
 
     onMount(async () => {
-        toggle_theme(window.matchMedia("(prefers-color-scheme: dark)"));
+        toggle_theme(window.matchMedia("(prefers-color-scheme: dark)").matches);
         window.matchMedia("(prefers-color-scheme: dark)")
             .addEventListener('change', event => {
+				console.log("here");
                 toggle_theme(event.matches);
         });
     })
