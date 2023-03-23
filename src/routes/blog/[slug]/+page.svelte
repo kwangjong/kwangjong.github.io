@@ -1,34 +1,15 @@
-<svelte:head>
-    {#if is_dark_value}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css">
-    {:else}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-light.min.css">
-    {/if}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-</svelte:head>
-
 <script lang="ts">
     import './post.scss';
     import { onMount } from 'svelte';
-    import { _isDark } from '../../+layout';
+    import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     export let data: {content: string}
 
-    let is_dark_value: boolean;
-    
-    _isDark.subscribe(value => {
-		    is_dark_value = value;
-	});
-
     onMount(async () => {
-        document.querySelectorAll('code').forEach((block) => {
-            if(block.classList.length==0) {
-                hljs.configure({languages: ['plaintext']});
-            }
-            hljs.highlightBlock(block);
-        });
+        render_highlight();
     })
 </script>
 
+<SyntaxHighlight/>
 <div class="post">
 {@html data.content }
 </div>

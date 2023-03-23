@@ -9,7 +9,7 @@ interface Info {
 }
 
 export async function load({ fetch }) {
-    let markdown: string = await fetch("https://raw.githubusercontent.com/kwangjong/kwangjong.github.io/main/_posts/blog/2023/02/2023-02-19-Multi-thread-Sorting.md")
+    let markdown: string = await fetch("https://raw.githubusercontent.com/kwangjong/kwangjong.github.io/main/_posts/blog/2023/02/2023-02-15-Go-Multi-threading.md")
         .then((response: Response) => response.blob())
         .then((blob: Blob) => blob.text())
         .then((markdown: string) => {

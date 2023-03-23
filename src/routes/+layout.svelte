@@ -83,13 +83,6 @@
 </main>
 
 <style lang="scss">
-	main {
-		text-align: left;
-		padding: 1em;
-		max-width: var(--max-width);
-		margin: auto;
-	}
-
 	@mixin spin-animation {
         %spin {
             animation: spin 575ms cubic-bezier(0.075, 0.82, 0.17, 1.135);
@@ -119,6 +112,13 @@
         }
     }
 
+    main {
+		text-align: left;
+		padding: 1em;
+		max-width: var(--max-width);
+		margin: auto;
+	}
+
     header {
 		display: flex;
 		justify-content: space-between;
@@ -130,10 +130,12 @@
 		.home {
 			display: inline;
 			margin: 0;
-			font-size: 1.7em;
+			font-size: 1.5em;
 			font-weight: bold;
 			text-decoration: none;
 			color: var(--primary-color);
+            vertical-align: middle;
+            
 		}
 
 		.menu {
@@ -145,7 +147,7 @@
 				display: inline-block;
 				margin: 0 0.8em 0 0;
 				vertical-align: middle;
-  				line-height: normal;
+  				
 				font-size: 1.5em;
 				font-weight: bold;
 				text-decoration: none;
