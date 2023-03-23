@@ -1,5 +1,5 @@
 # new-kwangjong.github.io
-my blog app in svelte
+my blog app in svelte. I am actively working on it, and will be released soon.
 
 # create-svelte
 
