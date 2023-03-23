@@ -1,9 +1,12 @@
+<svelte:head>
+    <script src="//cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</svelte:head>
+
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
-    import { marked } from 'marked';
-    import yaml from "js-yaml";
-
+    
     interface PostObject {
         url: string,
         title: string,
@@ -35,11 +38,12 @@
         let raw:string = textarea!.value;
 
         let header: string = raw.split("---")[1];
-        let new_post = yaml.load(header) as PostObject;
+        let new_post = jsyaml.load(header) as PostObject;
 
         new_post.markdown = raw;
         new_post.html = marked.parse(raw.split("---")[2]);
 
+        new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`
         console.log(new_post);
     }
     
