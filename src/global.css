@@ -1,5 +1,5 @@
 :root {
-    --header-height: 30px;
+    --header-height: 40px;
 	--max-width: 940px;
 }
 
@@ -26,6 +26,7 @@ body.light {
 	--primary-color: #1d1e20;
 	--secondary-color: #606164;
 	--highlight-color: #1a81ff;
+
 }
 
 body.dark {
