@@ -35,16 +35,28 @@
     }
 
     function save() {
-        let raw:string = textarea!.value;
+        try {
+            let raw:string = textarea!.value;
 
-        let header: string = raw.split("---")[1];
-        let new_post = jsyaml.load(header) as PostObject;
+            let header: string = raw.split("---")[1];
+            let new_post = jsyaml.load(header) as PostObject;
 
-        new_post.markdown = raw;
-        new_post.html = marked.parse(raw.split("---")[2]);
+            new_post.markdown = raw;
+            new_post.html = marked.parse(raw.split("---")[2]);
 
-        new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`
-        console.log(new_post);
+            new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`
+            console.log(new_post);
+
+
+            const response = fetch("http://localhost:8080/blog/", {
+                method: 'POST',
+                body: JSON.stringify(new_post),
+                headers: {'Content-Type': 'application/json'}
+            });
+        }
+        catch(err) {
+            window.alert(err.message);
+        }
     }
     
     onMount(() => {
@@ -83,6 +95,9 @@
 </div>
 
 <style lang="scss">
+    h1 {
+        margin-bottom: 0;
+    }
     .markdown-editor {   
         .markdown-body {
             width: 100%;
