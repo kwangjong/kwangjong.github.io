@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '../global.css'
+	import '../global.css';
 	import { onMount } from 'svelte';
-	import { _isDark } from './+layout';;
+	import { _isDark } from './+layout';
 
-    let is_dark: boolean;
+    export let is_dark: boolean;
     _isDark.subscribe(value =>{
         is_dark = value;
     })
@@ -19,10 +19,6 @@
   	    }
         triggerSpin(650);
     }
-    
-    function icon_toggle_theme() {
-    	toggle_theme(!is_dark);
-	}
 
     let spinDirection: "left" | "right" = "right";
     let spin = false;
@@ -35,7 +31,6 @@
         toggle_theme(window.matchMedia("(prefers-color-scheme: dark)").matches);
         window.matchMedia("(prefers-color-scheme: dark)")
             .addEventListener('change', event => {
-				console.log("here");
                 toggle_theme(event.matches);
         });
     })
@@ -46,7 +41,7 @@
 	<div class="menu">
 		<a href="/blog">blog</a>
 		<a href="/tags">tags</a>
-        <button on:click={icon_toggle_theme}>
+        <button on:click={() => toggle_theme(!is_dark)}>
             <div 
                 class:spin-left={spin && spinDirection === "left"}
                 class:spin-right={spin && spinDirection === "right"}>
@@ -98,7 +93,7 @@
                     transform: scale(1) rotate(720deg);
                 }
             }
-        }å
+        }
         .spin-left {
             @extend %spin;
             @keyframes spin {
