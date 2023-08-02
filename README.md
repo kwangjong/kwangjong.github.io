@@ -1,5 +1,11 @@
 # new-kwangjong.github.io
 my blog app in svelte. I am actively working on it, and will be released soon.
+In the meantime, check out my blog posts where I cover my progress with the project.
+* [blog migration I](https://kwangjong.github.io/2023/02/27/Blog-Migration-I/)
+* [blog migration II](https://kwangjong.github.io/2023/03/23/Blog-Migration-II/)
+* [blog migration III](https://kwangjong.github.io/2023/03/27/Blog-Migration-III/)
+
+[back-end repo](https://github.com/kwangjong/blog-server-go-mongoDB)
 
 # create-svelte
 
