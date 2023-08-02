@@ -1,7 +1,5 @@
-// import { marked } from "marked";
-// import yaml from "js-yaml";
-
 interface Post {
+    Id: string,
     Url: string,
     Title: string,
     Date: Date,

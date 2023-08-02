@@ -1,13 +1,17 @@
 <svelte:head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked-katex-extension/lib/index.umd.js"></script>
 </svelte:head>
 
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
+    import { redirect } from '@sveltejs/kit';
     
     interface PostObject {
+        id: string,
         url: string,
         title: string,
         tags: string[],
@@ -23,7 +27,21 @@
     let preview: HTMLDivElement | null;
 
     function render_preview() {
-        let rendered: string = marked.parse(textarea!.value.split('---')[2]);
+        const regex = /^---[\s\S]*?---\s*/m;
+        const markdown = textarea!.value.replace(regex, '')
+        
+        const katex_options = {
+            throwOnError: false
+        };
+
+        const marked_options = {
+            mangle: false,
+            headerIds: false
+        }
+        marked.use(markedKatex(katex_options), marked_options);
+        let rendered: string = marked.parse(markdown);
+        console.log(rendered);
+        
         textarea!.style.display = 'none';
         preview!.innerHTML = rendered;
         render_highlight();
@@ -42,11 +60,17 @@
             let new_post = jsyaml.load(header) as PostObject;
 
             new_post.markdown = raw;
-            new_post.html = marked.parse(raw.split("---")[2]);
 
-            new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`
-            console.log(new_post);
+            const regex = /^---[\s\S]*?---\s*/m;
+            const markdown = textarea!.value.replace(regex, '');
+        
+            const options = {
+                throwOnError: false
+            };
+            marked.use(markedKatex(options));
+            new_post.html = marked.parse(markdown);
 
+            new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`;
 
             const response = fetch("http://localhost:8080/blog/", {
                 method: 'POST',

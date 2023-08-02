@@ -5,13 +5,14 @@
 
 <script lang='ts' context="module">
     import { _isDark } from 'src/routes/+layout';
+    import { onDestroy } from 'svelte';
 
     const dark_theme: string = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css';
     const light_theme: string = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-light.min.css';
     let stylesheet: Element | null;
     
     export function render_highlight() {
-        _isDark.subscribe(value => {
+        const unsubscribe = _isDark.subscribe(value => {
 		    if(value) {
                 stylesheet = document.querySelector(".highlightjs-css");
                 stylesheet!.setAttribute('href', dark_theme);
@@ -25,7 +26,9 @@
             if(block.classList.length==0) {
                 hljs.configure({languages: ['plaintext']});
             }
-            hljs.highlightBlock(block);
+            hljs.highlightElement(block);
         });
+        
+        onDestroy(unsubscribe);
     };
 </script>

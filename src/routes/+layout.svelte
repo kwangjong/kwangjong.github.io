@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../global.scss';
+	import 'src/stylesheets/global.scss';
 	import { onMount } from 'svelte';
 	import { _isDark } from './+layout';
 
@@ -19,14 +19,13 @@
 
     onMount(async () => {
         toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-        window.matchMedia("(prefers-color-scheme: dark)")
-            .addEventListener('change', event => {
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', event => {
                 toggleTheme(event.matches);
         });
     })
 </script>
 
-<body class:dark={is_dark} class:light={!is_dark}>
+<div class="container"class:dark={is_dark} class:light={!is_dark}>
     <header>
         <a class="home" href="/">home</a>
         <div class="menu">
@@ -67,4 +66,4 @@
     <main>
 	    <slot></slot>
     </main>
-</body>
+</div>
