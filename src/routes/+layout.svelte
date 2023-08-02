@@ -30,7 +30,7 @@
         <a class="home" href="/">home</a>
         <div class="menu">
             <a href="/blog">blog</a>
-            <a href="/tags">tags</a>
+            <!-- <a href="/tags">tags</a> -->
             <button on:click={() => toggleTheme(!is_dark)}>
                 <div 
                     class:spin-left={spin && spinDirection === "left"}

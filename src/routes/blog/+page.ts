@@ -9,7 +9,7 @@ interface ListEntry {
 export async function load({ url }) {
     const maxPerPage: number = 6;
     const numPage: number = parseInt(url.searchParams.get('page') ?? "1");
-    let response: {entries: ListEntry[], hasNext: boolean} = await fetch(`http://localhost:8080/blog/list?skip=${(numPage-1)*maxPerPage}&numPost=${maxPerPage}`)
+    let response: {entries: ListEntry[], hasNext: boolean} = await fetch(`http://104.154.96.6:8080/blog/list?skip=${(numPage-1)*maxPerPage}&numPost=${maxPerPage}`)
          .then((response) => response.json());
     
     let content: string = "<ul class=\"blog-list\">";

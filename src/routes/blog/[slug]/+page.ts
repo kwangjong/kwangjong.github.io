@@ -9,7 +9,7 @@ interface Post {
 }
 
 export async function load({ fetch, params }) {
-    let post: Post = await fetch(`http://localhost:8080/blog/${params.slug}`)
+    let post: Post = await fetch(`http://104.154.96.6:8080/blog/${params.slug}`)
         .then((response: Response) => response.json());
 
     let date = new Date(post.Date)

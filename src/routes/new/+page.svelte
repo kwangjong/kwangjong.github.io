@@ -72,7 +72,7 @@
 
             new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`;
 
-            const response = fetch("http://localhost:8080/blog/", {
+            const response = fetch("http://104.154.96.6:8080/blog/", {
                 method: 'POST',
                 body: JSON.stringify(new_post),
                 headers: {'Content-Type': 'application/json'}
