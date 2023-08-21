@@ -1,4 +1,4 @@
-import{S as m,i as u,s as d,y as h,a as p,k as f,z as _,c as g,l as $,m as y,h as l,n as v,A as S,b as c,g as b,d as x,B as w,o as D}from"../chunks/index.d92f3f85.js";import{S as H,r as M}from"../chunks/SyntaxHighlight.38c9db66.js";async function T({fetch:r,params:a}){let n=await r(`http://107106.xyz/blog/${a.slug}`).then(i=>i.json()),e=new Date(n.Date);var s={year:"numeric",month:"long",day:"numeric"};let o=e.toLocaleDateString("en-US",s);return{content:`
+import{S as m,i as u,s as d,y as h,a as p,k as f,z as _,c as g,l as $,m as y,h as l,n as v,A as S,b as c,g as b,d as x,B as w,o as D}from"../chunks/index.d92f3f85.js";import{S as H,r as M}from"../chunks/SyntaxHighlight.38c9db66.js";async function T({fetch:r,params:a}){let n=await r(`https://107106.xyz/blog/${a.slug}`).then(i=>i.json()),e=new Date(n.Date);var s={year:"numeric",month:"long",day:"numeric"};let o=e.toLocaleDateString("en-US",s);return{content:`
         <h1 class="title">${n.Title}</h1>
         <time class="date" datetime="${e}" itemprop="datePublished">${o}</time>
         ${n.Html}
