@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Checking Build
-        run: ls
+        run: ls build
 
   deploy:
     name: Deploy
