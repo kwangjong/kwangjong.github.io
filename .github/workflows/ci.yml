@@ -36,6 +36,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Checking Build
+        run: ls build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
