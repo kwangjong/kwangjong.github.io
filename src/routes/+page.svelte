@@ -1,4 +1,4 @@
-<h1>KJ's Blog</h1>
+<h1>KJ Blog</h1>
 <img src="./banner.png" alt="kj"/>
 <div class="social">
 	<a href="mailto://choikj0903@gmail.com">
