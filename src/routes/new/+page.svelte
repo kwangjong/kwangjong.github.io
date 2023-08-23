@@ -137,6 +137,8 @@
                 font-family: monospace;
                 resize: none;
                 outline: none;
+                background-color: var(--background-color);
+                color: var(--primary-color);
             }
         }     
     }
