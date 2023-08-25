@@ -1,9 +1,12 @@
 /** @type {import('./$types').EntryGenerator} */
-export function entries() {
-    return [
-        { slug: '2023-03-29-Dynamic-Programming' },
-        { slug: '2023-03-27-Blog-Migration-III-:-Theme-Toggle' }
-    ];
+
+export async function entries() {
+
+    let urls: {slug: string}[] = await fetch(`https://107106.xyz/blog/list/all`)
+         .then((response) => response.json())
+         .then((response: string[]) => response.map(item => ({ slug: item })))
+
+    return urls;
 }
 
 export const prerender = true;
