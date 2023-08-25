@@ -8,7 +8,6 @@
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
-    import { redirect } from '@sveltejs/kit';
     
     interface PostObject {
         id: string,
