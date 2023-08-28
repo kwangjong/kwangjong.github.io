@@ -10,6 +10,7 @@
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
+    export let data: {content: PostObject }
 
 
     let timestamp: Date = new Date(Date.now());
@@ -55,6 +56,7 @@
             let header: string = raw.split("---")[1];
             let new_post_header = jsyaml.load(header);
             let new_post : PostObject = {
+                Id: data.content.Id,
                 Title: new_post_header.title,
                 Date: new_post_header.date,
                 MarkDown: raw,
@@ -76,7 +78,7 @@
 
             let tok : string|null = localStorage.getItem('token');
             const response = fetch("https://107106.xyz/blog/", {
-                method: 'POST',
+                method: 'PUT',
                 body: JSON.stringify(new_post),
                 headers: {
                     'Content-Type': 'application/json',
@@ -107,6 +109,8 @@
                 event.preventDefault();
             }
         })
+
+        textarea!.value = data.content!.MarkDown;
     })
 </script>
 

@@ -1,10 +1,4 @@
-interface ListEntry {
-    Id: string,
-    Url: string,
-    Title: string,
-    Date: Date,
-    Tags: string[]
-}
+import type { ListEntry } from 'src/components/post';
 
 export async function load({ url }) {
     const maxPerPage: number = 6;
