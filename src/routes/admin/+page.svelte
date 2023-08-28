@@ -14,7 +14,6 @@
     }
 
     async function submit_action() {
-        console.log(input_element!.value);
         await fetch(`https://107106.xyz/auth`, {
             method: 'GET',
             headers: {
