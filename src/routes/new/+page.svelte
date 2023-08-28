@@ -71,10 +71,15 @@
 
             new_post.url = `${new_post.date.toISOString().split('T')[0]}-${new_post.title.replaceAll(" ", "-")}`;
 
+            let tok : string|null = localStorage.getItem('token');
             const response = fetch("http://104.154.96.6:8080/blog/", {
                 method: 'POST',
                 body: JSON.stringify(new_post),
-                headers: {'Content-Type': 'application/json'}
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Token': tok != null ? tok : '',
+                }
+                
             });
         }
         catch(err) {
@@ -112,7 +117,7 @@
         <textarea>{yaml_template}</textarea>
     </div>
     <div class="markdown-footer">
-        <button onclick="location.href='/blog'">cancel</button>
+        <button onclick="location.href='/'">cancel</button>
         <button on:click={save}>save</button>
     </div>
 </div>
