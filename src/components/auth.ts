@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 
 export async function authGuard() {
-    let tok: string|null = localStorage.getItem('token');
+    let tok: string|null = getToken();
     if (tok != null) {
         await fetch(`https://107106.xyz/auth`, {
             method: 'DELETE',
@@ -22,7 +22,8 @@ export async function authGuard() {
 }
 
 export async function isAuthed() {
-    let tok: string|null = localStorage.getItem('token');
+    let tok: string|null = getToken();
+    console.log(tok)
     if (tok != null) {
         let result : boolean = await fetch(`https://107106.xyz/auth`, {
             method: 'DELETE',
@@ -41,4 +42,16 @@ export async function isAuthed() {
     } else {
         return false;
     }
+}
+
+export function getToken(): string|null {
+    return document.cookie
+        .split(';')
+        .map(c => c.trim())
+        .filter(cookie => {
+            return cookie.substring(0, 6) === `token=`;
+        })
+        .map(cookie => {
+            return decodeURIComponent(cookie.substring(6));
+        })[0] || null;
 }

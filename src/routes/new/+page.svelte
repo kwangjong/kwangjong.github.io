@@ -8,6 +8,7 @@
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
+    import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
 
@@ -74,7 +75,7 @@
 
             new_post.Url = `${new_post_header.date.toISOString().split('T')[0]}-${new_post_header.title.replaceAll(" ", "-")}`;
 
-            let tok : string|null = localStorage.getItem('token');
+            let tok : string|null = getToken();
             const response = fetch("https://107106.xyz/blog/", {
                 method: 'POST',
                 body: JSON.stringify(new_post),

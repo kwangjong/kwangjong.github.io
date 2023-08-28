@@ -23,7 +23,7 @@
         .then(tok => {
             if (tok != null) {
                 window.alert('you are authenticated');
-                localStorage.setItem('token', tok);
+                document.cookie = 'token='+tok;
                 goto('/new');
             } else {
                 window.alert('invalid key');
