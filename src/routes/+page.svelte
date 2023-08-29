@@ -1,5 +1,5 @@
 <h1>KJ's Blog</h1>
-<img src="./banner.png" alt="kj"/>
+<img src="./banner.jpg" alt="kj"/>
 <div class="social">
 	<a href="mailto://choikj0903@gmail.com">
 		<svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
