@@ -1,7 +1,7 @@
 <svelte:head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script on:load={cdnLoaded} on:error={cdnError} src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked-katex-extension/lib/index.umd.js"></script>
 </svelte:head>
 
@@ -11,6 +11,15 @@
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
+
+    function cdnLoaded() {
+        console.log('loaded');
+    }
+
+    function cdnError() {
+        console.log('not loaded');
+        // do error handling here
+    }
 
 
     let timestamp: Date = new Date(Date.now());
