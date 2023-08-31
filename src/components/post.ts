@@ -1,5 +1,5 @@
 export interface PostObject {
-    Id: string,
+    Id: string | null,
     Url: string,
     Title: string,
     Tags: string[],

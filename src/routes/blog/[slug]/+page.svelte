@@ -12,7 +12,7 @@
     })
 
     function edit_post() {
-        goto("/new/"+data.slug)
+        goto("/new/?edit="+data.slug)
     }
 
     function delete_post() {

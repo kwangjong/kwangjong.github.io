@@ -1,7 +1,7 @@
 <svelte:head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script on:load={cdnLoaded} on:error={cdnError} src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked-katex-extension/lib/index.umd.js"></script>
 </svelte:head>
 
@@ -11,15 +11,7 @@
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
-
-    function cdnLoaded() {
-        console.log('loaded');
-    }
-
-    function cdnError() {
-        console.log('not loaded');
-        // do error handling here
-    }
+    export let data: {content: PostObject | null }
 
 
     let timestamp: Date = new Date(Date.now());
@@ -65,6 +57,7 @@
             let header: string = raw.split("---")[1];
             let new_post_header = jsyaml.load(header);
             let new_post : PostObject = {
+                Id: data.content == null ? null : data.content.Id,
                 Title: new_post_header.title,
                 Date: new_post_header.date,
                 MarkDown: raw,
@@ -86,7 +79,7 @@
 
             let tok : string|null = getToken();
             const response = fetch("https://107106.xyz/blog/", {
-                method: 'POST',
+                method: data.content == null ? 'POST' : 'PUT',
                 body: JSON.stringify(new_post),
                 headers: {
                     'Content-Type': 'application/json',
@@ -117,6 +110,10 @@
                 event.preventDefault();
             }
         })
+        
+        if (data.content!= null) {
+            textarea!.value = data.content!.MarkDown;
+        }
     })
 </script>
 
