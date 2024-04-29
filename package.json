@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --host",
-		"build": "node --use-openssl-ca node_modules/.bin/vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d build -t true",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
