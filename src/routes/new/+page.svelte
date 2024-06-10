@@ -15,7 +15,8 @@
 
 
     let timestamp: Date = new Date(Date.now());
-    let dateString: string = `${timestamp.toISOString().split('T')[0]} ${timestamp.toString().split(" ")[4]} -${timestamp.toString().split("-")[1].slice(0,2)}:${timestamp.toString().split("-")[1].slice(2,5)}`;
+    console.log(timestamp.toString().split("GMT")[1].slice(3,5))
+    let dateString: string = `${timestamp.toISOString().split('T')[0]} ${timestamp.toString().split(" ")[4]} ${timestamp.toString().split("GMT")[1].slice(0,3)}:${timestamp.toString().split("GMT")[1].slice(3,5)}`;
     let yaml_template: string = `---\ntitle: \ntags: [ ]\ndate: ${dateString}\n---\n`;
     let textarea: HTMLTextAreaElement | null;
     let preview: HTMLDivElement | null;
