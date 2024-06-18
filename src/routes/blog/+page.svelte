@@ -3,5 +3,5 @@
     export let data: {content: string}
 </script>
 
-<h1>blog</h1>
+<h1>Blog</h1>
 {@html data.content}
