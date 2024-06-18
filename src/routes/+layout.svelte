@@ -27,9 +27,9 @@
 
 <div class="container"class:dark={is_dark} class:light={!is_dark}>
     <header>
-        <a class="home" href="/">home</a>
+        <a class="home" href="/">Home</a>
         <div class="menu">
-            <a href="/blog">blog</a>
+            <a href="/blog">Blog</a>
             <!-- <a href="/tags">tags</a> -->
             <button on:click={() => toggleTheme(!is_dark)}>
                 <div 
