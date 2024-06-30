@@ -8,10 +8,53 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
+  check_api:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.compare.outputs.changed }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch current blog posts from API
+        run: |
+          curl -s https://107106.xyz/blog/list/all > src/routes/blog/[slug]/new_list.json
+
+      - name: Fetch previous blog posts from cache
+        id: fetch_previous
+        run: |
+          if [ -f src/routes/blog/[slug]/list.json ]; then
+            cat src/routes/blog/[slug]/list.json
+          else
+            echo "[]" > src/routes/blog/[slug]/list.json
+          fi
+
+      - name: Compare lists
+        id: compare
+        run: |
+          if cmp -s src/routes/blog/[slug]/new_list.json src/routes/blog/[slug]/list.json; then
+            echo "::set-output name=changed::false"
+          else
+            echo "::set-output name=changed::true"
+            cp src/routes/blog/[slug]/new_list.json src/routes/blog/[slug]/list.json
+          fi
+        
+      - name: Commit and push
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/routes/blog/[slug]/list.json
+          git commit -m "update blog posts cache"
+          git push
+      
   build:
     name: Build
     runs-on: ubuntu-latest
-
+    needs: check_api
+    if: needs.check_api.outputs.changed == 'true'
+    
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
