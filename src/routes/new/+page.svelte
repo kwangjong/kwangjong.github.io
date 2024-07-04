@@ -17,7 +17,7 @@
     let timestamp: Date = new Date(Date.now());
     console.log(timestamp.toString().split("GMT")[1].slice(3,5))
     let dateString: string = `${timestamp.toISOString().split('T')[0]} ${timestamp.toString().split(" ")[4]} ${timestamp.toString().split("GMT")[1].slice(0,3)}:${timestamp.toString().split("GMT")[1].slice(3,5)}`;
-    let yaml_template: string = `---\ntitle: \ntags: [ ]\ndate: ${dateString}\n---\n`;
+    let yaml_template: string = `---\ntitle: \ntags: [ ]\ndate: ${dateString}\nvisibility: public #private unlisted\n---\n`;
     let textarea: HTMLTextAreaElement | null;
     let preview: HTMLDivElement | null;
 
@@ -57,6 +57,12 @@
 
             let header: string = raw.split("---")[1];
             let new_post_header = jsyaml.load(header);
+            const visibility_list = ['public', 'private', 'unlisted']
+
+            if (!visibility_list.includes(new_post_header.visibility)) {
+                throw new Error("visibillty should be either 'public', 'private', or 'unlisted'")
+            } 
+
             let new_post : PostObject = {
                 Id: data.content == null ? null : data.content.Id,
                 Title: new_post_header.title,
@@ -65,6 +71,7 @@
                 Tags: new_post_header.tags,
                 Html: "",
                 Url: "",
+                Visibility: new_post_header.visibility
             }
 
             const regex = /^---[\s\S]*?---\s*/m;
