@@ -5,7 +5,8 @@ export interface PostObject {
     Tags: string[],
     Date: Date,
     MarkDown: string,
-    Html: string
+    Html: string,
+    Visibility: string
 }
 
 export interface ListEntry {

@@ -1,10 +1,17 @@
 import type { ListEntry } from 'src/components/post';
+import { getToken } from 'src/components/auth';
 
 export async function load({ fetch, url }) {
     const maxPerPage: number = 6;
     const numPage: number = parseInt(url.searchParams.get('page') ?? "1");
-    let response: {entries: ListEntry[], hasNext: boolean} = await fetch(`https://107106.xyz/blog/list?skip=${(numPage-1)*maxPerPage}&numPost=${maxPerPage}`)
-         .then((response) => response.json());
+    let tok : string|null = getToken();
+    let response: {entries: ListEntry[], hasNext: boolean} = await fetch(
+        `https://107106.xyz/blog/list?skip=${(numPage-1)*maxPerPage}&numPost=${maxPerPage}`, {
+            method: 'GET',
+            headers: {
+                'Token': tok != null ? tok : '',
+            }
+        }).then((response) => response.json());
     
     let content: string = "<ul class=\"blog-list\">";
     response.entries.forEach((entry) => {
