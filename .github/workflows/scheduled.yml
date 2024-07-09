@@ -52,4 +52,4 @@ jobs:
     name: Build
     needs: check_api
     if: needs.check_api.outputs.changed == 'true'
-    uses: ./.github/workflows/reusable-build.yml
+    uses: ./.github/workflows/build.yml
