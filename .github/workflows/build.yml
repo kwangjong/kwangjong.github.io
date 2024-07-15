@@ -24,9 +24,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Generate sitemap.xml
-        run: npm run postbuild
-
       - name: Checking Build
         run: ls build
 

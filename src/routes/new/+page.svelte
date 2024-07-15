@@ -8,10 +8,11 @@
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
+    import { authGuard } from 'src/components/auth';
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
-    export let data: {content: PostObject | null }
+    //export let data: {content: PostObject | null }
 
 
     let timestamp: Date = new Date(Date.now());
@@ -102,8 +103,25 @@
             window.alert(err.message);
         }
     }
+
+
+    let content: PostObject | null = null;
+
+    async function fetchPostData() {
+        await authGuard();
+
+        const url = new URL(window.location.href); // Get the URL on client-side
+        const edit_url: string | null = url.searchParams.get('edit');
+
+        if (edit_url != null) {
+        content = await fetch(`https://107106.xyz/blog/${edit_url}`)
+            .then((response: Response) => response.json());
+        }
+    }
     
-    onMount(() => {
+    onMount(async () => {
+        await fetchPostData();
+
         textarea = document.querySelector('textarea');
         preview = document.querySelector('.preview');
 
@@ -119,8 +137,8 @@
             }
         })
         
-        if (data.content!= null) {
-            textarea!.value = data.content!.MarkDown;
+        if (content!= null) {
+            textarea!.value = content!.MarkDown;
         }
     })
 </script>
