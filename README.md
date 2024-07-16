@@ -10,13 +10,14 @@ my blog app in svelte & go
 * [blog migration VI : backend API II](https://kwangjong.github.io/blog/2023-08-30-Blog-Migration-VI-:-Backend-API-II)
 * [blog migration VII : JWT and TLS](https://kwangjong.github.io/blog/2023-08-30-Blog-Migration-VII-:-Securing-API:-JWT-and-TLS)
 * [deploying a Go API server with Docker](https://kwangjong.github.io/blog/2023-09-20-Deploying-a-Go-API-Server-with-Docker)
-* [from static to semi-static](https://kwangjong.github.io/blog/2024-06-30-The-Evolution-of-My-Blog:-From-Static-to-Semi-Static)
 
+<!--
 ## Architecture
 
 <p align="center">
   <img src="https://i.imgur.com/lKoBWVy.png" style="width: 800px"/>
 </p>
+-->
 
 ## Built with
 * SvelteKit (TypeScript)
