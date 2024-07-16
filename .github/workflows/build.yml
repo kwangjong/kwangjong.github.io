@@ -24,6 +24,9 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Copy robots.txt
+        run: cp robots.txt build/
+
       - name: Checking Build
         run: ls build
 
