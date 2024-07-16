@@ -1,17 +1,17 @@
 <script lang="ts">
     import 'src/stylesheets/blog-list.scss';
     import { onMount } from 'svelte';
+    import { page } from '$app/stores';
     import type { ListEntry } from 'src/components/post';
     import { getToken } from 'src/components/auth'
     //export let data: {content: string}
 
-    async function fetchBlogData() {
+    async function fetchBlogData(pageNum : number) {
         const maxPerPage: number = 6;
-        const url = new URL(window.location.href);
-        const numPage: number = parseInt(url.searchParams.get('page') ?? "1");
         let tok : string|null = getToken();
+
         let response: {entries: ListEntry[], hasNext: boolean} = await fetch(
-            `https://107106.xyz/blog/list?skip=${(numPage-1)*maxPerPage}&numPost=${maxPerPage}`, {
+            `https://107106.xyz/blog/list?skip=${(pageNum-1)*maxPerPage}&numPost=${maxPerPage}`, {
                 method: 'GET',
                 headers: {
                     'Token': tok != null ? tok : '',
@@ -31,8 +31,8 @@
             `
         });
         content += "</ul> <section id=\"post-navigator\">";
-        content += numPage > 1 ? `<a href=\"/blog?page=${numPage-1}\"> &lt Newer </a>` : ""
-        content += response.hasNext ? `<a href=\"/blog?page=${numPage+1}\"> Older &gt </a>` : ""
+        content += pageNum > 1 ? `<a href=\"/blog?page=${pageNum-1}\"> &lt Newer </a>` : ""
+        content += response.hasNext ? `<a href=\"/blog?page=${pageNum+1}\"> Older &gt </a>` : ""
         content += "</section>"
 
         return content;
@@ -41,9 +41,11 @@
 
     let content: string = '';
 
-    onMount(async () => {
-        content = await fetchBlogData();
-    })
+    $: (async () => {
+        const url = new URL($page.url);
+        const numPage: number = parseInt(url.searchParams.get('page') ?? "1");
+        content = await fetchBlogData(numPage);
+    })();
 
 </script>
 

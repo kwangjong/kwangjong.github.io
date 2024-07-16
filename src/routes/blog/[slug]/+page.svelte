@@ -36,10 +36,9 @@
         isAuthedFlag = await isAuthed();
     }
 
-    onMount(async () => {
+    $: (async () => {
         await fetchPostData(data.slug);
-        render_highlight();
-    })
+    })();
 
     function edit_post() {
         goto("/new/?edit="+data.slug)
