@@ -12,7 +12,6 @@
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
-    //export let data: {content: PostObject | null }
 
 
     let timestamp: Date = new Date(Date.now());
@@ -65,7 +64,7 @@
             } 
 
             let new_post : PostObject = {
-                Id: data.content == null ? null : data.content.Id,
+                Id: content == null ? null : content.Id,
                 Title: new_post_header.title,
                 Date: new_post_header.date,
                 MarkDown: raw,
@@ -88,7 +87,7 @@
 
             let tok : string|null = getToken();
             const response = fetch("https://107106.xyz/blog/", {
-                method: data.content == null ? 'POST' : 'PUT',
+                method: content == null ? 'POST' : 'PUT',
                 body: JSON.stringify(new_post),
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,7 +118,7 @@
         }
     }
     
-    onMount(async () => {
+    $: (async () => {
         await fetchPostData();
 
         textarea = document.querySelector('textarea');
@@ -140,7 +139,7 @@
         if (content!= null) {
             textarea!.value = content!.MarkDown;
         }
-    })
+    })();
 </script>
 
 <SyntaxHighlight/>
