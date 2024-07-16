@@ -118,7 +118,7 @@
         }
     }
     
-    $: (async () => {
+    onMount(async () => {
         await fetchPostData();
 
         textarea = document.querySelector('textarea');
@@ -139,7 +139,7 @@
         if (content!= null) {
             textarea!.value = content!.MarkDown;
         }
-    })();
+    })
 </script>
 
 <SyntaxHighlight/>
