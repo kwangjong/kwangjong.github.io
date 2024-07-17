@@ -25,7 +25,7 @@
             let dateString: string = date.toLocaleDateString("en-US", options);
             content += `
             <li class="blog-entry">
-                <h2 class="title"><a href="${"/blog/"+entry.Url}">${entry.Title}</a></h2>
+                <h2 class="title"><a href="${"/blog/"+entry.Url}" sveltekit:prefetch>${entry.Title}</a></h2>
                 <time class="date" datetime="${date}" itemprop="datePublished">${dateString}</time>
             </li>
             `

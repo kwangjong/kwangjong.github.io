@@ -29,7 +29,7 @@
     <header>
         <a class="home" href="/">Home</a>
         <div class="menu">
-            <a href="/blog">Blog</a>
+            <a href="/blog" sveltekit:prefetch>Blog</a>
             <!-- <a href="/tags">tags</a> -->
             <button on:click={() => toggleTheme(!is_dark)}>
                 <div 
