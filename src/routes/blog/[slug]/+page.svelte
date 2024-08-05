@@ -38,6 +38,7 @@
 
     $: (async () => {
         await fetchPostData(data.slug);
+        render_highlight();
     })();
 
     function edit_post() {

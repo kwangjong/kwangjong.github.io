@@ -6,6 +6,7 @@
 
 .container.light {
     --background-color: #ffffff;
+    --codeblock-color: #f6f6f6;
     --primary-color: #1d1e20;
     --secondary-color: #606164;
     --highlight-color: #1a81ff;
@@ -13,6 +14,7 @@
 
 .container.dark {
     --background-color: #1d1e20;
+    --codeblock-color: #121212;
     --primary-color: #e5e5e5;
     --secondary-color: #aeaeae;
     --highlight-color: #1a81ff;
@@ -39,6 +41,11 @@ html, body {
     text-align: left;
     line-height: 1.6;
     word-break: break-word;
+}
+
+.hljs {
+    background-color: var(--codeblock-color) !important;
+    border-radius: 5px !important;
 }
 
 main {
