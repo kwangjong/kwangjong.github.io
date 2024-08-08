@@ -117,7 +117,10 @@
     }
     
     onMount(async () => {
-        await authGuard();
+        if (!(await isAuthed())) {
+            window.location.href = '/admin';
+        }
+
         await fetchPostData();
 
         textarea = document.querySelector('textarea');
