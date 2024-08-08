@@ -8,7 +8,7 @@
 <script lang="ts">
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
     import { onMount } from 'svelte';
-    import { authGuard } from 'src/components/auth';
+    import { isAuthed } from 'src/components/auth';
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
