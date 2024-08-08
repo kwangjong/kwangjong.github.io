@@ -1,0 +1,1 @@
+new TextEncoder;async function u(){let e=n();return e!=null?await fetch("https://107106.xyz/auth",{method:"DELETE",headers:{Token:e}}).then(t=>t.status!=401).then(t=>!!t):!1}function n(){return document.cookie.split(";").map(e=>e.trim()).filter(e=>e.substring(0,6)==="token=").map(e=>decodeURIComponent(e.substring(6)))[0]||null}export{n as g,u as i};
