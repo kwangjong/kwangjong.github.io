@@ -1,3 +1,8 @@
+<svelte:head>
+  <title>KJ's Blog</title>
+  <meta name="description" content="Explore my journey in tech on Kj's Blog, where I share my experiences and insights in the evolving world of technology.">
+</svelte:head>
+
 <h1>KJ's Blog</h1>
 <img src="./banner.jpg" alt="kj"/>
 <div class="social">
