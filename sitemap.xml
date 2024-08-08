@@ -142,4 +142,7 @@
   <url>
     <loc>https://kwangjong.github.io/blog/2024-07-31-CloudWatch-Agent-in-EKS-Fails-to-Send-Metrics:-Authentication-and-IMDS-Access-Issues</loc>
   </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-08-08-Observability-in-Modern-Application-Design</loc>
+  </url>
 </urlset>
