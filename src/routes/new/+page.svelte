@@ -107,8 +107,6 @@
     let content: PostObject | null = null;
 
     async function fetchPostData() {
-        await authGuard();
-
         const url = new URL(window.location.href); // Get the URL on client-side
         const edit_url: string | null = url.searchParams.get('edit');
 
@@ -119,6 +117,7 @@
     }
     
     onMount(async () => {
+        await authGuard();
         await fetchPostData();
 
         textarea = document.querySelector('textarea');
