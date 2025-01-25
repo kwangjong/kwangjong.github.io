@@ -152,7 +152,7 @@
         <button on:click={render_preview}>preview</button>
     </div>
     <div class="markdown-body">
-        <div class='preview'></div>
+        <div class='preview' bind:this={preview} ></div>
         <textarea bind:this={textarea}>{yaml_template}</textarea>
     </div>
     <div class="markdown-footer">
