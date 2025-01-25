@@ -146,6 +146,27 @@
     <loc>https://kwangjong.github.io/blog/2024-08-08-Observability-in-Modern-Application-Design</loc>
   </url>
   <url>
-    <loc>https://kwangjong.github.io/blog/2024-12-11-Netflix-Chaos-Monkey</loc>
+    <loc>https://kwangjong.github.io/blog/2024-12-04-슈퍼앱-Super-App</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-05-K8s-Ingress-Strategies-Without-Service-Mesh</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-09-Netflix-Chaos-Monkey</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-11-Prometheus-stack-vs-EFK</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-13-FluentD-vs-FluentBit</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-16-K8s-NodeLocalDNS</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-23-Syslog-local0–local7</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024-12-24-JVM-Memory-Management</loc>
   </url>
 </urlset>
