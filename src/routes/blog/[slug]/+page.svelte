@@ -31,7 +31,10 @@
 
         header = `
         <h1 class="title">${post.Title}</h1>
-        <time class="date" datetime="${date.toISOString()}" itemprop="datePublished">${dateString}</time>`;
+        <time class="date" datetime="${date.toISOString()}" itemprop="datePublished">${dateString}</time>
+        <div class="tags">
+          ${post.Tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+        </div>`;
         body = post.Html;
         isAuthedFlag = await isAuthed();
     }
@@ -63,7 +66,7 @@
 </script>
 
 <SyntaxHighlight/>
-<div class="post">
+<div class="post-header">
 {@html header }
 {#if isAuthedFlag}
 <div class="admin-option">
@@ -71,5 +74,7 @@
     <button on:click={delete_post}>delete</button>
 </div>
 {/if}
+</div>
+<div class="post">
 {@html body }
 </div>

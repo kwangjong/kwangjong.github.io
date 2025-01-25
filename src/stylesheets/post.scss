@@ -1,16 +1,41 @@
+.post-header {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+    }
+
+    .tags {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(26, 129, 255, 0.1);
+            color: var(--highlight-color);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    }
+}
+
 .post {
     h1, h2, h3, h4, h5, h6 {
         margin-bottom: 0;
     }
-    
-    p {
-	margin-top: 0;
+
+    p, ul, ol, blockquote {
+        margin-top: 0.7em;
+        margin-bottom: 0.7em;
     }
     
     .date {
         color: var(--secondary-color);
         font-size: 0.9em;
-	margin-bottom: 1em;
+	    margin-bottom: 1em;
     }
 
     img {
@@ -20,5 +45,37 @@
 
     pre {
         font-size: 0.8em;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--highlight-color);
+        padding: 10px 20px;
+        margin: 10px 0;
+    }
+    
+    blockquote p {
+        margin: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1em;
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        border: 1px solid #3a3a3a;
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #252525;
+        font-weight: bold;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #252525
     }
 }

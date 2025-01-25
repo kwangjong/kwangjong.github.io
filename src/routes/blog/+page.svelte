@@ -7,7 +7,7 @@
     //export let data: {content: string}
 
     async function fetchBlogData(pageNum : number) {
-        const maxPerPage: number = 6;
+        const maxPerPage: number = 7;
         let tok : string|null = getToken();
 
         let response: {entries: ListEntry[], hasNext: boolean} = await fetch(
