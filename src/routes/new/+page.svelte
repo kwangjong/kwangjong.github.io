@@ -153,7 +153,7 @@
     </div>
     <div class="markdown-body">
         <div class='preview'></div>
-        <textarea>{yaml_template}</textarea>
+        <textarea bind:this={textarea}>{yaml_template}</textarea>
     </div>
     <div class="markdown-footer">
         <button on:click={cancel}>cancel</button>
