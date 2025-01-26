@@ -25,10 +25,7 @@ jobs:
         run: npm run build
 
       - name: Copy robots.txt
-        run: cp static/robots.txt build/
-      
-      - name: Copy 404.html
-        run: cp static/404.html build/
+        run: cp robots.txt build/
 
       - name: Checking Build
         run: ls build
