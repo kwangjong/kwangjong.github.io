@@ -24,7 +24,8 @@ const config = {
 		prerender: {
 			entries: [
 			  '/',
-			  '/blog'
+			  '/blog',
+			  '/new'
 			]
 		  }
 	}
