@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /admin
-Disallow: /new
-
-Sitemap: https://kwangjong.github.io/sitemap.xml
