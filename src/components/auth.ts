@@ -4,7 +4,7 @@ export async function authGuard() {
     let tok: string|null = getToken();
     if (tok != null) {
         await fetch(`https://107106.xyz/auth`, {
-            method: 'DELETE',
+            method: 'POST',
             headers: {
                 'Token': tok,
             }
@@ -25,7 +25,7 @@ export async function isAuthed() {
     let tok: string|null = getToken();
     if (tok != null) {
         let result : boolean = await fetch(`https://107106.xyz/auth`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Token': tok,
             }
