@@ -48,7 +48,7 @@
 </table>
 
 <style lang="scss">
-    p {
-        margin: 0;
+    button {
+        all: revert
     }
 </style>

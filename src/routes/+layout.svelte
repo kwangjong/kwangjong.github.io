@@ -34,10 +34,10 @@
 
 <div class="container"class:dark={is_dark} class:light={!is_dark}>
     <header>
-        <button class="home" on:click={()=>goto("/")}>Home</button>
+        <button class="header-button" on:click={()=>goto("/")}>Home</button>
         <div class="menu">
-            <button on:click={()=>goto("/blog")}>Blog</button>
-            <button on:click={() => toggleTheme(!is_dark)}>
+            <button class="header-button" on:click={()=>goto("/blog")}>Blog</button>
+            <button class=toggle-button on:click={() => toggleTheme(!is_dark)}>
                 <div 
                     class:spin-left={spin && spinDirection === "left"}
                     class:spin-right={spin && spinDirection === "right"}>

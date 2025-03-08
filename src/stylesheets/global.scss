@@ -1,7 +1,7 @@
 :root {
     --header-height: 40px;
-	--max-header-width: 75%;
-    --max-main-width: 65%;
+	--max-header-width: 1000px;
+    --max-main-width: 850px;
 }
 
 .container.light {
@@ -48,14 +48,19 @@ html, body {
     border-radius: 5px !important;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 1em 1em 0 1em;
+    max-height: var(--header-height);
+    max-width: var(--max-header-width);
+}
+
 main {
     padding: 1em;
     max-width: var(--max-main-width);
     margin: auto;
-
-    .home-title {
-        margin-top: 0;
-    }
 }
 
 a {
@@ -63,7 +68,24 @@ a {
 	text-decoration: none;
 
     &:hover {
-        text-decoration: none;
+        text-decoration: underline;
+    }
+}
+
+button {
+    display: inline;
+    all: unset;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: none;
+    margin: 0;
+
+    color: var(--primary-color);
+    &:focus {
+        text-decoration: underline;
+    }
+    &:active {
+        color: var(--highlight-color);
     }
 }
 
@@ -96,60 +118,33 @@ a {
     }
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    padding: 1em 1em 0 1em;
-    height: var(--header-height);
-    max-width: var(--max-header-width);
+.header-button {
+    font-size: 1.5em;
+    font-weight: bold;
+    vertical-align: middle;   
+}
 
-    .home {
-        display: inline;
-        margin: 0;
-        font-size: 1.5em;
-        font-weight: bold;
-        text-decoration: none;
-        color: var(--primary-color);
-        vertical-align: middle;
-        
+.menu {
+    display: inline;
+    list-style: none;
+    margin: 0;
+
+    .header-button {
+        margin-right: 0.8em;
     }
-
-    .menu {
-        display: inline;
-        list-style: none;
+    
+    .toggle-button {
         margin: 0;
+        padding: 0;
 
-        a {
-            display: inline-block;
-            margin: 0 0.8em 0 0;
+        .icon {
             vertical-align: middle;
-              
-            font-size: 1.5em;
-            font-weight: bold;
-            text-decoration: none;
+            width: 22px;
+            height: 22px;
             color: var(--primary-color);
         }
-        
-        button {
-            margin: 0;
-            padding: 0;
-            background-color: transparent;
-            border-color: transparent;
 
-            .icon {
-                vertical-align: middle;
-                width: 22px;
-                height: 22px;
-                color: var(--primary-color);
-            }
-
-            @include spin-animation;
-        }
-        
+        @include spin-animation;
     }
-
-    a:active {
-        color: var(--secondary-color);
-    }
+    
 }
