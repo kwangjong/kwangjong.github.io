@@ -2,6 +2,13 @@
 	import 'src/stylesheets/global.scss';
 	import { onMount } from 'svelte';
 	import { _isDark } from './+layout';
+    import { goto } from '$app/navigation';
+
+    // Fix GitHub Pages path-based redirects
+    if (window.location.search.startsWith("?/")) {
+        const newPath = window.location.search.slice(2); // Remove "?/"
+        goto(newPath); // Redirect to correct route
+    }
 
     let is_dark: boolean;
     function toggleTheme(match: boolean) {
@@ -27,10 +34,9 @@
 
 <div class="container"class:dark={is_dark} class:light={!is_dark}>
     <header>
-        <a class="home" href="/">Home</a>
+        <button class="home" on:click={()=>goto("/")}>Home</button>
         <div class="menu">
-            <a href="/blog" sveltekit:prefetch>Blog</a>
-            <!-- <a href="/tags">tags</a> -->
+            <button on:click={()=>goto("/blog")}>Blog</button>
             <button on:click={() => toggleTheme(!is_dark)}>
                 <div 
                     class:spin-left={spin && spinDirection === "left"}

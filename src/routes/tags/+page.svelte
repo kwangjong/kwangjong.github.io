@@ -1,8 +1,7 @@
 <script lang="ts">
-    
+    import { goto } from "$app/navigation"
 </script>
 
 <div class=blog-menu>
-<a class=blog href="/blog">Blog</a> <a class=tags href="/tags" sveltekit:prefetch>Tags</a>
+<button class=blog on:click={()=>goto("/blog")}>Blog</button> <button class=tags>Tags</button>
 </div>
-{@html content}
