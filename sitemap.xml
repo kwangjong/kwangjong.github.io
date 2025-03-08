@@ -8,6 +8,9 @@
     <loc>https://kwangjong.github.io/</loc>
   </url>
   <url>
+    <loc>https://kwangjong.github.io/tags</loc>
+  </url>
+  <url>
     <loc>https://kwangjong.github.io/blog/2022-03-17-Minimax-Algorithm</loc>
   </url>
   <url>
@@ -174,5 +177,8 @@
   </url>
   <url>
     <loc>https://kwangjong.github.io/blog/2025-02-03-Git-Branching-Strategy</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2025-02-22-Prometheus-OOM-Killed-on-Restart</loc>
   </url>
 </urlset>
