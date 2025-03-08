@@ -1,5 +1,5 @@
 # kwangjong.github.io
-my blog app in svelte & go
+my blog app in sveltekit & go
 
 ## Blog posts
 * [blog migration I](https://kwangjong.github.io/blog/2023-02-27-Blog-Migration-I)
