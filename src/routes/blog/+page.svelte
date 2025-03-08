@@ -6,12 +6,12 @@
     import { getToken } from 'src/components/auth'
     //export let data: {content: string}
 
-    async function fetchBlogData(pageNum : number) {
+    async function fetchBlogData(pageNum : number, tag : string) {
         const maxPerPage: number = 7;
         let tok : string|null = getToken();
 
         let response: {entries: ListEntry[], hasNext: boolean} = await fetch(
-            `https://107106.xyz/blog/list?skip=${(pageNum-1)*maxPerPage}&numPost=${maxPerPage}`, {
+            `https://107106.xyz/blog/list?tag=${tag}&skip=${(pageNum-1)*maxPerPage}&numPost=${maxPerPage}`, {
                 method: 'GET',
                 headers: {
                     'Token': tok != null ? tok : '',
@@ -44,10 +44,13 @@
     $: (async () => {
         const url = new URL($page.url);
         const numPage: number = parseInt(url.searchParams.get('page') ?? "1");
-        content = await fetchBlogData(numPage);
+        const tag: string = url.searchParams.get('tag') ?? "";
+        content = await fetchBlogData(numPage, tag);
     })();
 
 </script>
 
-<h1>Blog</h1>
+<div class=blog-menu>
+<a class=blog href="/blog">Blog</a> <a class=tags href="/tags" sveltekit:prefetch>Tags</a>
+</div>
 {@html content}

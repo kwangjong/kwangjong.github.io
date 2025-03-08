@@ -1,7 +1,7 @@
 :root {
     --header-height: 40px;
-	--max-header-width: 1000px;
-    --max-main-width: 840px;
+	--max-header-width: 75%;
+    --max-main-width: 65%;
 }
 
 .container.light {
@@ -52,6 +52,10 @@ main {
     padding: 1em;
     max-width: var(--max-main-width);
     margin: auto;
+
+    .home-title {
+        margin-top: 0;
+    }
 }
 
 a {
