@@ -4,6 +4,7 @@
     import { page } from '$app/stores';
     import type { ListEntry } from 'src/components/post';
     import { getToken } from 'src/components/auth'
+    import { BACKEND_API } from '$lib/config';
     //export let data: {content: string}
 
     async function fetchBlogData(pageNum : number, tag : string) {
@@ -11,7 +12,7 @@
         let tok : string|null = getToken();
 
         let response: {entries: ListEntry[], hasNext: boolean} = await fetch(
-            `https://107106.xyz/blog/list?tag=${tag}&skip=${(pageNum-1)*maxPerPage}&numPost=${maxPerPage}`, {
+            `${BACKEND_API}/blog/list?tag=${tag}&skip=${(pageNum-1)*maxPerPage}&numPost=${maxPerPage}`, {
                 method: 'GET',
                 headers: {
                     'Token': tok != null ? tok : '',

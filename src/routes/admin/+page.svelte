@@ -2,6 +2,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
+    import { BACKEND_API } from '$lib/config';
 
     var button_disable = true;
     let input_element : HTMLInputElement | null
@@ -14,7 +15,7 @@
     }
 
     async function submit_action() {
-        await fetch(`https://107106.xyz/auth`, {
+        await fetch(`${BACKEND_API}/auth`, {
             method: 'GET',
             headers: {
                 'Api-Key': input_element!.value,

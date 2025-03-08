@@ -1,6 +1,5 @@
 <script lang="ts">
     
-
 </script>
 
 <div class=blog-menu>

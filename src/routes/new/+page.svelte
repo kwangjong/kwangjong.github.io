@@ -12,6 +12,7 @@
     import { getToken } from 'src/components/auth';
     import { goto } from '$app/navigation';
     import type { PostObject } from'src/components/post';
+    import { BACKEND_API } from '$lib/config';
 
 
     let timestamp: Date = new Date(Date.now());
@@ -86,7 +87,7 @@
             new_post.Url = `${new_post_header.date.toISOString().split('T')[0]}-${new_post_header.title.replaceAll(" ", "-")}`;
 
             let tok : string|null = getToken();
-            const response = fetch("https://107106.xyz/blog/", {
+            const response = fetch("${BACKEND_API}/blog/", {
                 method: content == null ? 'POST' : 'PUT',
                 body: JSON.stringify(new_post),
                 headers: {
@@ -111,7 +112,7 @@
         const edit_url: string | null = url.searchParams.get('edit');
 
         if (edit_url != null) {
-        content = await fetch(`https://107106.xyz/blog/${edit_url}`)
+        content = await fetch(`${BACKEND_API}/blog/${edit_url}`)
             .then((response: Response) => response.json());
         }
     }

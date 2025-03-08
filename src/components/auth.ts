@@ -1,9 +1,10 @@
 import { redirect } from '@sveltejs/kit';
+import { BACKEND_API } from 'src/lib/config';
 
 export async function authGuard() {
     let tok: string|null = getToken();
     if (tok != null) {
-        await fetch(`https://107106.xyz/auth`, {
+        await fetch(`${BACKEND_API}/auth`, {
             method: 'POST',
             headers: {
                 'Token': tok,
@@ -24,7 +25,7 @@ export async function authGuard() {
 export async function isAuthed() {
     let tok: string|null = getToken();
     if (tok != null) {
-        let result : boolean = await fetch(`https://107106.xyz/auth`, {
+        let result : boolean = await fetch(`${BACKEND_API}/auth`, {
             method: 'POST',
             headers: {
                 'Token': tok,

@@ -1,6 +1,7 @@
 <script lang="ts">
     import 'src/stylesheets/post.scss';
-    import { onMount } from 'svelte';
+    import { BACKEND_API } from '$lib/config';
+
 
     import { goto } from '$app/navigation';
     import SyntaxHighlight, { render_highlight } from 'src/components/SyntaxHighlight.svelte';
@@ -18,7 +19,7 @@
     async function fetchPostData(slug: string) {
         let tok: string | null = getToken();
 
-        let post: PostObject = await fetch(`https://107106.xyz/blog/${slug}`, {
+        let post: PostObject = await fetch(`${BACKEND_API}/blog/${slug}`, {
         method: 'GET',
         headers: {
             'Token': tok != null ? tok : '',
@@ -52,7 +53,7 @@
         let result = confirm('Are you sure you want to delete this post?')
         if (result) {
             let tok : string|null = getToken();
-            const response = fetch("https://107106.xyz/blog/"+data.slug, {
+            const response = fetch("${BACKEND_API}/blog/"+data.slug, {
                 method: 'DELETE',
                 headers: {
                     'Token': tok != null ? tok : '',
