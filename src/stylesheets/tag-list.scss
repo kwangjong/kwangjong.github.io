@@ -1,0 +1,14 @@
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px; /* Adjusts spacing */
+    list-style-type: disc;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.tag-entry {
+    flex: 1 1 calc(25% - 20px); /* 3 columns with spacing */
+    max-width: calc(25% - 20px);
+    white-space: nowrap;
+}

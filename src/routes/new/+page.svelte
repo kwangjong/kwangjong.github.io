@@ -87,7 +87,7 @@
             new_post.Url = `${new_post_header.date.toISOString().split('T')[0]}-${new_post_header.title.replaceAll(" ", "-")}`;
 
             let tok : string|null = getToken();
-            const response = fetch("${BACKEND_API}/blog/", {
+            const response = fetch(`${BACKEND_API}/blog/new`, {
                 method: content == null ? 'POST' : 'PUT',
                 body: JSON.stringify(new_post),
                 headers: {
@@ -111,10 +111,12 @@
         const url = new URL(window.location.href); // Get the URL on client-side
         const edit_url: string | null = url.searchParams.get('edit');
 
-        if (edit_url != null) {
-        content = await fetch(`${BACKEND_API}/blog/${edit_url}`)
-            .then((response: Response) => response.json());
-        }
+        let token: string | null = getToken();
+
+        content = await fetch(`${BACKEND_API}/blog/${edit_url}`, {
+            method: 'GET',
+            headers: { 'Token': token || ''}
+        }).then((response: Response) => response.json());
     }
     
     onMount(async () => {

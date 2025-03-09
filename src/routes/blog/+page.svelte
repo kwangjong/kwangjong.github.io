@@ -1,10 +1,11 @@
 <script lang="ts">
+    import 'src/stylesheets/blog-common.scss';
     import 'src/stylesheets/blog-list.scss';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import type { ListEntry } from 'src/components/post';
     import { getToken } from 'src/components/auth';
-    import { BACKEND_API } from '$lib/config';
+    import { BACKEND_API, MAXPERPAGE } from '$lib/config';
 
     let blogEntries: { url: string; title: string; date: string }[] = [];
     let hasNext: boolean = false;
@@ -12,12 +13,11 @@
     let tag: string = "";
 
     async function fetchBlogData(pageNum: number, tag: string) {
-        const maxPerPage = 6;
         const token = getToken();
 
         try {
             const response = await fetch(
-                `${BACKEND_API}/blog/list?tag=${tag}&skip=${(pageNum - 1) * maxPerPage}&numPost=${maxPerPage}`, {
+                `${BACKEND_API}/blog/list?tag=${tag}&skip=${(pageNum - 1) * MAXPERPAGE}&numPost=${MAXPERPAGE}`, {
                     method: 'GET',
                     headers: { 'Token': token || '' }
                 }
@@ -49,9 +49,15 @@
 </script>
 
 <div class="blog-menu">
-    <button class="blog" on:click={() => goto("/blog")}>Blog</button>
+    <button class="blog">Blog</button>
     <button class="tags" on:click={() => goto("/tags")}>Tags</button>
 </div>
+
+{#if tag!=""}
+<div class="tags">
+    <span class="tag">{tag}</span>
+</div>
+{/if}
 
 <ul class="blog-list">
     {#each blogEntries as entry}
@@ -64,9 +70,9 @@
 
 <div class="post-navigator">
     {#if numPage > 1}
-        <button on:click={() => goto(`/blog?page=${numPage - 1}`)}>&lt; Newer</button>
+        <button on:click={() => goto(`/blog?tag=${tag}&page=${numPage - 1}`)}>&lt; Newer</button>
     {/if}
     {#if hasNext}
-        <button on:click={() => goto(`/blog?page=${numPage + 1}`)}>Older &gt;</button>
+        <button on:click={() => goto(`/blog?tag=${tag}&page=${numPage + 1}`)}>Older &gt;</button>
     {/if}
 </div>

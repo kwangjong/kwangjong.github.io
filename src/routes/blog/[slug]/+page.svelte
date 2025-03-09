@@ -1,4 +1,5 @@
 <script lang="ts">
+    import 'src/stylesheets/blog-common.scss';
     import 'src/stylesheets/post.scss';
     import { BACKEND_API } from '$lib/config';
 
@@ -53,7 +54,7 @@
         let result = confirm('Are you sure you want to delete this post?')
         if (result) {
             let tok : string|null = getToken();
-            const response = fetch("${BACKEND_API}/blog/"+data.slug, {
+            const response = fetch(`${BACKEND_API}/blog/`+data.slug, {
                 method: 'DELETE',
                 headers: {
                     'Token': tok != null ? tok : '',
