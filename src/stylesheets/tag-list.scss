@@ -1,14 +1,19 @@
 .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px; /* Adjusts spacing */
-    list-style-type: disc;
-    padding-left: 20px;
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1em 2em;
+    padding-left: 0;
+    list-style: none;
 }
 
-.tag-entry {
-    flex: 1 1 calc(25% - 20px); /* 3 columns with spacing */
-    max-width: calc(25% - 20px);
-    white-space: nowrap;
+@media (max-width: 768px) {
+    .tag-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 769px) {
+    .tag-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
