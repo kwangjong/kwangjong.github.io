@@ -1,0 +1,1 @@
+.tag-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1em 2em;padding-left:0;list-style:none}@media (max-width: 768px){.tag-list{grid-template-columns:repeat(3,1fr)}}@media (min-width: 769px){.tag-list{grid-template-columns:repeat(4,1fr)}}
