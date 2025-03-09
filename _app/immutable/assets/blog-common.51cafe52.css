@@ -1,0 +1,1 @@
+.blog-menu{display:flex;justify-content:space-between}.blog-menu .blog{font-size:1.8em;font-weight:700}.blog-menu .tags{font-size:1.3em;font-weight:700}.tag{display:inline-block;background-color:#1a81ff1a;color:var(--highlight-color);padding:5px 10px;border-radius:15px;font-size:.9rem;font-weight:500}
