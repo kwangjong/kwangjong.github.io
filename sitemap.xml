@@ -178,4 +178,7 @@
   <url>
     <loc>https://kwangjong.github.io/blog/2025-02-22-Prometheus-OOM-Killed-on-Restart</loc>
   </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2025-03-22-Kubernetes-Operators</loc>
+  </url>
 </urlset>
