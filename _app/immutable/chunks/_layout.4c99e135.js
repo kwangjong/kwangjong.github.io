@@ -1,1 +1,0 @@
-import{w as e}from"./singletons.fe1f4d8d.js";const r=e(!1),t=!1,o=!0,a=Object.freeze(Object.defineProperty({__proto__:null,_isDark:r,prerender:o,ssr:t},Symbol.toStringTag,{value:"Module"}));export{r as _,a};
