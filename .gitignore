@@ -1,3 +1,5 @@
 .DS_Store
 .svelte-kit
 node_modules
+build/
+src/lib/generated/

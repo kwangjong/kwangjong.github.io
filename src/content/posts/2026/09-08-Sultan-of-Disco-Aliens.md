@@ -1,0 +1,91 @@
+---
+title: "음악잡담회: 술탄 오브 더 디스코 <Aliens>"
+tags: [blog, music]
+date: 2026-09-08 00:00:00 +09:00
+visibility: public
+---
+
+## 음악잡담회
+
+최근 음악 산업에 취업하고 싶어하는 친구와 얘기를 나누다 "뭐라도 해볼래?"라며 가볍게 던진 말에 시작하게 된 <음악잡담회>에서 나눈 얘기에 대해 적어볼까 한다.
+
+음악으로 하는 독서모임이라는 컨셉으로 나를 포함한 세명의 친구들이 각자 돌아가며 한가지 주제와 음악을 고르고 각자 들어온 후 이야기를 나누는 식으로 진행한다. 
+
+2차수에 내가 가저온 주제는 "술탄의 매력은 무엇인가?"라는 주제로 술탄 오브 디스코의 2집 \<Aliens\>를 가져왔다.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=MjQoq70LpzAUvwH5&amp;list=PLeOb8Qjd6MXKL98IwuLXK5s0oZjkFOruK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## 술탄의 매력은 무엇인가?
+
+이전에 간간히 유명한 곡들만 들어오던 나는 그저 술탄의 Funk/Disco 장르의 웃긴 음악을 하는 밴드로만 알고 있었다. 밴드 음악으로 같이 얘기를 나눠보고 싶었던 나는 깊은 고민 없이 요즘 다시 뜨고 있는 술탄을 고르게 되었다.
+
+술탄 오브 더 디스코의 매력은 뭘까. 처음 쭉 앨법을 들었을때 떠오른 건 특유의 B급 감성이다. 촌스럽고, 유치하고, 농담은 때로 너무 1차원적이다. 근데 싫진 않다. 
+
+이번 앨범을 들으면서 이 상반된 느낌이 어디서 오는지 생각해보게 됐다.
+
+## B급 감성
+
+술탄 오브 더 디스코는 2006년 결성된 밴드로 나잠수를 중심으로 김간지, G, 홍기, J.J 핫산으로 구성되어 있다.
+특이한 건 멤버들에게 각자의 콘셉트 이름이 있었다는 점이다. '압둘라 나잠', '간지하드', '카림 사르르', '오마르 홍'. 이름에서부터 이 밴드가 어떤걸 추구하는지 대충 느껴진다.
+
+\<Aliens\>는 2013년 발매된 1집 \<The Golden Age\> 이후 5년 만에 나온 두 번째 정규 앨범이다.
+그리고 앨범을 처음 들으면서 가장 먼저 귀에 들어온 건 가사였다.
+
+> 꿘이야 꿘이야 꿘이야 통배권
+
+〈통배권〉의 가사다. 웃기다.
+
+앨범을 듣다 보면 이런 식의 유머가 계속 등장한다. 무협영화에서 나올 법한 필살기 '통배권'을 외치고, 〈갤로퍼〉에서는 지금은 단종된 90년대 자동차가 등장한다.
+
+그런데 생각해보면 이게 술탄의 재미있는 부분이다.
+
+음악적으로는 70년대 미국의 Funk와 Disco를 가져오는데, 그 위에 올라가는 정서는 멤버들의 어린시절인 한국의 90년대다. 홍콩 무협영화, 갤로퍼 같은 그 시절의 이미지들이 자연스럽게 섞여 있다.
+
+## 단단한 그루브
+
+이번에 술탄을 고른 이유 중 하나는 음악의 그루브에 대해 얘기해보고 싶었기 때문이다. 그래서 술탄이 기반으로 삼고 있는 Funk와 Disco를 몇 곡 가져왔다.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rawBFEYqY1k?si=oqCg-uYDA1V2layw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+> 〈Get Up I Feel Like Being a Sex Machine〉 - James Brown
+
+Funk의 가장 큰 매력은 멜로디나 코드 진행보다 리듬이 훨씬 앞에 있다는 점이다. 드럼과 베이스가 반복되는 리듬을 단단하게 잡고 있고, 그 위에 다른 악기들이 노는 느낌이다. 기타마저 리듬 악기처럼 쓰인다.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0wBqWb43y6I?si=CrL53ig98xhhMBsq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+> 〈Flash Light〉 - Parliament
+
+Parliament의 P-Funk는 좀 더 \<Aliens\>와 맞닿아있다. Funk의 그루브 위에 신디사이저가 더해저 좀더 전자적인 사운드를 들려준다.
+
+이번엔 디스코를 가져왔다. 아마 가장 유명한 디스코 곡 중 하나지 않을까 싶다.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z2qoihbzc3E?si=Iq2I9DQSQ1VhtSlf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+> 〈Stayin' Alive〉 - Bee Gees
+
+Funk에서는 마디의 첫 박을 강하게 잡아주고 그 사이를 드럼과 베이스, 기타가 각자의 리듬으로 쪼개며 그루브를 만든다면, Disco에서는 four-on-the-floor를 기반으로 한 일정한 리듬의 지속성이 좀더 강조된다. 
+
+방식은 다르지만 Funk와 Disco의 그루브는 모두 듣는 사람으로 하여금 몸을 가만히 두지 못하게 한다.
+
+술탄도 비슷하다. 이러한 단단한 리듬 섹션 위에 코믹한 노래가 올라가니 그 일차원적인 유머마저 유쾌하게 느껴진다.
+
+## 1집보다 조금 자유로워진 술탄
+
+2집을 듣고 난 후 1집도 들어봤다. 가장 크게 느껴지는 변화는 컨셉이다. 
+
+노래 제목에서부터 뚜렷하게 나타나는 아라비안 컨셉이 1집을 장악하고 있다. 2집에서는 그 컨셉을 조금 내려놓는다.
+
+음악적으로도 Funk/Disco에만 머무르지 않는다. <사라지는 꿈>에서는 조금 잔잔한 모습을 보여주고, <미끄럼틀>에서는 수민 특유의 R&B 사운드가 도드라진다.
+
+그리고 무엇보다 '압둘라 나잠'이 아닌 '나잠수'의 이야기를 한다. 
+
+## 웃기지만 또 마냥 웃기지만 않은
+
+\<Aliens\>를 자세히 듣다 보면 처음의 유쾌함과는 조금 다른 감정도 보인다.
+\<Playaholic\>에서는 일에 지친 직장인의 모습이, 〈사라지는 꿈〉에서는 방황하던 나잠수의 모습이 보인다. 앨범의 마지막 〈깍두기〉에는 경쾌한 디스코 위에서 싸늘하고 배고픈, 소외된 깍두기에 대해 노래한다.
+
+그리고 앨범 제목은 <strong>\<Aliens\></strong>다. 한국 밴드중에 이렇게 Funk/Disco 기반의 음악을 이렇게 본격적으로 하는 밴드가 있었나 생각해보면, 이 제목은 어디에도 속하지 못한 이방인 같은 나잠수 본인의 모습을 이야기 하는게 아닐까 싶다.
+
+그래서 처음에는 술탄의 일차원적인 유머와 단단한 연주 사이의 간극이 재미있었는데, \<Aliens\>를 몇번 듣고 나면 그 유머 뒤에 있는 사람도 조금씩 보인다. 
+
+이런 모습이 이 앨범 그리고 술탄 오브 디스코의 매력이 아닌가 싶다.
