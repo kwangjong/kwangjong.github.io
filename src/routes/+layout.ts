@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store';
 export const _isDark = writable(false);
-export const prerender = true
+export const prerender = true;
+export const trailingSlash = 'always';

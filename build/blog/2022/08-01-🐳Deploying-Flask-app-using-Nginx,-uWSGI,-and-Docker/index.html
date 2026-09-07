@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>🐳Deploying Flask app using Nginx, uWSGI, and Docker | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="🐳Deploying Flask app using Nginx, uWSGI, and Docker"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">🐳Deploying Flask app using Nginx, uWSGI, and Docker</h1>
+    <time class="date" datetime="2022-08-01T08:15:00.000Z" itemprop="datePublished">August 1, 2022</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog">#blog</a><a class="tag" href="/blog/?tag=web">#web</a><a class="tag" href="/blog/?tag=docker">#docker</a><a class="tag" href="/blog/?tag=flask">#flask</a><a class="tag" href="/blog/?tag=nginx">#nginx</a><a class="tag" href="/blog/?tag=uwsgi">#uwsgi</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p><img src="https://i.imgur.com/mOJJqEl.png" alt="banner"></p>
+<h2>Nginx-uWSGI-Flask</h2>
+<p><strong><code>Nginx-uWSGI-Flask</code></strong> is a commonly used server setup for light python web applications or ML applications. 
+<strong><code>Flask</code></strong>, a light web framework, is chained with a web server <strong><code>uWSGI</code></strong> and <strong><code>Nginx</code></strong> as a reverse proxy. 
+<strong><code>Flask</code></strong> is integrated as a callable object for <strong><code>uWSGI</code></strong> to call and run the app. And <strong><code>Nginx</code></strong> and <strong><code>uWSGI</code></strong> communicates via unix socket or tcp port.</p>
+<pre><code>             ┌───────────────────────────────────────────────┐
+             | server:                                       |
+             |                                               |
+clients &lt;---------&gt; nginx &lt;---------&gt; uwsgi &lt;--------&gt; flask |
+             |                                               |
+             └───────────────────────────────────────────────┘
+</code></pre>
+<h2>Docker</h2>
+<p>For easier deployment and migration to different machines or server, let&#39;s use <strong><code>Docker</code></strong>. <strong><code>Docker</code></strong> is a container-based platform for building and deploying applications. 
+<strong><code>Docker</code></strong> isolates and virtualizes applications using containers. Unlike virtual machines, containers isolates processes by enabling multiple applications to share 
+the resources of a single instance of the host OS without virtualizing entire operationg system.
+It is <strong><code>lighter</code></strong>, <strong><code>faster</code></strong>, and <strong><code>efficient</code></strong> than virtual machines. It is possible to create and run containers without <strong><code>Docker</code></strong>, but <strong><code>Docker</code></strong> makes it way easier.</p>
+<h2>Building a Simple Web Server</h2>
+<p>Here&#39;s how I built the server using Docker on <code>Ubuntu 22.04 LTS</code>
+I used <code>docker-compose</code> which is a tool for building a multi-container Docker app.</p>
+<p>I set nginx to listen to port <code>5000</code> and communicate with uwsgi via <code>5050</code>. Flask will be called by uwsgi as a callable object. Because <code>uwsgi</code> and <code>nginx</code> are executed in different containers, pot <code>5050</code> is used instead of unix socket.</p>
+<pre><code>             ┌───────────────────────────────────────────────┐
+             | server:                                       |
+             |                                               |
+clients &lt;---------&gt; nginx &lt;---------&gt; uwsgi &lt;--------&gt; flask |
+           5000               5050        callable object    |
+             └───────────────────────────────────────────────┘
+</code></pre>
+<h3>Installing and setting up Docker and Docker-compose</h3>
+<p>Install <code>docker</code>.</p>
+<pre><code class="language-shell">$ sudo apt-get install curl
+$ curl -s https://get.docker.com | sudo sh
+</code></pre>
+<p>Add user to the <code>docker</code> group.</p>
+<pre><code class="language-shell">$ sudo usermod -aG docker $USER
+</code></pre>
+<p>Install <code>docker-compose</code>.</p>
+<pre><code class="language-shell">$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.8.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h3>File Structure</h3>
+<pre><code class="language-shell">server
+├── docker-compose.yml
+├── flask
+│ ├── Dockerfile
+│ ├── app.py
+│ ├── requirements.txt
+│ └── uwsgi.ini
+└── nginx
+    ├── Dockerfile
+    └── nginx.conf
+</code></pre>
+<h3><code>./flask</code></h3>
+<p><code>app.py</code></p>
+<pre><code class="language-python">from flask import Flask
+
+app = Flask(__name__)
+
+@app.route(&#39;/&#39;)
+def hello():
+    return &quot;hello docker🐳&quot;
+        
+
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&#39;0.0.0.0&#39;)
+</code></pre>
+<p><code>requirements.txt</code></p>
+<pre><code class="language-python">flask==2.1.*
+click==8.0.*
+itsdangerous==2.1.*
+jinja2==3.0.*
+markupsafe==2.1.*
+werkzeug==2.2.*
+uwsgi==2.0.*
+</code></pre>
+<p><code>Dockerfile</code></p>
+<pre><code class="language-python">FROM python:3
+
+WORKDIR /app
+
+ADD . /app
+RUN pip install -r requirements.txt
+
+CMD [&quot;uwsgi&quot;,&quot;uwsgi.ini&quot;]
+</code></pre>
+<p><code>uwsgi.ini</code></p>
+<pre><code class="language-python">[uwsgi]
+wsgi-file = app.py
+callable = app
+socket = :5050
+processes = 2
+threads = 2
+master = true
+vacum = true
+chmod-socket = 660
+die-on-term = true
+</code></pre>
+<h3><code>./nginx</code></h3>
+<p><code>nginx.conf</code></p>
+<pre><code class="language-python">server {
+
+	listen 5000;
+	
+	location / {
+		include uwsgi_params;
+		uwsgi_pass flask:5050;
+	}
+}
+</code></pre>
+<p><code>Dockerfile</code></p>
+<pre><code class="language-python">FROM nginx
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY nginx.conf /etc/nginx/conf.d/
+</code></pre>
+<h3><code>docker-compose.yml</code></h3>
+<pre><code class="language-python">version: &quot;3.7&quot;
+
+services: 
+    flask:
+        build: ./flask
+        container_name: flask
+        restart: always
+        environment: 
+            - APP_NAME=FlaskTest
+        expose:
+            - 5050
+
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        restart: always
+        ports:
+            - &quot;5000:5000&quot;
+</code></pre>
+<h3>Build and start containers</h3>
+<pre><code class="language-shell">$ docker-compose up -d --build
+</code></pre>
+<ul>
+<li><code>-d</code>: run containers in the background</li>
+<li><code>--build</code>: build images before starting containers</li>
+</ul>
+<h2>Open in browser</h2>
+<p>Now, let&#39;s check if our web server is working properly. Open your server domain or IP with port <code>5000</code>&quot;: <code>http://example.com:5000</code>. Your web server should return <code>hello docker🐳</code>
+<img src="https://i.imgur.com/tD5xPJ5.png" alt="sample-run"></p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://github.com/Kwangjong/docker-flask-nginx-uwsgi-web_server">github</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/08-01-🐳Deploying-Flask-app-using-Nginx,-uWSGI,-and-Docker",title:"🐳Deploying Flask app using Nginx, uWSGI, and Docker",date:"2022-08-01T08:15:00.000Z",tags:["blog","web","docker","flask","nginx","uwsgi"],visibility:"public",html:"\u003Cp>\u003Cimg src=\"https://i.imgur.com/mOJJqEl.png\" alt=\"banner\">\u003C/p>\n\u003Ch2>Nginx-uWSGI-Flask\u003C/h2>\n\u003Cp>\u003Cstrong>\u003Ccode>Nginx-uWSGI-Flask\u003C/code>\u003C/strong> is a commonly used server setup for light python web applications or ML applications. \n\u003Cstrong>\u003Ccode>Flask\u003C/code>\u003C/strong>, a light web framework, is chained with a web server \u003Cstrong>\u003Ccode>uWSGI\u003C/code>\u003C/strong> and \u003Cstrong>\u003Ccode>Nginx\u003C/code>\u003C/strong> as a reverse proxy. \n\u003Cstrong>\u003Ccode>Flask\u003C/code>\u003C/strong> is integrated as a callable object for \u003Cstrong>\u003Ccode>uWSGI\u003C/code>\u003C/strong> to call and run the app. And \u003Cstrong>\u003Ccode>Nginx\u003C/code>\u003C/strong> and \u003Cstrong>\u003Ccode>uWSGI\u003C/code>\u003C/strong> communicates via unix socket or tcp port.\u003C/p>\n\u003Cpre>\u003Ccode>             ┌───────────────────────────────────────────────┐\n             | server:                                       |\n             |                                               |\nclients &lt;---------&gt; nginx &lt;---------&gt; uwsgi &lt;--------&gt; flask |\n             |                                               |\n             └───────────────────────────────────────────────┘\n\u003C/code>\u003C/pre>\n\u003Ch2>Docker\u003C/h2>\n\u003Cp>For easier deployment and migration to different machines or server, let&#39;s use \u003Cstrong>\u003Ccode>Docker\u003C/code>\u003C/strong>. \u003Cstrong>\u003Ccode>Docker\u003C/code>\u003C/strong> is a container-based platform for building and deploying applications. \n\u003Cstrong>\u003Ccode>Docker\u003C/code>\u003C/strong> isolates and virtualizes applications using containers. Unlike virtual machines, containers isolates processes by enabling multiple applications to share \nthe resources of a single instance of the host OS without virtualizing entire operationg system.\nIt is \u003Cstrong>\u003Ccode>lighter\u003C/code>\u003C/strong>, \u003Cstrong>\u003Ccode>faster\u003C/code>\u003C/strong>, and \u003Cstrong>\u003Ccode>efficient\u003C/code>\u003C/strong> than virtual machines. It is possible to create and run containers without \u003Cstrong>\u003Ccode>Docker\u003C/code>\u003C/strong>, but \u003Cstrong>\u003Ccode>Docker\u003C/code>\u003C/strong> makes it way easier.\u003C/p>\n\u003Ch2>Building a Simple Web Server\u003C/h2>\n\u003Cp>Here&#39;s how I built the server using Docker on \u003Ccode>Ubuntu 22.04 LTS\u003C/code>\nI used \u003Ccode>docker-compose\u003C/code> which is a tool for building a multi-container Docker app.\u003C/p>\n\u003Cp>I set nginx to listen to port \u003Ccode>5000\u003C/code> and communicate with uwsgi via \u003Ccode>5050\u003C/code>. Flask will be called by uwsgi as a callable object. Because \u003Ccode>uwsgi\u003C/code> and \u003Ccode>nginx\u003C/code> are executed in different containers, pot \u003Ccode>5050\u003C/code> is used instead of unix socket.\u003C/p>\n\u003Cpre>\u003Ccode>             ┌───────────────────────────────────────────────┐\n             | server:                                       |\n             |                                               |\nclients &lt;---------&gt; nginx &lt;---------&gt; uwsgi &lt;--------&gt; flask |\n           5000               5050        callable object    |\n             └───────────────────────────────────────────────┘\n\u003C/code>\u003C/pre>\n\u003Ch3>Installing and setting up Docker and Docker-compose\u003C/h3>\n\u003Cp>Install \u003Ccode>docker\u003C/code>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ sudo apt-get install curl\n$ curl -s https://get.docker.com | sudo sh\n\u003C/code>\u003C/pre>\n\u003Cp>Add user to the \u003Ccode>docker\u003C/code> group.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ sudo usermod -aG docker $USER\n\u003C/code>\u003C/pre>\n\u003Cp>Install \u003Ccode>docker-compose\u003C/code>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.8.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose\n$ sudo chmod +x /usr/local/bin/docker-compose\n\u003C/code>\u003C/pre>\n\u003Ch3>File Structure\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-shell\">server\n├── docker-compose.yml\n├── flask\n│ ├── Dockerfile\n│ ├── app.py\n│ ├── requirements.txt\n│ └── uwsgi.ini\n└── nginx\n    ├── Dockerfile\n    └── nginx.conf\n\u003C/code>\u003C/pre>\n\u003Ch3>\u003Ccode>./flask\u003C/code>\u003C/h3>\n\u003Cp>\u003Ccode>app.py\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from flask import Flask\n\napp = Flask(__name__)\n\n@app.route(&#39;/&#39;)\ndef hello():\n    return &quot;hello docker🐳&quot;\n        \n\nif __name__ == &#39;__main__&#39;:\n    app.run(host=&#39;0.0.0.0&#39;)\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>requirements.txt\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">flask==2.1.*\nclick==8.0.*\nitsdangerous==2.1.*\njinja2==3.0.*\nmarkupsafe==2.1.*\nwerkzeug==2.2.*\nuwsgi==2.0.*\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>Dockerfile\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">FROM python:3\n\nWORKDIR /app\n\nADD . /app\nRUN pip install -r requirements.txt\n\nCMD [&quot;uwsgi&quot;,&quot;uwsgi.ini&quot;]\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>uwsgi.ini\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">[uwsgi]\nwsgi-file = app.py\ncallable = app\nsocket = :5050\nprocesses = 2\nthreads = 2\nmaster = true\nvacum = true\nchmod-socket = 660\ndie-on-term = true\n\u003C/code>\u003C/pre>\n\u003Ch3>\u003Ccode>./nginx\u003C/code>\u003C/h3>\n\u003Cp>\u003Ccode>nginx.conf\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">server {\n\n\tlisten 5000;\n\t\n\tlocation / {\n\t\tinclude uwsgi_params;\n\t\tuwsgi_pass flask:5050;\n\t}\n}\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>Dockerfile\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">FROM nginx\n\nRUN rm /etc/nginx/conf.d/default.conf\n\nCOPY nginx.conf /etc/nginx/conf.d/\n\u003C/code>\u003C/pre>\n\u003Ch3>\u003Ccode>docker-compose.yml\u003C/code>\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">version: &quot;3.7&quot;\n\nservices: \n    flask:\n        build: ./flask\n        container_name: flask\n        restart: always\n        environment: \n            - APP_NAME=FlaskTest\n        expose:\n            - 5050\n\n    nginx:\n        build: ./nginx\n        container_name: nginx\n        restart: always\n        ports:\n            - &quot;5000:5000&quot;\n\u003C/code>\u003C/pre>\n\u003Ch3>Build and start containers\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ docker-compose up -d --build\n\u003C/code>\u003C/pre>\n\u003Cul>\n\u003Cli>\u003Ccode>-d\u003C/code>: run containers in the background\u003C/li>\n\u003Cli>\u003Ccode>--build\u003C/code>: build images before starting containers\u003C/li>\n\u003C/ul>\n\u003Ch2>Open in browser\u003C/h2>\n\u003Cp>Now, let&#39;s check if our web server is working properly. Open your server domain or IP with port \u003Ccode>5000\u003C/code>&quot;: \u003Ccode>http://example.com:5000\u003C/code>. Your web server should return \u003Ccode>hello docker🐳\u003C/code>\n\u003Cimg src=\"https://i.imgur.com/tD5xPJ5.png\" alt=\"sample-run\">\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/Kwangjong/docker-flask-nginx-uwsgi-web_server\">github\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

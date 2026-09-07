@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Connection Error While Using JVM Tools in Kubernetes | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Connection Error While Using JVM Tools in Kubernetes"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Connection Error While Using JVM Tools in Kubernetes</h1>
+    <time class="date" datetime="2025-04-14T08:30:37.000Z" itemprop="datePublished">April 14, 2025</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=jvm">#jvm</a><a class="tag" href="/blog/?tag=troubleshooting">#troubleshooting</a><a class="tag" href="/blog/?tag=k8s">#k8s</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Our team recently encountered a memory leak in a Java backend service deployed on a Kubernetes cluster. This issue was not detected during performance testing, as we simulated multiple concurrent users using a single user account. In production, the leak emerged under real traffic and was later traced to logic within the login process.</p>
+<p>To investigate, we attempted to capture a heap dump by accessing the running pod via a shell and using standard JVM tools such as <code>jps</code>, <code>jcmd</code>, <code>jmap</code>, and <code>jstat</code>. However, all these tools failed to function correctly, throwing connection or socket-related errors.</p>
+<p>##Root Cause</p>
+<p>After some investigation, we identified the root cause: the pod was running with a <code>readOnlyRootFilesystem: true</code> security context, as mandated by CWPP (Cloud Workload Protection Platform) compliance policies. This setting prevents any writes to the root filesystem unless the target path is explicitly mounted as a writable volume.</p>
+<p>During JVM startup, it creates a directory at <code>/tmp/hsperfdata_&lt;usernam&gt;/</code> and writes a file named after the process ID (PID), e.g., <code>/tmp/hsperfdata_appuser/1234</code>. These files are essential for performance tools (<code>jps</code>, <code>jcmd</code>, <code>jstat</code>, etc.) to connect to the JVM process.</p>
+<p>Because the <code>/tmp</code> directory was part of the read-only root filesystem, the JVM failed to write this metadata, rendering the performance tools inoperable.</p>
+<h2>Solution</h2>
+<p>We resolved the issue by explicitly mounting a writable volume to <code>/tmp</code>. In our case, we used an <code>emptyDir</code> volume. This allowed the JVM to write the necessary <code>hsperfdata</code> files and restored full functionality to the monitoring tools.</p>
+<h3>Kubernetes Deployment Snippet:</h3>
+<pre><code class="language-yaml">securityContext:
+  readOnlyRootFilesystem: true
+
+volumeMounts:
+  - mountPath: /tmp
+    name: tmp-volume
+
+volumes:
+  - name: tmp-volume
+    emptyDir: {}
+</code></pre>
+<h2>Alternate Option: Custom tmpdir</h2>
+<p>Alternatively, the JVM can be configured to use a different temp directory via the <code>-Djava.io.tmpdir</code> option. This is useful if you prefer to mount a custom path:</p>
+<pre><code class="language-yaml">env:
+  - name: JAVA_TOOL_OPTIONS
+    value: &quot;-Djava.io.tmpdir=/mnt/tmp&quot;
+
+volumeMounts:
+  - mountPath: /mnt/tmp
+    name: custom-tmp
+
+volumes:
+  - name: custom-tmp
+    emptyDir: {}
+</code></pre>
+<p>However, note that this changes the location of <strong>all</strong> temporary files, not just the <code>hsperfdata</code> files.</p>
+<h2>Key Takeaways</h2>
+<ul>
+<li>Tools like <code>jps</code>, <code>jcmd</code>, <code>jstat</code>, and <code>jmap</code> depend on the JVM’s ability to write to a temporary directory.</li>
+<li>Ensure <code>/tmp</code> or a custom temp directory is writable via a Kubernetes volume mount to enable full JVM observability.</li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2025/04-14-Connection-Error-While-Using-JVM-Tools-in-Kubernetes",title:"Connection Error While Using JVM Tools in Kubernetes",date:"2025-04-14T08:30:37.000Z",tags:["jvm","troubleshooting","k8s"],visibility:"public",html:"\u003Cp>Our team recently encountered a memory leak in a Java backend service deployed on a Kubernetes cluster. This issue was not detected during performance testing, as we simulated multiple concurrent users using a single user account. In production, the leak emerged under real traffic and was later traced to logic within the login process.\u003C/p>\n\u003Cp>To investigate, we attempted to capture a heap dump by accessing the running pod via a shell and using standard JVM tools such as \u003Ccode>jps\u003C/code>, \u003Ccode>jcmd\u003C/code>, \u003Ccode>jmap\u003C/code>, and \u003Ccode>jstat\u003C/code>. However, all these tools failed to function correctly, throwing connection or socket-related errors.\u003C/p>\n\u003Cp>##Root Cause\u003C/p>\n\u003Cp>After some investigation, we identified the root cause: the pod was running with a \u003Ccode>readOnlyRootFilesystem: true\u003C/code> security context, as mandated by CWPP (Cloud Workload Protection Platform) compliance policies. This setting prevents any writes to the root filesystem unless the target path is explicitly mounted as a writable volume.\u003C/p>\n\u003Cp>During JVM startup, it creates a directory at \u003Ccode>/tmp/hsperfdata_&lt;usernam&gt;/\u003C/code> and writes a file named after the process ID (PID), e.g., \u003Ccode>/tmp/hsperfdata_appuser/1234\u003C/code>. These files are essential for performance tools (\u003Ccode>jps\u003C/code>, \u003Ccode>jcmd\u003C/code>, \u003Ccode>jstat\u003C/code>, etc.) to connect to the JVM process.\u003C/p>\n\u003Cp>Because the \u003Ccode>/tmp\u003C/code> directory was part of the read-only root filesystem, the JVM failed to write this metadata, rendering the performance tools inoperable.\u003C/p>\n\u003Ch2>Solution\u003C/h2>\n\u003Cp>We resolved the issue by explicitly mounting a writable volume to \u003Ccode>/tmp\u003C/code>. In our case, we used an \u003Ccode>emptyDir\u003C/code> volume. This allowed the JVM to write the necessary \u003Ccode>hsperfdata\u003C/code> files and restored full functionality to the monitoring tools.\u003C/p>\n\u003Ch3>Kubernetes Deployment Snippet:\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-yaml\">securityContext:\n  readOnlyRootFilesystem: true\n\nvolumeMounts:\n  - mountPath: /tmp\n    name: tmp-volume\n\nvolumes:\n  - name: tmp-volume\n    emptyDir: {}\n\u003C/code>\u003C/pre>\n\u003Ch2>Alternate Option: Custom tmpdir\u003C/h2>\n\u003Cp>Alternatively, the JVM can be configured to use a different temp directory via the \u003Ccode>-Djava.io.tmpdir\u003C/code> option. This is useful if you prefer to mount a custom path:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">env:\n  - name: JAVA_TOOL_OPTIONS\n    value: &quot;-Djava.io.tmpdir=/mnt/tmp&quot;\n\nvolumeMounts:\n  - mountPath: /mnt/tmp\n    name: custom-tmp\n\nvolumes:\n  - name: custom-tmp\n    emptyDir: {}\n\u003C/code>\u003C/pre>\n\u003Cp>However, note that this changes the location of \u003Cstrong>all\u003C/strong> temporary files, not just the \u003Ccode>hsperfdata\u003C/code> files.\u003C/p>\n\u003Ch2>Key Takeaways\u003C/h2>\n\u003Cul>\n\u003Cli>Tools like \u003Ccode>jps\u003C/code>, \u003Ccode>jcmd\u003C/code>, \u003Ccode>jstat\u003C/code>, and \u003Ccode>jmap\u003C/code> depend on the JVM’s ability to write to a temporary directory.\u003C/li>\n\u003Cli>Ensure \u003Ccode>/tmp\u003C/code> or a custom temp directory is writable via a Kubernetes volume mount to enable full JVM observability.\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

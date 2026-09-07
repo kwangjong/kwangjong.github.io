@@ -52,9 +52,9 @@ export function formatPostDate(date: string): string {
 
 export function decodePostSlug(slug: string): string {
 	try {
-		return decodeURIComponent(slug);
+		return decodeURIComponent(slug).replace(/\/+$/, '');
 	} catch {
-		return slug;
+		return slug.replace(/\/+$/, '');
 	}
 }
 
@@ -63,5 +63,5 @@ export function encodePostSlug(slug: string): string {
 }
 
 export function postUrl(slug: string): string {
-	return `/blog/${encodePostSlug(slug)}`;
+	return `/blog/${encodePostSlug(slug)}/`;
 }

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>☁️What is a Rest API? | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="☁️What is a Rest API?"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">☁️What is a Rest API?</h1>
+    <time class="date" datetime="2022-07-27T14:54:00.000Z" itemprop="datePublished">July 27, 2022</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog">#blog</a><a class="tag" href="/blog/?tag=web">#web</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p><img src="https://i.imgur.com/7cA1PUG.png" alt="rest-api"></p>
+<h2>What does REST stands for?</h2>
+<p><strong><code>REST</code></strong> stands for <strong><code>REpresentational State Transfer</code></strong>. It refers to an industry-known architectural style that describes uniform interface between a client and a server. <strong><code>RESTFUL</code></strong> web services are services that uses Rest API to communicate. It is designed to take advantages of HTTP when used for web APIs.</p>
+<h2>Benefits of Rest API</h2>
+<ul>
+<li><strong>Uniform</strong>: Rest API is standardized and industry-used style.</li>
+<li><strong>Stateless</strong>: Rest API does not save and manages states. The API service simply process imcoming requests. This simplifies implementation by not managing unnecessary information on the server.</li>
+<li><strong>Cacheable</strong>: Rest API uses HTTP cache semantics which allows cacheable responses to be stored on the client-side. This improves the performances of web services.</li>
+</ul>
+<h2>Methods</h2>
+<ul>
+<li><code>POST</code>: <strong>Create</strong> new a resource.</li>
+<li><code>GET</code>: <strong>Read</strong> or retrieve a resource.</li>
+<li><code>PUT</code>/<code>PATCH</code>: <strong>Update</strong> or modify a resource. <code>PUT</code> handles an update by replacing entire entity, while <code>PATCH</code> only updates the field.</li>
+<li><code>DELETE</code>: <strong>Delete</strong> a resource.</li>
+</ul>
+<h2>Requesting Rest API</h2>
+<p><img src="https://i.imgur.com/YHof9C0.png" alt="request"></p>
+<p>Rest API requests consist four parts: <strong>header</strong>, <strong>operation</strong>, <strong>endpoint</strong>, and <strong>body</strong>.</p>
+<ul>
+<li><strong>Header</strong>: store information relevant to both client and server such as authentication data (key, name, ip address, ... etc) or content type</li>
+<li><strong>Operation</strong>: the api method you want to call.</li>
+<li><strong>Endpoint</strong>: contains url indicating where and how to find the resource.</li>
+<li><strong>Body</strong>: parameters or additional information required for the request such as a piece of data you want to create or update.</li>
+</ul>
+<h2>Example</h2>
+<p>Let&#39;s say that you work with a web service for a icecream shop that shows and updates flavors of icecreams that are in stock. The url of the web service is <code>http://icecream.com/api</code>. The following codes are psudo-representation of HTTP requests.</p>
+<p>First, let&#39;s say you want to get flavers that are available.</p>
+<p><code>Request:</code></p>
+<pre><code class="language-javascript">base_url = &quot;http://icecream.com/api&quot;
+
+request(base_url, {
+  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}
+  opper: &quot;GET&quot;
+  endpoint: &quot;/flavors&quot;
+  body: {}
+});
+</code></pre>
+<p><code>Response:</code></p>
+<pre><code class="language-json">{
+  {
+    &quot;id&quot;: 0,
+    &quot;flavorName&quot;: &quot;strawberry&quot;
+  },
+  {
+    &quot;id&quot;: 1,
+    &quot;flavorName&quot;: &quot;mint chocolate&quot;
+  }
+}
+</code></pre>
+<p>But then, mint chocolate flavor runs out and you want to delete mint chocolate from the database.</p>
+<p><code>Request:</code></p>
+<pre><code class="language-javascript">base_url = &quot;http://icecream.com/api&quot;
+
+request(base_url, {
+  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}
+  opper: &quot;DELETE&quot;
+  endpoint: &quot;/flavors/1&quot; // mint chocolate has id 1
+  body: {}
+});
+</code></pre>
+<p><code>Response:</code></p>
+<pre><code class="language-json">{}
+</code></pre>
+<p>Few hours later, a delivery truck arrives to the shop and stocks chocolate chip flavor. You adds chocolate chip flavor to the database.</p>
+<p><code>Request:</code></p>
+<pre><code class="language-javascript">base_url = &quot;http://icecream.com/api&quot;
+
+request(base_url, {
+  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}
+  opper: &quot;POST&quot;
+  endpoint: &quot;/flavors&quot;
+  body: {
+    &quot;id&quot;: 2,
+    &quot;flavorName&quot;: &quot;chocolate chip&quot;
+  }
+});
+</code></pre>
+<p><code>Response:</code></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 2,
+  &quot;flavorName&quot;: &quot;chocolate chip&quot;
+}
+</code></pre>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=lsMQRaeKNDk">What is a REST API? by IBM Technology</a></li>
+<li><a href="https://meetup.toast.com/posts/92">Using Rest API properly</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/07-27-☁️What-is-a-Rest-API?",title:"☁️What is a Rest API?",date:"2022-07-27T14:54:00.000Z",tags:["blog","web"],visibility:"public",html:"\u003Cp>\u003Cimg src=\"https://i.imgur.com/7cA1PUG.png\" alt=\"rest-api\">\u003C/p>\n\u003Ch2>What does REST stands for?\u003C/h2>\n\u003Cp>\u003Cstrong>\u003Ccode>REST\u003C/code>\u003C/strong> stands for \u003Cstrong>\u003Ccode>REpresentational State Transfer\u003C/code>\u003C/strong>. It refers to an industry-known architectural style that describes uniform interface between a client and a server. \u003Cstrong>\u003Ccode>RESTFUL\u003C/code>\u003C/strong> web services are services that uses Rest API to communicate. It is designed to take advantages of HTTP when used for web APIs.\u003C/p>\n\u003Ch2>Benefits of Rest API\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Cstrong>Uniform\u003C/strong>: Rest API is standardized and industry-used style.\u003C/li>\n\u003Cli>\u003Cstrong>Stateless\u003C/strong>: Rest API does not save and manages states. The API service simply process imcoming requests. This simplifies implementation by not managing unnecessary information on the server.\u003C/li>\n\u003Cli>\u003Cstrong>Cacheable\u003C/strong>: Rest API uses HTTP cache semantics which allows cacheable responses to be stored on the client-side. This improves the performances of web services.\u003C/li>\n\u003C/ul>\n\u003Ch2>Methods\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ccode>POST\u003C/code>: \u003Cstrong>Create\u003C/strong> new a resource.\u003C/li>\n\u003Cli>\u003Ccode>GET\u003C/code>: \u003Cstrong>Read\u003C/strong> or retrieve a resource.\u003C/li>\n\u003Cli>\u003Ccode>PUT\u003C/code>/\u003Ccode>PATCH\u003C/code>: \u003Cstrong>Update\u003C/strong> or modify a resource. \u003Ccode>PUT\u003C/code> handles an update by replacing entire entity, while \u003Ccode>PATCH\u003C/code> only updates the field.\u003C/li>\n\u003Cli>\u003Ccode>DELETE\u003C/code>: \u003Cstrong>Delete\u003C/strong> a resource.\u003C/li>\n\u003C/ul>\n\u003Ch2>Requesting Rest API\u003C/h2>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/YHof9C0.png\" alt=\"request\">\u003C/p>\n\u003Cp>Rest API requests consist four parts: \u003Cstrong>header\u003C/strong>, \u003Cstrong>operation\u003C/strong>, \u003Cstrong>endpoint\u003C/strong>, and \u003Cstrong>body\u003C/strong>.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Header\u003C/strong>: store information relevant to both client and server such as authentication data (key, name, ip address, ... etc) or content type\u003C/li>\n\u003Cli>\u003Cstrong>Operation\u003C/strong>: the api method you want to call.\u003C/li>\n\u003Cli>\u003Cstrong>Endpoint\u003C/strong>: contains url indicating where and how to find the resource.\u003C/li>\n\u003Cli>\u003Cstrong>Body\u003C/strong>: parameters or additional information required for the request such as a piece of data you want to create or update.\u003C/li>\n\u003C/ul>\n\u003Ch2>Example\u003C/h2>\n\u003Cp>Let&#39;s say that you work with a web service for a icecream shop that shows and updates flavors of icecreams that are in stock. The url of the web service is \u003Ccode>http://icecream.com/api\u003C/code>. The following codes are psudo-representation of HTTP requests.\u003C/p>\n\u003Cp>First, let&#39;s say you want to get flavers that are available.\u003C/p>\n\u003Cp>\u003Ccode>Request:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-javascript\">base_url = &quot;http://icecream.com/api&quot;\n\nrequest(base_url, {\n  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}\n  opper: &quot;GET&quot;\n  endpoint: &quot;/flavors&quot;\n  body: {}\n});\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>Response:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-json\">{\n  {\n    &quot;id&quot;: 0,\n    &quot;flavorName&quot;: &quot;strawberry&quot;\n  },\n  {\n    &quot;id&quot;: 1,\n    &quot;flavorName&quot;: &quot;mint chocolate&quot;\n  }\n}\n\u003C/code>\u003C/pre>\n\u003Cp>But then, mint chocolate flavor runs out and you want to delete mint chocolate from the database.\u003C/p>\n\u003Cp>\u003Ccode>Request:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-javascript\">base_url = &quot;http://icecream.com/api&quot;\n\nrequest(base_url, {\n  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}\n  opper: &quot;DELETE&quot;\n  endpoint: &quot;/flavors/1&quot; // mint chocolate has id 1\n  body: {}\n});\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>Response:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-json\">{}\n\u003C/code>\u003C/pre>\n\u003Cp>Few hours later, a delivery truck arrives to the shop and stocks chocolate chip flavor. You adds chocolate chip flavor to the database.\u003C/p>\n\u003Cp>\u003Ccode>Request:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-javascript\">base_url = &quot;http://icecream.com/api&quot;\n\nrequest(base_url, {\n  headers: {&quot;acess_token&quot;: &quot;vDNof0S9Kf&quot;}\n  opper: &quot;POST&quot;\n  endpoint: &quot;/flavors&quot;\n  body: {\n    &quot;id&quot;: 2,\n    &quot;flavorName&quot;: &quot;chocolate chip&quot;\n  }\n});\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Ccode>Response:\u003C/code>\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-json\">{\n  &quot;id&quot;: 2,\n  &quot;flavorName&quot;: &quot;chocolate chip&quot;\n}\n\u003C/code>\u003C/pre>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.youtube.com/watch?v=lsMQRaeKNDk\">What is a REST API? by IBM Technology\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://meetup.toast.com/posts/92\">Using Rest API properly\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

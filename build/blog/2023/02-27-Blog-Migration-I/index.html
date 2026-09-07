@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Blog Migration I | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Blog Migration I"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Blog Migration I</h1>
+    <time class="date" datetime="2023-02-27T04:50:00.000Z" itemprop="datePublished">February 27, 2023</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog-migration">#blog-migration</a><a class="tag" href="/blog/?tag=fullstack">#fullstack</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Jekyll is a popular static site generator hosted on GitHub pages, making it a convenient option for bloggers without needing a backend server. However, I decided to migrate my blog to a full-stacked website to learn and practice my web development skills. Building a full-stacked blog website will be a great opportunity to do so.</p>
+<h1>Stack?</h1>
+<p>When it comes to choosing the stack, there are several conventional options, such as MEAN, MERN, MEVN, or LAMP. However, I decide to use an unconventional way. Go for the backend, MongoDB for the database, and Vue.js for the front end. I guess I&#39;ll call it GMV stack??</p>
+<h2>Why Go?</h2>
+<p>Go is known for its fast and efficient runtime performance and development, making it an excellent choice for building high-performance web applications quickly. Additionally, it has a solid standard library for handling HTTP requests and does not rely on another web framework. Last but not least, despite its popularity and strong community, I personally do not enjoy writing code in Javascript/typescript. They are such a pain to code...🤦‍♂️</p>
+<h2>Why MongoDB?</h2>
+<p>MongoDB is a NoSQL database program that uses JSON-like documents. It employs a document model with a flexible schema compared to the rigid table of SQL with a fixed schema. MongoDB has a native Go driver, making it easy to work with and perfect for building modern web applications.</p>
+<h2>Why Vue.JS?</h2>
+<p><del>I don&#39;t have any preference for a frontend framework, nor have I used Vue before. But, Vue is generally known for being suitable for smaller, less complex apps and is easier to learn from scratch compared to React or Angular. So I decided to give Vue a try.</del></p>
+<p>I decided to use <strong>Svelte</strong> instead. You can find more about it <a href="https://kwangjong.github.io/blog/2023-03-23-Blog-Migration-II-:-Getting-Started-with-Sveltekit">here</a>.</p>
+<h1>Server?</h1>
+<p>Me being a poor college student, I am using free servers only.
+Free servers offered by cloud companies are:</p>
+<ul>
+<li><a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">Oracle&#39;s Always Freee Resources</a></li>
+<li><a href="https://cloud.google.com/free/docs/free-cloud-features#free-tier">GCP&#39;s Free Tier</a></li>
+<li><a href="https://www.mongodb.com/pricing">Mongo DB&#39;s Free-Forever Cluster</a></li>
+</ul>
+<p>Oracle provided the most resources with <code>VM.Standard.A1.Flex</code>, up to 4 CPUs and 24GB memory. But, due to a shortage of servers, I couldn&#39;t acquire one. So, I had to choose GCP&#39;s <code>e2-micro</code> with 0.25~2 shared CPUs and 1GB memory. I am not expecting any traffic to my blog besides myself. So, I am hoping for 1GB of memory to work with my app. I will definitely migrate to Oracle later when it gets available.</p>
+<p>For the database, I am using <a href="https://www.mongodb.com/pricing">Mongo DB&#39;s Free-Forever Cluster</a> with 512MB, which is small but enough for my blog (the current size of my blog is 561kb, including scripts and html&amp;css).</p>
+<p>Lastly, the front end will be hosted on GitHub pages which is free.</p>
+<h2>Conclusion</h2>
+<p>Migrating from Jekyll to a full-stacked blog website will be an excellent opportunity to learn and practice my web development skills. I hope the GMV stack and my server choices work with my blog app. I will keep posting updates on my progress.</p>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2023/02-27-Blog-Migration-I",title:"Blog Migration I",date:"2023-02-27T04:50:00.000Z",tags:["blog-migration","fullstack"],visibility:"public",html:"\u003Cp>Jekyll is a popular static site generator hosted on GitHub pages, making it a convenient option for bloggers without needing a backend server. However, I decided to migrate my blog to a full-stacked website to learn and practice my web development skills. Building a full-stacked blog website will be a great opportunity to do so.\u003C/p>\n\u003Ch1>Stack?\u003C/h1>\n\u003Cp>When it comes to choosing the stack, there are several conventional options, such as MEAN, MERN, MEVN, or LAMP. However, I decide to use an unconventional way. Go for the backend, MongoDB for the database, and Vue.js for the front end. I guess I&#39;ll call it GMV stack??\u003C/p>\n\u003Ch2>Why Go?\u003C/h2>\n\u003Cp>Go is known for its fast and efficient runtime performance and development, making it an excellent choice for building high-performance web applications quickly. Additionally, it has a solid standard library for handling HTTP requests and does not rely on another web framework. Last but not least, despite its popularity and strong community, I personally do not enjoy writing code in Javascript/typescript. They are such a pain to code...🤦‍♂️\u003C/p>\n\u003Ch2>Why MongoDB?\u003C/h2>\n\u003Cp>MongoDB is a NoSQL database program that uses JSON-like documents. It employs a document model with a flexible schema compared to the rigid table of SQL with a fixed schema. MongoDB has a native Go driver, making it easy to work with and perfect for building modern web applications.\u003C/p>\n\u003Ch2>Why Vue.JS?\u003C/h2>\n\u003Cp>\u003Cdel>I don&#39;t have any preference for a frontend framework, nor have I used Vue before. But, Vue is generally known for being suitable for smaller, less complex apps and is easier to learn from scratch compared to React or Angular. So I decided to give Vue a try.\u003C/del>\u003C/p>\n\u003Cp>I decided to use \u003Cstrong>Svelte\u003C/strong> instead. You can find more about it \u003Ca href=\"https://kwangjong.github.io/blog/2023-03-23-Blog-Migration-II-:-Getting-Started-with-Sveltekit\">here\u003C/a>.\u003C/p>\n\u003Ch1>Server?\u003C/h1>\n\u003Cp>Me being a poor college student, I am using free servers only.\nFree servers offered by cloud companies are:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm\">Oracle&#39;s Always Freee Resources\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://cloud.google.com/free/docs/free-cloud-features#free-tier\">GCP&#39;s Free Tier\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.mongodb.com/pricing\">Mongo DB&#39;s Free-Forever Cluster\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Cp>Oracle provided the most resources with \u003Ccode>VM.Standard.A1.Flex\u003C/code>, up to 4 CPUs and 24GB memory. But, due to a shortage of servers, I couldn&#39;t acquire one. So, I had to choose GCP&#39;s \u003Ccode>e2-micro\u003C/code> with 0.25~2 shared CPUs and 1GB memory. I am not expecting any traffic to my blog besides myself. So, I am hoping for 1GB of memory to work with my app. I will definitely migrate to Oracle later when it gets available.\u003C/p>\n\u003Cp>For the database, I am using \u003Ca href=\"https://www.mongodb.com/pricing\">Mongo DB&#39;s Free-Forever Cluster\u003C/a> with 512MB, which is small but enough for my blog (the current size of my blog is 561kb, including scripts and html&amp;css).\u003C/p>\n\u003Cp>Lastly, the front end will be hosted on GitHub pages which is free.\u003C/p>\n\u003Ch2>Conclusion\u003C/h2>\n\u003Cp>Migrating from Jekyll to a full-stacked blog website will be an excellent opportunity to learn and practice my web development skills. I hope the GMV stack and my server choices work with my blog app. I will keep posting updates on my progress.\u003C/p>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

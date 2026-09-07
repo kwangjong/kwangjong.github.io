@@ -5,14 +5,14 @@
 </script>
 
 <div class="blog-menu">
-    <a class="blog" href="/blog">Blog</a>
+    <a class="blog" href="/blog/">Blog</a>
     <a class="tags" href="/tags">Tags</a>
 </div>
 
 <ul class="tag-list">
     {#each tagList as tag}
         <li class="tag-entry">
-            <a class="tag" href={`/blog?tag=${encodeURIComponent(tag)}`}>{tag}</a>
+            <a class="tag" href={`/blog/?tag=${encodeURIComponent(tag)}`}>{tag}</a>
         </li>
     {/each}
 </ul>
