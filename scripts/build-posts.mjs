@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, dirname, extname, join, resolve } from 'node:path';
+import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'js-yaml';
 import { marked } from 'marked';
@@ -61,8 +61,11 @@ function splitFrontmatter(raw, filePath) {
 }
 
 function titleFromSlug(slug) {
-	return slug
+	const fileSlug = basename(slug);
+
+	return fileSlug
 		.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+		.replace(/^\d{2}-\d{2}-/, '')
 		.replaceAll('-', ' ')
 		.replaceAll(':', ': ');
 }
@@ -83,7 +86,10 @@ function normalizeTags(tags) {
 }
 
 function normalizeDate(value, slug, filePath) {
-	const fallbackDate = slug.match(/^(\d{4}-\d{2}-\d{2})/)?.[1];
+	const fallbackDate =
+		slug.match(/^(\d{4})\/(\d{2})-(\d{2})-/)?.slice(1, 4).join('-') ??
+		slug.match(/^(\d{4})\/\d{4}-(\d{2})-(\d{2})-/)?.slice(1, 4).join('-') ??
+		slug.match(/^(\d{4}-\d{2}-\d{2})/)?.[1];
 	const rawDate = value ?? fallbackDate;
 
 	if (!rawDate) {
@@ -101,7 +107,7 @@ function normalizeDate(value, slug, filePath) {
 
 async function readPost(filePath) {
 	const raw = readFileSync(filePath, 'utf8');
-	const slug = basename(filePath, extname(filePath));
+	const slug = relative(contentDir, filePath).slice(0, -extname(filePath).length).replaceAll('\\', '/');
 	const { metadata, body } = splitFrontmatter(raw, filePath);
 	const html = await marked.parse(body);
 
@@ -159,14 +165,35 @@ if (!existsSync(contentDir)) {
 
 rmSync(generatedDir, { recursive: true, force: true });
 
+function findMarkdownFiles(dir) {
+	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+		const entryPath = join(dir, entry.name);
+
+		if (entry.isDirectory()) {
+			return findMarkdownFiles(entryPath);
+		}
+
+		return entry.isFile() && entry.name.endsWith('.md') ? [entryPath] : [];
+	});
+}
+
 const posts = (
 	await Promise.all(
-		readdirSync(contentDir)
-			.filter((fileName) => fileName.endsWith('.md'))
+		findMarkdownFiles(contentDir)
 			.sort((a, b) => a.localeCompare(b))
-			.map((fileName) => readPost(join(contentDir, fileName)))
+			.map((filePath) => readPost(filePath))
 	)
 ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime() || a.slug.localeCompare(b.slug));
+
+const slugs = new Set();
+
+for (const post of posts) {
+	if (slugs.has(post.slug)) {
+		throw new Error(`Duplicate post slug: ${post.slug}`);
+	}
+
+	slugs.add(post.slug);
+}
 
 writeGeneratedData(posts);
 

@@ -19,11 +19,6 @@
 	}
 
 	onMount(async () => {
-		if (window.location.search.startsWith("?/")) {
-			const newPath = window.location.search.slice(2);
-			goto(newPath);
-		}
-
 		const themeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 		toggleTheme(themeQuery.matches);
 		themeQuery.addEventListener('change', event => {

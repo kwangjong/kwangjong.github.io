@@ -55,11 +55,15 @@ function bsonDateToIso(value) {
 
 function writePostMarkdown(posts) {
 	rmSync(contentDir, { recursive: true, force: true });
-	mkdirSync(contentDir, { recursive: true });
 
 	for (const post of posts) {
+		const year = bsonDateToIso(post.date).slice(0, 4);
+		const postDir = join(contentDir, year);
+		const fileName = post.url.replace(/^\d{4}-/, '');
 		const markdown = post.markdown.endsWith('\n') ? post.markdown : `${post.markdown}\n`;
-		writeFileSync(join(contentDir, `${post.url}.md`), markdown);
+
+		mkdirSync(postDir, { recursive: true });
+		writeFileSync(join(postDir, `${fileName}.md`), markdown);
 	}
 }
 
