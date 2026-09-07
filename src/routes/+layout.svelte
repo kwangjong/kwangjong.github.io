@@ -2,34 +2,34 @@
 	import 'src/stylesheets/global.scss';
 	import { onMount } from 'svelte';
 	import { _isDark } from './+layout';
-    import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
-    // Fix GitHub Pages path-based redirects
-    if (window.location.search.startsWith("?/")) {
-        const newPath = window.location.search.slice(2); // Remove "?/"
-        goto(newPath); // Redirect to correct route
-    }
-
-    let is_dark: boolean;
-    function toggleTheme(match: boolean) {
-        is_dark = match
+	let is_dark = false;
+	function toggleTheme(match: boolean) {
+		is_dark = match
 		_isDark.update(() => match);
-        triggerSpin(650);
-    }
+		triggerSpin(650);
+	}
 
-    let spinDirection: "left" | "right" = "right";
-    let spin = false;
-    function triggerSpin(duration: number) {
-        spin = true;
-        setTimeout(() => (spin = false), duration);
-    }
+	let spinDirection: "left" | "right" = "right";
+	let spin = false;
+	function triggerSpin(duration: number) {
+		spin = true;
+		setTimeout(() => (spin = false), duration);
+	}
 
-    onMount(async () => {
-        toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', event => {
-                toggleTheme(event.matches);
-        });
-    })
+	onMount(async () => {
+		if (window.location.search.startsWith("?/")) {
+			const newPath = window.location.search.slice(2);
+			goto(newPath);
+		}
+
+		const themeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+		toggleTheme(themeQuery.matches);
+		themeQuery.addEventListener('change', event => {
+			toggleTheme(event.matches);
+		});
+	})
 </script>
 
 <div class="container"class:dark={is_dark} class:light={!is_dark}>

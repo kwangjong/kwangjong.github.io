@@ -4,8 +4,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --host",
+		"import:mongodb": "node scripts/import-mongodb-posts.mjs",
 		"build": "vite build",
-		"postbuild": "npx svelte-sitemap --ignore 'admin.html' --ignore 'new.html' --domain https://kwangjong.github.io/",
+		"postbuild": "npx svelte-sitemap --domain https://kwangjong.github.io/",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d build -t true",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

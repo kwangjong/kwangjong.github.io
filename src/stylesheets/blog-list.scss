@@ -3,6 +3,7 @@
     padding: 0;
     .blog-entry {
         .title {
+            color: var(--primary-color);
             font-size: 1.3em;
             font-weight: bold;
             &:hover {
@@ -18,8 +19,13 @@
 }
 
 .post-navigator {
-    button {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        color: var(--primary-color);
         font-size: 0.9em;
+
         &:hover {
             text-decoration: underline;
         }

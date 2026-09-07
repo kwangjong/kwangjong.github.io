@@ -1,5 +1,13 @@
 # kwangjong.github.io
-my blog app in sveltekit & go
+Static SvelteKit blog for GitHub Pages.
+
+## Content
+Post source files live in `src/content/posts`. The static runtime data in
+`src/lib/generated` was generated from the MongoDB BSON dump with:
+
+```sh
+npm run import:mongodb
+```
 
 ## Blog posts
 * [blog migration I](https://kwangjong.github.io/blog/2023-02-27-Blog-Migration-I)
@@ -21,6 +29,4 @@ my blog app in sveltekit & go
 
 ## Built with
 * SvelteKit (TypeScript)
-* Go [back-end repo](https://github.com/kwangjong/blog-server-go-mongoDB)
-* MongoDB
-* Docker
+* GitHub Pages

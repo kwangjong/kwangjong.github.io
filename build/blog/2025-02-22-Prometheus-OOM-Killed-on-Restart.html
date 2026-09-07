@@ -6,28 +6,124 @@
 		<link rel="icon" href="../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link rel="modulepreload" href="../_app/immutable/entry/start.f37b10ac.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.dec1645f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.f5ccbc62.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.a1b7ca7e.js">
+		<link href="../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.7865e0f2.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.00ff49d4.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.366adb0d.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.b8ac329f.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/4.d735529f.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/posts.8ce5a434.js"><title>Prometheus OOM Killed on Restart | KJ&#39;s Blog</title><!-- HEAD_svelte-82yj0d_START --><meta name="description" content="Prometheus OOM Killed on Restart"><!-- HEAD_svelte-82yj0d_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Prometheus OOM Killed on Restart</h1>
+    <time class="date" datetime="2025-02-22T04:40:10.000Z" itemprop="datePublished">February 22, 2025</time>
+    <div class="tags"><a class="tag" href="/blog?tag=observability">#observability</a><a class="tag" href="/blog?tag=troubleshooting">#troubleshooting</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p><a href="https://prometheus.io/docs/prometheus/latest/storage/#remote-storage-integrations">https://prometheus.io/docs/prometheus/latest/storage/#remote-storage-integrations</a></p>
+<p>Prometheus is deployed on an AKS cluster using the <code>kube-prometheus-stack</code> Helm chart.</p>
+<p> **<strong>Issue: Prometheus Container is OOM Killed on Restart</strong></p>
+<ul>
+<li><strong>Cause</strong>: The allocated memory is <strong>smaller than the required memory for WAL replay</strong>.</li>
+<li><strong>Impact</strong>: When Prometheus restarts, it <strong>reconstructs active series from WAL</strong>, causing memory usage to spike beyond allocated limits.</li>
+</ul>
+<h3>What is WAL (Write-Ahead Log)?</h3>
+<p>  WAL (<strong>Write-Ahead Log</strong>) is an <strong>append-only log stored on disk</strong> that buffers incoming time series data before it is compacted into TSDB blocks.  </p>
+<ul>
+<li>Located at <strong><code>/prometheus/wal/</code></strong>.</li>
+<li>Ensures <strong>durability</strong> (prevents data loss in crashes).</li>
+<li>Optimized for <strong>high-ingestion sequential writes</strong>.</li>
+</ul>
+<h3>Prometheus Storage Key Features</h3>
+<ul>
+<li><strong>Prometheus stores scraped data in TSDB (Time Series Database).</strong></li>
+<li>It can write data to:<ul>
+<li><strong>Local TSDB</strong> (default, local disk for pv mounted)</li>
+<li><strong>Remote TSDB</strong> (via <code>remote_write</code>, e.g., Thanos, Cortex).</li>
+</ul>
+</li>
+<li><strong>Memory-Mapped Storage (mmap)</strong>  <ul>
+<li>Prometheus <strong>uses mmap for TSDB block reads</strong>, improving query performance.</li>
+<li>WAL <strong>does not use mmap</strong>; it is a simple append-only disk log.</li>
+</ul>
+</li>
+</ul>
+<h3>Why Not Write Directly to TSDB?</h3>
+<ul>
+<li><strong>TSDB is optimized for query performance, not frequent writes.</strong></li>
+<li><strong>Immutable block format</strong> prevents efficient real-time writes.</li>
+<li><strong>WAL allows fast ingestion and defers compaction</strong> to avoid excessive disk I/O.</li>
+</ul>
+<h3>Why does WAL cause OOM?</h3>
+<ul>
+<li>When Prometheus <strong>restarts</strong>, it <strong>replays WAL to reconstruct active series</strong>.</li>
+<li>If too many <strong>active time series</strong> exist, memory usage spikes.</li>
+<li>If WAL <strong>accumulates due to slow compaction</strong>, it increases the number of series to restore, leading to OOM.</li>
+<li>When Prometheus terminates unexpectedly (or forcibly), <strong>unwritten WAL remains on disk</strong>, increasing WAL size.</li>
+</ul>
+<h3>Troubleshooting</h3>
+<h4>Allocate More Memory</h4>
+<p>Allocate more resources to the prometheus container either by increasing memory limit (manual) or using Vertical Pod Autoscaler (dynamic)</p>
+<ul>
+<li><a href="https://github.com/prometheus-community/helm-charts/issues/4711">https://github.com/prometheus-community/helm-charts/issues/4711</a></li>
+</ul>
+<h4>Enable WAL Compression</h4>
+<ul>
+<li>Reduces memory and disk usage for WAL:<pre><code class="language-yaml">prometheus:
+  prometheusSpec:
+    walCompression: true
+</code></pre>
+</li>
+</ul>
+<h4>Reduce Active Series</h4>
+<ul>
+<li><strong>Drop unnecessary high-cardinality labels</strong>:</li>
+<li><strong>Increase scrape interval</strong> to reduce ingestion rate.</li>
+</ul>
+<h4>Ignoring WAL on Restart</h4>
+<ul>
+<li>**This is not an ideal solution, but this can be a solution if retaining scraped data is not necessary.</li>
+<li>Manually delete WAL before restart</li>
+<li>or <strong>Mount an emptyDir over <code>/prometheus/wal</code></strong> in Kubernetes to prevent WAL persistence</li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
 			<script>
 				{
-					__sveltekit_ly9wvo = {
-						assets: "/sveltekit-github-pages",
+					__sveltekit_f5xjw3 = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
+					const data = [null,{"type":"data","data":{post:{slug:"2025-02-22-Prometheus-OOM-Killed-on-Restart",title:"Prometheus OOM Killed on Restart",date:"2025-02-22T04:40:10.000Z",tags:["observability","troubleshooting"],visibility:"public",html:"\u003Cp>\u003Ca href=\"https://prometheus.io/docs/prometheus/latest/storage/#remote-storage-integrations\">https://prometheus.io/docs/prometheus/latest/storage/#remote-storage-integrations\u003C/a>\u003C/p>\n\u003Cp>Prometheus is deployed on an AKS cluster using the \u003Ccode>kube-prometheus-stack\u003C/code> Helm chart.\u003C/p>\n\u003Cp> **\u003Cstrong>Issue: Prometheus Container is OOM Killed on Restart\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Cause\u003C/strong>: The allocated memory is \u003Cstrong>smaller than the required memory for WAL replay\u003C/strong>.\u003C/li>\n\u003Cli>\u003Cstrong>Impact\u003C/strong>: When Prometheus restarts, it \u003Cstrong>reconstructs active series from WAL\u003C/strong>, causing memory usage to spike beyond allocated limits.\u003C/li>\n\u003C/ul>\n\u003Ch3>What is WAL (Write-Ahead Log)?\u003C/h3>\n\u003Cp>  WAL (\u003Cstrong>Write-Ahead Log\u003C/strong>) is an \u003Cstrong>append-only log stored on disk\u003C/strong> that buffers incoming time series data before it is compacted into TSDB blocks.  \u003C/p>\n\u003Cul>\n\u003Cli>Located at \u003Cstrong>\u003Ccode>/prometheus/wal/\u003C/code>\u003C/strong>.\u003C/li>\n\u003Cli>Ensures \u003Cstrong>durability\u003C/strong> (prevents data loss in crashes).\u003C/li>\n\u003Cli>Optimized for \u003Cstrong>high-ingestion sequential writes\u003C/strong>.\u003C/li>\n\u003C/ul>\n\u003Ch3>Prometheus Storage Key Features\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Prometheus stores scraped data in TSDB (Time Series Database).\u003C/strong>\u003C/li>\n\u003Cli>It can write data to:\u003Cul>\n\u003Cli>\u003Cstrong>Local TSDB\u003C/strong> (default, local disk for pv mounted)\u003C/li>\n\u003Cli>\u003Cstrong>Remote TSDB\u003C/strong> (via \u003Ccode>remote_write\u003C/code>, e.g., Thanos, Cortex).\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cstrong>Memory-Mapped Storage (mmap)\u003C/strong>  \u003Cul>\n\u003Cli>Prometheus \u003Cstrong>uses mmap for TSDB block reads\u003C/strong>, improving query performance.\u003C/li>\n\u003Cli>WAL \u003Cstrong>does not use mmap\u003C/strong>; it is a simple append-only disk log.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Ch3>Why Not Write Directly to TSDB?\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>TSDB is optimized for query performance, not frequent writes.\u003C/strong>\u003C/li>\n\u003Cli>\u003Cstrong>Immutable block format\u003C/strong> prevents efficient real-time writes.\u003C/li>\n\u003Cli>\u003Cstrong>WAL allows fast ingestion and defers compaction\u003C/strong> to avoid excessive disk I/O.\u003C/li>\n\u003C/ul>\n\u003Ch3>Why does WAL cause OOM?\u003C/h3>\n\u003Cul>\n\u003Cli>When Prometheus \u003Cstrong>restarts\u003C/strong>, it \u003Cstrong>replays WAL to reconstruct active series\u003C/strong>.\u003C/li>\n\u003Cli>If too many \u003Cstrong>active time series\u003C/strong> exist, memory usage spikes.\u003C/li>\n\u003Cli>If WAL \u003Cstrong>accumulates due to slow compaction\u003C/strong>, it increases the number of series to restore, leading to OOM.\u003C/li>\n\u003Cli>When Prometheus terminates unexpectedly (or forcibly), \u003Cstrong>unwritten WAL remains on disk\u003C/strong>, increasing WAL size.\u003C/li>\n\u003C/ul>\n\u003Ch3>Troubleshooting\u003C/h3>\n\u003Ch4>Allocate More Memory\u003C/h4>\n\u003Cp>Allocate more resources to the prometheus container either by increasing memory limit (manual) or using Vertical Pod Autoscaler (dynamic)\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/prometheus-community/helm-charts/issues/4711\">https://github.com/prometheus-community/helm-charts/issues/4711\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Ch4>Enable WAL Compression\u003C/h4>\n\u003Cul>\n\u003Cli>Reduces memory and disk usage for WAL:\u003Cpre>\u003Ccode class=\"language-yaml\">prometheus:\n  prometheusSpec:\n    walCompression: true\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003C/ul>\n\u003Ch4>Reduce Active Series\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>Drop unnecessary high-cardinality labels\u003C/strong>:\u003C/li>\n\u003Cli>\u003Cstrong>Increase scrape interval\u003C/strong> to reduce ingestion rate.\u003C/li>\n\u003C/ul>\n\u003Ch4>Ignoring WAL on Restart\u003C/h4>\n\u003Cul>\n\u003Cli>**This is not an ideal solution, but this can be a solution if retaining scraped data is not necessary.\u003C/li>\n\u003Cli>Manually delete WAL before restart\u003C/li>\n\u003Cli>or \u003Cstrong>Mount an emptyDir over \u003Ccode>/prometheus/wal\u003C/code>\u003C/strong> in Kubernetes to prevent WAL persistence\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
 					Promise.all([
-						import("../_app/immutable/entry/start.f37b10ac.js"),
-						import("../_app/immutable/entry/app.a1b7ca7e.js")
+						import("../_app/immutable/entry/start.7865e0f2.js"),
+						import("../_app/immutable/entry/app.366adb0d.js")
 					]).then(([kit, app]) => {
-						kit.start(app, element);
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
 					});
 				}
 			</script>

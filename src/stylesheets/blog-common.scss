@@ -2,6 +2,14 @@
     display: flex;
     justify-content: space-between;
 
+    a {
+        color: var(--primary-color);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     .blog {
         font-size: 1.8em;
         font-weight: bold;
@@ -21,4 +29,8 @@
     border-radius: 15px;
     font-size: 0.9rem;
     font-weight: 500;
+
+    &:hover {
+        text-decoration: none;
+    }
 }
