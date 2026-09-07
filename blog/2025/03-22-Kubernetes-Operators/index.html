@@ -9,15 +9,15 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.09617dd7.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.53032123.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.95c11faa.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.54afcbb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.f27e57e6.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a85a12e4.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.4e71f6db.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.aaea6efc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.7dd2980b.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.9e5d9a5d.js"><title>Kubernetes Operators | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Kubernetes Operators"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.09d72f43.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.fd9412ec.js"><title>Kubernetes Operators | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Kubernetes Operators"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -72,7 +72,7 @@
 			
 			<script>
 				{
-					__sveltekit_nhp102 = {
+					__sveltekit_13lcn83 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -82,8 +82,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2025/03-22-Kubernetes-Operators",title:"Kubernetes Operators",date:"2025-03-22T09:22:13.000Z",tags:["k8s"],visibility:"public",html:"\u003Ch2>What Are Kubernetes Operators?\u003C/h2>\n\u003Cp>A Kubernetes operator is a custom controller that extends the Kubernetes API. It embeds human operational knowledge into software to automate the management of complex, stateful applications.\u003C/p>\n\u003Ch2>Imperative vs Declarative\u003C/h2>\n\u003Cul>\n\u003Cli>In an imperative system, a human operator manually observes the current state of the system and performs specific action to reach the desired state.\u003C/li>\n\u003Cli>In a declarative system, the operator defines the desired state, and the system takes care of transitioning from current state to the desired state.\u003C/li>\n\u003Cli>Kubernetes follows a declarative model. Controllers continuously watches each resources&#39; desired state (\u003Ccode>spec\u003C/code>) and actual state (\u003Ccode>status\u003C/code>) and run  a reconciliation loop to make necessary changes and ensure the actual state matches the desired state.\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://imgur.com/7REpJ26.png\" alt=\"\">\u003C/p>\n\u003Ch2>Operator SDK vs. Kubebuilder\u003C/h2>\n\u003Cul>\n\u003Cli>Both Operator SDK and Kubebulder help developers define and implement custom resources and their controllers.\u003C/li>\n\u003Cli>\u003Cstrong>Kubebuilder:\u003C/strong>  \u003Cul>\n\u003Cli>Provides minimal, Go-centric scaffolding using controller-runtime.  \u003C/li>\n\u003Cli>Closely aligns with core Kubernetes patterns for custom resource and controller development.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cstrong>Operator SDK:\u003C/strong>  \u003Cul>\n\u003Cli>Builds on Kubebuilder’s foundation with additional features, such as:  \u003Cul>\n\u003Cli>\u003Cstrong>Multi-language Support:\u003C/strong> Offers options to build operators using Helm or Ansible in addition to Go.  \u003C/li>\n\u003Cli>\u003Cstrong>Enhanced Tooling:\u003C/strong> Includes built-in scorecards, streamlined testing, and a polished CLI experience.  \u003C/li>\n\u003Cli>\u003Cstrong>OLM Integration:\u003C/strong> Simplifies deployment and upgrades in production environments through integration with the Operator Lifecycle Manager.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://kubernetes.io/docs/concepts/extend-kubernetes/operator/\">https://kubernetes.io/docs/concepts/extend-kubernetes/operator/\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.cecg.io/blog/things-to-know-operators/\">https://www.cecg.io/blog/things-to-know-operators/\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://sdk.operatorframework.io/docs/faqs/\">https://sdk.operatorframework.io/docs/faqs/\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.09617dd7.js"),
-						import("../../../_app/immutable/entry/app.f27e57e6.js")
+						import("../../../_app/immutable/entry/start.53032123.js"),
+						import("../../../_app/immutable/entry/app.4e71f6db.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

@@ -9,15 +9,15 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.09617dd7.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.53032123.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.95c11faa.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.54afcbb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.f27e57e6.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a85a12e4.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.4e71f6db.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.aaea6efc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.7dd2980b.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.9e5d9a5d.js"><title>Data Science Review: Intro to ML I | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Data Science Review: Intro to ML I"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.09d72f43.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.fd9412ec.js"><title>Data Science Review: Intro to ML I | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Data Science Review: Intro to ML I"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -62,7 +62,7 @@
 			
 			<script>
 				{
-					__sveltekit_nhp102 = {
+					__sveltekit_13lcn83 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -72,8 +72,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2022/06-14-Data-Science-Review:-Intro-to-ML-I",title:"Data Science Review: Intro to ML I",date:"2022-06-14T05:05:00.000Z",tags:["blog","datascience","machinelearning"],visibility:"public",html:"\u003Cp>\u003Cimg src=\"https://i.imgur.com/j0FQ9Tn.png\" alt=\"intro-to-ml\">\u003C/p>\n\u003Ch2>How Models Work\u003C/h2>\n\u003Cp>Fundamentals of machine learning models are finding patterns from dataset and making prediction using the pattern they learned. The process of finding pattern from given data set is called \u003Cstrong>fitting or training\u003C/strong>. The data used to \u003Cstrong>fit\u003C/strong> the model is called \u003Cstrong>training data\u003C/strong>. After the model has been \u003Cstrong>fit\u003C/strong>, you can apply new data to make \u003Cstrong>prediction\u003C/strong>.\u003C/p>\n\u003Ch2>Decision Tree\u003C/h2>\n\u003Cp>Decision tree is one of machine learning models that uses tree structure to construct prediction model. Take a look at the diagram below.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/phyQdr6.png\" alt=\"decision-tree\">\u003C/p>\n\u003Cp>The model above goes through series of factors that &quot;splits&quot; into predictions. You can construct &quot;deeper&quot; decision trees by capturing more factors.\u003C/p>\n\u003Ch2>Model Validation\u003C/h2>\n\u003Cp>Model validation is a process of evalutating your model to see how good it is. A model is evaluated by comparing its predictions to the actual values. The dataset used to evaluate the model is called \u003Cstrong>validation data\u003C/strong>. It is important not to use same data for training and validation training because it can lead to \u003Cstrong>overfitting\u003C/strong>.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cp>\u003Cstrong>Overfitting\u003C/strong> is a phenomemenon where the model matches the training data perfectly, but does poorly in validation. \u003C/p>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Underfitting\u003C/strong> is when model fails to capture critical patterns in the data and does poorly in both training and validation data.\u003C/p>\n\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/8H7FOGm.png\" alt=\"mae\">\u003C/p>\n\u003Ch2>Random Forest\u003C/h2>\n\u003Cp>Random Forest are prediction model consisting multitple decision trees. It makes prediction my averaging the prediciton of each component tree. It generally produces more accurate prediction than a single decision tree.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/XW9kBrr.png\" alt=\"rf\">\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/learn/intro-to-machine-learning\">Intro to ML Course on Kaggle\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.09617dd7.js"),
-						import("../../../_app/immutable/entry/app.f27e57e6.js")
+						import("../../../_app/immutable/entry/start.53032123.js"),
+						import("../../../_app/immutable/entry/app.4e71f6db.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

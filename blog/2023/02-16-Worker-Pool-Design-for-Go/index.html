@@ -9,15 +9,15 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.09617dd7.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.53032123.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.95c11faa.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.54afcbb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.f27e57e6.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a85a12e4.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.4e71f6db.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.aaea6efc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.7dd2980b.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.9e5d9a5d.js"><title>Worker Pool Design for Go | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Worker Pool Design for Go"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.09d72f43.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.fd9412ec.js"><title>Worker Pool Design for Go | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Worker Pool Design for Go"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -106,7 +106,7 @@ The design was built upon some existing code within the project. </p>
 			
 			<script>
 				{
-					__sveltekit_nhp102 = {
+					__sveltekit_13lcn83 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -116,8 +116,8 @@ The design was built upon some existing code within the project. </p>
 					const data = [null,{"type":"data","data":{post:{slug:"2023/02-16-Worker-Pool-Design-for-Go",title:"Worker Pool Design for Go",date:"2023-02-16T02:49:00.000Z",tags:["go","multi-threading"],visibility:"public",html:"\u003Cp>When working on concurrent projects, it can be helpful to use a worker pool to manage a group of worker threads that can process tasks asynchronously. In this blog post, we&#39;ll take a look at how to implement a worker pool in Go using channels.\u003C/p>\n\u003Cp>\u003Ca href=\"https://go.dev/play/p/sxjcSgnJaXy\">demo\u003C/a>\u003C/p>\n\u003Cp>The worker pool allows you to manage a group of worker threads that can process tasks asynchronously. Here&#39;s how I implemented a worker pool in Go using channels.\u003C/p>\n\u003Cp>The worker pool design consists of a pool of worker threads and a channel that holds tasks that need to be executed. Workers read from the task channel and execute each task asynchronously. In addition, each worker has its own exit channel, which allows it to gracefully terminate when the worker pool needs to be shut down.\u003C/p>\n\u003Ch2>Implementation Details\u003C/h2>\n\u003Cp>The implementation of the worker pool and worker objects is relatively simple. The worker pool maintains a map of worker objects, each with its task channel and exit channel.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-go\">type Task struct {\n\ttask string\n\tdone chan bool\n}\n\ntype WorkerPool struct {\n\tnextId   int\n\tpool     map[int]*Worker\n\ttaskChan chan *Task\n}\n\ntype Worker struct {\n\tid       int\n\ttaskChan chan *Task\n\texitChan chan bool\n}\n\u003C/code>\u003C/pre>\n\u003Cp>The task channel is shared among all worker objects and is used to receive incoming tasks. Each worker object also has its own exit channel, which is used to signal that it should stop processing tasks.\u003C/p>\n\u003Cp>When a new worker is created, it is added to the worker pool map, and its task channel is set to the shared task channel.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-go\">func (wp *WorkerPool) CreateWorker() {\n\tw := &amp;Worker{\n\t\tid:       wp.nextId,\n\t\ttaskChan: wp.taskChan,     //shared\n\t\texitChan: make(chan bool), //independent\n\t}\n\n\twp.pool[w.id] = w\n\twp.nextId += 1\n\tfmt.Printf(&quot;[pool] launching worker-%d...\\n&quot;, w.id)\n\n\tgo w.task()\n}\n\u003C/code>\u003C/pre>\n\u003Cp>The worker objects are launched in separate goroutines and execute their \u003Ccode>task()\u003C/code> function indefinitely until they receive a signal on their exit channel.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-go\">func (wp *WorkerPool) StopWorker(id int) {\n\tfmt.Printf(&quot;[pool] stopping worker-%d...\\n&quot;, id)\n\twp.pool[id].close()\n}\n\nfunc (w *Worker) task() {\n\tfor {\n\t\tvar task *Task\n\t\tselect {\n\t\tcase &lt;-w.exitChan:\n\t\t\tfmt.Printf(&quot;[worker-%d] stopping task()...\\n&quot;, w.id)\n\t\t\treturn\n\t\tcase task = &lt;-w.taskChan:\n\t\t}\n\n\t\tfmt.Printf(&quot;[worker-%d] %s\\n&quot;, w.id, task.task)\n\t\ttask.done &lt;- true\n\t}\n}\n\nfunc (w *Worker) close() {\n\tw.exitChan &lt;- true\n}\n\u003C/code>\u003C/pre>\n\u003Cp>When a task is received on the worker&#39;s task channel, the worker executes the task and sends a signal on the task&#39;s done channel to indicate that the task has been completed. Here is a link to its \u003Ca href=\"https://go.dev/play/p/sxjcSgnJaXy\">demo\u003C/a>.\u003C/p>\n\u003Cp>This is design idea for concurrent workers using channel for \u003Ca href=\"https://github.com/open-lambda/open-lambda/tree/s23\">open-sourced project\u003C/a>.\nThe design was built upon some existing code within the project. \u003C/p>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.09617dd7.js"),
-						import("../../../_app/immutable/entry/app.f27e57e6.js")
+						import("../../../_app/immutable/entry/start.53032123.js"),
+						import("../../../_app/immutable/entry/app.4e71f6db.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
