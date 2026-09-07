@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.c346d03a.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.1f1a5156.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.cd5f143a.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.8afc5537.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/4.ef6a3293.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/posts.77037b6b.js"><title>🛞Yolov7: Traffic Video Object Detection | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="🛞Yolov7: Traffic Video Object Detection"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">🛞Yolov7: Traffic Video Object Detection</h1>
+    <time class="date" datetime="2022-07-19T16:34:00.000Z" itemprop="datePublished">July 19, 2022</time>
+    <div class="tags"><a class="tag" href="/blog?tag=blog">#blog</a><a class="tag" href="/blog?tag=computervision">#computervision</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><ul>
+<li><a href="https://arxiv.org/abs/2207.02696">YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors</a></li>
+<li><a href="https://github.com/WongKinYiu/yolov7">Implementation on Github</a></li>
+</ul>
+<h2>Performance</h2>
+<p><img src="https://i.imgur.com/1UNC9YV.png" alt="mscoco">
+<img src="https://i.imgur.com/6r7TUf1.png" alt="performance"></p>
+<h2>Breaking Down YOLOv7</h2>
+<p><a href="https://blog.roboflow.com/yolov7-breakdown/">Read article on Roboflow blog</a></p>
+<h2>Inference on Traffic Video</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Video</th>
+<th align="center">Model</th>
+<th align="center">Image Size</th>
+<th align="center"># frames</th>
+<th align="center">elapsed time</th>
+<th align="center">fps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="https://i.imgur.com/SDEdDq9.mp4"><strong>Isanpo Interchange Day</strong></a></td>
+<td align="center"><strong>YOLOv7</strong></td>
+<td align="center">640px</td>
+<td align="center">191 <em>frames</em></td>
+<td align="center">56 <em>fps</em></td>
+<td align="center">3.41 <em>sec</em></td>
+</tr>
+<tr>
+<td align="left"><a href="https://i.imgur.com/rdygvod.mp4"><strong>Isanpo Interchange Night</strong></a></td>
+<td align="center"><strong>YOLOv7</strong></td>
+<td align="center">640px</td>
+<td align="center">194 <em>frames</em></td>
+<td align="center">56 <em>fps</em></td>
+<td align="center">3.43 <em>sec</em></td>
+</tr>
+<tr>
+<td align="left"><a href="https://youtu.be/fTvrTu8dons"><strong>Rainy Seoul Street</strong></a></td>
+<td align="center"><strong>YOLOv7-E6E</strong></td>
+<td align="center">1280px</td>
+<td align="center">4606 <em>frames</em></td>
+<td align="center">16 <em>fps</em></td>
+<td align="center">287.05 <em>sec</em></td>
+</tr>
+</tbody></table>
+<h3>Isanpo Interchange CCTV</h3>
+<table>
+	<tr style="background-color: transparent;">
+		<td style="border: 0px">
+			<video width=400 controls autoplay loop src="https://i.imgur.com/ukX5mED.mp4"></video>
+		</td>
+		<td style="border: 0px">
+			<video width=400 controls autoplay loop src="https://i.imgur.com/P6H8g0z.mp4"></video>
+		</td>
+	</tr>
+</table><h3>Rainy Seoul Street</h3>
+<div style="text-align:center;">
+	<iframe style="margin-right: auto; margin-left: auto;" width=800 height="450" src="https://www.youtube-nocookie.com/embed/76fpOiVdTM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><p>original video from <a href="https://www.youtube.com/watch?v=Y6mLZBouFwU&t=63s"><code>@SeoulWalker</code></a></p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://colab.research.google.com/drive/17v7MeCEXPVqAYpG5WwxwFNTuMXj7E57I#scrollTo=lrqovzPXy-Z8">my colab notebook</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_6reynu = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/07-19-🛞Yolov7:-Traffic-Video-Object-Detection",title:"🛞Yolov7: Traffic Video Object Detection",date:"2022-07-19T16:34:00.000Z",tags:["blog","computervision"],visibility:"public",html:"\u003Cul>\n\u003Cli>\u003Ca href=\"https://arxiv.org/abs/2207.02696\">YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://github.com/WongKinYiu/yolov7\">Implementation on Github\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Ch2>Performance\u003C/h2>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/1UNC9YV.png\" alt=\"mscoco\">\n\u003Cimg src=\"https://i.imgur.com/6r7TUf1.png\" alt=\"performance\">\u003C/p>\n\u003Ch2>Breaking Down YOLOv7\u003C/h2>\n\u003Cp>\u003Ca href=\"https://blog.roboflow.com/yolov7-breakdown/\">Read article on Roboflow blog\u003C/a>\u003C/p>\n\u003Ch2>Inference on Traffic Video\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth align=\"left\">Video\u003C/th>\n\u003Cth align=\"center\">Model\u003C/th>\n\u003Cth align=\"center\">Image Size\u003C/th>\n\u003Cth align=\"center\"># frames\u003C/th>\n\u003Cth align=\"center\">elapsed time\u003C/th>\n\u003Cth align=\"center\">fps\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd align=\"left\">\u003Ca href=\"https://i.imgur.com/SDEdDq9.mp4\">\u003Cstrong>Isanpo Interchange Day\u003C/strong>\u003C/a>\u003C/td>\n\u003Ctd align=\"center\">\u003Cstrong>YOLOv7\u003C/strong>\u003C/td>\n\u003Ctd align=\"center\">640px\u003C/td>\n\u003Ctd align=\"center\">191 \u003Cem>frames\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">56 \u003Cem>fps\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">3.41 \u003Cem>sec\u003C/em>\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd align=\"left\">\u003Ca href=\"https://i.imgur.com/rdygvod.mp4\">\u003Cstrong>Isanpo Interchange Night\u003C/strong>\u003C/a>\u003C/td>\n\u003Ctd align=\"center\">\u003Cstrong>YOLOv7\u003C/strong>\u003C/td>\n\u003Ctd align=\"center\">640px\u003C/td>\n\u003Ctd align=\"center\">194 \u003Cem>frames\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">56 \u003Cem>fps\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">3.43 \u003Cem>sec\u003C/em>\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd align=\"left\">\u003Ca href=\"https://youtu.be/fTvrTu8dons\">\u003Cstrong>Rainy Seoul Street\u003C/strong>\u003C/a>\u003C/td>\n\u003Ctd align=\"center\">\u003Cstrong>YOLOv7-E6E\u003C/strong>\u003C/td>\n\u003Ctd align=\"center\">1280px\u003C/td>\n\u003Ctd align=\"center\">4606 \u003Cem>frames\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">16 \u003Cem>fps\u003C/em>\u003C/td>\n\u003Ctd align=\"center\">287.05 \u003Cem>sec\u003C/em>\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3>Isanpo Interchange CCTV\u003C/h3>\n\u003Ctable>\n\t\u003Ctr style=\"background-color: transparent;\">\n\t\t\u003Ctd style=\"border: 0px\">\n\t\t\t\u003Cvideo width=400 controls autoplay loop src=\"https://i.imgur.com/ukX5mED.mp4\">\u003C/video>\n\t\t\u003C/td>\n\t\t\u003Ctd style=\"border: 0px\">\n\t\t\t\u003Cvideo width=400 controls autoplay loop src=\"https://i.imgur.com/P6H8g0z.mp4\">\u003C/video>\n\t\t\u003C/td>\n\t\u003C/tr>\n\u003C/table>\u003Ch3>Rainy Seoul Street\u003C/h3>\n\u003Cdiv style=\"text-align:center;\">\n\t\u003Ciframe style=\"margin-right: auto; margin-left: auto;\" width=800 height=\"450\" src=\"https://www.youtube-nocookie.com/embed/76fpOiVdTM0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen>\u003C/iframe>\n\u003C/div>\u003Cp>original video from \u003Ca href=\"https://www.youtube.com/watch?v=Y6mLZBouFwU&t=63s\">\u003Ccode>@SeoulWalker\u003C/code>\u003C/a>\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://colab.research.google.com/drive/17v7MeCEXPVqAYpG5WwxwFNTuMXj7E57I#scrollTo=lrqovzPXy-Z8\">my colab notebook\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.c346d03a.js"),
+						import("../../_app/immutable/entry/app.cd5f143a.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

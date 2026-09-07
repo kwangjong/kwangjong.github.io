@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.c346d03a.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.1f1a5156.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.cd5f143a.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.8afc5537.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/4.ef6a3293.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/posts.77037b6b.js"><title>Data Science Review: Intro to ML II | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Data Science Review: Intro to ML II"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Data Science Review: Intro to ML II</h1>
+    <time class="date" datetime="2022-06-15T04:55:00.000Z" itemprop="datePublished">June 15, 2022</time>
+    <div class="tags"><a class="tag" href="/blog?tag=blog">#blog</a><a class="tag" href="/blog?tag=datascience">#datascience</a><a class="tag" href="/blog?tag=machinelearning">#machinelearning</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p><img src="https://i.imgur.com/j0FQ9Tn.png" alt="intro-to-ml"></p>
+<h2>Handling Missing Values</h2>
+<p><img src="https://i.imgur.com/XzoHb2d.png" alt="NaN"></p>
+<h4>1) Drop columns with missing values</h4>
+<p>The simplest solution. But the model may lose access to some potentially important information.</p>
+<p><img src="https://i.imgur.com/yTqsYEE.png" alt="missing"></p>
+<pre><code class="language-python"># Get names of columns with missing values
+cols_with_missing = [col for col in X_train.columns
+                     if X_train[col].isnull().any()]
+
+# Drop columns in training and validation data
+reduced_X_train = X_train.drop(cols_with_missing, axis=1)
+reduced_X_valid = X_valid.drop(cols_with_missing, axis=1)
+
+print(&quot;MAE from Approach 1 (Drop columns with missing values):&quot;)
+print(score_dataset(reduced_X_train, reduced_X_valid, y_train, y_valid))
+</code></pre>
+<h4>2) Imputation</h4>
+<p>Fill in missing values with some numbers. Numbers may not be exact, but it performs better than dropping entire columns.</p>
+<p><img src="https://i.imgur.com/0GBiO9q.png" alt="imputation"></p>
+<pre><code class="language-python">from sklearn.impute import SimpleImputer
+
+# Imputation
+my_imputer = SimpleImputer()
+imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train))
+imputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid))
+
+# Imputation removed column names; put them back
+imputed_X_train.columns = X_train.columns
+imputed_X_valid.columns = X_valid.columns
+
+print(&quot;MAE from Approach 2 (Imputation):&quot;)
+print(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))
+</code></pre>
+<h4>3) Extension to imputation</h4>
+<p>Provide the model with information on which values are imputed. In some cases, this can be a meaningful improvement, but in other cases, it doesn&#39;t help at all.</p>
+<p><img src="https://i.imgur.com/Y0Ko1iY.png" alt="with_extension"></p>
+<pre><code class="language-python"># Make copy to avoid changing original data (when imputing)
+X_valid_plus = X_valid.copy()
+X_train_plus = X_train.copy()
+
+# Make new columns indicating what will be imputed
+for col in cols_with_missing:
+    X_train_plus[col + &#39;_was_missing&#39;] = X_train_plus[col].isnull()
+    X_valid_plus[col + &#39;_was_missing&#39;] = X_valid_plus[col].isnull()
+
+# Imputation
+my_imputer = SimpleImputer()
+imputed_X_train_plus = pd.DataFrame(my_imputer.fit_transform(X_train_plus))
+imputed_X_valid_plus = pd.DataFrame(my_imputer.transform(X_valid_plus))
+
+# Imputation removed column names; put them back
+imputed_X_train_plus.columns = X_train_plus.columns
+imputed_X_valid_plus.columns = X_valid_plus.columns
+
+print(&quot;MAE from Approach 3 (An Extension to Imputation):&quot;)
+print(score_dataset(imputed_X_train_plus, imputed_X_valid_plus, y_train, y_valid))
+</code></pre>
+<h2>Categorical Variables</h2>
+<h4>1) Drop categorical variables</h4>
+<p>Simply remove and ignore categorical variables. This approach works well when there is a ranking to the categories. Categorical variables that have order in the values are called <strong>ordinal variables</strong>.</p>
+<pre><code class="language-python">drop_X_train = X_train.select_dtypes(exclude=[&#39;object&#39;])
+drop_X_valid = X_valid.select_dtypes(exclude=[&#39;object&#39;])
+
+print(&quot;MAE from Approach 1 (Drop categorical variables):&quot;)
+print(score_dataset(drop_X_train, drop_X_valid, y_train, y_valid))
+</code></pre>
+<h4>2) Ordinal Encoding</h4>
+<p>Assign unique integer values to each category. This approach works well with <strong>ordinal variables</strong> which are categorical variables that have order.</p>
+<p><img src="https://i.imgur.com/uZAo7BU.png" alt="ordinal-encoding"></p>
+<pre><code class="language-python">from sklearn.preprocessing import OrdinalEncoder
+
+# Make copy to avoid changing original data 
+label_X_train = X_train.copy()
+label_X_valid = X_valid.copy()
+
+# Apply ordinal encoder to each column with categorical data
+ordinal_encoder = OrdinalEncoder()
+label_X_train[object_cols] = ordinal_encoder.fit_transform(X_train[object_cols])
+label_X_valid[object_cols] = ordinal_encoder.transform(X_valid[object_cols])
+
+print(&quot;MAE from Approach 2 (Ordinal Encoding):&quot;) 
+print(score_dataset(label_X_train, label_X_valid, y_train, y_valid))
+</code></pre>
+<h4>3) One-Hot Encoding</h4>
+<p>Creates new columns for each value indicating the presence of rach values. This approach works well with variables that do not have a clear ranking also known as <strong>nominal variables</strong>.</p>
+<p><img src="https://i.imgur.com/0oEOpnY.png" alt="onehot"></p>
+<pre><code class="language-python">from sklearn.preprocessing import OneHotEncoder
+
+# Apply one-hot encoder to each column with categorical data
+OH_encoder = OneHotEncoder(handle_unknown=&#39;ignore&#39;, sparse=False)
+OH_cols_train = pd.DataFrame(OH_encoder.fit_transform(X_train[object_cols]))
+OH_cols_valid = pd.DataFrame(OH_encoder.transform(X_valid[object_cols]))
+
+# One-hot encoding removed index; put it back
+OH_cols_train.index = X_train.index
+OH_cols_valid.index = X_valid.index
+
+# Remove categorical columns (will replace with one-hot encoding)
+num_X_train = X_train.drop(object_cols, axis=1)
+num_X_valid = X_valid.drop(object_cols, axis=1)
+
+# Add one-hot encoded columns to numerical features
+OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
+OH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=1)
+
+print(&quot;MAE from Approach 3 (One-Hot Encoding):&quot;) 
+print(score_dataset(OH_X_train, OH_X_valid, y_train, y_valid))
+</code></pre>
+<h2>Pipeline</h2>
+<p><strong>Pipeline</strong> is a way to bundle your preprocessing and modeling steps into one step. Not all data scientist uses pipelines, but they can have some important benefits: <strong>Cleaner Code</strong>, <strong>Fewer Bugs</strong>, <strong>Easier to Productionize</strong>, and <strong>More Options for Model Validation</strong>. There are three steps to building pipelines.</p>
+<h4>Step 1: Define preprocessing step</h4>
+<pre><code class="language-python">from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
+
+# Preprocessing for numerical data
+numerical_transformer = SimpleImputer(strategy=&#39;constant&#39;)
+
+# Preprocessing for categorical data
+categorical_transformer = Pipeline(steps=[
+    (&#39;imputer&#39;, SimpleImputer(strategy=&#39;most_frequent&#39;)),
+    (&#39;onehot&#39;, OneHotEncoder(handle_unknown=&#39;ignore&#39;))
+])
+
+# Bundle preprocessing for numerical and categorical data
+preprocessor = ColumnTransformer(
+    transformers=[
+        (&#39;num&#39;, numerical_transformer, numerical_cols),
+        (&#39;cat&#39;, categorical_transformer, categorical_cols)
+        ])
+</code></pre>
+<h4>Step 2: Define the model</h4>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestRegressor
+
+model = RandomForestRegressor(n_estimators=100, random_state=0)
+</code></pre>
+<h4>Step 3: Create and evaluate the pipeline</h4>
+<pre><code class="language-python">from sklearn.metrics import mean_absolute_error
+
+# Bundle preprocessing and modeling code in a pipeline
+my_pipeline = Pipeline(steps=[(&#39;preprocessor&#39;, preprocessor),
+                              (&#39;model&#39;, model)
+                             ])
+
+# Preprocessing of training data, fit model 
+my_pipeline.fit(X_train, y_train)
+
+# Preprocessing of validation data, get predictions
+preds = my_pipeline.predict(X_valid)
+
+# Evaluate the model
+score = mean_absolute_error(y_valid, preds)
+print(&#39;MAE:&#39;, score)
+</code></pre>
+<h2>Cross-Validation</h2>
+<p><strong>Cross-Validation</strong> is a process of validating the model on different subsets of data. Validating on fixed sets of validation data can lead to an inaccurate measure of model quality. It may perform well on a given validation set, but it may not for other sets of data. <strong>Cross-Validation</strong> is used to prevent this. </p>
+<p>In <strong>cross-validation</strong>, the dataset is divided into small subsets of equal size. Each subset is called <strong>folds</strong>. Then, we run one iteration for each fold. On each iteration, each fold is set as a validation (holdout) and every other fold as training data. This gives us a measure of model quality validated on the entire dataset.</p>
+<p><img src="https://i.imgur.com/7qWq9Ph.png" alt="cross-validation"></p>
+<p>The tradeoff of <strong>cross-validation</strong> is longer running time. While it may insignificant for a small dataset, cross-validating on larger datasets may take a much longer time. It may also be unnecessary. On larger datasets, a single validation set may be sufficient enough to yield the same scores as cross-validation.</p>
+<h4>Implementation</h4>
+<p>Define pipeline first.</p>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestRegressor
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+
+# Define pipeline first
+my_pipeline = Pipeline(steps=[(&#39;preprocessor&#39;, SimpleImputer()),
+                              (&#39;model&#39;, RandomForestRegressor(n_estimators=50,
+                                                              random_state=0))
+                             ])
+</code></pre>
+<p>Obtain cross-validation scores with <code>cross_val_score()</code> function from scikit-learn. WE set the number of folds with the cv parameter</p>
+<pre><code class="language-python">from sklearn.model_selection import cross_val_score
+# Multiply by -1 since sklearn calculates *negative* MAE
+scores = -1 * cross_val_score(my_pipeline, X, y,
+                              cv=5, # number of folds
+                              scoring=&#39;neg_mean_absolute_error&#39;)
+
+print(&quot;MAE scores:\n&quot;, scores)
+</code></pre>
+<p>Output:</p>
+<pre><code>MAE scores:
+ [301628.7893587  303164.4782723  287298.331666   236061.84754543
+ 260383.45111427]
+</code></pre>
+<p>Take the average across each iteration.</p>
+<pre><code class="language-python">print(&quot;Average MAE score (across experiments):&quot;)
+print(scores.mean())
+</code></pre>
+<p>Output:</p>
+<pre><code>Average MAE score (across experiments):
+277707.3795913405
+</code></pre>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.kaggle.com/learn/intermediate-machine-learning">Intermediate ML Course on Kaggle</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_6reynu = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/06-15-Data-Science-Review:-Intro-to-ML-II",title:"Data Science Review: Intro to ML II",date:"2022-06-15T04:55:00.000Z",tags:["blog","datascience","machinelearning"],visibility:"public",html:"\u003Cp>\u003Cimg src=\"https://i.imgur.com/j0FQ9Tn.png\" alt=\"intro-to-ml\">\u003C/p>\n\u003Ch2>Handling Missing Values\u003C/h2>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/XzoHb2d.png\" alt=\"NaN\">\u003C/p>\n\u003Ch4>1) Drop columns with missing values\u003C/h4>\n\u003Cp>The simplest solution. But the model may lose access to some potentially important information.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/yTqsYEE.png\" alt=\"missing\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># Get names of columns with missing values\ncols_with_missing = [col for col in X_train.columns\n                     if X_train[col].isnull().any()]\n\n# Drop columns in training and validation data\nreduced_X_train = X_train.drop(cols_with_missing, axis=1)\nreduced_X_valid = X_valid.drop(cols_with_missing, axis=1)\n\nprint(&quot;MAE from Approach 1 (Drop columns with missing values):&quot;)\nprint(score_dataset(reduced_X_train, reduced_X_valid, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch4>2) Imputation\u003C/h4>\n\u003Cp>Fill in missing values with some numbers. Numbers may not be exact, but it performs better than dropping entire columns.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/0GBiO9q.png\" alt=\"imputation\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.impute import SimpleImputer\n\n# Imputation\nmy_imputer = SimpleImputer()\nimputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train))\nimputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid))\n\n# Imputation removed column names; put them back\nimputed_X_train.columns = X_train.columns\nimputed_X_valid.columns = X_valid.columns\n\nprint(&quot;MAE from Approach 2 (Imputation):&quot;)\nprint(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch4>3) Extension to imputation\u003C/h4>\n\u003Cp>Provide the model with information on which values are imputed. In some cases, this can be a meaningful improvement, but in other cases, it doesn&#39;t help at all.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/Y0Ko1iY.png\" alt=\"with_extension\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># Make copy to avoid changing original data (when imputing)\nX_valid_plus = X_valid.copy()\nX_train_plus = X_train.copy()\n\n# Make new columns indicating what will be imputed\nfor col in cols_with_missing:\n    X_train_plus[col + &#39;_was_missing&#39;] = X_train_plus[col].isnull()\n    X_valid_plus[col + &#39;_was_missing&#39;] = X_valid_plus[col].isnull()\n\n# Imputation\nmy_imputer = SimpleImputer()\nimputed_X_train_plus = pd.DataFrame(my_imputer.fit_transform(X_train_plus))\nimputed_X_valid_plus = pd.DataFrame(my_imputer.transform(X_valid_plus))\n\n# Imputation removed column names; put them back\nimputed_X_train_plus.columns = X_train_plus.columns\nimputed_X_valid_plus.columns = X_valid_plus.columns\n\nprint(&quot;MAE from Approach 3 (An Extension to Imputation):&quot;)\nprint(score_dataset(imputed_X_train_plus, imputed_X_valid_plus, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch2>Categorical Variables\u003C/h2>\n\u003Ch4>1) Drop categorical variables\u003C/h4>\n\u003Cp>Simply remove and ignore categorical variables. This approach works well when there is a ranking to the categories. Categorical variables that have order in the values are called \u003Cstrong>ordinal variables\u003C/strong>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">drop_X_train = X_train.select_dtypes(exclude=[&#39;object&#39;])\ndrop_X_valid = X_valid.select_dtypes(exclude=[&#39;object&#39;])\n\nprint(&quot;MAE from Approach 1 (Drop categorical variables):&quot;)\nprint(score_dataset(drop_X_train, drop_X_valid, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch4>2) Ordinal Encoding\u003C/h4>\n\u003Cp>Assign unique integer values to each category. This approach works well with \u003Cstrong>ordinal variables\u003C/strong> which are categorical variables that have order.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/uZAo7BU.png\" alt=\"ordinal-encoding\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.preprocessing import OrdinalEncoder\n\n# Make copy to avoid changing original data \nlabel_X_train = X_train.copy()\nlabel_X_valid = X_valid.copy()\n\n# Apply ordinal encoder to each column with categorical data\nordinal_encoder = OrdinalEncoder()\nlabel_X_train[object_cols] = ordinal_encoder.fit_transform(X_train[object_cols])\nlabel_X_valid[object_cols] = ordinal_encoder.transform(X_valid[object_cols])\n\nprint(&quot;MAE from Approach 2 (Ordinal Encoding):&quot;) \nprint(score_dataset(label_X_train, label_X_valid, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch4>3) One-Hot Encoding\u003C/h4>\n\u003Cp>Creates new columns for each value indicating the presence of rach values. This approach works well with variables that do not have a clear ranking also known as \u003Cstrong>nominal variables\u003C/strong>.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/0oEOpnY.png\" alt=\"onehot\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.preprocessing import OneHotEncoder\n\n# Apply one-hot encoder to each column with categorical data\nOH_encoder = OneHotEncoder(handle_unknown=&#39;ignore&#39;, sparse=False)\nOH_cols_train = pd.DataFrame(OH_encoder.fit_transform(X_train[object_cols]))\nOH_cols_valid = pd.DataFrame(OH_encoder.transform(X_valid[object_cols]))\n\n# One-hot encoding removed index; put it back\nOH_cols_train.index = X_train.index\nOH_cols_valid.index = X_valid.index\n\n# Remove categorical columns (will replace with one-hot encoding)\nnum_X_train = X_train.drop(object_cols, axis=1)\nnum_X_valid = X_valid.drop(object_cols, axis=1)\n\n# Add one-hot encoded columns to numerical features\nOH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)\nOH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=1)\n\nprint(&quot;MAE from Approach 3 (One-Hot Encoding):&quot;) \nprint(score_dataset(OH_X_train, OH_X_valid, y_train, y_valid))\n\u003C/code>\u003C/pre>\n\u003Ch2>Pipeline\u003C/h2>\n\u003Cp>\u003Cstrong>Pipeline\u003C/strong> is a way to bundle your preprocessing and modeling steps into one step. Not all data scientist uses pipelines, but they can have some important benefits: \u003Cstrong>Cleaner Code\u003C/strong>, \u003Cstrong>Fewer Bugs\u003C/strong>, \u003Cstrong>Easier to Productionize\u003C/strong>, and \u003Cstrong>More Options for Model Validation\u003C/strong>. There are three steps to building pipelines.\u003C/p>\n\u003Ch4>Step 1: Define preprocessing step\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.compose import ColumnTransformer\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import OneHotEncoder\n\n# Preprocessing for numerical data\nnumerical_transformer = SimpleImputer(strategy=&#39;constant&#39;)\n\n# Preprocessing for categorical data\ncategorical_transformer = Pipeline(steps=[\n    (&#39;imputer&#39;, SimpleImputer(strategy=&#39;most_frequent&#39;)),\n    (&#39;onehot&#39;, OneHotEncoder(handle_unknown=&#39;ignore&#39;))\n])\n\n# Bundle preprocessing for numerical and categorical data\npreprocessor = ColumnTransformer(\n    transformers=[\n        (&#39;num&#39;, numerical_transformer, numerical_cols),\n        (&#39;cat&#39;, categorical_transformer, categorical_cols)\n        ])\n\u003C/code>\u003C/pre>\n\u003Ch4>Step 2: Define the model\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.ensemble import RandomForestRegressor\n\nmodel = RandomForestRegressor(n_estimators=100, random_state=0)\n\u003C/code>\u003C/pre>\n\u003Ch4>Step 3: Create and evaluate the pipeline\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.metrics import mean_absolute_error\n\n# Bundle preprocessing and modeling code in a pipeline\nmy_pipeline = Pipeline(steps=[(&#39;preprocessor&#39;, preprocessor),\n                              (&#39;model&#39;, model)\n                             ])\n\n# Preprocessing of training data, fit model \nmy_pipeline.fit(X_train, y_train)\n\n# Preprocessing of validation data, get predictions\npreds = my_pipeline.predict(X_valid)\n\n# Evaluate the model\nscore = mean_absolute_error(y_valid, preds)\nprint(&#39;MAE:&#39;, score)\n\u003C/code>\u003C/pre>\n\u003Ch2>Cross-Validation\u003C/h2>\n\u003Cp>\u003Cstrong>Cross-Validation\u003C/strong> is a process of validating the model on different subsets of data. Validating on fixed sets of validation data can lead to an inaccurate measure of model quality. It may perform well on a given validation set, but it may not for other sets of data. \u003Cstrong>Cross-Validation\u003C/strong> is used to prevent this. \u003C/p>\n\u003Cp>In \u003Cstrong>cross-validation\u003C/strong>, the dataset is divided into small subsets of equal size. Each subset is called \u003Cstrong>folds\u003C/strong>. Then, we run one iteration for each fold. On each iteration, each fold is set as a validation (holdout) and every other fold as training data. This gives us a measure of model quality validated on the entire dataset.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/7qWq9Ph.png\" alt=\"cross-validation\">\u003C/p>\n\u003Cp>The tradeoff of \u003Cstrong>cross-validation\u003C/strong> is longer running time. While it may insignificant for a small dataset, cross-validating on larger datasets may take a much longer time. It may also be unnecessary. On larger datasets, a single validation set may be sufficient enough to yield the same scores as cross-validation.\u003C/p>\n\u003Ch4>Implementation\u003C/h4>\n\u003Cp>Define pipeline first.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.ensemble import RandomForestRegressor\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.impute import SimpleImputer\n\n# Define pipeline first\nmy_pipeline = Pipeline(steps=[(&#39;preprocessor&#39;, SimpleImputer()),\n                              (&#39;model&#39;, RandomForestRegressor(n_estimators=50,\n                                                              random_state=0))\n                             ])\n\u003C/code>\u003C/pre>\n\u003Cp>Obtain cross-validation scores with \u003Ccode>cross_val_score()\u003C/code> function from scikit-learn. WE set the number of folds with the cv parameter\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.model_selection import cross_val_score\n# Multiply by -1 since sklearn calculates *negative* MAE\nscores = -1 * cross_val_score(my_pipeline, X, y,\n                              cv=5, # number of folds\n                              scoring=&#39;neg_mean_absolute_error&#39;)\n\nprint(&quot;MAE scores:\\n&quot;, scores)\n\u003C/code>\u003C/pre>\n\u003Cp>Output:\u003C/p>\n\u003Cpre>\u003Ccode>MAE scores:\n [301628.7893587  303164.4782723  287298.331666   236061.84754543\n 260383.45111427]\n\u003C/code>\u003C/pre>\n\u003Cp>Take the average across each iteration.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">print(&quot;Average MAE score (across experiments):&quot;)\nprint(scores.mean())\n\u003C/code>\u003C/pre>\n\u003Cp>Output:\u003C/p>\n\u003Cpre>\u003Ccode>Average MAE score (across experiments):\n277707.3795913405\n\u003C/code>\u003C/pre>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/learn/intermediate-machine-learning\">Intermediate ML Course on Kaggle\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.c346d03a.js"),
+						import("../../_app/immutable/entry/app.cd5f143a.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
