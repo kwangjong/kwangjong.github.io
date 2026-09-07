@@ -9,15 +9,15 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.d612cc86.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.09617dd7.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.39b2cdb6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.95c11faa.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.dca94ffe.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a3b7c5cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.f27e57e6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a85a12e4.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.4613e288.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.b3742660.js"><title>Visualizing Stream Data in Cassandra Using Grafana | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Visualizing Stream Data in Cassandra Using Grafana"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.7dd2980b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.9e5d9a5d.js"><title>Visualizing Stream Data in Cassandra Using Grafana | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Visualizing Stream Data in Cassandra Using Grafana"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -70,7 +70,7 @@
 			
 			<script>
 				{
-					__sveltekit_p8z9bt = {
+					__sveltekit_nhp102 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -80,8 +80,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2023/10-02-Visualizing-Stream-Data-in-Cassandra-Using-Grafana",title:"Visualizing Stream Data in Cassandra Using Grafana",date:"2023-10-02T03:18:29.000Z",tags:["data-engineering","observability","data-pipeline"],visibility:"public",html:"\u003Cp>In the realm of real-time data processing, visualizing the information you&#39;re working with is often just as important as collecting and processing it. Grafana, a powerful open-source monitoring and observability platform, serves as an excellent tool for creating interactive and insightful dashboards. In this section, we&#39;ll delve into the world of Grafana and explore how to use it to visualize stream data.\u003C/p>\n\u003Ch1>Getting Started with Grafana Using Docker\u003C/h1>\n\u003Cp>To simplify things, we&#39;ll use Docker to quickly get Grafana up and running. Here are the steps:\u003C/p>\n\u003Cp>\u003Cstrong>Step 1: Pull the Grafana Docker Image\u003C/strong>\u003C/p>\n\u003Cp>Pull the official Grafana Docker image from Docker Hub:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">docker pull grafana/grafana\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>Step 2: Create a Docker Container\u003C/strong>\u003C/p>\n\u003Cp>Start the Docker container by binding Grafana to external port 3000.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">docker run -d -p 3000:3000 --name grafana  grafana/grafana\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>Step 3: Access the Grafana Web Interface\u003C/strong>\u003C/p>\n\u003Cp>Once the container is up and running, you can access the Grafana web interface by opening your web browser and navigating to \u003Ccode>http://localhost:3000\u003C/code>. You&#39;ll be greeted by the Grafana login page. Log in to Grafana using the default credentials:\u003C/p>\n\u003Cul>\n\u003Cli>Username: \u003Ccode>admin\u003C/code>\u003C/li>\n\u003Cli>Password: \u003Ccode>admin\u003C/code>\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cstrong>Step 4: Add a Data Source\u003C/strong>\u003C/p>\n\u003Cp>Before creating dashboards, you&#39;ll need to add a data source. A data source is the connection between Grafana and your data store, in this case, Cassandra. Click on &quot;Connections&quot; in the left sidebar. Search for &quot;Cassandra&quot; in the list and install the Apache Cassandra plugin for Grafana. When the installation is done, click &quot;Add new data source&quot; and enter Cassandra&#39;s IP address or hostname to connect Grafana to your Cassandra database.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/AnIEipc.png\" alt=\"data-source\">\u003C/p>\n\u003Cp>\u003Cstrong>Step 6: Create Dashboards\u003C/strong>\u003C/p>\n\u003Cp>Now that you&#39;ve set up your data source, you&#39;re ready to create dashboards. Click on the &quot;Dashboards&quot; option in the left sidebar. Click &quot;New,&quot; &quot;New dashboard,&quot; and &quot;Add visualization.&quot; Select the data source configured in the last step. From here, you can add panels to your dashboard and configure them to display the data from Cassandra in real-time. I used a Time series plot for visualizing three different cryptocurrency prices.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/vSGW4js.png\" alt=\"plot\">\u003C/p>\n\u003Ch1>Conclusion\u003C/h1>\n\u003Cp>Visualizing stream data using Grafana is a crucial step in gaining insights and making data-driven decisions. By following the steps outlined in this section, you&#39;ve set up Grafana using Docker and connected it to your Cassandra data source. This foundation will allow you to build powerful dashboards that provide real-time insights into your streaming data.\u003C/p>\n\u003Cp>In the next sections of this blog series, we&#39;ll explore how to deploy all components of this data pipeline using Kubernetes, and we&#39;ll deploy them in Minikube.\u003C/p>\n\u003Ch1>Links\u003C/h1>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://hub.docker.com/r/grafana/grafana\">Docker Image grafana\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://grafana.com/docs/grafana/latest/\">Grafana Documentation\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.d612cc86.js"),
-						import("../../../_app/immutable/entry/app.dca94ffe.js")
+						import("../../../_app/immutable/entry/start.09617dd7.js"),
+						import("../../../_app/immutable/entry/app.f27e57e6.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

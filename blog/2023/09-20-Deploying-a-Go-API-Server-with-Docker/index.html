@@ -9,15 +9,15 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.d612cc86.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.09617dd7.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.39b2cdb6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.95c11faa.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.dca94ffe.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a3b7c5cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.f27e57e6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a85a12e4.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.4613e288.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.b3742660.js"><title>Deploying a Go API Server with Docker | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Deploying a Go API Server with Docker"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.7dd2980b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.9e5d9a5d.js"><title>Deploying a Go API Server with Docker | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Deploying a Go API Server with Docker"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -87,7 +87,7 @@ CMD [&quot;app&quot;]
 			
 			<script>
 				{
-					__sveltekit_p8z9bt = {
+					__sveltekit_nhp102 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -97,8 +97,8 @@ CMD [&quot;app&quot;]
 					const data = [null,{"type":"data","data":{post:{slug:"2023/09-20-Deploying-a-Go-API-Server-with-Docker",title:"Deploying a Go API Server with Docker",date:"2023-09-20T19:49:45.000Z",tags:["go","docker","blog-migration"],visibility:"public",html:"\u003Ch2>Introduction\u003C/h2>\n\u003Cp>In today&#39;s post, I&#39;ll take you through the process of deploying a Go API server using Docker, a powerful tool for creating, deploying, and running applications in containers. This deployment method brings a host of advantages, such as improved consistency, scalability, and ease of management.\u003C/p>\n\u003Ch2>Why Docker?\u003C/h2>\n\u003Cp>Docker has become an essential tool in modern software development and deployment. In a previous blog post, I discussed deploying the API server using a straightforward &quot;screen&quot; command. While this approach might seem simple, it becomes challenging to manage dependencies when transitioning to different machines. Docker allows you to package your application along with its dependencies into a single container, ensuring consistency across different environments. This encapsulation simplifies deployment and reduces compatibility issues.\u003C/p>\n\u003Ch2>Using the Golang Docker Image\u003C/h2>\n\u003Cp>For our deployment, we&#39;ll leverage the official \u003Ca href=\"https://hub.docker.com/_/golang\">Golang Docker image\u003C/a> available on Docker Hub. You can download this image using the following command:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ docker pull golang\n\u003C/code>\u003C/pre>\n\u003Cp>This official image provides a solid foundation for building and running Go applications in a containerized environment.\u003C/p>\n\u003Ch2>Creating a Dockerfile\u003C/h2>\n\u003Cp>The first step in deploying a Go API server with Docker is creating a Dockerfile. This file provides instructions to Docker on how to build the container image for your application. Here&#39;s my Dockerfile:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">FROM golang:1.21\n\nWORKDIR /usr/src/app\n\nCOPY go.mod go.sum vendor/ ./\nRUN go mod download &amp;&amp; go mod verify\n\nCOPY . .\nRUN mkdir -p /usr/local/bin\nRUN go build -v -o /usr/local/bin/app .\n\nCMD [&quot;app&quot;]\n\u003C/code>\u003C/pre>\n\u003Cp>In this Dockerfile:\u003C/p>\n\u003Cul>\n\u003Cli>We start from an official Go image from Docker Hub.\u003C/li>\n\u003Cli>Set the working directory to \u003Ccode>/usr/src/app\u003C/code>.\u003C/li>\n\u003Cli>Pre-copy/cache go.mod for pre-downloading dependencies and only re-downloading them in subsequent builds if they change\u003C/li>\n\u003Cli>Copy the entire application code into the container.\u003C/li>\n\u003Cli>Build the Go application binary and place it in \u003Ccode>/usr/local/bin\u003C/code>.\u003C/li>\n\u003Cli>Define the command to run our application when the container starts.\u003C/li>\n\u003C/ul>\n\u003Ch2>Building the Docker Image\u003C/h2>\n\u003Cp>With the Dockerfile in place, you can now build the Docker image. \u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ docker build -t api-server .\n\u003C/code>\u003C/pre>\n\u003Ch2>Running the Docker Container\u003C/h2>\n\u003Cp>Once the image is built, you can run the Docker container using the following command:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ docker run -d -p 443:443 api-server\n\u003C/code>\u003C/pre>\n\u003Cp>Here&#39;s a breakdown of the command:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ccode>-d\u003C/code>: Runs the container in detached mode, allowing it to run in when exited from ssh.\u003C/li>\n\u003Cli>\u003Ccode>-p 443:443\u003C/code>: Maps port 443 on the host to port 443 in the container, ensuring that the API server is accessible over HTTPS.\u003C/li>\n\u003C/ul>\n\u003Ch1>Conclusion\u003C/h1>\n\u003Cp>Deploying a Go API server with Docker simplifies the deployment process, ensuring that your application runs consistently across various environments. Docker&#39;s containerization provides isolation and scalability benefits, making it an excellent choice for deploying web services.\u003C/p>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.d612cc86.js"),
-						import("../../../_app/immutable/entry/app.dca94ffe.js")
+						import("../../../_app/immutable/entry/start.09617dd7.js"),
+						import("../../../_app/immutable/entry/app.f27e57e6.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
