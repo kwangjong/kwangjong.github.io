@@ -9,6 +9,17 @@ export interface StaticPostSummary {
 
 export const posts = [
 	{
+		"slug": "2026/09-07-Reviving-This-Blog",
+		"title": "블로그 부활",
+		"date": "2026-09-06T15:00:00.000Z",
+		"tags": [
+			"blog",
+			"blog-migration",
+			"reflection"
+		],
+		"visibility": "public"
+	},
+	{
 		"slug": "2025/04-14-Connection-Error-While-Using-JVM-Tools-in-Kubernetes",
 		"title": "Connection Error While Using JVM Tools in Kubernetes",
 		"date": "2025-04-14T08:30:37.000Z",
@@ -634,6 +645,7 @@ export const tags = [
 	"nginx",
 	"observability",
 	"react",
+	"reflection",
 	"scala",
 	"security",
 	"spark",
