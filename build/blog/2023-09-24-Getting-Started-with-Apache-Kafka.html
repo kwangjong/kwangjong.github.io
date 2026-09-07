@@ -6,28 +6,204 @@
 		<link rel="icon" href="../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link rel="modulepreload" href="../_app/immutable/entry/start.f37b10ac.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.dec1645f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.f5ccbc62.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.a1b7ca7e.js">
+		<link href="../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.e9de1d7a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.1364be74.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.10d9b5ee.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.cb53787c.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/4.00f84a8e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/posts.184003f2.js"><title>Getting Started with Apache Kafka | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Getting Started with Apache Kafka"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Getting Started with Apache Kafka</h1>
+    <time class="date" datetime="2023-09-24T01:37:57.000Z" itemprop="datePublished">September 24, 2023</time>
+    <div class="tags"><a class="tag" href="/blog?tag=data-pipeline">#data-pipeline</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Apache_kafka_wordtype.svg/2560px-Apache_kafka_wordtype.svg.png" alt="kafka" width="800" style="background-color:white;"/><p>In today&#39;s rapidly evolving data-driven landscape, handling real-time data streams efficiently is crucial. Apache Kafka, a powerful distributed streaming platform, is designed to address this challenge. In this blog post, we&#39;ll explore the steps to get started with Apache Kafka on Ubuntu 22.04, using Kafka version 3.5.0.</p>
+<h3>Prerequisites</h3>
+<p>These are the software versions I used for this post:</p>
+<ul>
+<li>Ubuntu 22.04</li>
+<li>Apache Kafka 3.5.0</li>
+<li>Maven 3.9.4</li>
+<li>OpenJDK 21</li>
+</ul>
+<h2>Step 1: Obtain Kafka</h2>
+<p>First, download the Kafka distribution package from the <a href="https://kafka.apache.org/downloads">official Kafka website</a>. Once downloaded, extract the package using the following commands:</p>
+<pre><code class="language-shell">$ wget https://archive.apache.org/dist/kafka/3.5.0/kafka_2.13-3.5.0.tgz
+$ tar -xzf kafka_2.13-3.5.0.tgz
+$ cd kafka_2.13-3.5.0
+</code></pre>
+<h2>Step 2: Start Kafka and Zookeeper</h2>
+<p>Kafka relies on Zookeeper for distributed coordination. Start Zookeeper using the provided configuration file:</p>
+<pre><code class="language-shell">$ bin/zookeeper-server-start.sh config/zookeeper.properties
+</code></pre>
+<p>In another terminal session, start the Kafka server:</p>
+<pre><code class="language-shell">$ bin/kafka-server-start.sh config/server.properties
+</code></pre>
+<p>This setup initializes the Kafka broker, and you&#39;re now ready to interact with Kafka.</p>
+<h2>Step 3: Create a Test Topic</h2>
+<p>Topics in Kafka are like message categories. Let&#39;s create a test topic named &quot;test-topic&quot; using the following command:</p>
+<pre><code class="language-shell">$ bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+</code></pre>
+<h2>Step 4: Produce Messages to the Topic</h2>
+<p>Now that you have a topic, let&#39;s send some test messages to it. A client application that publishes events to a Kafka cluster is called <strong>producer</strong>. Start a producer console with the following command:</p>
+<pre><code class="language-shell">$ bin/kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092
+</code></pre>
+<p>This console allows you to type and send messages. Enter a few messages, like:</p>
+<pre><code>This is my first event
+This is my second event
+</code></pre>
+<h2>Step 5: Consume Messages from the Topic</h2>
+<p>A client application that subscribes to events is called <strong>consumer</strong>.
+To consume the messages you&#39;ve published, open another terminal session and use the consumer console:</p>
+<pre><code class="language-shell">$ bin/kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092
+</code></pre>
+<p>You should see the messages you published earlier displayed in the console.</p>
+<h2>Using Kafka with Java</h2>
+<p>While the command-line tools are useful for testing, Kafka is designed to be integrated into applications. Let&#39;s create a simple Java Kafka producer and consumer.</p>
+<h3>Producer</h3>
+<p>Create a Maven project for your producer, and add the following code to your <code>Producer.java</code> class:</p>
+<pre><code class="language-java">package com.kwangjong.kafka;
+
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+
+public class Producer {
+
+    private static final String TOPIC = &quot;test-topic&quot;;
+    private static final String BOOTSTRAP_SERVERS = &quot;localhost:9092&quot;;
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // Create a Kafka producer.
+        Properties props = new Properties();
+        props.put(&quot;bootstrap.servers&quot;, BOOTSTRAP_SERVERS);
+        props.put(&quot;key.serializer&quot;, StringSerializer.class.getName());
+        props.put(&quot;value.serializer&quot;, StringSerializer.class.getName());
+
+        KafkaProducer&lt;String, String&gt; producer = new KafkaProducer&lt;&gt;(props);
+
+        // Send mock data every second.
+        for (int i=0; i&lt;10; i++) {
+            producer.send(new ProducerRecord&lt;&gt;(TOPIC, &quot;mock_data&quot;));
+            System.out.printf(&quot;sent %d\n&quot;, i);
+            TimeUnit.SECONDS.sleep(1);
+        }
+
+        // Close the producer.
+        producer.close();
+    }
+}
+</code></pre>
+<p>In your producer&#39;s Maven <code>pom.xml</code>, include the Kafka dependencies and configure the build to create an executable JAR file. You can view my pom.xml file <a href="https://github.com/kwangjong/real-time-data-pipeline/blob/main/test/test-producer/pom.xml">here</a>.</p>
+<h3>Consumer</h3>
+<p>Similarly, create a Maven project for your consumer, and add the following code to your <code>Consumer.java</code> class:</p>
+<pre><code class="language-java">package com.kwangjong.kafka;
+
+import java.util.Arrays;
+import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+
+public class Consumer {
+
+    public static void main(String[] args) {
+        // Create a Kafka consumer.
+        Properties props = new Properties();
+        props.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
+        props.put(&quot;group.id&quot;, &quot;test-group&quot;);
+        props.put(&quot;key.deserializer&quot;, StringDeserializer.class.getName());
+        props.put(&quot;value.deserializer&quot;, StringDeserializer.class.getName());
+
+        KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;&gt;(props);
+
+        // Subscribe to the Kafka topic.
+        consumer.subscribe(Arrays.asList(&quot;test-topic&quot;));
+
+        try {
+            while(true) {
+                // Poll for new messages.
+                ConsumerRecords&lt;String, String&gt; records = consumer.poll(100);
+                // Print the messages.
+                for (ConsumerRecord&lt;String, String&gt; record : records) {
+                    System.out.println(&quot;Received message: &quot; + record.value());
+                }
+            }
+        } finally {
+            // Close the consumer.
+            consumer.close();
+        }
+    }
+}
+</code></pre>
+<p>Configure the consumer&#39;s Maven <code>pom.xml</code> as you did for the producer. You can view my pom.xml file <a href="https://github.com/kwangjong/real-time-data-pipeline/blob/main/test/test-consumer/pom.xml">here</a>.</p>
+<h3>Building and Running</h3>
+<p>For each consumer and producer, build the project using:</p>
+<pre><code class="language-shell">$ mvn clean package
+</code></pre>
+<p>You can run the generated JAR files using:</p>
+<pre><code class="language-shell">$ java -jar target/test-producer-1.jar
+</code></pre>
+<p>and</p>
+<pre><code class="language-shell">$ java -jar target/test-consumer-1.jar
+</code></pre>
+<p>Check the output of the consumer, which should print &quot;mock-data&quot; value published from the producer.</p>
+<p>By following these steps, you&#39;ve initiated your Kafka journey. You now have a working Kafka setup on Ubuntu 22.04, understand the basics of Kafka topics, and have created simple Java producers and consumers to interact with Kafka. This foundation will serve as a springboard for exploring more advanced Kafka features and building robust real-time data processing pipelines.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://kafka.apache.org/quickstart">Apache Kafka Quickstart</a></li>
+<li><a href="https://github.com/kwangjong/real-time-data-pipeline/tree/main/test">My Github repo</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
 			<script>
 				{
-					__sveltekit_ly9wvo = {
-						assets: "/sveltekit-github-pages",
+					__sveltekit_179el7g = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
+					const data = [null,{"type":"data","data":{post:{slug:"2023-09-24-Getting-Started-with-Apache-Kafka",title:"Getting Started with Apache Kafka",date:"2023-09-24T01:37:57.000Z",tags:["data-pipeline"],visibility:"public",html:"\u003Cimg src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Apache_kafka_wordtype.svg/2560px-Apache_kafka_wordtype.svg.png\" alt=\"kafka\" width=\"800\" style=\"background-color:white;\"/>\u003Cp>In today&#39;s rapidly evolving data-driven landscape, handling real-time data streams efficiently is crucial. Apache Kafka, a powerful distributed streaming platform, is designed to address this challenge. In this blog post, we&#39;ll explore the steps to get started with Apache Kafka on Ubuntu 22.04, using Kafka version 3.5.0.\u003C/p>\n\u003Ch3>Prerequisites\u003C/h3>\n\u003Cp>These are the software versions I used for this post:\u003C/p>\n\u003Cul>\n\u003Cli>Ubuntu 22.04\u003C/li>\n\u003Cli>Apache Kafka 3.5.0\u003C/li>\n\u003Cli>Maven 3.9.4\u003C/li>\n\u003Cli>OpenJDK 21\u003C/li>\n\u003C/ul>\n\u003Ch2>Step 1: Obtain Kafka\u003C/h2>\n\u003Cp>First, download the Kafka distribution package from the \u003Ca href=\"https://kafka.apache.org/downloads\">official Kafka website\u003C/a>. Once downloaded, extract the package using the following commands:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ wget https://archive.apache.org/dist/kafka/3.5.0/kafka_2.13-3.5.0.tgz\n$ tar -xzf kafka_2.13-3.5.0.tgz\n$ cd kafka_2.13-3.5.0\n\u003C/code>\u003C/pre>\n\u003Ch2>Step 2: Start Kafka and Zookeeper\u003C/h2>\n\u003Cp>Kafka relies on Zookeeper for distributed coordination. Start Zookeeper using the provided configuration file:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ bin/zookeeper-server-start.sh config/zookeeper.properties\n\u003C/code>\u003C/pre>\n\u003Cp>In another terminal session, start the Kafka server:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ bin/kafka-server-start.sh config/server.properties\n\u003C/code>\u003C/pre>\n\u003Cp>This setup initializes the Kafka broker, and you&#39;re now ready to interact with Kafka.\u003C/p>\n\u003Ch2>Step 3: Create a Test Topic\u003C/h2>\n\u003Cp>Topics in Kafka are like message categories. Let&#39;s create a test topic named &quot;test-topic&quot; using the following command:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1\n\u003C/code>\u003C/pre>\n\u003Ch2>Step 4: Produce Messages to the Topic\u003C/h2>\n\u003Cp>Now that you have a topic, let&#39;s send some test messages to it. A client application that publishes events to a Kafka cluster is called \u003Cstrong>producer\u003C/strong>. Start a producer console with the following command:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ bin/kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092\n\u003C/code>\u003C/pre>\n\u003Cp>This console allows you to type and send messages. Enter a few messages, like:\u003C/p>\n\u003Cpre>\u003Ccode>This is my first event\nThis is my second event\n\u003C/code>\u003C/pre>\n\u003Ch2>Step 5: Consume Messages from the Topic\u003C/h2>\n\u003Cp>A client application that subscribes to events is called \u003Cstrong>consumer\u003C/strong>.\nTo consume the messages you&#39;ve published, open another terminal session and use the consumer console:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ bin/kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092\n\u003C/code>\u003C/pre>\n\u003Cp>You should see the messages you published earlier displayed in the console.\u003C/p>\n\u003Ch2>Using Kafka with Java\u003C/h2>\n\u003Cp>While the command-line tools are useful for testing, Kafka is designed to be integrated into applications. Let&#39;s create a simple Java Kafka producer and consumer.\u003C/p>\n\u003Ch3>Producer\u003C/h3>\n\u003Cp>Create a Maven project for your producer, and add the following code to your \u003Ccode>Producer.java\u003C/code> class:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-java\">package com.kwangjong.kafka;\n\nimport java.io.IOException;\nimport java.util.Properties;\nimport java.util.concurrent.TimeUnit;\n\nimport org.apache.kafka.clients.producer.KafkaProducer;\nimport org.apache.kafka.clients.producer.ProducerRecord;\nimport org.apache.kafka.common.serialization.StringSerializer;\n\npublic class Producer {\n\n    private static final String TOPIC = &quot;test-topic&quot;;\n    private static final String BOOTSTRAP_SERVERS = &quot;localhost:9092&quot;;\n\n    public static void main(String[] args) throws IOException, InterruptedException {\n        // Create a Kafka producer.\n        Properties props = new Properties();\n        props.put(&quot;bootstrap.servers&quot;, BOOTSTRAP_SERVERS);\n        props.put(&quot;key.serializer&quot;, StringSerializer.class.getName());\n        props.put(&quot;value.serializer&quot;, StringSerializer.class.getName());\n\n        KafkaProducer&lt;String, String&gt; producer = new KafkaProducer&lt;&gt;(props);\n\n        // Send mock data every second.\n        for (int i=0; i&lt;10; i++) {\n            producer.send(new ProducerRecord&lt;&gt;(TOPIC, &quot;mock_data&quot;));\n            System.out.printf(&quot;sent %d\\n&quot;, i);\n            TimeUnit.SECONDS.sleep(1);\n        }\n\n        // Close the producer.\n        producer.close();\n    }\n}\n\u003C/code>\u003C/pre>\n\u003Cp>In your producer&#39;s Maven \u003Ccode>pom.xml\u003C/code>, include the Kafka dependencies and configure the build to create an executable JAR file. You can view my pom.xml file \u003Ca href=\"https://github.com/kwangjong/real-time-data-pipeline/blob/main/test/test-producer/pom.xml\">here\u003C/a>.\u003C/p>\n\u003Ch3>Consumer\u003C/h3>\n\u003Cp>Similarly, create a Maven project for your consumer, and add the following code to your \u003Ccode>Consumer.java\u003C/code> class:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-java\">package com.kwangjong.kafka;\n\nimport java.util.Arrays;\nimport java.util.Properties;\n\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport org.apache.kafka.clients.consumer.ConsumerRecord;\nimport org.apache.kafka.clients.consumer.ConsumerRecords;\nimport org.apache.kafka.clients.consumer.KafkaConsumer;\nimport org.apache.kafka.common.serialization.StringDeserializer;\n\npublic class Consumer {\n\n    public static void main(String[] args) {\n        // Create a Kafka consumer.\n        Properties props = new Properties();\n        props.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);\n        props.put(&quot;group.id&quot;, &quot;test-group&quot;);\n        props.put(&quot;key.deserializer&quot;, StringDeserializer.class.getName());\n        props.put(&quot;value.deserializer&quot;, StringDeserializer.class.getName());\n\n        KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;&gt;(props);\n\n        // Subscribe to the Kafka topic.\n        consumer.subscribe(Arrays.asList(&quot;test-topic&quot;));\n\n        try {\n            while(true) {\n                // Poll for new messages.\n                ConsumerRecords&lt;String, String&gt; records = consumer.poll(100);\n                // Print the messages.\n                for (ConsumerRecord&lt;String, String&gt; record : records) {\n                    System.out.println(&quot;Received message: &quot; + record.value());\n                }\n            }\n        } finally {\n            // Close the consumer.\n            consumer.close();\n        }\n    }\n}\n\u003C/code>\u003C/pre>\n\u003Cp>Configure the consumer&#39;s Maven \u003Ccode>pom.xml\u003C/code> as you did for the producer. You can view my pom.xml file \u003Ca href=\"https://github.com/kwangjong/real-time-data-pipeline/blob/main/test/test-consumer/pom.xml\">here\u003C/a>.\u003C/p>\n\u003Ch3>Building and Running\u003C/h3>\n\u003Cp>For each consumer and producer, build the project using:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ mvn clean package\n\u003C/code>\u003C/pre>\n\u003Cp>You can run the generated JAR files using:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ java -jar target/test-producer-1.jar\n\u003C/code>\u003C/pre>\n\u003Cp>and\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-shell\">$ java -jar target/test-consumer-1.jar\n\u003C/code>\u003C/pre>\n\u003Cp>Check the output of the consumer, which should print &quot;mock-data&quot; value published from the producer.\u003C/p>\n\u003Cp>By following these steps, you&#39;ve initiated your Kafka journey. You now have a working Kafka setup on Ubuntu 22.04, understand the basics of Kafka topics, and have created simple Java producers and consumers to interact with Kafka. This foundation will serve as a springboard for exploring more advanced Kafka features and building robust real-time data processing pipelines.\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://kafka.apache.org/quickstart\">Apache Kafka Quickstart\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/real-time-data-pipeline/tree/main/test\">My Github repo\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
 					Promise.all([
-						import("../_app/immutable/entry/start.f37b10ac.js"),
-						import("../_app/immutable/entry/app.a1b7ca7e.js")
+						import("../_app/immutable/entry/start.e9de1d7a.js"),
+						import("../_app/immutable/entry/app.10d9b5ee.js")
 					]).then(([kit, app]) => {
-						kit.start(app, element);
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
 					});
 				}
 			</script>

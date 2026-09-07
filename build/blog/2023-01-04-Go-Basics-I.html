@@ -6,28 +6,259 @@
 		<link rel="icon" href="../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link rel="modulepreload" href="../_app/immutable/entry/start.f37b10ac.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.dec1645f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.f5ccbc62.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.a1b7ca7e.js">
+		<link href="../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.e9de1d7a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.1364be74.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.10d9b5ee.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.cb53787c.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/4.00f84a8e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/posts.184003f2.js"><title>Go Basics I | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Go Basics I"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Go Basics I</h1>
+    <time class="date" datetime="2023-01-04T21:05:00.000Z" itemprop="datePublished">January 5, 2023</time>
+    <div class="tags"><a class="tag" href="/blog?tag=go">#go</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Golang Basics</p>
+<h2>Golang</h2>
+<ul>
+<li>Released on Nov 2009</li>
+<li><strong>Go</strong> is compiled, memory-managed, built for simplicity and performance.</li>
+<li><strong>Go</strong> is built with concurrency in mind:<ul>
+<li><strong>Go</strong> utilizes multiple <strong>cores</strong>.</li>
+<li>Supports concurrency but it&#39;s not thread-safe by default (utilizes <strong>channels</strong> for multi-thread synchronization).</li>
+</ul>
+</li>
+<li><strong>Go</strong> is a Functional Language:<ul>
+<li>Building blocks: Types, functions, packages.</li>
+<li>Has 3/4th OOP concepts.</li>
+<li>No inheritance: use composition instead.</li>
+</ul>
+</li>
+</ul>
+<h3>Pro</h3>
+<ul>
+<li>Super fast build</li>
+<li>Low memory footprint</li>
+<li>Simple Syntax</li>
+</ul>
+<h3>Cons</h3>
+<ul>
+<li>Sometimes too simple</li>
+</ul>
+<h2>Init &amp; Build a go project</h2>
+<h3>Initialize a project</h3>
+<pre><code>$ mkdir hello-go
+$ cd hello-go 
+$ go mod init example/kj/hello-go
+go: creating new go.mod: module example/kj/hello-go
+$ cat go.mod                     
+module example/kj/hello-go
+
+go 1.19
+</code></pre>
+<p><strong>go.mod</strong>: required packages to run the project.</p>
+<p><strong>go.sum</strong>: locks versions for reproducible builds.</p>
+<h3><code>main.go</code></h3>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+	fmt.Println(&quot;Hello, Go!&quot;)
+}
+</code></pre>
+<h3>Build &amp; Run</h3>
+<pre><code>$ go build
+$ ls
+go.mod		hello-go	main.go
+$ ./hello-go
+Hello, Go!
+</code></pre>
+<p>* building binary for different platforms:</p>
+<pre><code>$ GOOS=linux GOARCH=amd64 go build
+$ ./hello-go
+zsh: exec format error: ./hello-go
+</code></pre>
+<h3>Project structure</h3>
+<ul>
+<li>Module: defined in go.mod</li>
+<li>Package:<ul>
+<li>main</li>
+<li>All the rest (e.g, &quot;logger&quot;, &quot;config&quot;, &quot;utils&quot;)</li>
+</ul>
+</li>
+<li>Function and Variables starting with a capital letter are visible from another package (DoSomething() vs doSomething()).</li>
+</ul>
+<h2>Syntax</h2>
+<h3>Statements</h3>
+<ul>
+<li>In Go, statements are seperated by ending a line or by semicolon.</li>
+<li>Semicolon are added implicitly to the end of each lines (does not show up in the source code).</li>
+<li>The left curly bracket <code>{</code> cannot come at the start of a line.</li>
+</ul>
+<h3>Comments</h3>
+<ul>
+<li>Single-line comments start with two forward slashes <code>//</code>.</li>
+<li>Multi-line comments start with <code>/*</code> and end with <code>*/</code>.</li>
+</ul>
+<pre><code class="language-go">// Single-line comments
+fmt.Println(&quot;this line is not commented&quot;)
+
+/* Multi-line comments
+fmt.Println(&quot;this line is commented&quot;)
+*/
+
+fmt.Println(&quot;this line is not commented&quot;)
+</code></pre>
+<h3>Variables</h3>
+<pre><code class="language-go">// 1. Using var keyword:
+// var variableName type
+// var variableName type = value
+var a int
+var b int = 0
+
+// 2. Using the := sign
+// no type needed
+// the colon means we&#39;re declaring the variable; can&#39;t use := on the variable that had been already declared.
+c := &quot;katie&quot;
+// once a variable is declared use = 
+c = &quot;claire&quot;
+
+// if the initial value of a variable is known, Go can infer the variable type.
+var student1 string = &quot;john&quot; // type is string
+var student2 = &quot;jane&quot; // type is inferred
+x := 1 // type is inferred
+
+// if the a variable is declared without an initial value, the value is set to the default of its type.
+var name string // &quot;&quot;
+var age int // 0
+var isStudent bool // false
+</code></pre>
+<h3>Difference between <code>var</code> and <code>:=</code></h3>
+<ul>
+<li><code>var</code> can be used <strong>inside</strong> and <strong>outside</strong> of functions</li>
+<li><code>:=</code> can only be used <strong>inside</strong> functions</li>
+<li>When using <code>:=</code>, variable declaration and value assignemnt must be done in the same line.</li>
+</ul>
+<h3>Mulitple Variable Declaration</h3>
+<pre><code class="language-go">// Declaring multiple variables with the same type
+var a, b, c, d int = 1, 2, 3, 4
+
+// Declaring multiple variables with the different types
+var var aa, bb = 0, &quot;hi&quot;
+cc, dd, := 1, &quot;bye&quot;
+
+// Multiple variables declaration can be grouped into a block
+var (
+  aaa int
+  bbb int = 1
+  c string &quot;hello&quot;
+ )
+</code></pre>
+<h3>Constant</h3>
+<pre><code class="language-go">const A int = 1
+const B = &quot;bee&quot;
+</code></pre>
+<h3>Array &amp; Slice</h3>
+<ul>
+<li><strong>Arrays</strong> are fixed-sized sequences if items of the same type<ul>
+<li><strong>Arrays</strong> in <strong>Go</strong> are <em>values</em>, unlike C/C++ (pointers) and Java (references). </li>
+<li>If you pass a array to a function, it will receive a copy of the array.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-go">// Array
+// var arrayname = [length]type{values}
+// arrayname := [length]type{values}
+var a = [3]int{1, 2, 3}
+var b = [...]int{4, 5, 6} // length is inferred
+
+c = [3]string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}
+d = [...]string{&quot;d&quot;, &quot;e&quot;, &quot;f&quot;} //length is inferred
+
+//Declare and initialize seperately
+var aa [2]int
+bb := [2]int{}
+aa[0] = 10
+aa[1] = 11
+bb[0] = 20
+bb[1] = 21
+
+//Array can be partially initialized
+arr1 := [5]int{1,2} // [1, 2, 0, 0, 0]
+arr2 := [5]string{3:&quot;d&quot;,4:&quot;e&quot;} // [&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;d&quot;, &quot;e&quot;]
+
+// the len() is used to find the length of an array
+fmt.Println(len(arr1)) // 5
+</code></pre>
+<ul>
+<li><strong>Slices</strong> are dynamic size array<ul>
+<li><strong>Slices</strong> are <em>reference types</em>. </li>
+<li><code>len()</code> returns the <strong>lenght</strong> of the slice or the number of elements in the slice.</li>
+<li><code>cap()</code> returns the <strong>capacity</strong> of the slice or the number of elements the slice can grow to.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-go">// Slice
+// var slicename = []type{values}
+// var slicename []type
+// slicename := []type{values}
+var a []int // len: 0, cap: 0
+b := []int{4, 5, 6} // len:3, cap: 3
+
+// or using make()
+// slicename := make([]type, length, capacity)
+slice1 := make([]int, 5, 10) // len: 5, cap: 10
+
+// Slice from array
+arr := [5]int{1,2,3,4,5}
+slice := arr[1:3] // [2, 3, 4]
+</code></pre>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=N0fIANJkwic">Golang in under an hour (2021)</a></li>
+<li><a href="https://www.w3schools.com/go/index.php">W3Schools Go Tutorial</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
 			<script>
 				{
-					__sveltekit_ly9wvo = {
-						assets: "/sveltekit-github-pages",
+					__sveltekit_179el7g = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
+					const data = [null,{"type":"data","data":{post:{slug:"2023-01-04-Go-Basics-I",title:"Go Basics I",date:"2023-01-04T21:05:00.000Z",tags:["go"],visibility:"public",html:"\u003Cp>Golang Basics\u003C/p>\n\u003Ch2>Golang\u003C/h2>\n\u003Cul>\n\u003Cli>Released on Nov 2009\u003C/li>\n\u003Cli>\u003Cstrong>Go\u003C/strong> is compiled, memory-managed, built for simplicity and performance.\u003C/li>\n\u003Cli>\u003Cstrong>Go\u003C/strong> is built with concurrency in mind:\u003Cul>\n\u003Cli>\u003Cstrong>Go\u003C/strong> utilizes multiple \u003Cstrong>cores\u003C/strong>.\u003C/li>\n\u003Cli>Supports concurrency but it&#39;s not thread-safe by default (utilizes \u003Cstrong>channels\u003C/strong> for multi-thread synchronization).\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cstrong>Go\u003C/strong> is a Functional Language:\u003Cul>\n\u003Cli>Building blocks: Types, functions, packages.\u003C/li>\n\u003Cli>Has 3/4th OOP concepts.\u003C/li>\n\u003Cli>No inheritance: use composition instead.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Ch3>Pro\u003C/h3>\n\u003Cul>\n\u003Cli>Super fast build\u003C/li>\n\u003Cli>Low memory footprint\u003C/li>\n\u003Cli>Simple Syntax\u003C/li>\n\u003C/ul>\n\u003Ch3>Cons\u003C/h3>\n\u003Cul>\n\u003Cli>Sometimes too simple\u003C/li>\n\u003C/ul>\n\u003Ch2>Init &amp; Build a go project\u003C/h2>\n\u003Ch3>Initialize a project\u003C/h3>\n\u003Cpre>\u003Ccode>$ mkdir hello-go\n$ cd hello-go \n$ go mod init example/kj/hello-go\ngo: creating new go.mod: module example/kj/hello-go\n$ cat go.mod                     \nmodule example/kj/hello-go\n\ngo 1.19\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>go.mod\u003C/strong>: required packages to run the project.\u003C/p>\n\u003Cp>\u003Cstrong>go.sum\u003C/strong>: locks versions for reproducible builds.\u003C/p>\n\u003Ch3>\u003Ccode>main.go\u003C/code>\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-go\">package main\n\nimport &quot;fmt&quot;\n\nfunc main() {\n\tfmt.Println(&quot;Hello, Go!&quot;)\n}\n\u003C/code>\u003C/pre>\n\u003Ch3>Build &amp; Run\u003C/h3>\n\u003Cpre>\u003Ccode>$ go build\n$ ls\ngo.mod\t\thello-go\tmain.go\n$ ./hello-go\nHello, Go!\n\u003C/code>\u003C/pre>\n\u003Cp>* building binary for different platforms:\u003C/p>\n\u003Cpre>\u003Ccode>$ GOOS=linux GOARCH=amd64 go build\n$ ./hello-go\nzsh: exec format error: ./hello-go\n\u003C/code>\u003C/pre>\n\u003Ch3>Project structure\u003C/h3>\n\u003Cul>\n\u003Cli>Module: defined in go.mod\u003C/li>\n\u003Cli>Package:\u003Cul>\n\u003Cli>main\u003C/li>\n\u003Cli>All the rest (e.g, &quot;logger&quot;, &quot;config&quot;, &quot;utils&quot;)\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>Function and Variables starting with a capital letter are visible from another package (DoSomething() vs doSomething()).\u003C/li>\n\u003C/ul>\n\u003Ch2>Syntax\u003C/h2>\n\u003Ch3>Statements\u003C/h3>\n\u003Cul>\n\u003Cli>In Go, statements are seperated by ending a line or by semicolon.\u003C/li>\n\u003Cli>Semicolon are added implicitly to the end of each lines (does not show up in the source code).\u003C/li>\n\u003Cli>The left curly bracket \u003Ccode>{\u003C/code> cannot come at the start of a line.\u003C/li>\n\u003C/ul>\n\u003Ch3>Comments\u003C/h3>\n\u003Cul>\n\u003Cli>Single-line comments start with two forward slashes \u003Ccode>//\u003C/code>.\u003C/li>\n\u003Cli>Multi-line comments start with \u003Ccode>/*\u003C/code> and end with \u003Ccode>*/\u003C/code>.\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-go\">// Single-line comments\nfmt.Println(&quot;this line is not commented&quot;)\n\n/* Multi-line comments\nfmt.Println(&quot;this line is commented&quot;)\n*/\n\nfmt.Println(&quot;this line is not commented&quot;)\n\u003C/code>\u003C/pre>\n\u003Ch3>Variables\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-go\">// 1. Using var keyword:\n// var variableName type\n// var variableName type = value\nvar a int\nvar b int = 0\n\n// 2. Using the := sign\n// no type needed\n// the colon means we&#39;re declaring the variable; can&#39;t use := on the variable that had been already declared.\nc := &quot;katie&quot;\n// once a variable is declared use = \nc = &quot;claire&quot;\n\n// if the initial value of a variable is known, Go can infer the variable type.\nvar student1 string = &quot;john&quot; // type is string\nvar student2 = &quot;jane&quot; // type is inferred\nx := 1 // type is inferred\n\n// if the a variable is declared without an initial value, the value is set to the default of its type.\nvar name string // &quot;&quot;\nvar age int // 0\nvar isStudent bool // false\n\u003C/code>\u003C/pre>\n\u003Ch3>Difference between \u003Ccode>var\u003C/code> and \u003Ccode>:=\u003C/code>\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Ccode>var\u003C/code> can be used \u003Cstrong>inside\u003C/strong> and \u003Cstrong>outside\u003C/strong> of functions\u003C/li>\n\u003Cli>\u003Ccode>:=\u003C/code> can only be used \u003Cstrong>inside\u003C/strong> functions\u003C/li>\n\u003Cli>When using \u003Ccode>:=\u003C/code>, variable declaration and value assignemnt must be done in the same line.\u003C/li>\n\u003C/ul>\n\u003Ch3>Mulitple Variable Declaration\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-go\">// Declaring multiple variables with the same type\nvar a, b, c, d int = 1, 2, 3, 4\n\n// Declaring multiple variables with the different types\nvar var aa, bb = 0, &quot;hi&quot;\ncc, dd, := 1, &quot;bye&quot;\n\n// Multiple variables declaration can be grouped into a block\nvar (\n  aaa int\n  bbb int = 1\n  c string &quot;hello&quot;\n )\n\u003C/code>\u003C/pre>\n\u003Ch3>Constant\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-go\">const A int = 1\nconst B = &quot;bee&quot;\n\u003C/code>\u003C/pre>\n\u003Ch3>Array &amp; Slice\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Arrays\u003C/strong> are fixed-sized sequences if items of the same type\u003Cul>\n\u003Cli>\u003Cstrong>Arrays\u003C/strong> in \u003Cstrong>Go\u003C/strong> are \u003Cem>values\u003C/em>, unlike C/C++ (pointers) and Java (references). \u003C/li>\n\u003Cli>If you pass a array to a function, it will receive a copy of the array.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-go\">// Array\n// var arrayname = [length]type{values}\n// arrayname := [length]type{values}\nvar a = [3]int{1, 2, 3}\nvar b = [...]int{4, 5, 6} // length is inferred\n\nc = [3]string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}\nd = [...]string{&quot;d&quot;, &quot;e&quot;, &quot;f&quot;} //length is inferred\n\n//Declare and initialize seperately\nvar aa [2]int\nbb := [2]int{}\naa[0] = 10\naa[1] = 11\nbb[0] = 20\nbb[1] = 21\n\n//Array can be partially initialized\narr1 := [5]int{1,2} // [1, 2, 0, 0, 0]\narr2 := [5]string{3:&quot;d&quot;,4:&quot;e&quot;} // [&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;d&quot;, &quot;e&quot;]\n\n// the len() is used to find the length of an array\nfmt.Println(len(arr1)) // 5\n\u003C/code>\u003C/pre>\n\u003Cul>\n\u003Cli>\u003Cstrong>Slices\u003C/strong> are dynamic size array\u003Cul>\n\u003Cli>\u003Cstrong>Slices\u003C/strong> are \u003Cem>reference types\u003C/em>. \u003C/li>\n\u003Cli>\u003Ccode>len()\u003C/code> returns the \u003Cstrong>lenght\u003C/strong> of the slice or the number of elements in the slice.\u003C/li>\n\u003Cli>\u003Ccode>cap()\u003C/code> returns the \u003Cstrong>capacity\u003C/strong> of the slice or the number of elements the slice can grow to.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-go\">// Slice\n// var slicename = []type{values}\n// var slicename []type\n// slicename := []type{values}\nvar a []int // len: 0, cap: 0\nb := []int{4, 5, 6} // len:3, cap: 3\n\n// or using make()\n// slicename := make([]type, length, capacity)\nslice1 := make([]int, 5, 10) // len: 5, cap: 10\n\n// Slice from array\narr := [5]int{1,2,3,4,5}\nslice := arr[1:3] // [2, 3, 4]\n\u003C/code>\u003C/pre>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.youtube.com/watch?v=N0fIANJkwic\">Golang in under an hour (2021)\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.w3schools.com/go/index.php\">W3Schools Go Tutorial\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
 					Promise.all([
-						import("../_app/immutable/entry/start.f37b10ac.js"),
-						import("../_app/immutable/entry/app.a1b7ca7e.js")
+						import("../_app/immutable/entry/start.e9de1d7a.js"),
+						import("../_app/immutable/entry/app.10d9b5ee.js")
 					]).then(([kit, app]) => {
-						kit.start(app, element);
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
 					});
 				}
 			</script>

@@ -1,14 +1,18 @@
-/** @type {import('./$types').EntryGenerator} */
-
-import { BACKEND_API } from 'src/lib/config';
-
-export async function entries() {
-
-    let urls: {slug: string}[] = await fetch(`${BACKEND_API}/blog/list/all`)
-         .then((response) => response.json())
-         .then((response: string[]) => response.map(item => ({ slug: item })))
-
-    return urls;
-}
+import { error } from '@sveltejs/kit';
+import { decodePostSlug, getPost, getPostEntries } from 'src/lib/posts';
 
 export const prerender = true;
+
+export function entries() {
+	return getPostEntries();
+}
+
+export function load({ params }) {
+	const post = getPost(decodePostSlug(params.slug));
+
+	if (!post) {
+		throw error(404, 'Post not found');
+	}
+
+	return { post };
+}

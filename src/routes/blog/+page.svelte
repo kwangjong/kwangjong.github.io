@@ -1,56 +1,49 @@
 <script lang="ts">
-    import 'src/stylesheets/blog-common.scss';
-    import 'src/stylesheets/blog-list.scss';
-    import { goto } from '$app/navigation';
-    import { page } from '$app/stores';
-    import type { ListEntry } from 'src/components/post';
-    import { getToken } from 'src/components/auth';
-    import { BACKEND_API, MAXPERPAGE } from '$lib/config';
+	import 'src/stylesheets/blog-common.scss';
+	import 'src/stylesheets/blog-list.scss';
+	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
+	import {
+		formatPostDate,
+		getPostsPage,
+		hasNextPage,
+		postUrl
+	} from 'src/lib/posts';
 
-    let blogEntries: { url: string; title: string; date: string }[] = [];
-    let hasNext: boolean = false;
-    let numPage: number = 1;
-    let tag: string = "";
+	let numPage = 1;
+	let tag = "";
 
-    async function fetchBlogData(pageNum: number, tag: string) {
-        const token = getToken();
+	$: {
+		if (browser) {
+			numPage = Math.max(1, Number.parseInt($page.url.searchParams.get('page') ?? "1") || 1);
+			tag = $page.url.searchParams.get('tag') ?? "";
+		} else {
+			numPage = 1;
+			tag = "";
+		}
+	}
+	$: blogEntries = getPostsPage(tag, numPage).map((entry) => ({
+		url: postUrl(entry.slug),
+		title: entry.title,
+		date: entry.date,
+		dateLabel: formatPostDate(entry.date)
+	}));
+	$: hasNext = hasNextPage(tag, numPage);
 
-        try {
-            const response = await fetch(
-                `${BACKEND_API}/blog/list?tag=${tag}&skip=${(pageNum - 1) * MAXPERPAGE}&numPost=${MAXPERPAGE}`, {
-                    method: 'GET',
-                    headers: { 'Token': token || '' }
-                }
-            ).then(res => res.json());
+	function pageUrl(pageNumber: number): string {
+		const params = new URLSearchParams();
 
-            blogEntries = response.entries.map((entry: ListEntry) => {
-                const date = new Date(entry.Date);
-                const dateString = date.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+		if (tag) params.set('tag', tag);
+		if (pageNumber > 1) params.set('page', String(pageNumber));
 
-                return {
-                    url: `/blog/${entry.Url}`,
-                    title: entry.Title,
-                    date: dateString
-                };
-            });
-
-            hasNext = response.hasNext;
-        } catch (error) {
-            console.error("Error fetching blog data:", error);
-        }
-    }
-
-    $: (async () => {
-        const url = new URL($page.url);
-        numPage = parseInt(url.searchParams.get('page') ?? "1");
-        tag = url.searchParams.get('tag') ?? "";
-        await fetchBlogData(numPage, tag);
-    })();
+		const query = params.toString();
+		return `/blog${query ? `?${query}` : ''}`;
+	}
 </script>
 
 <div class="blog-menu">
-    <button class="blog">Blog</button>
-    <button class="tags" on:click={() => goto("/tags")}>Tags</button>
+    <a class="blog" href="/blog">Blog</a>
+    <a class="tags" href="/tags">Tags</a>
 </div>
 
 {#if tag!=""}
@@ -62,17 +55,17 @@
 <ul class="blog-list">
     {#each blogEntries as entry}
         <li class="blog-entry">
-            <button class="title" on:click={() => goto(entry.url)}>{entry.title}</button><br>
-            <time class="date" datetime={new Date(entry.date).toISOString()} itemprop="datePublished">{entry.date}</time>
+            <a class="title" href={entry.url}>{entry.title}</a><br>
+            <time class="date" datetime={entry.date} itemprop="datePublished">{entry.dateLabel}</time>
         </li>
     {/each}
 </ul>
 
 <div class="post-navigator">
     {#if numPage > 1}
-        <button on:click={() => goto(`/blog?tag=${tag}&page=${numPage - 1}`)}>&lt; Newer</button>
+        <a href={pageUrl(numPage - 1)}>&lt; Newer</a>
     {/if}
     {#if hasNext}
-        <button on:click={() => goto(`/blog?tag=${tag}&page=${numPage + 1}`)}>Older &gt;</button>
+        <a href={pageUrl(numPage + 1)}>Older &gt;</a>
     {/if}
 </div>

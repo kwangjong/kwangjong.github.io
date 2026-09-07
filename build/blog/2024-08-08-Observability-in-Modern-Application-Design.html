@@ -6,28 +6,142 @@
 		<link rel="icon" href="../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link rel="modulepreload" href="../_app/immutable/entry/start.f37b10ac.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.dec1645f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.f5ccbc62.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.a1b7ca7e.js">
+		<link href="../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.e9de1d7a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.1364be74.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.10d9b5ee.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.cb53787c.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.6eb332a9.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/4.00f84a8e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/posts.184003f2.js"><title>Observability in Modern Application Design | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Observability in Modern Application Design"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Observability in Modern Application Design</h1>
+    <time class="date" datetime="2024-08-08T05:15:28.000Z" itemprop="datePublished">August 8, 2024</time>
+    <div class="tags"><a class="tag" href="/blog?tag=observability">#observability</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>In today&#39;s fast-paced software development environment, the need for robust and responsive applications has never been greater. As systems become more complex, the shift from traditional monitoring to observability is crucial in ensuring that modern applications are resilient and efficient.</p>
+<h2>Monitoring is Part of Observability</h2>
+<p>Traditional monitoring approaches have long focused on tracking predefined metrics and system states. Monitoring is essential for alerting teams to issues and requires a clear understanding of what to monitor in advance. However, monitoring alone can lead to tool sprawl and may not provide enough context to understand complex systems.</p>
+<p>Observability, on the other hand, offers a comprehensive framework that provides insights into the internal states of systems. It involves gathering actionable data in a way that gives a holistic view of the entire system and helps teams diagnose and resolve issues quickly and effectively. By embracing observability, organizations can pinpoint where and why issues occur, enabling better decision-making and system optimization.</p>
+<h2>Foundations of Observability</h2>
+<p>Observability is built on the foundation of telemetry data, which includes metrics, events, logs, and traces. This data provides a holistic view of the entire system, enabling teams to identify where and why issues occur. By leveraging observability, organizations can gain actionable insights that drive better decision-making and system optimization.</p>
+<h3>Types of Telemetry Data</h3>
+<p>Telemetry data, often referred to as MELT, consists of four primary types:</p>
+<ul>
+<li><strong>Metrics:</strong> Aggregated values representing events over a period of time, providing quantitative measurements of system performance.</li>
+<li><strong>Events:</strong> Specific actions or occurrences at a given time, helping to track discrete state changes.</li>
+<li><strong>Logs:</strong> Detailed records of events, offering insights into system behavior and potential issues.</li>
+<li><strong>Traces:</strong> Interactions between microservices to fulfill a request, allowing teams to understand the flow and dependencies within distributed systems.</li>
+</ul>
+<h2>Key Metrics for Observability</h2>
+<p>To effectively utilize observability, teams must focus on specific metrics that provide insights into system performance and health. Some of the critical metrics include:</p>
+<ul>
+<li><p><strong>RED Method (Request Oriented):</strong></p>
+<ul>
+<li><strong>Rate:</strong> Requests per second.</li>
+<li><strong>Errors:</strong> Failed requests.</li>
+<li><strong>Duration:</strong> Latency or transaction response time.</li>
+</ul>
+</li>
+<li><p><strong>USE Method (Resource Oriented):</strong></p>
+<ul>
+<li><strong>Utilization:</strong> CPU and disk space usage percentages.</li>
+<li><strong>Saturation:</strong> Network queue length.</li>
+<li><strong>Errors:</strong> Disk write errors.</li>
+</ul>
+</li>
+<li><p><strong>Four Golden Signals Method (RED + S):</strong></p>
+<ul>
+<li><strong>Latency</strong></li>
+<li><strong>Traffic (Throughput)</strong></li>
+<li><strong>Errors</strong></li>
+<li><strong>Saturation (Resources at 100 capacity)</strong></li>
+</ul>
+</li>
+<li><p>Google&#39;s <strong>Core Web Vitals</strong>:</p>
+<ul>
+<li><strong>Largest Contentful Paint (LCP):</strong> Perceived page load speed.</li>
+<li><strong>First Input Delay (FID):</strong> Perceived responsiveness.</li>
+<li><strong>Cumulative Layout Shift (CLS):</strong> Perceived stability.</li>
+</ul>
+</li>
+</ul>
+<h2>DevOps Success Metrics</h2>
+<p>In the context of DevOps, success is often measured by the ability to quickly detect and resolve issues. Two critical metrics for assessing DevOps performance are:</p>
+<ul>
+<li><strong>Mean Time to Detection (MTTD):</strong> The time taken to become aware of an issue after it starts.</li>
+<li><strong>Mean Time to Resolve (MTTR):</strong> The time taken to fix an issue after it has been detected.</li>
+</ul>
+<p>These metrics help DevOps teams ensure that applications maintain high availability and reliability by minimizing downtime and optimizing response strategies.</p>
+<h2>Implementing Observability in Modern Applications</h2>
+<p>Effective observability requires understanding what to monitor and why. It involves the continuous collection and analysis of telemetry data to ensure systems remain reliable and performant. By focusing on observability, organizations can prevent tool sprawl and gain a unified view of their entire ecosystem.</p>
+<h2>Methods of Metric Collection</h2>
+<p>The collection of metrics can be achieved through two primary methods:</p>
+<ul>
+<li><strong>Push Methods:</strong> Applications and services proactively send metrics to a centralized endpoint, such as StatsD and Graphite.</li>
+<li><strong>Scrape Methods:</strong> Tools like Prometheus scrape metrics from applications via APIs, ideal for real-time analysis and scalability.</li>
+</ul>
+<p>The choice between these methods depends on the specific requirements of the systems and applications involved.</p>
+<h2>Dashboard Best Practices</h2>
+<p>Dashboards are essential tools in observability, providing real-time insights and visualizations of system performance. Here are some best practices for designing effective dashboards:</p>
+<p><strong>Browser Applications:</strong></p>
+<p><img src="https://i.imgur.com/a9Nw7SG.png" alt="browser-app"></p>
+<p><strong>Application Performance Monitoring / Backend Services:</strong></p>
+<p><img src="https://i.imgur.com/ZdHaxVK.jpeg" alt="apm"></p>
+<p><strong>Infrastructure:</strong></p>
+<p><img src="https://i.imgur.com/vfK0u1o.jpeg" alt="infrastructure"></p>
+<p><strong>Synthetic Monitors:</strong></p>
+<p><img src="https://i.imgur.com/OulQZCc.png" alt="system-monitors"></p>
+<p><strong>Business Metrics:</strong></p>
+<p><img src="https://i.imgur.com/Cge9ma3.jpeg" alt="business-metrics"></p>
+<h2>Conclusion</h2>
+<p>Observability is a crucial component of modern application design, enabling teams to build resilient and responsive systems. By shifting from traditional monitoring to a more comprehensive observability approach, organizations can ensure their applications meet the demands of today&#39;s dynamic digital landscape. Through actionable insights and enhanced system visibility, observability empowers teams to deliver superior software experiences to their users.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.udemy.com/course/grafana-graphite-and-statsd-visualize-metrics/?couponCode=ST10MT8624">https://www.udemy.com/course/grafana-graphite-and-statsd-visualize-metrics/?couponCode=ST10MT8624</a></li>
+<li><a href="https://github.com/euclid1990/google-sre-book/tree/master">https://github.com/euclid1990/google-sre-book/tree/master</a></li>
+<li><a href="https://mattklein123.dev/2024/04/10/do-you-need-to-store-that-telemetry/">https://mattklein123.dev/2024/04/10/do-you-need-to-store-that-telemetry/</a></li>
+<li><a href="https://horovits.medium.com/how-much-observability-is-enough-797eacda8f2d">https://horovits.medium.com/how-much-observability-is-enough-797eacda8f2d</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
 			<script>
 				{
-					__sveltekit_ly9wvo = {
-						assets: "/sveltekit-github-pages",
+					__sveltekit_179el7g = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
+					const data = [null,{"type":"data","data":{post:{slug:"2024-08-08-Observability-in-Modern-Application-Design",title:"Observability in Modern Application Design",date:"2024-08-08T05:15:28.000Z",tags:["observability"],visibility:"public",html:"\u003Cp>In today&#39;s fast-paced software development environment, the need for robust and responsive applications has never been greater. As systems become more complex, the shift from traditional monitoring to observability is crucial in ensuring that modern applications are resilient and efficient.\u003C/p>\n\u003Ch2>Monitoring is Part of Observability\u003C/h2>\n\u003Cp>Traditional monitoring approaches have long focused on tracking predefined metrics and system states. Monitoring is essential for alerting teams to issues and requires a clear understanding of what to monitor in advance. However, monitoring alone can lead to tool sprawl and may not provide enough context to understand complex systems.\u003C/p>\n\u003Cp>Observability, on the other hand, offers a comprehensive framework that provides insights into the internal states of systems. It involves gathering actionable data in a way that gives a holistic view of the entire system and helps teams diagnose and resolve issues quickly and effectively. By embracing observability, organizations can pinpoint where and why issues occur, enabling better decision-making and system optimization.\u003C/p>\n\u003Ch2>Foundations of Observability\u003C/h2>\n\u003Cp>Observability is built on the foundation of telemetry data, which includes metrics, events, logs, and traces. This data provides a holistic view of the entire system, enabling teams to identify where and why issues occur. By leveraging observability, organizations can gain actionable insights that drive better decision-making and system optimization.\u003C/p>\n\u003Ch3>Types of Telemetry Data\u003C/h3>\n\u003Cp>Telemetry data, often referred to as MELT, consists of four primary types:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Metrics:\u003C/strong> Aggregated values representing events over a period of time, providing quantitative measurements of system performance.\u003C/li>\n\u003Cli>\u003Cstrong>Events:\u003C/strong> Specific actions or occurrences at a given time, helping to track discrete state changes.\u003C/li>\n\u003Cli>\u003Cstrong>Logs:\u003C/strong> Detailed records of events, offering insights into system behavior and potential issues.\u003C/li>\n\u003Cli>\u003Cstrong>Traces:\u003C/strong> Interactions between microservices to fulfill a request, allowing teams to understand the flow and dependencies within distributed systems.\u003C/li>\n\u003C/ul>\n\u003Ch2>Key Metrics for Observability\u003C/h2>\n\u003Cp>To effectively utilize observability, teams must focus on specific metrics that provide insights into system performance and health. Some of the critical metrics include:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cp>\u003Cstrong>RED Method (Request Oriented):\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Rate:\u003C/strong> Requests per second.\u003C/li>\n\u003Cli>\u003Cstrong>Errors:\u003C/strong> Failed requests.\u003C/li>\n\u003Cli>\u003Cstrong>Duration:\u003C/strong> Latency or transaction response time.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>USE Method (Resource Oriented):\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Utilization:\u003C/strong> CPU and disk space usage percentages.\u003C/li>\n\u003Cli>\u003Cstrong>Saturation:\u003C/strong> Network queue length.\u003C/li>\n\u003Cli>\u003Cstrong>Errors:\u003C/strong> Disk write errors.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Four Golden Signals Method (RED + S):\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Latency\u003C/strong>\u003C/li>\n\u003Cli>\u003Cstrong>Traffic (Throughput)\u003C/strong>\u003C/li>\n\u003Cli>\u003Cstrong>Errors\u003C/strong>\u003C/li>\n\u003Cli>\u003Cstrong>Saturation (Resources at 100 capacity)\u003C/strong>\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>Google&#39;s \u003Cstrong>Core Web Vitals\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Largest Contentful Paint (LCP):\u003C/strong> Perceived page load speed.\u003C/li>\n\u003Cli>\u003Cstrong>First Input Delay (FID):\u003C/strong> Perceived responsiveness.\u003C/li>\n\u003Cli>\u003Cstrong>Cumulative Layout Shift (CLS):\u003C/strong> Perceived stability.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Ch2>DevOps Success Metrics\u003C/h2>\n\u003Cp>In the context of DevOps, success is often measured by the ability to quickly detect and resolve issues. Two critical metrics for assessing DevOps performance are:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Mean Time to Detection (MTTD):\u003C/strong> The time taken to become aware of an issue after it starts.\u003C/li>\n\u003Cli>\u003Cstrong>Mean Time to Resolve (MTTR):\u003C/strong> The time taken to fix an issue after it has been detected.\u003C/li>\n\u003C/ul>\n\u003Cp>These metrics help DevOps teams ensure that applications maintain high availability and reliability by minimizing downtime and optimizing response strategies.\u003C/p>\n\u003Ch2>Implementing Observability in Modern Applications\u003C/h2>\n\u003Cp>Effective observability requires understanding what to monitor and why. It involves the continuous collection and analysis of telemetry data to ensure systems remain reliable and performant. By focusing on observability, organizations can prevent tool sprawl and gain a unified view of their entire ecosystem.\u003C/p>\n\u003Ch2>Methods of Metric Collection\u003C/h2>\n\u003Cp>The collection of metrics can be achieved through two primary methods:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Push Methods:\u003C/strong> Applications and services proactively send metrics to a centralized endpoint, such as StatsD and Graphite.\u003C/li>\n\u003Cli>\u003Cstrong>Scrape Methods:\u003C/strong> Tools like Prometheus scrape metrics from applications via APIs, ideal for real-time analysis and scalability.\u003C/li>\n\u003C/ul>\n\u003Cp>The choice between these methods depends on the specific requirements of the systems and applications involved.\u003C/p>\n\u003Ch2>Dashboard Best Practices\u003C/h2>\n\u003Cp>Dashboards are essential tools in observability, providing real-time insights and visualizations of system performance. Here are some best practices for designing effective dashboards:\u003C/p>\n\u003Cp>\u003Cstrong>Browser Applications:\u003C/strong>\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/a9Nw7SG.png\" alt=\"browser-app\">\u003C/p>\n\u003Cp>\u003Cstrong>Application Performance Monitoring / Backend Services:\u003C/strong>\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/ZdHaxVK.jpeg\" alt=\"apm\">\u003C/p>\n\u003Cp>\u003Cstrong>Infrastructure:\u003C/strong>\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/vfK0u1o.jpeg\" alt=\"infrastructure\">\u003C/p>\n\u003Cp>\u003Cstrong>Synthetic Monitors:\u003C/strong>\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/OulQZCc.png\" alt=\"system-monitors\">\u003C/p>\n\u003Cp>\u003Cstrong>Business Metrics:\u003C/strong>\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/Cge9ma3.jpeg\" alt=\"business-metrics\">\u003C/p>\n\u003Ch2>Conclusion\u003C/h2>\n\u003Cp>Observability is a crucial component of modern application design, enabling teams to build resilient and responsive systems. By shifting from traditional monitoring to a more comprehensive observability approach, organizations can ensure their applications meet the demands of today&#39;s dynamic digital landscape. Through actionable insights and enhanced system visibility, observability empowers teams to deliver superior software experiences to their users.\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.udemy.com/course/grafana-graphite-and-statsd-visualize-metrics/?couponCode=ST10MT8624\">https://www.udemy.com/course/grafana-graphite-and-statsd-visualize-metrics/?couponCode=ST10MT8624\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://github.com/euclid1990/google-sre-book/tree/master\">https://github.com/euclid1990/google-sre-book/tree/master\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://mattklein123.dev/2024/04/10/do-you-need-to-store-that-telemetry/\">https://mattklein123.dev/2024/04/10/do-you-need-to-store-that-telemetry/\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://horovits.medium.com/how-much-observability-is-enough-797eacda8f2d\">https://horovits.medium.com/how-much-observability-is-enough-797eacda8f2d\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
 					Promise.all([
-						import("../_app/immutable/entry/start.f37b10ac.js"),
-						import("../_app/immutable/entry/app.a1b7ca7e.js")
+						import("../_app/immutable/entry/start.e9de1d7a.js"),
+						import("../_app/immutable/entry/app.10d9b5ee.js")
 					]).then(([kit, app]) => {
-						kit.start(app, element);
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
 					});
 				}
 			</script>

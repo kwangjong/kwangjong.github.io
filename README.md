@@ -1,5 +1,15 @@
 # kwangjong.github.io
-my blog app in sveltekit & go
+Static SvelteKit blog for GitHub Pages.
+
+## Content
+Post source files live in `src/content/posts`. Any Markdown file added there
+is rendered into the static blog automatically by `npm run build`.
+
+The original import from the MongoDB BSON dump can be rerun with:
+
+```sh
+npm run import:mongodb
+```
 
 ## Blog posts
 * [blog migration I](https://kwangjong.github.io/blog/2023-02-27-Blog-Migration-I)
@@ -21,6 +31,4 @@ my blog app in sveltekit & go
 
 ## Built with
 * SvelteKit (TypeScript)
-* Go [back-end repo](https://github.com/kwangjong/blog-server-go-mongoDB)
-* MongoDB
-* Docker
+* GitHub Pages
