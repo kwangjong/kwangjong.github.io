@@ -9,7 +9,7 @@ export interface StaticPostSummary {
 
 export const posts = [
 	{
-		"slug": "2025-04-14-Connection-Error-While-Using-JVM-Tools-in-Kubernetes",
+		"slug": "2025/04-14-Connection-Error-While-Using-JVM-Tools-in-Kubernetes",
 		"title": "Connection Error While Using JVM Tools in Kubernetes",
 		"date": "2025-04-14T08:30:37.000Z",
 		"tags": [
@@ -20,7 +20,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2025-03-22-Kubernetes-Operators",
+		"slug": "2025/03-22-Kubernetes-Operators",
 		"title": "Kubernetes Operators",
 		"date": "2025-03-22T09:22:13.000Z",
 		"tags": [
@@ -29,7 +29,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2025-02-22-Prometheus-OOM-Killed-on-Restart",
+		"slug": "2025/02-22-Prometheus-OOM-Killed-on-Restart",
 		"title": "Prometheus OOM Killed on Restart",
 		"date": "2025-02-22T04:40:10.000Z",
 		"tags": [
@@ -39,7 +39,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2025-02-03-Git-Branching-Strategy",
+		"slug": "2025/02-03-Git-Branching-Strategy",
 		"title": "Git Branching Strategy",
 		"date": "2025-02-03T13:22:58.000Z",
 		"tags": [
@@ -48,7 +48,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2025-01-31-Configuring-OpenID-Connect-in-AWS",
+		"slug": "2025/01-31-Configuring-OpenID-Connect-in-AWS",
 		"title": "Configuring OpenID Connect in AWS",
 		"date": "2025-01-31T07:55:44.000Z",
 		"tags": [
@@ -58,7 +58,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-24-JVM-Memory-Management",
+		"slug": "2024/12-24-JVM-Memory-Management",
 		"title": "JVM Memory Management",
 		"date": "2024-12-24T06:17:03.000Z",
 		"tags": [
@@ -67,7 +67,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-23-Syslog-local0–local7",
+		"slug": "2024/12-23-Syslog-local0–local7",
 		"title": "Syslog local0–local7",
 		"date": "2024-12-23T02:08:24.000Z",
 		"tags": [
@@ -76,7 +76,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-16-K8s-NodeLocalDNS",
+		"slug": "2024/12-16-K8s-NodeLocalDNS",
 		"title": "K8s NodeLocalDNS",
 		"date": "2024-12-16T12:44:23.000Z",
 		"tags": [
@@ -85,7 +85,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-13-FluentD-vs-FluentBit",
+		"slug": "2024/12-13-FluentD-vs-FluentBit",
 		"title": "FluentD vs FluentBit",
 		"date": "2024-12-13T02:35:05.000Z",
 		"tags": [
@@ -95,7 +95,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-11-Prometheus-stack-vs-EFK",
+		"slug": "2024/12-11-Prometheus-stack-vs-EFK",
 		"title": "Prometheus-stack vs EFK",
 		"date": "2024-12-11T00:06:41.000Z",
 		"tags": [
@@ -104,7 +104,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-09-Netflix-Chaos-Monkey",
+		"slug": "2024/12-09-Netflix-Chaos-Monkey",
 		"title": "Netflix Chaos Monkey",
 		"date": "2024-12-09T00:06:57.000Z",
 		"tags": [
@@ -114,7 +114,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-05-K8s-Ingress-Strategies-Without-Service-Mesh",
+		"slug": "2024/12-05-K8s-Ingress-Strategies-Without-Service-Mesh",
 		"title": "K8s Ingress Strategies Without Service Mesh",
 		"date": "2024-12-05T03:56:51.000Z",
 		"tags": [
@@ -124,7 +124,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-12-04-슈퍼앱-Super-App",
+		"slug": "2024/12-04-슈퍼앱-Super-App",
 		"title": "슈퍼앱 Super App",
 		"date": "2024-12-04T01:18:52.000Z",
 		"tags": [
@@ -134,7 +134,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-08-08-Observability-in-Modern-Application-Design",
+		"slug": "2024/08-08-Observability-in-Modern-Application-Design",
 		"title": "Observability in Modern Application Design",
 		"date": "2024-08-08T05:15:28.000Z",
 		"tags": [
@@ -143,7 +143,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-07-31-CloudWatch-Agent-in-EKS-Fails-to-Send-Metrics:-Authentication-and-IMDS-Access-Issues",
+		"slug": "2024/07-31-CloudWatch-Agent-in-EKS-Fails-to-Send-Metrics:-Authentication-and-IMDS-Access-Issues",
 		"title": "CloudWatch Agent in EKS Fails to Send Metrics: Authentication and IMDS Access Issues",
 		"date": "2024-07-31T08:36:36.000Z",
 		"tags": [
@@ -154,7 +154,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-30-AWS-Load-Balancers:-ALB-vs-NLB",
+		"slug": "2024/06-30-AWS-Load-Balancers:-ALB-vs-NLB",
 		"title": "AWS Load Balancers: ALB vs NLB",
 		"date": "2024-06-30T14:49:24.000Z",
 		"tags": [
@@ -164,7 +164,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-23-Enhancing-Real-Time-Data-Pipelines-with-HDFS-and-Kafka-Consumer-in-Go",
+		"slug": "2024/06-23-Enhancing-Real-Time-Data-Pipelines-with-HDFS-and-Kafka-Consumer-in-Go",
 		"title": "Enhancing Real-Time Data Pipelines with HDFS and Kafka Consumer in Go",
 		"date": "2024-06-23T16:14:34.000Z",
 		"tags": [
@@ -175,7 +175,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-20-Transforming-Data-Pipelines-with-HDFS:-A-Scalable-Solution-for-Raw-Data-Storage",
+		"slug": "2024/06-20-Transforming-Data-Pipelines-with-HDFS:-A-Scalable-Solution-for-Raw-Data-Storage",
 		"title": "Transforming Data Pipelines with HDFS: A Scalable Solution for Raw Data Storage",
 		"date": "2024-06-20T16:15:31.000Z",
 		"tags": [
@@ -185,7 +185,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-20-Terraform-Basics",
+		"slug": "2024/06-20-Terraform-Basics",
 		"title": "Terraform Basics",
 		"date": "2024-06-20T14:06:51.000Z",
 		"tags": [
@@ -195,7 +195,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-18-Building-and-Scaling-Applications-with-Kubernetes",
+		"slug": "2024/06-18-Building-and-Scaling-Applications-with-Kubernetes",
 		"title": "Building and Scaling Applications with Kubernetes",
 		"date": "2024-06-18T12:27:50.000Z",
 		"tags": [
@@ -204,7 +204,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2024-06-12-Understanding-Microservice-Architecture",
+		"slug": "2024/06-12-Understanding-Microservice-Architecture",
 		"title": "Understanding Microservice Architecture",
 		"date": "2024-06-12T13:26:11.000Z",
 		"tags": [
@@ -214,7 +214,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-10-04-Automating-Docker-Image-Builds-with-GitHub-Actions",
+		"slug": "2023/10-04-Automating-Docker-Image-Builds-with-GitHub-Actions",
 		"title": "Automating Docker Image Builds with GitHub Actions",
 		"date": "2023-10-04T20:16:50.000Z",
 		"tags": [
@@ -224,7 +224,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-10-04-Deploying-a-Real-time-Data-Pipeline-in-Minikube-with-Kubernetes",
+		"slug": "2023/10-04-Deploying-a-Real-time-Data-Pipeline-in-Minikube-with-Kubernetes",
 		"title": "Deploying a Real-time Data Pipeline in Minikube with Kubernetes",
 		"date": "2023-10-04T04:27:30.000Z",
 		"tags": [
@@ -234,7 +234,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-10-02-Visualizing-Stream-Data-in-Cassandra-Using-Grafana",
+		"slug": "2023/10-02-Visualizing-Stream-Data-in-Cassandra-Using-Grafana",
 		"title": "Visualizing Stream Data in Cassandra Using Grafana",
 		"date": "2023-10-02T03:18:29.000Z",
 		"tags": [
@@ -245,7 +245,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-09-26-Storing-processed-data-in-Cassandra",
+		"slug": "2023/09-26-Storing-processed-data-in-Cassandra",
 		"title": "Storing processed data in Cassandra",
 		"date": "2023-09-26T00:52:52.000Z",
 		"tags": [
@@ -256,7 +256,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-09-25-Structured-Stream-Processing-with-Scala-Spark",
+		"slug": "2023/09-25-Structured-Stream-Processing-with-Scala-Spark",
 		"title": "Structured Stream Processing with Scala Spark",
 		"date": "2023-09-25T04:50:18.000Z",
 		"tags": [
@@ -268,7 +268,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-09-24-Getting-Started-with-Apache-Kafka",
+		"slug": "2023/09-24-Getting-Started-with-Apache-Kafka",
 		"title": "Getting Started with Apache Kafka",
 		"date": "2023-09-24T01:37:57.000Z",
 		"tags": [
@@ -277,7 +277,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-09-22-Real-Time-Data-Pipeline-Architecture-Overview:-Kafka,-Spark,-and-Cassandra",
+		"slug": "2023/09-22-Real-Time-Data-Pipeline-Architecture-Overview:-Kafka,-Spark,-and-Cassandra",
 		"title": "Real-Time Data Pipeline Architecture Overview: Kafka, Spark, and Cassandra",
 		"date": "2023-09-22T04:49:12.000Z",
 		"tags": [
@@ -287,7 +287,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-09-20-Deploying-a-Go-API-Server-with-Docker",
+		"slug": "2023/09-20-Deploying-a-Go-API-Server-with-Docker",
 		"title": "Deploying a Go API Server with Docker",
 		"date": "2023-09-20T19:49:45.000Z",
 		"tags": [
@@ -298,7 +298,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-08-30-Blog-Migration-VII-:-Securing-API:-JWT-and-TLS",
+		"slug": "2023/08-30-Blog-Migration-VII-:-Securing-API:-JWT-and-TLS",
 		"title": "Blog Migration VII : Securing API: JWT and HTTPS/TLS",
 		"date": "2023-08-30T21:17:56.000Z",
 		"tags": [
@@ -308,7 +308,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-08-30-Blog-Migration-VI-:-Backend-API-II",
+		"slug": "2023/08-30-Blog-Migration-VI-:-Backend-API-II",
 		"title": "Blog Migration VI : Backend API II",
 		"date": "2023-08-30T19:08:41.000Z",
 		"tags": [
@@ -318,7 +318,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-08-30-Blog-Migration-V-:-Backend-API-I",
+		"slug": "2023/08-30-Blog-Migration-V-:-Backend-API-I",
 		"title": "Blog Migration V : Backend API I",
 		"date": "2023-08-30T03:48:30.000Z",
 		"tags": [
@@ -328,7 +328,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-08-30-Blog-Migration-IV-:-Architecture-Overview-and-Data-Structure",
+		"slug": "2023/08-30-Blog-Migration-IV-:-Architecture-Overview-and-Data-Structure",
 		"title": "Blog Migration IV : Architecture Overview and Data Structure",
 		"date": "2023-08-30T00:07:37.000Z",
 		"tags": [
@@ -337,7 +337,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-03-29-Dynamic-Programming",
+		"slug": "2023/03-29-Dynamic-Programming",
 		"title": "Dynamic Programming",
 		"date": "2023-03-29T01:36:00.000Z",
 		"tags": [
@@ -347,7 +347,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-03-27-Blog-Migration-III-:-Theme-Toggle",
+		"slug": "2023/03-27-Blog-Migration-III-:-Theme-Toggle",
 		"title": "Blog Migration III : Theme Toggle",
 		"date": "2023-03-27T19:52:00.000Z",
 		"tags": [
@@ -357,7 +357,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-03-23-Blog-Migration-II-:-Getting-Started-with-Sveltekit",
+		"slug": "2023/03-23-Blog-Migration-II-:-Getting-Started-with-Sveltekit",
 		"title": "Blog Migration II : Getting Started with Sveltekit",
 		"date": "2023-03-23T23:47:00.000Z",
 		"tags": [
@@ -368,7 +368,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-02-27-Blog-Migration-I",
+		"slug": "2023/02-27-Blog-Migration-I",
 		"title": "Blog Migration I",
 		"date": "2023-02-27T04:50:00.000Z",
 		"tags": [
@@ -378,7 +378,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-02-19-Multi-Threaded-Sorts-in-Go",
+		"slug": "2023/02-19-Multi-Threaded-Sorts-in-Go",
 		"title": "Multi-Threaded Sorts in Go",
 		"date": "2023-02-19T08:50:00.000Z",
 		"tags": [
@@ -389,7 +389,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-02-16-Worker-Pool-Design-for-Go",
+		"slug": "2023/02-16-Worker-Pool-Design-for-Go",
 		"title": "Worker Pool Design for Go",
 		"date": "2023-02-16T02:49:00.000Z",
 		"tags": [
@@ -399,7 +399,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-02-16-Go-Basics-II",
+		"slug": "2023/02-16-Go-Basics-II",
 		"title": "Go Basics II",
 		"date": "2023-02-16T02:46:00.000Z",
 		"tags": [
@@ -408,7 +408,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2023-01-04-Go-Basics-I",
+		"slug": "2023/01-04-Go-Basics-I",
 		"title": "Go Basics I",
 		"date": "2023-01-04T21:05:00.000Z",
 		"tags": [
@@ -417,7 +417,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-08-01-🐳Deploying-Flask-app-using-Nginx,-uWSGI,-and-Docker",
+		"slug": "2022/08-01-🐳Deploying-Flask-app-using-Nginx,-uWSGI,-and-Docker",
 		"title": "🐳Deploying Flask app using Nginx, uWSGI, and Docker",
 		"date": "2022-08-01T08:15:00.000Z",
 		"tags": [
@@ -431,7 +431,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-28-🍽Food-Classifier-using-MobileNetV3:-Shazam-for-Food?",
+		"slug": "2022/07-28-🍽Food-Classifier-using-MobileNetV3:-Shazam-for-Food?",
 		"title": "🍽Food Classifier using MobileNetV3: Shazam for Food?",
 		"date": "2022-07-28T17:39:00.000Z",
 		"tags": [
@@ -442,7 +442,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-27-☁️What-is-a-Rest-API?",
+		"slug": "2022/07-27-☁️What-is-a-Rest-API?",
 		"title": "☁️What is a Rest API?",
 		"date": "2022-07-27T14:54:00.000Z",
 		"tags": [
@@ -452,7 +452,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-19-🛞Yolov7:-Traffic-Video-Object-Detection",
+		"slug": "2022/07-19-🛞Yolov7:-Traffic-Video-Object-Detection",
 		"title": "🛞Yolov7: Traffic Video Object Detection",
 		"date": "2022-07-19T16:34:00.000Z",
 		"tags": [
@@ -462,7 +462,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-18-Convolutional-Neural-Network",
+		"slug": "2022/07-18-Convolutional-Neural-Network",
 		"title": "Convolutional Neural Network",
 		"date": "2022-07-18T07:00:00.000Z",
 		"tags": [
@@ -473,7 +473,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-14-🚀Spaceship-Titanic:-Feature-Engineering-+-NN-Model",
+		"slug": "2022/07-14-🚀Spaceship-Titanic:-Feature-Engineering-+-NN-Model",
 		"title": "🚀Spaceship Titanic: Feature Engineering + NN Model",
 		"date": "2022-07-14T15:50:00.000Z",
 		"tags": [
@@ -484,7 +484,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-07-09-🍳HomeCooked-Neural-Network",
+		"slug": "2022/07-09-🍳HomeCooked-Neural-Network",
 		"title": "🍳HomeCooked Neural Network",
 		"date": "2022-07-09T14:55:00.000Z",
 		"tags": [
@@ -495,7 +495,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-27-Forward-and-Backward-Propagation",
+		"slug": "2022/06-27-Forward-and-Backward-Propagation",
 		"title": "Forward and Backward Propagation",
 		"date": "2022-06-27T14:45:00.000Z",
 		"tags": [
@@ -506,7 +506,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-23-Deep-Learning-Review",
+		"slug": "2022/06-23-Deep-Learning-Review",
 		"title": "Deep Learning Review",
 		"date": "2022-06-23T12:45:00.000Z",
 		"tags": [
@@ -517,7 +517,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-21-🍕Pizza-Price-Prediction🍕",
+		"slug": "2022/06-21-🍕Pizza-Price-Prediction🍕",
 		"title": "🍕Pizza Price Prediction🍕",
 		"date": "2022-06-21T19:03:00.000Z",
 		"tags": [
@@ -528,7 +528,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-16-Data-Science-Review:-Intro-to-ML-III",
+		"slug": "2022/06-16-Data-Science-Review:-Intro-to-ML-III",
 		"title": "Data Science Review: Intro to ML III",
 		"date": "2022-06-16T03:30:00.000Z",
 		"tags": [
@@ -539,7 +539,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-15-Data-Science-Review:-Intro-to-ML-II",
+		"slug": "2022/06-15-Data-Science-Review:-Intro-to-ML-II",
 		"title": "Data Science Review: Intro to ML II",
 		"date": "2022-06-15T04:55:00.000Z",
 		"tags": [
@@ -550,7 +550,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-06-14-Data-Science-Review:-Intro-to-ML-I",
+		"slug": "2022/06-14-Data-Science-Review:-Intro-to-ML-I",
 		"title": "Data Science Review: Intro to ML I",
 		"date": "2022-06-14T05:05:00.000Z",
 		"tags": [
@@ -561,7 +561,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-03-31-Data-Science-Review:-Data-Visualization",
+		"slug": "2022/03-31-Data-Science-Review:-Data-Visualization",
 		"title": "Data Science Review: Data Visualization",
 		"date": "2022-03-31T07:35:00.000Z",
 		"tags": [
@@ -572,7 +572,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-03-25-First-Blog-Post:-Building-Blogging-Website",
+		"slug": "2022/03-25-First-Blog-Post:-Building-Blogging-Website",
 		"title": "First Blog Post: Building Blogging Website",
 		"date": "2022-03-25T06:30:00.000Z",
 		"tags": [
@@ -582,7 +582,7 @@ export const posts = [
 		"visibility": "public"
 	},
 	{
-		"slug": "2022-03-17-Minimax-Algorithm",
+		"slug": "2022/03-17-Minimax-Algorithm",
 		"title": "Minimax Algorithm",
 		"date": "2022-03-17T06:32:00.000Z",
 		"tags": [
