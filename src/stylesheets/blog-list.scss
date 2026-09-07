@@ -1,20 +1,26 @@
 .blog-list {
     list-style-type: none;
     padding: 0;
+    margin: 1.5rem 0 0;
+
     .blog-entry {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(96, 97, 100, 0.2);
+
         .title {
             color: var(--primary-color);
-            font-size: 1.3em;
+            font-size: 1.15em;
             font-weight: bold;
             &:hover {
                 text-decoration: underline;
             }
         }
         .date {
+            display: block;
+            margin-top: 0.35rem;
             color: var(--secondary-color);
             font-size: 0.9em;
         }
-        margin-bottom: 1em;
     }
 }
 
@@ -30,6 +36,12 @@
             text-decoration: underline;
         }
     }
-    margin: auto;
-    padding: 1em 0 0 0;
+
+    a:last-child {
+        margin-left: auto;
+    }
+
+    margin: 2rem auto 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid rgba(96, 97, 100, 0.25);
 }

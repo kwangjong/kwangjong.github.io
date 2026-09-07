@@ -1,7 +1,6 @@
 :root {
-    --header-height: 40px;
-	--max-header-width: 1000px;
-    --max-main-width: 850px;
+	--max-header-width: 900px;
+    --max-main-width: 900px;
 }
 
 .container.light {
@@ -36,7 +35,7 @@ html, body {
     color: var(--primary-color);
     min-height: 100%;
 
-    font-size: 18px;
+    font-size: 17px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     text-align: left;
     line-height: 1.6;
@@ -52,13 +51,15 @@ header {
     display: flex;
     justify-content: space-between;
     margin: auto;
-    padding: 1em 1em 0 1em;
-    max-height: var(--header-height);
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1rem 1.25rem;
     max-width: var(--max-header-width);
 }
 
 main {
-    padding: 1em;
+    box-sizing: border-box;
+    padding: 2.5rem 1.25rem 4rem;
     max-width: var(--max-main-width);
     margin: auto;
 }
@@ -119,7 +120,7 @@ button {
 }
 
 .header-button {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
     vertical-align: middle;   
 }
@@ -130,7 +131,7 @@ button {
     margin: 0;
 
     .header-button {
-        margin-right: 0.8em;
+        margin-right: 1rem;
     }
     
     .toggle-button {
@@ -147,4 +148,14 @@ button {
         @include spin-animation;
     }
     
+}
+
+@media (max-width: 600px) {
+    main {
+        padding-top: 1.75rem;
+    }
+
+    .header-button {
+        font-size: 1.15em;
+    }
 }

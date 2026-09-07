@@ -6,18 +6,18 @@
 		<link rel="icon" href="../../../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link href="../../../_app/immutable/assets/0.99627799.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.5fa83fea.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.2b7e5f80.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.5d3a9e40.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.2cca0832.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.f8986914.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>FluentD vs FluentBit | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="FluentD vs FluentBit"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.dfa916f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.826bc34c.js"><title>FluentD vs FluentBit | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="FluentD vs FluentBit"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -79,7 +79,7 @@
 			
 			<script>
 				{
-					__sveltekit_b2dwmu = {
+					__sveltekit_2azeaa = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -89,8 +89,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2024/12-13-FluentD-vs-FluentBit",title:"FluentD vs FluentBit",date:"2024-12-13T02:35:05.000Z",tags:["logging","observability"],visibility:"public",html:"\u003Cp>\u003Ca href=\"https://docs.fluentbit.io/manual/about/fluentd-and-fluent-bit\">https://docs.fluentbit.io/manual/about/fluentd-and-fluent-bit\u003C/a>\n\u003Ca href=\"https://signoz.io/blog/fluentd-vs-fluentbit/\">https://signoz.io/blog/fluentd-vs-fluentbit/\u003C/a>\u003C/p>\n\u003Ch4>History\u003C/h4>\n\u003Cul>\n\u003Cli>fluentd was created in 2011\u003C/li>\n\u003Cli>fluentBit was introduced in 2015\u003C/li>\n\u003Cli>fluentbit is a lightweight C implementation for resource-contained environments and edge computing.\u003C/li>\n\u003C/ul>\n\u003Ch4>Key Differences\u003C/h4>\n\u003Cblockquote>\n\u003Cp>The choice between FluentD and FluentBit often comes down to specific use cases and infrastructure requirements.\u003C/p>\n\u003C/blockquote>\n\u003Cblockquote>\n\u003Col>\n\u003Cli>\u003Cp>\u003Cstrong>Language and Architecture\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>FluentD\u003C/strong>: Written in Ruby with some C extensions\u003C/li>\n\u003Cli>\u003Cstrong>FluentBit\u003C/strong>: Implemented entirely in C\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Resource Consumption\u003C/strong>:  \u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>FluentD\u003C/strong>: Higher memory footprint (typically 30-40MB)\u003C/li>\n\u003Cli>\u003Cstrong>FluentBit\u003C/strong>: Significantly lower memory usage (usually &lt; 1MB)\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Scalability\u003C/strong>:  \u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>FluentD\u003C/strong>: Designed for high-throughput, complex log processing at scale\u003C/li>\n\u003Cli>\u003Cstrong>FluentBit\u003C/strong>: Optimized for lightweight deployments but can scale with proper configuration\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Plugin Ecosystem\u003C/strong>:  \u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>FluentD\u003C/strong>: Extensive plugin ecosystem with over 1000 community-contributed plugins\u003C/li>\n\u003Cli>\u003Cstrong>FluentBit\u003C/strong>: Smaller but growing plugin set, focused on core functionalities\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ol>\n\u003C/blockquote>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.64aaef93.js"),
-						import("../../../_app/immutable/entry/app.914f13c2.js")
+						import("../../../_app/immutable/entry/start.2b7e5f80.js"),
+						import("../../../_app/immutable/entry/app.2cca0832.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
