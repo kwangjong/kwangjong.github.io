@@ -6,18 +6,18 @@
 		<link rel="icon" href="../../../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.96b729a5.js">
+		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.d612cc86.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.bb626269.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.39b2cdb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.053b83ac.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.fbf06f45.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.dca94ffe.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a3b7c5cc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Blog Migration IV : Architecture Overview and Data Structure | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Blog Migration IV : Architecture Overview and Data Structure"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.4613e288.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.b3742660.js"><title>Blog Migration IV : Architecture Overview and Data Structure | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Blog Migration IV : Architecture Overview and Data Structure"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -82,7 +82,7 @@ Here&#39;s Go struct representation of each &quot;document&quot; in DB collectio
 			
 			<script>
 				{
-					__sveltekit_1cgvsj9 = {
+					__sveltekit_p8z9bt = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -92,8 +92,8 @@ Here&#39;s Go struct representation of each &quot;document&quot; in DB collectio
 					const data = [null,{"type":"data","data":{post:{slug:"2023/08-30-Blog-Migration-IV-:-Architecture-Overview-and-Data-Structure",title:"Blog Migration IV : Architecture Overview and Data Structure",date:"2023-08-30T00:07:37.000Z",tags:["blog-migration"],visibility:"public",html:"\u003Cp>In this blog post, I will briefly describe how I designed the architecture and data structure of my blog app.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/kwangjong.github.io\">frontend repo\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/blog-server-go-mongoDB\">backend repo\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/lKoBWVy.png\" alt=\"architecture\">\u003C/p>\n\u003Ch2>the Technology Stack\u003C/h2>\n\u003Cp>As I mentioned in the previous blog posts. I am using Go, MongoDB, and SveltKit for this project&#39;s tech stack. The primary motivation for choosing these technologies is learning/trying new stuff and practicing my web development knowledge. And, using Go instead of the popular Node.js seemed like an exciting project to me. \u003C/p>\n\u003Cp>\u003Cimg src=\"https://wp-uploads.yalantis.com/wp-content/uploads/2023/07/21073620/content_go-nodejs-comparison.png\" alt=\"go-vs-node\">\u003C/p>\n\u003Cp>This is a Node.js vs Go comparison chart I found on \u003Ca href=\"https://yalantis.com/blog/golang-vs-nodejs-comparison/#:~:text=Go%20is%20multi%2Dpurpose%2C%20it,language%20with%20high%2Dlevel%20efficiency.\">Yalantis&#39;s blog post\u003C/a>.\nWhile Go lacks extensive developer&#39;s tool and popularity compared to Node.js. Its performance and simplicity intrigued me to use Go to build my API server. To keep it simple, I am using Go&#39;s standard HTTP server with no Nginx reverse proxy.\u003C/p>\n\u003Cp>Also, I decided to use MongoDB mainly because I wanted to learn and try it out. Its flexible and document-oriented database model with JSON-like structure was easiler for me to store blog posts and associated data.\u003C/p>\n\u003Ch2>Architecture overview\u003C/h2>\n\u003Cp>Here&#39;s an architecture diagram of my blog app.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/lKoBWVy.png\" alt=\"architecture\">\u003C/p>\n\u003Cp>The front-end is built with SvelteKit and served statically on GitHub Pages. All scripts run on the client side, fetching data from the backend API. The backend API is built with Go and hosted in the GCP instance. This API is mainly used to query data from the database hosted in another GCP instance provided by MongoDB free tier.\u003C/p>\n\u003Cp>My main focus of the architecture design was keeping the cost minimal. While I could host SvelteKit on its own server, I wanted to utilize Github&#39;s intrastructure and the easily recognizable domain &quot;kwangjong.github.io&quot;. This decision limits the app to being static website with no server-side rendering, but I was able to host my website with a nice domain at zero cost. I could also achieve better maintainability and reduced backend server load by separating front-end and backend services.\u003C/p>\n\u003Ch2>Storing Blog Post Data in DB\u003C/h2>\n\u003Cp>Storing blog post data in DB was very similar to storing data in JSON format.\nHere&#39;s Go struct representation of each &quot;document&quot; in DB collection:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-go\">type Post struct {\n\tId       primitive.ObjectID `bson:&quot;_id,omitempty&quot;`\n\tUrl      string             `bson:&quot;url&quot;`\n\tTitle    string             `bson:&quot;title&quot;`\n\tDate     time.Time          `bson:&quot;date&quot;`\n\tTags     []string           `bson:&quot;tags&quot;`\n\tMarkDown string             `bson:&quot;markdown&quot;`\n\tHtml     string             `bson:&quot;html&quot;`\n\u003C/code>\u003C/pre>\n\u003Cp>Let&#39;s break down the fields:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ccode>Id\u003C/code>: A unique identifier assigned by MongoDB.\u003C/li>\n\u003Cli>\u003Ccode>Url\u003C/code>: The URL of the blog post. This will be data concatenated with the title. (&quot;2023-02-27-Blog-Migration-I&quot;)\u003C/li>\n\u003Cli>\u003Ccode>Title\u003C/code>: The title of the blog post.\u003C/li>\n\u003Cli>\u003Ccode>Date\u003C/code>: The publication date of the blog post.\u003C/li>\n\u003Cli>\u003Ccode>Tags\u003C/code>: An array of tags associated with the post.\u003C/li>\n\u003Cli>\u003Ccode>MarkDown\u003C/code>: The original raw Markdown of the post.\u003C/li>\n\u003Cli>\u003Ccode>Html\u003C/code>: The HTML-rendered content of the post.\u003C/li>\n\u003C/ul>\n\u003Cp>Because I used Markdown for my previous Jekyll blog, I kept using markdown for formatting blog posts. Also, because my website is rendered on the client-side, I am pre-rendering the markdown and storing the rendered html. This will allow faster rendering speed.\u003C/p>\n\u003Cp>Each field in our Post structure is mapped to MongoDB document fields using BSON tags. \u003C/p>\n\u003Ch2>Conclusion\u003C/h2>\n\u003Cp>In wrapping up the design of my blog app&#39;s structure and data, I&#39;ve taken a learning-focused approach. With Go, MongoDB, and SvelteKit, I&#39;ve built a smooth experience for users while keeping things simple and cost-effective. In my next post, I&#39;ll dive into the backend API&#39;s details.\u003C/p>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.96b729a5.js"),
-						import("../../../_app/immutable/entry/app.053b83ac.js")
+						import("../../../_app/immutable/entry/start.d612cc86.js"),
+						import("../../../_app/immutable/entry/app.dca94ffe.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

@@ -6,18 +6,18 @@
 		<link rel="icon" href="../../../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.96b729a5.js">
+		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.d612cc86.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.bb626269.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.39b2cdb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.053b83ac.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.fbf06f45.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.dca94ffe.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a3b7c5cc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>AWS Load Balancers: ALB vs NLB | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="AWS Load Balancers: ALB vs NLB"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.4613e288.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.b3742660.js"><title>AWS Load Balancers: ALB vs NLB | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="AWS Load Balancers: ALB vs NLB"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -88,7 +88,7 @@
 			
 			<script>
 				{
-					__sveltekit_1cgvsj9 = {
+					__sveltekit_p8z9bt = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -98,8 +98,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2024/06-30-AWS-Load-Balancers:-ALB-vs-NLB",title:"AWS Load Balancers: ALB vs NLB",date:"2024-06-30T14:49:24.000Z",tags:["cloud","infra"],visibility:"public",html:"\u003Ch4>Routing\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Operates at the application layer (Layer 7) of the OSI model. This allows it to make routing decisions based on URL paths, hostnames, HTTP headers, and HTTP methods, offering fine-grained control over traffic distribution.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Operates at the transport layer (Layer 4) of the OSI model, handling TCP and UDP traffic. This enables high performance and low latency.\u003C/li>\n\u003C/ul>\n\u003Ch4>Scaling\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Can automatically scale to handle increases in traffic, though this dynamic scaling may introduce some latency during scaling events (scaling overhead).\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Automatically scales to handle varying levels of traffic without user intervention, ensuring consistent performance and typically offering lower latency due to its simpler operation.\u003C/li>\n\u003C/ul>\n\u003Ch4>IPs\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Requires a minimum of 8 IP addresses for deployment. ALBs do not offer static IP addresses, but AWS Global Accelerator can be used if a static IP is needed.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Provides one or more static IP addresses for each availability zone they are deployed in, which is beneficial for applications that require fixed IP addresses.\u003C/li>\n\u003C/ul>\n\u003Ch4>Deployment\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Deployed on AWS infrastructure and managed by AWS, abstracting the underlying VM instances from users.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Also managed by AWS and runs on AWS infrastructure but offers simpler operation at the network layer.\u003C/li>\n\u003C/ul>\n\u003Ch4>Health Checks\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Supports both HTTP and HTTPS health checks at the application layer.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Supports TCP, HTTP, and HTTPS health checks, typically using simpler TCP checks compared to ALB.\u003C/li>\n\u003C/ul>\n\u003Ch4>SSL Termination\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Supports SSL termination, meaning it can decrypt incoming traffic and distribute it to backend instances.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Can pass through encrypted traffic (SSL/TLS) directly to backend instances but does not support SSL termination directly. This must be handled at the target instances.\u003C/li>\n\u003C/ul>\n\u003Ch4>WebSocket and HTTP/2 Support\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Supports WebSocket and HTTP/2, making it ideal for modern web applications requiring these protocols.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Does not natively support WebSocket or HTTP/2, as it operates at a lower layer compared to ALB.\u003C/li>\n\u003C/ul>\n\u003Ch4>Target Types\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Cstrong>ALB\u003C/strong>: Can target instances, IP addresses, and AWS Lambda functions, providing flexibility in traffic routing.\u003C/li>\n\u003Cli>\u003Cstrong>NLB\u003C/strong>: Primarily targets instances and IP addresses.\u003C/li>\n\u003C/ul>\n\u003Ch3>Summary\u003C/h3>\n\u003Cp>Choosing between ALB and NLB depends on your specific use case:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cp>\u003Cstrong>Application Load Balancer (ALB)\u003C/strong>: Best suited for HTTP/HTTPS applications that require advanced routing capabilities, SSL termination, and support for WebSocket/HTTP/2. Ideal for modern web applications needing detailed traffic management.\u003C/p>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Network Load Balancer (NLB)\u003C/strong>: Ideal for high-performance, low-latency applications requiring static IP addresses and TCP/UDP routing. Suitable for workloads needing simple, fast, and reliable load balancing at the transport layer.\u003C/p>\n\u003C/li>\n\u003C/ul>\n\u003Cp>By understanding these key differences, you can select the load balancer that best fits your application&#39;s needs, ensuring optimal performance, scalability, and reliability in your AWS environment.\u003C/p>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.96b729a5.js"),
-						import("../../../_app/immutable/entry/app.053b83ac.js")
+						import("../../../_app/immutable/entry/start.d612cc86.js"),
+						import("../../../_app/immutable/entry/app.dca94ffe.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

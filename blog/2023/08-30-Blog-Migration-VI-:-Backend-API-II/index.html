@@ -6,18 +6,18 @@
 		<link rel="icon" href="../../../favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
-		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.96b729a5.js">
+		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.d612cc86.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.bb626269.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.39b2cdb6.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.053b83ac.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.fbf06f45.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.dca94ffe.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.a3b7c5cc.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Blog Migration VI : Backend API II | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Blog Migration VI : Backend API II"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.4613e288.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.b3742660.js"><title>Blog Migration VI : Backend API II | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Blog Migration VI : Backend API II"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -79,7 +79,7 @@
 			
 			<script>
 				{
-					__sveltekit_1cgvsj9 = {
+					__sveltekit_p8z9bt = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -89,8 +89,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2023/08-30-Blog-Migration-VI-:-Backend-API-II",title:"Blog Migration VI : Backend API II",date:"2023-08-30T19:08:41.000Z",tags:["go","blog-migration"],visibility:"public",html:"\u003Cp>This is the second part of the backend API. In the &quot;Backend API I&quot;, I went over how to interact with DB using \u003Ccode>mongo\u003C/code> driver. Let&#39;s explore how I designed API Endpoints.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/blog-server-go-mongoDB\">backend repo\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Ch2>API Endpoints\u003C/h2>\n\u003Cp>Here&#39;s an overview of endpoints:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cp>\u003Ccode>/blog/\u003C/code>: This endpoint provides access to individual blog posts. The client can create a new blog post using POST method. The client can read, update, and delete existing blog posts by appending the desired URL. Access to the POST, PUT, and DELETE operations is restricted with a JWT token.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>400: Bad Request\u003C/strong> - indicates that the request body is incorrectly formatted during a POST method.\u003C/li>\n\u003Cli>\u003Cstrong>401: Unauthorized\u003C/strong> - indicates that the given JWT token is invalid.\u003C/li>\n\u003Cli>\u003Cstrong>404: Not Found\u003C/strong> - indicates that blog post with given url does not exist.\u003C/li>\n\u003Cli>\u003Cstrong>500: Database Interaction Error\u003C/strong> - indicates an issue attempting to interact with the database.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Ccode>/blog/list\u003C/code>: This endpoint is the gateway to a list of blog entries. The client can adjust the results by utilizing query parameters \u003Ccode>skip\u003C/code> and \u003Ccode>numPost\u003C/code>. &quot;Skip&quot; specifies the number of posts to skip, while &quot;numPost&quot; dictates the number of posts to retrieve. The response will return a list of blog post data such as title, date, and URL in the newest first order. This endpoint is mainly used for the blog listing page.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>405: Method Not Allowed\u003C/strong> - only the GET method is allowed.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Ccode>/blog/list/all\u003C/code>: This endpoint returns URL of all blog posts in the database. This endpoint is used during Sveltekit&#39;s building process for routing necessary pages.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>405: Method Not Allowed\u003C/strong> - only the GET method is allowed.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Ccode>/auth\u003C/code>: This endpoint is used for issuing and verifying a JWT token. With the correct API key, the GET method will return a JWT token. This endpoint will verify the JWT Token when the token is given in the request header with the DELETE method. This token is used for granting access to authorized interactions with our API, such as updating or deleting a blog post.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>401: Unauthorized\u003C/strong> - indicates that the given API key is invalid.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003C/ul>\n\u003Cp>Check my Github repo for the implementation.\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/blog-server-go-mongoDB\">backend repo\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Ch2>Deployment\u003C/h2>\n\u003Cp>When it comes to deployment, I opted for the quickest approach by manually running it using \u003Ccode>screen\u003C/code>. Since my server is straightforward and does not involve Nginx, configuring Docker felt excessive. However, I am considering future improvements by exploring Paas providers like Heroku and building CI/CD pipeline using Github Action.\u003C/p>\n\u003Cp>This approach aligns with the simplicity of my current setup while keeping scalability in mind.\u003C/p>\n\u003Ch2>Conclusion\u003C/h2>\n\u003Cp>In this segment, I&#39;ve intricately designed our backend API, shaping endpoints like /blog/ and /auth that ensure seamless interactions and security. As our backend transforms concepts into functionality, we bridge the gap between data and user experience. In the next blog post, I will delve into security aspect of my app.\u003C/p>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.96b729a5.js"),
-						import("../../../_app/immutable/entry/app.053b83ac.js")
+						import("../../../_app/immutable/entry/start.d612cc86.js"),
+						import("../../../_app/immutable/entry/app.dca94ffe.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
