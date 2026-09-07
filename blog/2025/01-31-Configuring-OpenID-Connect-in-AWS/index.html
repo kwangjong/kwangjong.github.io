@@ -9,12 +9,12 @@
 		<link href="../../../_app/immutable/assets/0.8656d08c.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/4.0fef9476.css" rel="stylesheet">
 		<link href="../../../_app/immutable/assets/posts.877fbd47.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/start.53032123.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.3f059afa.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
-		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.54afcbb6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.60b2763f.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
-		<link rel="modulepreload" href="../../../_app/immutable/entry/app.4e71f6db.js">
-		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.aaea6efc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bab92658.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.00d3951c.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
 		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.09d72f43.js">
 		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.fd9412ec.js"><title>Configuring OpenID Connect in AWS | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Configuring OpenID Connect in AWS"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
@@ -89,7 +89,7 @@
 			
 			<script>
 				{
-					__sveltekit_13lcn83 = {
+					__sveltekit_9dopxa = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -99,8 +99,8 @@
 					const data = [null,{"type":"data","data":{post:{slug:"2025/01-31-Configuring-OpenID-Connect-in-AWS",title:"Configuring OpenID Connect in AWS",date:"2025-01-31T07:55:44.000Z",tags:["cloud","cicd"],visibility:"public",html:"\u003Cp>\u003Cstrong>OpenID Connect (OIDC)\u003C/strong> allows GitHub Actions workflows to access AWS resources securely. Previously, this required storing credentials as GitHub secrets, but OIDC offers a more dynamic and secure approach. In my case, I’m building a Terraform CI/CD pipeline to deploy AWS infrastructure using GitHub Actions.\u003C/p>\n\u003Ch3>Create IAM OIDC identity provider\u003C/h3>\n\u003Col>\n\u003Cli>Go to \u003Cstrong>AWS IAM\u003C/strong> -&gt; \u003Cstrong>Identity providers\u003C/strong>\u003C/li>\n\u003Cli>Click \u003Cstrong>Add provider\u003C/strong> -&gt; \u003Cstrong>Provider type\u003C/strong> -&gt; \u003Cstrong>OpenID Connect\u003C/strong>\u003C/li>\n\u003Cli>Set the \u003Cstrong>Provider URL\u003C/strong> and \u003Cstrong>Audience\u003C/strong>\u003C/li>\n\u003C/ol>\n\u003Cblockquote>\n\u003Cul>\n\u003Cli>For the \u003Cstrong>provider URL\u003C/strong>: Use \u003Ccode>https://token.actions.githubusercontent.com\u003C/code>\u003C/li>\n\u003Cli>For the \u003Cstrong>Audience\u003C/strong>: Use \u003Ccode>sts.amazonaws.com\u003C/code> if you are using the \u003Ca href=\"https://github.com/aws-actions/configure-aws-credentials\">official action\u003C/a>.\u003C/li>\n\u003C/ul>\n\u003C/blockquote>\n\u003Col start=\"4\">\n\u003Cli>Click \u003Cstrong>Add provider\u003C/strong>\u003C/li>\n\u003C/ol>\n\u003Ch3>Create IAM role\u003C/h3>\n\u003Col>\n\u003Cli>Go to \u003Cstrong>AWS IAM\u003C/strong> -&gt; \u003Cstrong>Roles\u003C/strong>\u003C/li>\n\u003Cli>Click \u003Cstrong>Create role\u003C/strong> -&gt; \u003Cstrong>Trusted entity type\u003C/strong> -&gt; \u003Cstrong>Web Identity\u003C/strong>\u003C/li>\n\u003Cli>Select \u003Ccode>token.actions.githubusercontent.com\u003C/code> for \u003Cstrong>Identity provider\u003C/strong>\u003Cul>\n\u003Cli>For the \u003Cstrong>identity provider\u003C/strong>, select \u003Ccode>token.actions.githubusercontent.com\u003C/code>\u003C/li>\n\u003Cli>For the \u003Cstrong>audience\u003C/strong>, select \u003Ccode>sts.amazonaws.com\u003C/code>\u003C/li>\n\u003Cli>Fill in \u003Cstrong>GitHub organization\u003C/strong>, \u003Cstrong>GitHub repository\u003C/strong>, and \u003Cstrong>GitHub branch\u003C/strong>.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>Choose necessary policies to attach to the role.\u003C/li>\n\u003Cli>Fill in \u003Cstrong>Role details\u003C/strong> and click \u003Cstrong>Create role\u003C/strong>\u003C/li>\n\u003C/ol>\n\u003Ch3>Update GitHub Actions Workflow\u003C/h3>\n\u003Cp>Update workflow to assume the IAM role.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">jobs:\n  plan: \n    name: Terraform Plan \n    runs-on: ubuntu-latest \n    permissions: \n      id-token: write\n...\n    steps:\n      - name: Configure AWS credentials\n        uses: aws-actions/configure-aws-credentials@v4\n        with:\n          role-to-assume: arn:aws:iam::12345678:role/github-oidc-role\n          aws-region: ap-northeast-2\n...\n\u003C/code>\u003C/pre>\n\u003Ch3>Links\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://docs.github.com/ko/enterprise-cloud@latest/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services\">https://docs.github.com/ko/enterprise-cloud@latest/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.53032123.js"),
-						import("../../../_app/immutable/entry/app.4e71f6db.js")
+						import("../../../_app/immutable/entry/start.3f059afa.js"),
+						import("../../../_app/immutable/entry/app.bab92658.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
