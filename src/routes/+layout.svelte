@@ -31,7 +31,7 @@
     <header>
         <button class="header-button" on:click={()=>goto("/")}>Home</button>
         <div class="menu">
-            <button class="header-button" on:click={()=>goto("/blog")}>Blog</button>
+            <button class="header-button" on:click={()=>goto("/blog/")}>Blog</button>
             <button class=toggle-button on:click={() => toggleTheme(!is_dark)}>
                 <div 
                     class:spin-left={spin && spinDirection === "left"}

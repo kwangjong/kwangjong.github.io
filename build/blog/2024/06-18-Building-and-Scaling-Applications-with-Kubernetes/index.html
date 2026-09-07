@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Building and Scaling Applications with Kubernetes | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Building and Scaling Applications with Kubernetes"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Building and Scaling Applications with Kubernetes</h1>
+    <time class="date" datetime="2024-06-18T12:27:50.000Z" itemprop="datePublished">June 18, 2024</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=k8s">#k8s</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Kubernetes (k8s) is a powerful orchestration tool designed to manage containerized applications across multiple nodes, ensuring high availability, scalability, and efficiency. Understanding its components, management tools, and key concepts is essential for leveraging its full potential.</p>
+<h2>Core Concepts and Architecture</h2>
+<p><strong>Nodes and Clusters</strong>:</p>
+<ul>
+<li><strong>Nodes (Minions)</strong>: These are VM instances that run containerized applications.</li>
+<li><strong>Cluster</strong>: A set of nodes working together.</li>
+<li><strong>Master</strong>: The central control unit responsible for orchestrating the nodes.</li>
+</ul>
+<p><img src="https://i.imgur.com/wWXipzH.png" alt="cluster"></p>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>API Server</strong>: The frontend interface for managing the cluster.</li>
+<li><strong>etcd</strong>: A distributed key-value store for configuration data.</li>
+<li><strong>Scheduler</strong>: Assigns work to the nodes based on resource availability.</li>
+<li><strong>Controller</strong>: Monitors the state of the cluster and makes adjustments as needed.</li>
+<li><strong>Container Runtime</strong>: Software like Docker or containerd that runs containers.</li>
+<li><strong>kubelet</strong>: An agent on each node that ensures containers are running as expected.</li>
+</ul>
+<p><img src="https://i.imgur.com/vWrZ7dN.png" alt="kubelet"></p>
+<p><strong>Management Tool</strong>:</p>
+<ul>
+<li><strong>kubectl</strong>: Command-line tool used to interact with the Kubernetes API server.</li>
+</ul>
+<h2>Docker vs. containerd</h2>
+<p>Originally, Kubernetes was designed to orchestrate Docker containers. Over time, the Container Runtime Interface (CRI) was introduced, allowing Kubernetes to support any OCI-compliant container runtime, such as containerd. Docker&#39;s compatibility is maintained via dockershim, but many developers prefer using containerd directly due to its native CRI compatibility.</p>
+<p><img src="https://i.imgur.com/OaWmaqL.png" alt="containerd"></p>
+<p><strong>Command Line Tools</strong>:</p>
+<ul>
+<li><strong>ctr, nerdctl</strong>: CLI tools for containerd, with nerdctl offering Docker-like syntax.</li>
+<li><strong>crictl</strong>: CLI for any CRI-compatible container runtime.</li>
+</ul>
+<h2>Pods and YAML Configuration</h2>
+<p>A Pod is the smallest deployable unit in Kubernetes, typically running a single instance of an application. While a Pod can contain multiple containers, it&#39;s common to run just one container per Pod.</p>
+<p><strong>Sample YAML Configuration</strong>:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+</code></pre>
+<h2>ReplicaControllers and ReplicaSets</h2>
+<p><strong>ReplicaControllers</strong>:
+The ReplicaController is an older mechanism in Kubernetes used to ensure a specified number of pod replicas are running at any given time. It monitors the cluster and launches new pods if the desired state is not met. While still supported, ReplicaControllers are largely superseded by ReplicaSets, which offer more features and flexibility.</p>
+<p><strong>ReplicaSets</strong>:
+Manage the replication and scaling of Pods. They ensure a specified number of replicas are running at all times.</p>
+<p><strong>Sample ReplicaSet YAML</strong>:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end
+  template:
+    metadata:
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+</code></pre>
+<h2>Labels and Selectors</h2>
+<p><strong>Labels</strong>:
+Labels are key-value pairs attached to Kubernetes objects, such as Pods. They are used to organize and select subsets of objects. For example, you might label Pods with <code>app: myapp</code> and <code>type: front-end</code> to identify them as part of a specific application and role.</p>
+<p><strong>Selectors</strong>:
+Selectors are used to filter Kubernetes objects based on their labels. ReplicaSets and Deployments use selectors to determine which Pods they should manage. By using label selectors, you can ensure that only the Pods with the correct labels are controlled and scaled.</p>
+<p><strong>Example with ReplicaSet</strong>:
+The ReplicaSet configuration includes a selector that matches labels specified in the Pod template. This ensures that the ReplicaSet only manages Pods with matching labels.</p>
+<pre><code class="language-yaml">spec:
+  selector:
+    matchLabels:
+      app: myapp
+      type: front-end
+</code></pre>
+<h2>Deployments</h2>
+<p><strong>Deployments</strong>:
+Build on ReplicaSets by adding features like rolling updates and rollbacks, making them ideal for managing application updates.</p>
+<p><strong>Sample Deployment YAML</strong>:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+</code></pre>
+<p><strong>Rollout and Versioning</strong>:</p>
+<ul>
+<li><strong>kubectl rollout status deployment/myapp-deployment</strong>: Check the status of a rollout.</li>
+<li><strong>kubectl rollout history deployment/myapp-deployment</strong>: View the history of rollouts.</li>
+<li><strong>Deployment Strategies</strong>:<ul>
+<li><strong>Recreate Strategy</strong>: Takes down all old versions before deploying new ones, causing a short downtime.</li>
+<li><strong>Rolling Update</strong>: Gradually updates each instance, ensuring no downtime.</li>
+</ul>
+</li>
+<li><strong>kubectl apply</strong>: Triggers a rolling update.</li>
+<li><strong>Rollback</strong>: <code>kubectl rollout undo deployment/myapp-deployment</code></li>
+</ul>
+<h2>Networking</h2>
+<p>Kubernetes creates a private network for each cluster, assigning IPs to each Pod. Networking tools like Calico, Cisco, Cilium, Flannel, and VMware NSX can be used for more complex configurations.</p>
+<p><strong>Services</strong>: Enable connectivity between different applications within the Kubernetes cluster.</p>
+<p><img src="https://i.imgur.com/gXPrctE.png" alt="services"></p>
+<p><strong>Service Types</strong>:</p>
+<ul>
+<li><strong>NodePort</strong>: Exposes the service on a port on each node.</li>
+<li><strong>ClusterIP</strong>: Creates a virtual IP within the cluster. Default service type.</li>
+<li><strong>LoadBalancer</strong>: Integrates with cloud provider load balancers for external access.</li>
+</ul>
+<p><img src="https://i.imgur.com/63Tw410.png" alt="nodeport"></p>
+<p><strong>Sample NodePort YAML</strong>:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+  selector:
+    app: myapp
+    type: front-end
+</code></pre>
+<p><strong>Sample ClusterIP Service YAML</strong>:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: back-end
+spec:
+  #type: ClusterIP #default service
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: myapp
+    type: back-end
+</code></pre>
+<p><strong>LoadBalancer</strong>:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: myapp
+    type: front-end
+</code></pre>
+<h2>Scaling</h2>
+<p>Scaling applications in Kubernetes is straightforward. You can either edit the ReplicaSet YAML and apply the changes or use kubectl commands to scale directly.</p>
+<p><strong>Scaling Commands</strong>:</p>
+<ul>
+<li><code>kubectl scale --replicas=6 -f replicaset.yml</code>: Scale using the YAML file.</li>
+<li><code>kubectl scale --replicas=6 replicaset myapp-replicaset</code>: Scale directly with kubectl.</li>
+<li><code>kubectl scale replicaset new-replica-set --replicas=5</code>: Another scaling example.</li>
+</ul>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.udemy.com/course/kubernetes-fundamentals-for-beginners/">https://www.udemy.com/course/kubernetes-fundamentals-for-beginners/</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2024/06-18-Building-and-Scaling-Applications-with-Kubernetes",title:"Building and Scaling Applications with Kubernetes",date:"2024-06-18T12:27:50.000Z",tags:["k8s"],visibility:"public",html:"\u003Cp>Kubernetes (k8s) is a powerful orchestration tool designed to manage containerized applications across multiple nodes, ensuring high availability, scalability, and efficiency. Understanding its components, management tools, and key concepts is essential for leveraging its full potential.\u003C/p>\n\u003Ch2>Core Concepts and Architecture\u003C/h2>\n\u003Cp>\u003Cstrong>Nodes and Clusters\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Nodes (Minions)\u003C/strong>: These are VM instances that run containerized applications.\u003C/li>\n\u003Cli>\u003Cstrong>Cluster\u003C/strong>: A set of nodes working together.\u003C/li>\n\u003Cli>\u003Cstrong>Master\u003C/strong>: The central control unit responsible for orchestrating the nodes.\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/wWXipzH.png\" alt=\"cluster\">\u003C/p>\n\u003Cp>\u003Cstrong>Components\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>API Server\u003C/strong>: The frontend interface for managing the cluster.\u003C/li>\n\u003Cli>\u003Cstrong>etcd\u003C/strong>: A distributed key-value store for configuration data.\u003C/li>\n\u003Cli>\u003Cstrong>Scheduler\u003C/strong>: Assigns work to the nodes based on resource availability.\u003C/li>\n\u003Cli>\u003Cstrong>Controller\u003C/strong>: Monitors the state of the cluster and makes adjustments as needed.\u003C/li>\n\u003Cli>\u003Cstrong>Container Runtime\u003C/strong>: Software like Docker or containerd that runs containers.\u003C/li>\n\u003Cli>\u003Cstrong>kubelet\u003C/strong>: An agent on each node that ensures containers are running as expected.\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/vWrZ7dN.png\" alt=\"kubelet\">\u003C/p>\n\u003Cp>\u003Cstrong>Management Tool\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>kubectl\u003C/strong>: Command-line tool used to interact with the Kubernetes API server.\u003C/li>\n\u003C/ul>\n\u003Ch2>Docker vs. containerd\u003C/h2>\n\u003Cp>Originally, Kubernetes was designed to orchestrate Docker containers. Over time, the Container Runtime Interface (CRI) was introduced, allowing Kubernetes to support any OCI-compliant container runtime, such as containerd. Docker&#39;s compatibility is maintained via dockershim, but many developers prefer using containerd directly due to its native CRI compatibility.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/OaWmaqL.png\" alt=\"containerd\">\u003C/p>\n\u003Cp>\u003Cstrong>Command Line Tools\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>ctr, nerdctl\u003C/strong>: CLI tools for containerd, with nerdctl offering Docker-like syntax.\u003C/li>\n\u003Cli>\u003Cstrong>crictl\u003C/strong>: CLI for any CRI-compatible container runtime.\u003C/li>\n\u003C/ul>\n\u003Ch2>Pods and YAML Configuration\u003C/h2>\n\u003Cp>A Pod is the smallest deployable unit in Kubernetes, typically running a single instance of an application. While a Pod can contain multiple containers, it&#39;s common to run just one container per Pod.\u003C/p>\n\u003Cp>\u003Cstrong>Sample YAML Configuration\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: v1\nkind: Pod\nmetadata:\n  name: myapp-pod\n  labels:\n    app: myapp\n    type: front-end\nspec:\n  containers:\n  - name: nginx-container\n    image: nginx\n\u003C/code>\u003C/pre>\n\u003Ch2>ReplicaControllers and ReplicaSets\u003C/h2>\n\u003Cp>\u003Cstrong>ReplicaControllers\u003C/strong>:\nThe ReplicaController is an older mechanism in Kubernetes used to ensure a specified number of pod replicas are running at any given time. It monitors the cluster and launches new pods if the desired state is not met. While still supported, ReplicaControllers are largely superseded by ReplicaSets, which offer more features and flexibility.\u003C/p>\n\u003Cp>\u003Cstrong>ReplicaSets\u003C/strong>:\nManage the replication and scaling of Pods. They ensure a specified number of replicas are running at all times.\u003C/p>\n\u003Cp>\u003Cstrong>Sample ReplicaSet YAML\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: apps/v1\nkind: ReplicaSet\nmetadata:\n  name: myapp-replicaset\n  labels:\n    app: myapp\n    type: front-end\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      type: front-end\n  template:\n    metadata:\n      labels:\n        app: myapp\n        type: front-end\n    spec:\n      containers:\n      - name: nginx-container\n        image: nginx\n\u003C/code>\u003C/pre>\n\u003Ch2>Labels and Selectors\u003C/h2>\n\u003Cp>\u003Cstrong>Labels\u003C/strong>:\nLabels are key-value pairs attached to Kubernetes objects, such as Pods. They are used to organize and select subsets of objects. For example, you might label Pods with \u003Ccode>app: myapp\u003C/code> and \u003Ccode>type: front-end\u003C/code> to identify them as part of a specific application and role.\u003C/p>\n\u003Cp>\u003Cstrong>Selectors\u003C/strong>:\nSelectors are used to filter Kubernetes objects based on their labels. ReplicaSets and Deployments use selectors to determine which Pods they should manage. By using label selectors, you can ensure that only the Pods with the correct labels are controlled and scaled.\u003C/p>\n\u003Cp>\u003Cstrong>Example with ReplicaSet\u003C/strong>:\nThe ReplicaSet configuration includes a selector that matches labels specified in the Pod template. This ensures that the ReplicaSet only manages Pods with matching labels.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">spec:\n  selector:\n    matchLabels:\n      app: myapp\n      type: front-end\n\u003C/code>\u003C/pre>\n\u003Ch2>Deployments\u003C/h2>\n\u003Cp>\u003Cstrong>Deployments\u003C/strong>:\nBuild on ReplicaSets by adding features like rolling updates and rollbacks, making them ideal for managing application updates.\u003C/p>\n\u003Cp>\u003Cstrong>Sample Deployment YAML\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp-deployment\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: myapp\n  template:\n    metadata:\n      labels:\n        app: myapp\n    spec:\n      containers:\n      - name: nginx-container\n        image: nginx\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>Rollout and Versioning\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>kubectl rollout status deployment/myapp-deployment\u003C/strong>: Check the status of a rollout.\u003C/li>\n\u003Cli>\u003Cstrong>kubectl rollout history deployment/myapp-deployment\u003C/strong>: View the history of rollouts.\u003C/li>\n\u003Cli>\u003Cstrong>Deployment Strategies\u003C/strong>:\u003Cul>\n\u003Cli>\u003Cstrong>Recreate Strategy\u003C/strong>: Takes down all old versions before deploying new ones, causing a short downtime.\u003C/li>\n\u003Cli>\u003Cstrong>Rolling Update\u003C/strong>: Gradually updates each instance, ensuring no downtime.\u003C/li>\n\u003C/ul>\n\u003C/li>\n\u003Cli>\u003Cstrong>kubectl apply\u003C/strong>: Triggers a rolling update.\u003C/li>\n\u003Cli>\u003Cstrong>Rollback\u003C/strong>: \u003Ccode>kubectl rollout undo deployment/myapp-deployment\u003C/code>\u003C/li>\n\u003C/ul>\n\u003Ch2>Networking\u003C/h2>\n\u003Cp>Kubernetes creates a private network for each cluster, assigning IPs to each Pod. Networking tools like Calico, Cisco, Cilium, Flannel, and VMware NSX can be used for more complex configurations.\u003C/p>\n\u003Cp>\u003Cstrong>Services\u003C/strong>: Enable connectivity between different applications within the Kubernetes cluster.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/gXPrctE.png\" alt=\"services\">\u003C/p>\n\u003Cp>\u003Cstrong>Service Types\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>NodePort\u003C/strong>: Exposes the service on a port on each node.\u003C/li>\n\u003Cli>\u003Cstrong>ClusterIP\u003C/strong>: Creates a virtual IP within the cluster. Default service type.\u003C/li>\n\u003Cli>\u003Cstrong>LoadBalancer\u003C/strong>: Integrates with cloud provider load balancers for external access.\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/63Tw410.png\" alt=\"nodeport\">\u003C/p>\n\u003Cp>\u003Cstrong>Sample NodePort YAML\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: v1\nkind: Service\nmetadata:\n  name: myapp-service\nspec:\n  type: NodePort\n  ports:\n    - port: 80\n      targetPort: 80\n      nodePort: 30080\n  selector:\n    app: myapp\n    type: front-end\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>Sample ClusterIP Service YAML\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: v1\nkind: Service\nmetadata:\n  name: back-end\nspec:\n  #type: ClusterIP #default service\n  ports:\n    - port: 80\n      targetPort: 80\n  selector:\n    app: myapp\n    type: back-end\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>LoadBalancer\u003C/strong>:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">apiVersion: v1\nkind: Service\nmetadata:\n  name: myapp-loadbalancer\nspec:\n  type: LoadBalancer\n  ports:\n    - port: 80\n      targetPort: 80\n  selector:\n    app: myapp\n    type: front-end\n\u003C/code>\u003C/pre>\n\u003Ch2>Scaling\u003C/h2>\n\u003Cp>Scaling applications in Kubernetes is straightforward. You can either edit the ReplicaSet YAML and apply the changes or use kubectl commands to scale directly.\u003C/p>\n\u003Cp>\u003Cstrong>Scaling Commands\u003C/strong>:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ccode>kubectl scale --replicas=6 -f replicaset.yml\u003C/code>: Scale using the YAML file.\u003C/li>\n\u003Cli>\u003Ccode>kubectl scale --replicas=6 replicaset myapp-replicaset\u003C/code>: Scale directly with kubectl.\u003C/li>\n\u003Cli>\u003Ccode>kubectl scale replicaset new-replica-set --replicas=5\u003C/code>: Another scaling example.\u003C/li>\n\u003C/ul>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.udemy.com/course/kubernetes-fundamentals-for-beginners/\">https://www.udemy.com/course/kubernetes-fundamentals-for-beginners/\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

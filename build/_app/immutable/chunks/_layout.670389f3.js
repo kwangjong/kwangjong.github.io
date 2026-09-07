@@ -1,0 +1,1 @@
+import{w as e}from"./index.70615b25.js";const t=e(!1),r=!0,a="always",l=Object.freeze(Object.defineProperty({__proto__:null,_isDark:t,prerender:r,trailingSlash:a},Symbol.toStringTag,{value:"Module"}));export{t as _,l as a};

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>🚀Spaceship Titanic: Feature Engineering + NN Model | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="🚀Spaceship Titanic: Feature Engineering + NN Model"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">🚀Spaceship Titanic: Feature Engineering + NN Model</h1>
+    <time class="date" datetime="2022-07-14T15:50:00.000Z" itemprop="datePublished">July 15, 2022</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog">#blog</a><a class="tag" href="/blog/?tag=datascience">#datascience</a><a class="tag" href="/blog/?tag=deeplearning">#deeplearning</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Predict which passengers are transported to an alternate dimension</p>
+<p><img src="https://i.imgur.com/voGgul0.png" alt="spaceship-t"></p>
+<h2>Introduction</h2>
+<blockquote>
+<p>Welcome to the year 2912, where your data science skills are needed to solve a cosmic mystery. We&#39;ve received a transmission from four lightyears away and things aren&#39;t looking good.</p>
+<p>The Spaceship Titanic was an interstellar passenger liner launched a month ago. With almost 13,000 passengers on board, the vessel set out on its maiden voyage transporting emigrants from our solar system to three newly habitable exoplanets orbiting nearby stars.</p>
+<p>While rounding Alpha Centauri en route to its first destination—the torrid 55 Cancri E—the unwary Spaceship Titanic collided with a spacetime anomaly hidden within a dust cloud. Sadly, it met a similar fate as its namesake from 1000 years before. Though the ship stayed intact, almost half of the passengers were transported to an alternate dimension!</p>
+<p>To help rescue crews and retrieve the lost passengers, you are challenged to predict which passengers were transported by the anomaly using records recovered from the spaceship’s damaged computer system.</p>
+<p>Help save them and change history!</p>
+</blockquote>
+<h2>Feature Engineering</h2>
+<pre><code class="language-python">#load data
+titanic_train_path = &quot;../input/spaceship-titanic/train.csv&quot;
+titanic_train_raw = pd.read_csv(titanic_train_path)
+
+print(titanic_train_raw.info())
+titanic_train_raw.head()
+</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 8693 entries, 0 to 8692
+Data columns (total 14 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   PassengerId   8693 non-null   object 
+ 1   HomePlanet    8492 non-null   object 
+ 2   CryoSleep     8476 non-null   object 
+ 3   Cabin         8494 non-null   object 
+ 4   Destination   8511 non-null   object 
+ 5   Age           8514 non-null   float64
+ 6   VIP           8490 non-null   object 
+ 7   RoomService   8512 non-null   float64
+ 8   FoodCourt     8510 non-null   float64
+ 9   ShoppingMall  8485 non-null   float64
+ 10  Spa           8510 non-null   float64
+ 11  VRDeck        8505 non-null   float64
+ 12  Name          8493 non-null   object 
+ 13  Transported   8693 non-null   bool   
+dtypes: bool(1), float64(6), object(7)
+memory usage: 891.5+ KB
+</code></pre>
+<p><img src="https://i.imgur.com/nxvukrl.png" alt="head"></p>
+<pre><code class="language-python">titanic_train_raw.isnull().sum()
+</code></pre>
+<pre><code>PassengerId       0
+HomePlanet      201
+CryoSleep       217
+Cabin           199
+Destination     182
+Age             179
+VIP             203
+RoomService     181
+FoodCourt       183
+ShoppingMall    208
+Spa             183
+VRDeck          188
+Name            200
+Transported       0
+dtype: int64
+</code></pre>
+<h3>About Each Features</h3>
+<ul>
+<li><code>PassengerId</code>: A unique Id for each passenger. Each Id takes the form gggg_pp where gggg indicates a group the passenger is travelling with and pp is their number within the group. People in a group are often family members, but not always.</li>
+<li><code>HomePlanet</code>: The planet the passenger departed from, typically their planet of permanent residence.</li>
+<li><code>CryoSleep</code>: Indicates whether the passenger elected to be put into suspended animation for the duration of the voyage. Passengers in cryosleep are confined to their cabins.</li>
+<li><code>Cabin</code>: The cabin number where the passenger is staying. Takes the form deck/num/side, where side can be either P for Port or S for Starboard.</li>
+<li><code>Destination</code>: The planet the passenger will be debarking to.</li>
+<li><code>Age</code>: The age of the passenger.</li>
+<li><code>VIP</code>: Whether the passenger has paid for special VIP service during the voyage.</li>
+<li><code>RoomService</code>, <code>FoodCourt</code>, <code>ShoppingMall</code>, <code>Spa</code>, <code>VRDeck</code>: Amount the passenger has billed at each of the Spaceship Titanic&#39;s many luxury amenities.</li>
+<li><code>Name</code>: The first and last names of the passenger.</li>
+<li><code>Transported</code>: Whether the passenger was transported to another dimension. This is the target, the column you are trying to predict.</li>
+</ul>
+<h3>Extract useful informations from features</h3>
+<pre><code class="language-python">def extract_info(df):
+    #extract groupID from PassengerID
+    df[&#39;GroupID&#39;] = df[&#39;PassengerId&#39;].str.split(&#39;_&#39;, expand=True)[0]
+
+    #split cabin into deck, num, and side
+    cabin_split = df[&#39;Cabin&#39;].str.split(&#39;/&#39;, expand=True)
+    df[&#39;CabinDeck&#39;] = cabin_split[0]
+    df[&#39;CabinNum&#39;] = cabin_split[1]
+    df[&#39;CabinSide&#39;] = cabin_split[2]
+    df.drop(&#39;Cabin&#39;, inplace=True, axis=1)
+
+    #split first and family name
+    name_split = df[&#39;Name&#39;].str.split(&#39; &#39;, expand=True)
+    df[&#39;FamilyName&#39;] = name_split[1]
+    df.drop(&#39;Name&#39;, inplace=True, axis=1)
+    
+    #calculate total amenities fee
+    amenities = [&#39;RoomService&#39;, &#39;FoodCourt&#39;, &#39;ShoppingMall&#39;, &#39;Spa&#39;, &#39;VRDeck&#39;]
+    df[&#39;TotalFee&#39;] = df[amenities].sum(axis=1)
+    
+    #fix numeric data&#39;s dtype
+    numeric = [&#39;CryoSleep&#39;,&#39;Age&#39;,&#39;VIP&#39;,&#39;RoomService&#39;,&#39;FoodCourt&#39;,&#39;ShoppingMall&#39;,&#39;Spa&#39;,&#39;VRDeck&#39;,&#39;GroupID&#39;,&#39;CabinNum&#39;,&#39;TotalFee&#39;]
+    for n in numeric:
+        df[n] = pd.to_numeric(df[n])
+    
+    return df
+</code></pre>
+<h3>Filling missing values with educated guess</h3>
+<h4>HomePlanet vs Group and Family</h4>
+<pre><code class="language-python">#search groups with different home planet and destination
+list_group = [&#39;FamilyName&#39;, &#39;GroupID&#39;]
+list_target = [&#39;HomePlanet&#39;, &#39;Destination&#39;]
+
+for group in list_group:
+    for target in list_target:
+        num_target_in_group = titanic_train.groupby([group])[target].nunique().reset_index()
+        print(&quot;# of %s with different %s: %d&quot; % (group, target, num_target_in_group[num_target_in_group[target] &gt; 1].shape[0]))
+print(&quot;\ntotal # of families: %s  total # of groups: %s&quot;%(titanic_train.nunique()[&#39;FamilyName&#39;], titanic_train.nunique()[&#39;GroupID&#39;]))
+</code></pre>
+<pre><code># of FamilyName with different HomePlanet: 0
+# of FamilyName with different Destination: 1215
+# of GroupID with different HomePlanet: 0
+# of GroupID with different Destination: 717
+
+total # of families: 2217  total # of groups: 6217
+</code></pre>
+<pre><code class="language-python">#passengers in same family and passengers in same group are from same home planet, but does not always goes to same destination
+def homeplanet_vs_group_family_fill(df):
+    list_group = [&#39;GroupID&#39;, &#39;FamilyName&#39;]
+    for group in list_group:
+        home_planet_in_group = df.dropna(subset=[group, &#39;HomePlanet&#39;]).drop_duplicates([group])[[group,&#39;HomePlanet&#39;]]
+        home_planet_dict = dict(zip(home_planet_in_group[group], home_planet_in_group[&#39;HomePlanet&#39;]))
+        df[&#39;HomePlanet&#39;] = df[&#39;HomePlanet&#39;].fillna(df[group].map(home_planet_dict))
+    
+    return df
+</code></pre>
+<h4>CryoSleep vs Amenities</h4>
+<pre><code class="language-python">#passengers in cryo sleep has no amenities expenses
+def cryo_vs_amenities_fill(df):
+    df[&#39;RoomService&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;RoomService&#39;])
+    df[&#39;FoodCourt&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;FoodCourt&#39;])
+    df[&#39;ShoppingMall&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;ShoppingMall&#39;])
+    df[&#39;Spa&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;Spa&#39;])
+    df[&#39;VRDeck&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;VRDeck&#39;])
+
+    df[&#39;CryoSleep&#39;] = np.where(df[&#39;TotalFee&#39;] &gt; 0, False, df[&#39;CryoSleep&#39;])
+    
+    return df
+</code></pre>
+<h4>Age Limit</h4>
+<pre><code class="language-python">#find age limit for vip and amenities
+under_21 = titanic_train[titanic_train[&#39;Age&#39;]&lt;21]
+
+fig, ax = plt.subplots(1, 2, figsize=(18,4))
+
+ax[0].set_title(&quot;Age vs VIP&quot;)
+sns.barplot(x=under_21.Age, y=under_21.VIP, ax=ax[0])
+
+ax[1].set_title(&quot;Age vs Total Amenities Fee&quot;)
+sns.barplot(x=under_21.Age, y=under_21.TotalFee, ax=ax[1])
+
+fig.show()
+</code></pre>
+<p><img src="https://i.imgur.com/yOPpk8y.png" alt="age-limit"></p>
+<pre><code class="language-python">def age_limit_fill(df, vip_limit=18, amenities_limit=13):
+    df[&#39;VIP&#39;] = np.where(df[&#39;Age&#39;] &lt; vip_limit, False, df[&#39;VIP&#39;])
+    
+    df[&#39;RoomService&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;RoomService&#39;])
+    df[&#39;FoodCourt&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;FoodCourt&#39;])
+    df[&#39;ShoppingMall&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;ShoppingMall&#39;])
+    df[&#39;Spa&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;Spa&#39;])
+    df[&#39;VRDeck&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;VRDeck&#39;])
+
+    df[&#39;TotalFee&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;TotalFee&#39;])
+    
+    return df
+</code></pre>
+<h3>Modes and Means</h3>
+<pre><code class="language-python">def mode_by_group_n_family_fill(df, columns=[&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):
+    for col in columns:
+        print(col)
+        mode_by_group = df.dropna(subset=[col]).groupby([&#39;GroupID&#39;, &#39;FamilyName&#39;])[col].agg(lambda x: pd.Series.mode(x)[0]).reset_index()
+        mode_dict = dict(zip(mode_by_group.set_index([&#39;GroupID&#39;, &#39;FamilyName&#39;]).index, mode_by_group[col]))
+        df[col] = df[col].fillna(df.set_index([&#39;GroupID&#39;, &#39;FamilyName&#39;]).index.map(mode_dict).to_series().reset_index(drop=True))
+
+    return df
+</code></pre>
+<p>Families in the same traveling group are likely to be traveling in the same cabin.</p>
+<pre><code class="language-python">def mode_by_group_fill(df, columns=[&#39;FamilyName&#39;,&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):
+    for col in columns:
+        print(col)
+        mode_by_group = df.dropna(subset=[col]).groupby(&#39;GroupID&#39;)[col].agg(lambda x: pd.Series.mode(x)[0]).reset_index()
+        mode_dict = dict(zip(mode_by_group[&#39;GroupID&#39;], mode_by_group[col]))
+        df[col] = df[col].fillna(df[&#39;GroupID&#39;].map(mode_dict))
+    
+    return df
+</code></pre>
+<p>Passengers in same traveling group are likely to travel in the same cabin.
+Also fill missing family names within a traveling group.</p>
+<pre><code class="language-python">def mode_fill(df, columns=[&#39;HomePlanet&#39;,&#39;CryoSleep&#39;,&#39;Destination&#39;,&#39;RoomService&#39;,&#39;FoodCourt&#39;,&#39;ShoppingMall&#39;,&#39;Spa&#39;,&#39;VRDeck&#39;,&#39;VIP&#39;,&#39;FamilyName&#39;,&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):
+    for col in columns:
+        print(col)
+        df[col] = df[col].fillna(value = df[col].mode()[0])
+    
+    return df
+</code></pre>
+<p>Fill the rest with the mode of entire dataset.</p>
+<pre><code class="language-python">def mean_fill(df, columns=[&#39;Age&#39;]):
+    for col in columns:
+        print(col)
+        df[col] = df[col].fillna(value = df[col].mean())
+    
+    return df
+</code></pre>
+<p>Fill missing ages with mean age.</p>
+<h2>More useful features</h2>
+<pre><code class="language-python">def count_group_family(df):
+
+    #count # of family members (passengers with same family name) in same traveling group
+    num_family_members = df.groupby(&#39;FamilyName&#39;)[&#39;PassengerId&#39;].count().reset_index()
+    num_family_members_dict = dict(zip(num_family_members[&#39;FamilyName&#39;], num_family_members[&#39;PassengerId&#39;]))
+    df[&#39;NumFamilyMembers&#39;] = df[&#39;FamilyName&#39;].map(num_family_members_dict)
+
+    #count # of group memebers
+    num_group_members = df.groupby(&#39;GroupID&#39;)[&#39;PassengerId&#39;].count().reset_index()
+    num_group_members_dict = dict(zip(num_group_members[&#39;GroupID&#39;], num_group_members[&#39;PassengerId&#39;]))
+    df[&#39;NumGroupMembers&#39;] = df[&#39;GroupID&#39;].map(num_group_members_dict)
+
+    return df
+</code></pre>
+<pre><code class="language-python">def age_group(df):
+    df[&#39;Age_group&#39;] = df[&#39;Age&#39;]//20
+    
+    return df
+</code></pre>
+<h2>Preprocessing</h2>
+<pre><code class="language-python">from sklearn.preprocessing import LabelEncoder
+
+#onehot_encoding
+def one_hot(df, columns):
+    for col in columns:
+        dummies = pd.get_dummies(df[col], prefix = col)
+        df = pd.concat([df, dummies], axis = 1)
+    df = df.drop(columns = columns)
+    return df
+
+# compile all into a function
+def preprocessing(train, test):
+    #train data
+    train = extract_info(train)
+    train = homeplanet_vs_group_family_fill(train)
+    train = cryo_vs_amenities_fill(train)
+    train = age_limit_fill(train)
+    train = mode_by_group_n_family_fill(train)
+    train = mode_by_group_fill(train)
+    train = mode_fill(train)
+    train = mean_fill(train)
+    trian = count_group_family(train)
+    train = age_group(train)
+    
+    #test data
+    test = extract_info(test)
+    test = homeplanet_vs_group_family_fill(test)
+    test = cryo_vs_amenities_fill(test)
+    test = age_limit_fill(test)
+    test = mode_by_group_n_family_fill(test)
+    test = mode_by_group_fill(test)
+    test = mode_fill(test)
+    test = mean_fill(test)
+    test = count_group_family(test)
+    test = age_group(test)
+    
+    remove_col = [
+        &#39;PassengerId&#39;,
+        
+    ]
+    
+    
+    one_hot_col = [
+        &#39;HomePlanet&#39;,
+        &#39;Destination&#39;,
+        &#39;CabinDeck&#39;,
+        &#39;CabinSide&#39;
+    ]
+    
+    label_encode_col = [
+        &#39;FamilyName&#39;
+    ]
+    
+    train = train.drop(columns=remove_col)
+    test = test.drop(columns=remove_col)
+    
+    train = one_hot(train, one_hot_col)
+    test = one_hot(test, one_hot_col)
+    
+    concat_data = pd.concat([train[label_encode_col], test[label_encode_col]])
+    label_encoder = LabelEncoder()
+    label_encoder.fit(concat_data[label_encode_col])
+    
+    
+    for col in label_encode_col:
+        train[col] = label_encoder.transform(train[col])
+        test[col] = label_encoder.transform(test[col])
+    
+    return train, test
+</code></pre>
+<pre><code class="language-python">titanic_train_path = &quot;../input/spaceship-titanic/train.csv&quot;
+titanic_test_path = &quot;../input/spaceship-titanic/test.csv&quot;
+titanic_train_raw = pd.read_csv(titanic_train_path)
+titanic_test_raw = pd.read_csv(titanic_test_path)
+
+titanic_train_y = titanic_train_raw.Transported
+titanic_train_X = titanic_train_raw.drop(columns=&quot;Transported&quot;)
+titanic_train_X, titanic_test_X = preprocessing(titanic_train_X, titanic_test_raw)
+titanic_train_X.info()
+</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 8693 entries, 0 to 8692
+Data columns (total 31 columns):
+ #   Column                     Non-Null Count  Dtype  
+---  ------                     --------------  -----  
+ 0   CryoSleep                  8693 non-null   float64
+ 1   Age                        8693 non-null   float64
+ 2   VIP                        8693 non-null   float64
+ 3   RoomService                8693 non-null   float64
+ 4   FoodCourt                  8693 non-null   float64
+ 5   ShoppingMall               8693 non-null   float64
+ 6   Spa                        8693 non-null   float64
+ 7   VRDeck                     8693 non-null   float64
+ 8   GroupID                    8693 non-null   int64  
+ 9   CabinNum                   8693 non-null   float64
+ 10  FamilyName                 8693 non-null   int64  
+ 11  TotalFee                   8693 non-null   float64
+ 12  NumFamilyMembers           8693 non-null   int64  
+ 13  NumGroupMembers            8693 non-null   int64  
+ 14  Age_group                  8693 non-null   float64
+ 15  HomePlanet_Earth           8693 non-null   uint8  
+ 16  HomePlanet_Europa          8693 non-null   uint8  
+ 17  HomePlanet_Mars            8693 non-null   uint8  
+ 18  Destination_55 Cancri e    8693 non-null   uint8  
+ 19  Destination_PSO J318.5-22  8693 non-null   uint8  
+ 20  Destination_TRAPPIST-1e    8693 non-null   uint8  
+ 21  CabinDeck_A                8693 non-null   uint8  
+ 22  CabinDeck_B                8693 non-null   uint8  
+ 23  CabinDeck_C                8693 non-null   uint8  
+ 24  CabinDeck_D                8693 non-null   uint8  
+ 25  CabinDeck_E                8693 non-null   uint8  
+ 26  CabinDeck_F                8693 non-null   uint8  
+ 27  CabinDeck_G                8693 non-null   uint8  
+ 28  CabinDeck_T                8693 non-null   uint8  
+ 29  CabinSide_P                8693 non-null   uint8  
+ 30  CabinSide_S                8693 non-null   uint8  
+dtypes: float64(11), int64(4), uint8(16)
+memory usage: 1.1 MB
+</code></pre>
+<h2>Build Model</h2>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+from tensorflow import keras
+from tensorflow.keras import layers 
+</code></pre>
+<pre><code>X_train, X_valid, y_train, y_valid = train_test_split(titanic_train_X.copy(), titanic_train_y.copy())
+</code></pre>
+<pre><code>model = keras.Sequential([
+    layers.BatchNormalization(input_shape=[31]),
+    layers.Dropout(rate=0.2),
+    layers.Dense(units=1024, activation=&#39;swish&#39;),
+    layers.BatchNormalization(),
+    layers.Dropout(rate=0.2),
+    layers.Dense(units=256, activation=&#39;swish&#39;),
+    layers.BatchNormalization(),
+    layers.Dropout(rate=0.2),
+    layers.Dense(units=128, activation=&#39;swish&#39;),
+    layers.BatchNormalization(),
+    layers.Dense(units=1,activation=&#39;sigmoid&#39;),
+])
+
+model.compile(
+    optimizer=&#39;adam&#39;,
+    loss=&#39;binary_crossentropy&#39;,
+    metrics=[&#39;binary_accuracy&#39;],
+)
+</code></pre>
+<h2>Training</h2>
+<pre><code>early_stopping = keras.callbacks.EarlyStopping(
+    patience=10,
+    min_delta=0.01,
+    restore_best_weights=True,
+)
+
+history = model.fit(
+    X_train, y_train,
+    validation_data=(X_valid, y_valid),
+    batch_size=256,
+    epochs=200,
+    callbacks=[early_stopping],
+)
+
+history_df = pd.DataFrame(history.history)
+history_df.loc[:, [&#39;loss&#39;, &#39;val_loss&#39;]].plot()
+history_df.loc[:, [&#39;binary_accuracy&#39;,&#39;val_binary_accuracy&#39;]].plot()
+</code></pre>
+<p><img src="https://i.imgur.com/BmHMvOf.png" alt="training_history"></p>
+<pre><code class="language-python">#lets fit train data too to improve accuracy
+model.fit(
+    titanic_train_X, titanic_train_y,
+    batch_size=512,
+    epochs=35,
+)
+</code></pre>
+<h2>Make Prediction</h2>
+<pre><code class="language-python">test_y = model.predict(titanic_test_X)
+</code></pre>
+<pre><code class="language-python">submission = pd.DataFrame(titanic_test_raw.PassengerId)
+submission[&#39;Transported&#39;] = np.where(test_y &gt; 0.5, True, False)
+submission.to_csv(&#39;submission_04.csv&#39;, index = False)
+</code></pre>
+<h2>My Score</h2>
+<p><img src="https://i.imgur.com/FGiSkO9.png" alt="my_score"></p>
+<p>Links</p>
+<ul>
+<li><a href="https://www.kaggle.com/competitions/spaceship-titanic">Link to the competition</a></li>
+<li><a href="https://www.kaggle.com/code/kwangjongchoi/spaceship-titanic-feature-eng-nn-model/notebook">Link to my notebook</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/07-14-🚀Spaceship-Titanic:-Feature-Engineering-+-NN-Model",title:"🚀Spaceship Titanic: Feature Engineering + NN Model",date:"2022-07-14T15:50:00.000Z",tags:["blog","datascience","deeplearning"],visibility:"public",html:"\u003Cp>Predict which passengers are transported to an alternate dimension\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/voGgul0.png\" alt=\"spaceship-t\">\u003C/p>\n\u003Ch2>Introduction\u003C/h2>\n\u003Cblockquote>\n\u003Cp>Welcome to the year 2912, where your data science skills are needed to solve a cosmic mystery. We&#39;ve received a transmission from four lightyears away and things aren&#39;t looking good.\u003C/p>\n\u003Cp>The Spaceship Titanic was an interstellar passenger liner launched a month ago. With almost 13,000 passengers on board, the vessel set out on its maiden voyage transporting emigrants from our solar system to three newly habitable exoplanets orbiting nearby stars.\u003C/p>\n\u003Cp>While rounding Alpha Centauri en route to its first destination—the torrid 55 Cancri E—the unwary Spaceship Titanic collided with a spacetime anomaly hidden within a dust cloud. Sadly, it met a similar fate as its namesake from 1000 years before. Though the ship stayed intact, almost half of the passengers were transported to an alternate dimension!\u003C/p>\n\u003Cp>To help rescue crews and retrieve the lost passengers, you are challenged to predict which passengers were transported by the anomaly using records recovered from the spaceship’s damaged computer system.\u003C/p>\n\u003Cp>Help save them and change history!\u003C/p>\n\u003C/blockquote>\n\u003Ch2>Feature Engineering\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">#load data\ntitanic_train_path = &quot;../input/spaceship-titanic/train.csv&quot;\ntitanic_train_raw = pd.read_csv(titanic_train_path)\n\nprint(titanic_train_raw.info())\ntitanic_train_raw.head()\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 8693 entries, 0 to 8692\nData columns (total 14 columns):\n #   Column        Non-Null Count  Dtype  \n---  ------        --------------  -----  \n 0   PassengerId   8693 non-null   object \n 1   HomePlanet    8492 non-null   object \n 2   CryoSleep     8476 non-null   object \n 3   Cabin         8494 non-null   object \n 4   Destination   8511 non-null   object \n 5   Age           8514 non-null   float64\n 6   VIP           8490 non-null   object \n 7   RoomService   8512 non-null   float64\n 8   FoodCourt     8510 non-null   float64\n 9   ShoppingMall  8485 non-null   float64\n 10  Spa           8510 non-null   float64\n 11  VRDeck        8505 non-null   float64\n 12  Name          8493 non-null   object \n 13  Transported   8693 non-null   bool   \ndtypes: bool(1), float64(6), object(7)\nmemory usage: 891.5+ KB\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/nxvukrl.png\" alt=\"head\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">titanic_train_raw.isnull().sum()\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>PassengerId       0\nHomePlanet      201\nCryoSleep       217\nCabin           199\nDestination     182\nAge             179\nVIP             203\nRoomService     181\nFoodCourt       183\nShoppingMall    208\nSpa             183\nVRDeck          188\nName            200\nTransported       0\ndtype: int64\n\u003C/code>\u003C/pre>\n\u003Ch3>About Each Features\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Ccode>PassengerId\u003C/code>: A unique Id for each passenger. Each Id takes the form gggg_pp where gggg indicates a group the passenger is travelling with and pp is their number within the group. People in a group are often family members, but not always.\u003C/li>\n\u003Cli>\u003Ccode>HomePlanet\u003C/code>: The planet the passenger departed from, typically their planet of permanent residence.\u003C/li>\n\u003Cli>\u003Ccode>CryoSleep\u003C/code>: Indicates whether the passenger elected to be put into suspended animation for the duration of the voyage. Passengers in cryosleep are confined to their cabins.\u003C/li>\n\u003Cli>\u003Ccode>Cabin\u003C/code>: The cabin number where the passenger is staying. Takes the form deck/num/side, where side can be either P for Port or S for Starboard.\u003C/li>\n\u003Cli>\u003Ccode>Destination\u003C/code>: The planet the passenger will be debarking to.\u003C/li>\n\u003Cli>\u003Ccode>Age\u003C/code>: The age of the passenger.\u003C/li>\n\u003Cli>\u003Ccode>VIP\u003C/code>: Whether the passenger has paid for special VIP service during the voyage.\u003C/li>\n\u003Cli>\u003Ccode>RoomService\u003C/code>, \u003Ccode>FoodCourt\u003C/code>, \u003Ccode>ShoppingMall\u003C/code>, \u003Ccode>Spa\u003C/code>, \u003Ccode>VRDeck\u003C/code>: Amount the passenger has billed at each of the Spaceship Titanic&#39;s many luxury amenities.\u003C/li>\n\u003Cli>\u003Ccode>Name\u003C/code>: The first and last names of the passenger.\u003C/li>\n\u003Cli>\u003Ccode>Transported\u003C/code>: Whether the passenger was transported to another dimension. This is the target, the column you are trying to predict.\u003C/li>\n\u003C/ul>\n\u003Ch3>Extract useful informations from features\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">def extract_info(df):\n    #extract groupID from PassengerID\n    df[&#39;GroupID&#39;] = df[&#39;PassengerId&#39;].str.split(&#39;_&#39;, expand=True)[0]\n\n    #split cabin into deck, num, and side\n    cabin_split = df[&#39;Cabin&#39;].str.split(&#39;/&#39;, expand=True)\n    df[&#39;CabinDeck&#39;] = cabin_split[0]\n    df[&#39;CabinNum&#39;] = cabin_split[1]\n    df[&#39;CabinSide&#39;] = cabin_split[2]\n    df.drop(&#39;Cabin&#39;, inplace=True, axis=1)\n\n    #split first and family name\n    name_split = df[&#39;Name&#39;].str.split(&#39; &#39;, expand=True)\n    df[&#39;FamilyName&#39;] = name_split[1]\n    df.drop(&#39;Name&#39;, inplace=True, axis=1)\n    \n    #calculate total amenities fee\n    amenities = [&#39;RoomService&#39;, &#39;FoodCourt&#39;, &#39;ShoppingMall&#39;, &#39;Spa&#39;, &#39;VRDeck&#39;]\n    df[&#39;TotalFee&#39;] = df[amenities].sum(axis=1)\n    \n    #fix numeric data&#39;s dtype\n    numeric = [&#39;CryoSleep&#39;,&#39;Age&#39;,&#39;VIP&#39;,&#39;RoomService&#39;,&#39;FoodCourt&#39;,&#39;ShoppingMall&#39;,&#39;Spa&#39;,&#39;VRDeck&#39;,&#39;GroupID&#39;,&#39;CabinNum&#39;,&#39;TotalFee&#39;]\n    for n in numeric:\n        df[n] = pd.to_numeric(df[n])\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Ch3>Filling missing values with educated guess\u003C/h3>\n\u003Ch4>HomePlanet vs Group and Family\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">#search groups with different home planet and destination\nlist_group = [&#39;FamilyName&#39;, &#39;GroupID&#39;]\nlist_target = [&#39;HomePlanet&#39;, &#39;Destination&#39;]\n\nfor group in list_group:\n    for target in list_target:\n        num_target_in_group = titanic_train.groupby([group])[target].nunique().reset_index()\n        print(&quot;# of %s with different %s: %d&quot; % (group, target, num_target_in_group[num_target_in_group[target] &gt; 1].shape[0]))\nprint(&quot;\\ntotal # of families: %s  total # of groups: %s&quot;%(titanic_train.nunique()[&#39;FamilyName&#39;], titanic_train.nunique()[&#39;GroupID&#39;]))\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode># of FamilyName with different HomePlanet: 0\n# of FamilyName with different Destination: 1215\n# of GroupID with different HomePlanet: 0\n# of GroupID with different Destination: 717\n\ntotal # of families: 2217  total # of groups: 6217\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode class=\"language-python\">#passengers in same family and passengers in same group are from same home planet, but does not always goes to same destination\ndef homeplanet_vs_group_family_fill(df):\n    list_group = [&#39;GroupID&#39;, &#39;FamilyName&#39;]\n    for group in list_group:\n        home_planet_in_group = df.dropna(subset=[group, &#39;HomePlanet&#39;]).drop_duplicates([group])[[group,&#39;HomePlanet&#39;]]\n        home_planet_dict = dict(zip(home_planet_in_group[group], home_planet_in_group[&#39;HomePlanet&#39;]))\n        df[&#39;HomePlanet&#39;] = df[&#39;HomePlanet&#39;].fillna(df[group].map(home_planet_dict))\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Ch4>CryoSleep vs Amenities\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">#passengers in cryo sleep has no amenities expenses\ndef cryo_vs_amenities_fill(df):\n    df[&#39;RoomService&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;RoomService&#39;])\n    df[&#39;FoodCourt&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;FoodCourt&#39;])\n    df[&#39;ShoppingMall&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;ShoppingMall&#39;])\n    df[&#39;Spa&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;Spa&#39;])\n    df[&#39;VRDeck&#39;] = np.where(df[&#39;CryoSleep&#39;] == True, 0, df[&#39;VRDeck&#39;])\n\n    df[&#39;CryoSleep&#39;] = np.where(df[&#39;TotalFee&#39;] &gt; 0, False, df[&#39;CryoSleep&#39;])\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Ch4>Age Limit\u003C/h4>\n\u003Cpre>\u003Ccode class=\"language-python\">#find age limit for vip and amenities\nunder_21 = titanic_train[titanic_train[&#39;Age&#39;]&lt;21]\n\nfig, ax = plt.subplots(1, 2, figsize=(18,4))\n\nax[0].set_title(&quot;Age vs VIP&quot;)\nsns.barplot(x=under_21.Age, y=under_21.VIP, ax=ax[0])\n\nax[1].set_title(&quot;Age vs Total Amenities Fee&quot;)\nsns.barplot(x=under_21.Age, y=under_21.TotalFee, ax=ax[1])\n\nfig.show()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/yOPpk8y.png\" alt=\"age-limit\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">def age_limit_fill(df, vip_limit=18, amenities_limit=13):\n    df[&#39;VIP&#39;] = np.where(df[&#39;Age&#39;] &lt; vip_limit, False, df[&#39;VIP&#39;])\n    \n    df[&#39;RoomService&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;RoomService&#39;])\n    df[&#39;FoodCourt&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;FoodCourt&#39;])\n    df[&#39;ShoppingMall&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;ShoppingMall&#39;])\n    df[&#39;Spa&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;Spa&#39;])\n    df[&#39;VRDeck&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;VRDeck&#39;])\n\n    df[&#39;TotalFee&#39;] = np.where(df[&#39;Age&#39;] &lt; amenities_limit, 0, df[&#39;TotalFee&#39;])\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Ch3>Modes and Means\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">def mode_by_group_n_family_fill(df, columns=[&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):\n    for col in columns:\n        print(col)\n        mode_by_group = df.dropna(subset=[col]).groupby([&#39;GroupID&#39;, &#39;FamilyName&#39;])[col].agg(lambda x: pd.Series.mode(x)[0]).reset_index()\n        mode_dict = dict(zip(mode_by_group.set_index([&#39;GroupID&#39;, &#39;FamilyName&#39;]).index, mode_by_group[col]))\n        df[col] = df[col].fillna(df.set_index([&#39;GroupID&#39;, &#39;FamilyName&#39;]).index.map(mode_dict).to_series().reset_index(drop=True))\n\n    return df\n\u003C/code>\u003C/pre>\n\u003Cp>Families in the same traveling group are likely to be traveling in the same cabin.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">def mode_by_group_fill(df, columns=[&#39;FamilyName&#39;,&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):\n    for col in columns:\n        print(col)\n        mode_by_group = df.dropna(subset=[col]).groupby(&#39;GroupID&#39;)[col].agg(lambda x: pd.Series.mode(x)[0]).reset_index()\n        mode_dict = dict(zip(mode_by_group[&#39;GroupID&#39;], mode_by_group[col]))\n        df[col] = df[col].fillna(df[&#39;GroupID&#39;].map(mode_dict))\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Cp>Passengers in same traveling group are likely to travel in the same cabin.\nAlso fill missing family names within a traveling group.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">def mode_fill(df, columns=[&#39;HomePlanet&#39;,&#39;CryoSleep&#39;,&#39;Destination&#39;,&#39;RoomService&#39;,&#39;FoodCourt&#39;,&#39;ShoppingMall&#39;,&#39;Spa&#39;,&#39;VRDeck&#39;,&#39;VIP&#39;,&#39;FamilyName&#39;,&#39;CabinDeck&#39;,&#39;CabinNum&#39;,&#39;CabinSide&#39;]):\n    for col in columns:\n        print(col)\n        df[col] = df[col].fillna(value = df[col].mode()[0])\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Cp>Fill the rest with the mode of entire dataset.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">def mean_fill(df, columns=[&#39;Age&#39;]):\n    for col in columns:\n        print(col)\n        df[col] = df[col].fillna(value = df[col].mean())\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Cp>Fill missing ages with mean age.\u003C/p>\n\u003Ch2>More useful features\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">def count_group_family(df):\n\n    #count # of family members (passengers with same family name) in same traveling group\n    num_family_members = df.groupby(&#39;FamilyName&#39;)[&#39;PassengerId&#39;].count().reset_index()\n    num_family_members_dict = dict(zip(num_family_members[&#39;FamilyName&#39;], num_family_members[&#39;PassengerId&#39;]))\n    df[&#39;NumFamilyMembers&#39;] = df[&#39;FamilyName&#39;].map(num_family_members_dict)\n\n    #count # of group memebers\n    num_group_members = df.groupby(&#39;GroupID&#39;)[&#39;PassengerId&#39;].count().reset_index()\n    num_group_members_dict = dict(zip(num_group_members[&#39;GroupID&#39;], num_group_members[&#39;PassengerId&#39;]))\n    df[&#39;NumGroupMembers&#39;] = df[&#39;GroupID&#39;].map(num_group_members_dict)\n\n    return df\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode class=\"language-python\">def age_group(df):\n    df[&#39;Age_group&#39;] = df[&#39;Age&#39;]//20\n    \n    return df\n\u003C/code>\u003C/pre>\n\u003Ch2>Preprocessing\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.preprocessing import LabelEncoder\n\n#onehot_encoding\ndef one_hot(df, columns):\n    for col in columns:\n        dummies = pd.get_dummies(df[col], prefix = col)\n        df = pd.concat([df, dummies], axis = 1)\n    df = df.drop(columns = columns)\n    return df\n\n# compile all into a function\ndef preprocessing(train, test):\n    #train data\n    train = extract_info(train)\n    train = homeplanet_vs_group_family_fill(train)\n    train = cryo_vs_amenities_fill(train)\n    train = age_limit_fill(train)\n    train = mode_by_group_n_family_fill(train)\n    train = mode_by_group_fill(train)\n    train = mode_fill(train)\n    train = mean_fill(train)\n    trian = count_group_family(train)\n    train = age_group(train)\n    \n    #test data\n    test = extract_info(test)\n    test = homeplanet_vs_group_family_fill(test)\n    test = cryo_vs_amenities_fill(test)\n    test = age_limit_fill(test)\n    test = mode_by_group_n_family_fill(test)\n    test = mode_by_group_fill(test)\n    test = mode_fill(test)\n    test = mean_fill(test)\n    test = count_group_family(test)\n    test = age_group(test)\n    \n    remove_col = [\n        &#39;PassengerId&#39;,\n        \n    ]\n    \n    \n    one_hot_col = [\n        &#39;HomePlanet&#39;,\n        &#39;Destination&#39;,\n        &#39;CabinDeck&#39;,\n        &#39;CabinSide&#39;\n    ]\n    \n    label_encode_col = [\n        &#39;FamilyName&#39;\n    ]\n    \n    train = train.drop(columns=remove_col)\n    test = test.drop(columns=remove_col)\n    \n    train = one_hot(train, one_hot_col)\n    test = one_hot(test, one_hot_col)\n    \n    concat_data = pd.concat([train[label_encode_col], test[label_encode_col]])\n    label_encoder = LabelEncoder()\n    label_encoder.fit(concat_data[label_encode_col])\n    \n    \n    for col in label_encode_col:\n        train[col] = label_encoder.transform(train[col])\n        test[col] = label_encoder.transform(test[col])\n    \n    return train, test\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode class=\"language-python\">titanic_train_path = &quot;../input/spaceship-titanic/train.csv&quot;\ntitanic_test_path = &quot;../input/spaceship-titanic/test.csv&quot;\ntitanic_train_raw = pd.read_csv(titanic_train_path)\ntitanic_test_raw = pd.read_csv(titanic_test_path)\n\ntitanic_train_y = titanic_train_raw.Transported\ntitanic_train_X = titanic_train_raw.drop(columns=&quot;Transported&quot;)\ntitanic_train_X, titanic_test_X = preprocessing(titanic_train_X, titanic_test_raw)\ntitanic_train_X.info()\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 8693 entries, 0 to 8692\nData columns (total 31 columns):\n #   Column                     Non-Null Count  Dtype  \n---  ------                     --------------  -----  \n 0   CryoSleep                  8693 non-null   float64\n 1   Age                        8693 non-null   float64\n 2   VIP                        8693 non-null   float64\n 3   RoomService                8693 non-null   float64\n 4   FoodCourt                  8693 non-null   float64\n 5   ShoppingMall               8693 non-null   float64\n 6   Spa                        8693 non-null   float64\n 7   VRDeck                     8693 non-null   float64\n 8   GroupID                    8693 non-null   int64  \n 9   CabinNum                   8693 non-null   float64\n 10  FamilyName                 8693 non-null   int64  \n 11  TotalFee                   8693 non-null   float64\n 12  NumFamilyMembers           8693 non-null   int64  \n 13  NumGroupMembers            8693 non-null   int64  \n 14  Age_group                  8693 non-null   float64\n 15  HomePlanet_Earth           8693 non-null   uint8  \n 16  HomePlanet_Europa          8693 non-null   uint8  \n 17  HomePlanet_Mars            8693 non-null   uint8  \n 18  Destination_55 Cancri e    8693 non-null   uint8  \n 19  Destination_PSO J318.5-22  8693 non-null   uint8  \n 20  Destination_TRAPPIST-1e    8693 non-null   uint8  \n 21  CabinDeck_A                8693 non-null   uint8  \n 22  CabinDeck_B                8693 non-null   uint8  \n 23  CabinDeck_C                8693 non-null   uint8  \n 24  CabinDeck_D                8693 non-null   uint8  \n 25  CabinDeck_E                8693 non-null   uint8  \n 26  CabinDeck_F                8693 non-null   uint8  \n 27  CabinDeck_G                8693 non-null   uint8  \n 28  CabinDeck_T                8693 non-null   uint8  \n 29  CabinSide_P                8693 non-null   uint8  \n 30  CabinSide_S                8693 non-null   uint8  \ndtypes: float64(11), int64(4), uint8(16)\nmemory usage: 1.1 MB\n\u003C/code>\u003C/pre>\n\u003Ch2>Build Model\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.model_selection import train_test_split\nfrom tensorflow import keras\nfrom tensorflow.keras import layers \n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>X_train, X_valid, y_train, y_valid = train_test_split(titanic_train_X.copy(), titanic_train_y.copy())\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>model = keras.Sequential([\n    layers.BatchNormalization(input_shape=[31]),\n    layers.Dropout(rate=0.2),\n    layers.Dense(units=1024, activation=&#39;swish&#39;),\n    layers.BatchNormalization(),\n    layers.Dropout(rate=0.2),\n    layers.Dense(units=256, activation=&#39;swish&#39;),\n    layers.BatchNormalization(),\n    layers.Dropout(rate=0.2),\n    layers.Dense(units=128, activation=&#39;swish&#39;),\n    layers.BatchNormalization(),\n    layers.Dense(units=1,activation=&#39;sigmoid&#39;),\n])\n\nmodel.compile(\n    optimizer=&#39;adam&#39;,\n    loss=&#39;binary_crossentropy&#39;,\n    metrics=[&#39;binary_accuracy&#39;],\n)\n\u003C/code>\u003C/pre>\n\u003Ch2>Training\u003C/h2>\n\u003Cpre>\u003Ccode>early_stopping = keras.callbacks.EarlyStopping(\n    patience=10,\n    min_delta=0.01,\n    restore_best_weights=True,\n)\n\nhistory = model.fit(\n    X_train, y_train,\n    validation_data=(X_valid, y_valid),\n    batch_size=256,\n    epochs=200,\n    callbacks=[early_stopping],\n)\n\nhistory_df = pd.DataFrame(history.history)\nhistory_df.loc[:, [&#39;loss&#39;, &#39;val_loss&#39;]].plot()\nhistory_df.loc[:, [&#39;binary_accuracy&#39;,&#39;val_binary_accuracy&#39;]].plot()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/BmHMvOf.png\" alt=\"training_history\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">#lets fit train data too to improve accuracy\nmodel.fit(\n    titanic_train_X, titanic_train_y,\n    batch_size=512,\n    epochs=35,\n)\n\u003C/code>\u003C/pre>\n\u003Ch2>Make Prediction\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">test_y = model.predict(titanic_test_X)\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode class=\"language-python\">submission = pd.DataFrame(titanic_test_raw.PassengerId)\nsubmission[&#39;Transported&#39;] = np.where(test_y &gt; 0.5, True, False)\nsubmission.to_csv(&#39;submission_04.csv&#39;, index = False)\n\u003C/code>\u003C/pre>\n\u003Ch2>My Score\u003C/h2>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/FGiSkO9.png\" alt=\"my_score\">\u003C/p>\n\u003Cp>Links\u003C/p>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/competitions/spaceship-titanic\">Link to the competition\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/code/kwangjongchoi/spaceship-titanic-feature-eng-nn-model/notebook\">Link to my notebook\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

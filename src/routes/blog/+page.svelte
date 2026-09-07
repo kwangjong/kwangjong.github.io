@@ -36,13 +36,13 @@
 		if (tag) params.set('tag', tag);
 		if (pageNumber > 1) params.set('page', String(pageNumber));
 
-		const query = params.toString();
-		return `/blog${query ? `?${query}` : ''}`;
+        const query = params.toString();
+        return `/blog/${query ? `?${query}` : ''}`;
 	}
 </script>
 
 <div class="blog-menu">
-    <a class="blog" href="/blog">Blog</a>
+    <a class="blog" href="/blog/">Blog</a>
     <a class="tags" href="/tags">Tags</a>
 </div>
 

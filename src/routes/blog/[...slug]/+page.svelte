@@ -27,7 +27,7 @@
     <time class="date" datetime={post.date} itemprop="datePublished">{formatPostDate(post.date)}</time>
     <div class="tags">
         {#each post.tags as tag}
-            <a class="tag" href={`/blog?tag=${encodeURIComponent(tag)}`}>#{tag}</a>
+            <a class="tag" href={`/blog/?tag=${encodeURIComponent(tag)}`}>#{tag}</a>
         {/each}
     </div>
 </div>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.64aaef93.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.12e14844.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.914f13c2.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.505873cb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Data Science Review: Data Visualization | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Data Science Review: Data Visualization"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Data Science Review: Data Visualization</h1>
+    <time class="date" datetime="2022-03-31T07:35:00.000Z" itemprop="datePublished">March 31, 2022</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog">#blog</a><a class="tag" href="/blog/?tag=datascience">#datascience</a><a class="tag" href="/blog/?tag=datavisualization">#datavisualization</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>I decided to review my data science knowledge. Before I get into the dirty part, Let&#39;s start with a very simple course: Data Visualization. I took an brief overview on Data Visualization using Kaggle.</p>
+<br/><p><img src="https://i.imgur.com/wNHfDZA.png" alt="data-vis"></p>
+<h1>What is Seaborn?</h1>
+<p>My only previous data visualization experiences were plotting training model accuracy and losses using using <strong>matplotlib.pyplot</strong> and <strong>imshow()</strong> to view image data. However, when dealing with non-image data, various statistical graphs may comes in handy. </p>
+<p><strong>Seaborn</strong> is a powerful data visualization library based on <strong>matplotlib</strong> and integrates closely with <strong>pandas</strong>. Being able to present data in more intuitive way is crutial in data analyzation process. <strong>Seaborn</strong> is a tool that helps to achieve such pruposes.</p>
+<h2>Setup</h2>
+<pre><code class="language-python"># Setup
+import pandas as pd
+pd.plotting.register_matplotlib_converters()
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+print(&quot;Setup Complete&quot;)
+</code></pre>
+<h2>Read Data</h2>
+<pre><code class="language-python"># read from csv
+my_filepath = &quot;input/example.csv&quot;
+my_data = pd.read_csv(my_filepath, index_col=&quot;Id&quot;)
+#add parse_dates=True if dates are used as row label.
+my_data = pd.read_csv(my_filepath, index_col=&quot;Dates&quot;, parse_dates=True)
+
+# print the first 5 rows of the data
+my_data.head()
+# print the last 5 rows of the data
+my_data.tail()
+</code></pre>
+<h2>Trends</h2>
+<pre><code class="language-python"># line plot
+# show trends over a periods of time
+sns.lineplot(data=my_data)
+</code></pre>
+<h2>Relationship</h2>
+<pre><code class="language-python"># barplot
+# comparing quantities corresponding to different groups
+sns.barplot(x=my_data.index, y=my_data[&#39;group1&#39;])
+
+# heatmap
+# color-coded patterns in tables of numbers
+sns.heatmap(data=my_data, annot=True)
+
+# scatterplot
+# relationshp between two continuous variables
+sns.scatterplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;])
+
+# scatterplot w/ regression line
+sns.regplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;])
+
+# scatterplot w/ color
+# add third categorial variable to the scatterplot with color
+sns.scatterplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;], hue=my_data[&#39;category1&#39;])
+
+# scatterplot w/ multiple regression line
+# draw multiple regression line on scatter plot with color-coded variables
+sns.lmplot(x=&quot;var1&quot;, y=&quot;var2&quot;, hue=&quot;category1&quot;, data=my_data)
+
+# categorical scatter plot
+# show the relationship between a continuous variable and categorical variable
+sns.swarmplot(x=my_data[&#39;category1&#39;], y=my_data[&#39;var1&#39;])
+</code></pre>
+<h2>Distribution</h2>
+<pre><code class="language-python"># histogram
+# show distribution of a single numerical value
+sns.distplot(a=my_data[&#39;var1&#39;], kde=False)
+
+# kde
+# show an estimated, smooth distribution of a single numerical variable
+sns.kdeplot(data=my_data[&#39;var1&#39;], shade=True)
+
+# 2d kde
+# kde plot with two numerical variables
+sns.jointplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;], kind=&quot;kde&quot;)
+</code></pre>
+<br/><h1>Covid-19 Dataset</h1>
+<p>Dataset published by &quot;Our World in Data&quot; developed in collaboration with The University of Oxford.
+The dataset involves vaccinations, confirmed cases &amp; deaths, and other variables of interests collected from 238 countries.</p>
+<h4 style="margin-bottom: 0;">Links:</h4><p><a href="https://www.kaggle.com/datasets/caesarmario/our-world-in-data-covid19-dataset">Kaggle Dataset</a><br/>
+<a href="https://github.com/owid/covid-19-data/tree/master/public/data">Our World In Data Github</a><br/>
+<a href="https://ourworldindata.org/covid-vaccinations">Our World In Data Website</a></p>
+<h2>Trend in daily confirmed COVID-19 cases in Korea, 2022</h2>
+<p>First, let&#39;s look at the recent trends in Korea.</p>
+<pre><code class="language-python">#extract KOR data
+covid_KOR_data = covid_data[covid_data[&#39;iso_code&#39;] == &#39;KOR&#39;]
+
+# line plot
+sns.set_theme() #run only once
+
+plt.figure(figsize=(14,7))
+
+ax = sns.lineplot(data=covid_KOR_data[&#39;new_cases&#39;][&#39;2022-01-01&#39;:])
+
+ax.set(xlabel=&quot; &quot;, ylabel=&quot;Number of new cases&quot;)
+ax.set_title(&quot;Daily confirmed COVID-19 cases in Korea, 2022&quot;, fontsize=15, pad=15)
+plt.show()
+</code></pre>
+<p><img src="https://i.imgur.com/lNMI73z.png" alt="covid-korea"></p>
+<p>The number of new confirmed cases rapidly increases and climaxes passing Mar 15th and falls afterward.</p>
+<h2>Trend in cumulative COVID-19 cases and deaths per million by continenent</h2>
+<p>Let&#39;s compare by continent. First, I grouped the dataset by continent and calculated the mean.</p>
+<pre><code class="language-python"># calculate mean by continent
+index = [&#39;continent&#39;,
+         &#39;total_cases_per_million&#39;, 
+         &#39;new_cases_per_million&#39;,
+         &#39;total_deaths_per_million&#39;, 
+         &#39;people_vaccinated_per_hundred&#39;,
+         &#39;people_fully_vaccinated_per_hundred&#39;]
+
+covid_data_continent = covid_data[index].reset_index().groupby([&#39;date&#39;, &#39;continent&#39;], as_index=False).mean().set_index(&#39;date&#39;)
+</code></pre>
+<p>Then, I plot total cases and total deaths by continent standardized with million population.</p>
+<pre><code class="language-python"># line plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(28, 7))
+plt.subplots_adjust(hspace=0.2)
+
+ax1.set(xlabel=&quot; &quot;, ylabel=&quot;Total cases per million&quot;)
+ax1.set_title(&quot;Total COVID-19 cases per million by continent&quot;, fontsize=15, pad=15)
+sns.lineplot(x=&#39;date&#39;, y=&#39;total_cases_per_million&#39;,hue=&#39;continent&#39;, data=covid_data_continent.reset_index(), ax=ax1)
+
+ax2.set(xlabel=&quot; &quot;, ylabel=&quot;Total deaths per million&quot;)
+ax2.set_title(&quot;Total deaths per million by continent&quot;, fontsize=15, pad=15)
+sns.lineplot(x=&#39;date&#39;, y=&#39;total_deaths_per_million&#39;,hue=&#39;continent&#39;, data=covid_data_continent.reset_index(), ax=ax2)
+
+fig.show()
+</code></pre>
+<p><img src="https://i.imgur.com/mZPFoDf.png" alt="covid-continent"></p>
+<p>Using the standardized data, the highest cumulative cases were recorded in Europe, and the lowest cumulative cases were in Africa. All five continents excluding Africa escalated rapidly at the beginning of 2022.</p>
+<p>The continent with the highest cumulative deaths in South America followed by Europe, while Africa has the lowest cumulative deaths. While the number of cases rises rapidly entering 2022, the number of deaths did not show any changes in trend.</p>
+<h2>Vaccination rate and the correlation between vaccination rate and GDP per capita</h2>
+<p>I also compared vaccination rates and its correlation with GDP per capita.</p>
+<pre><code class="language-python">#bar plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(28,7))
+plt.subplots_adjust(hspace=0.2)
+
+ax1 = sns.barplot(x=covid_data_continent[&#39;continent&#39;][&#39;2022-03-27&#39;], y=covid_data_continent[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;], ax=ax1)
+ax1.set(xlabel=&quot; &quot;, ylabel=&quot;People vaccinated per hundred&quot;)
+ax1.set_title(&quot;Vaccination rate by continent, Mar 27th, 2022&quot;, fontsize=15, pad=15)
+
+# scatterplot
+sns.scatterplot(x=covid_data[&#39;gdp_per_capita&#39;][&#39;2022-03-27&#39;], y=covid_data[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;], hue=covid_data[&#39;continent&#39;][&#39;2022-03-27&#39;])
+ax = sns.regplot(x=covid_data[&#39;gdp_per_capita&#39;][&#39;2022-03-27&#39;], y=covid_data[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;],scatter=False)
+
+ax2.set(xlabel=&quot;GDP per capita&quot;, ylabel=&quot;People Vacinated per Hundred&quot;)
+ax2.set_title(&quot;Correlation between vaccination rate and GDP per capita, Mar 27th, 2022&quot;, fontsize=15, pad=15)
+
+plt.show()
+</code></pre>
+<p><img src="https://i.imgur.com/7Xo7QuA.png" alt="vaccination-rate"></p>
+<p>Oceania is showing the highest vaccination rate, while Africa has the lowest vaccination rate. Four other continents are showing similar rates around 60-70%.</p>
+<p>The scatter plot between vaccination rate and GDP per capita shows a positive slope. This means GDP per capita plays a role in the vaccination rate. However, many countries with low GDP per capita show high vaccination rates.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.kaggle.com/code/kwangjongchoi/data-visualization-practice-covid-19">Link to my notebook</a></li>
+<li><a href="https://www.kaggle.com/learn/data-visualization">Data Visualization Course on Kaggle</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_b2dwmu = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/03-31-Data-Science-Review:-Data-Visualization",title:"Data Science Review: Data Visualization",date:"2022-03-31T07:35:00.000Z",tags:["blog","datascience","datavisualization"],visibility:"public",html:"\u003Cp>I decided to review my data science knowledge. Before I get into the dirty part, Let&#39;s start with a very simple course: Data Visualization. I took an brief overview on Data Visualization using Kaggle.\u003C/p>\n\u003Cbr/>\u003Cp>\u003Cimg src=\"https://i.imgur.com/wNHfDZA.png\" alt=\"data-vis\">\u003C/p>\n\u003Ch1>What is Seaborn?\u003C/h1>\n\u003Cp>My only previous data visualization experiences were plotting training model accuracy and losses using using \u003Cstrong>matplotlib.pyplot\u003C/strong> and \u003Cstrong>imshow()\u003C/strong> to view image data. However, when dealing with non-image data, various statistical graphs may comes in handy. \u003C/p>\n\u003Cp>\u003Cstrong>Seaborn\u003C/strong> is a powerful data visualization library based on \u003Cstrong>matplotlib\u003C/strong> and integrates closely with \u003Cstrong>pandas\u003C/strong>. Being able to present data in more intuitive way is crutial in data analyzation process. \u003Cstrong>Seaborn\u003C/strong> is a tool that helps to achieve such pruposes.\u003C/p>\n\u003Ch2>Setup\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\"># Setup\nimport pandas as pd\npd.plotting.register_matplotlib_converters()\nimport matplotlib.pyplot as plt\n%matplotlib inline\nimport seaborn as sns\nprint(&quot;Setup Complete&quot;)\n\u003C/code>\u003C/pre>\n\u003Ch2>Read Data\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\"># read from csv\nmy_filepath = &quot;input/example.csv&quot;\nmy_data = pd.read_csv(my_filepath, index_col=&quot;Id&quot;)\n#add parse_dates=True if dates are used as row label.\nmy_data = pd.read_csv(my_filepath, index_col=&quot;Dates&quot;, parse_dates=True)\n\n# print the first 5 rows of the data\nmy_data.head()\n# print the last 5 rows of the data\nmy_data.tail()\n\u003C/code>\u003C/pre>\n\u003Ch2>Trends\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\"># line plot\n# show trends over a periods of time\nsns.lineplot(data=my_data)\n\u003C/code>\u003C/pre>\n\u003Ch2>Relationship\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\"># barplot\n# comparing quantities corresponding to different groups\nsns.barplot(x=my_data.index, y=my_data[&#39;group1&#39;])\n\n# heatmap\n# color-coded patterns in tables of numbers\nsns.heatmap(data=my_data, annot=True)\n\n# scatterplot\n# relationshp between two continuous variables\nsns.scatterplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;])\n\n# scatterplot w/ regression line\nsns.regplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;])\n\n# scatterplot w/ color\n# add third categorial variable to the scatterplot with color\nsns.scatterplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;], hue=my_data[&#39;category1&#39;])\n\n# scatterplot w/ multiple regression line\n# draw multiple regression line on scatter plot with color-coded variables\nsns.lmplot(x=&quot;var1&quot;, y=&quot;var2&quot;, hue=&quot;category1&quot;, data=my_data)\n\n# categorical scatter plot\n# show the relationship between a continuous variable and categorical variable\nsns.swarmplot(x=my_data[&#39;category1&#39;], y=my_data[&#39;var1&#39;])\n\u003C/code>\u003C/pre>\n\u003Ch2>Distribution\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\"># histogram\n# show distribution of a single numerical value\nsns.distplot(a=my_data[&#39;var1&#39;], kde=False)\n\n# kde\n# show an estimated, smooth distribution of a single numerical variable\nsns.kdeplot(data=my_data[&#39;var1&#39;], shade=True)\n\n# 2d kde\n# kde plot with two numerical variables\nsns.jointplot(x=my_data[&#39;var1&#39;], y=my_data[&#39;var2&#39;], kind=&quot;kde&quot;)\n\u003C/code>\u003C/pre>\n\u003Cbr/>\u003Ch1>Covid-19 Dataset\u003C/h1>\n\u003Cp>Dataset published by &quot;Our World in Data&quot; developed in collaboration with The University of Oxford.\nThe dataset involves vaccinations, confirmed cases &amp; deaths, and other variables of interests collected from 238 countries.\u003C/p>\n\u003Ch4 style=\"margin-bottom: 0;\">Links:\u003C/h4>\u003Cp>\u003Ca href=\"https://www.kaggle.com/datasets/caesarmario/our-world-in-data-covid19-dataset\">Kaggle Dataset\u003C/a>\u003Cbr/>\n\u003Ca href=\"https://github.com/owid/covid-19-data/tree/master/public/data\">Our World In Data Github\u003C/a>\u003Cbr/>\n\u003Ca href=\"https://ourworldindata.org/covid-vaccinations\">Our World In Data Website\u003C/a>\u003C/p>\n\u003Ch2>Trend in daily confirmed COVID-19 cases in Korea, 2022\u003C/h2>\n\u003Cp>First, let&#39;s look at the recent trends in Korea.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">#extract KOR data\ncovid_KOR_data = covid_data[covid_data[&#39;iso_code&#39;] == &#39;KOR&#39;]\n\n# line plot\nsns.set_theme() #run only once\n\nplt.figure(figsize=(14,7))\n\nax = sns.lineplot(data=covid_KOR_data[&#39;new_cases&#39;][&#39;2022-01-01&#39;:])\n\nax.set(xlabel=&quot; &quot;, ylabel=&quot;Number of new cases&quot;)\nax.set_title(&quot;Daily confirmed COVID-19 cases in Korea, 2022&quot;, fontsize=15, pad=15)\nplt.show()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/lNMI73z.png\" alt=\"covid-korea\">\u003C/p>\n\u003Cp>The number of new confirmed cases rapidly increases and climaxes passing Mar 15th and falls afterward.\u003C/p>\n\u003Ch2>Trend in cumulative COVID-19 cases and deaths per million by continenent\u003C/h2>\n\u003Cp>Let&#39;s compare by continent. First, I grouped the dataset by continent and calculated the mean.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># calculate mean by continent\nindex = [&#39;continent&#39;,\n         &#39;total_cases_per_million&#39;, \n         &#39;new_cases_per_million&#39;,\n         &#39;total_deaths_per_million&#39;, \n         &#39;people_vaccinated_per_hundred&#39;,\n         &#39;people_fully_vaccinated_per_hundred&#39;]\n\ncovid_data_continent = covid_data[index].reset_index().groupby([&#39;date&#39;, &#39;continent&#39;], as_index=False).mean().set_index(&#39;date&#39;)\n\u003C/code>\u003C/pre>\n\u003Cp>Then, I plot total cases and total deaths by continent standardized with million population.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># line plot\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(28, 7))\nplt.subplots_adjust(hspace=0.2)\n\nax1.set(xlabel=&quot; &quot;, ylabel=&quot;Total cases per million&quot;)\nax1.set_title(&quot;Total COVID-19 cases per million by continent&quot;, fontsize=15, pad=15)\nsns.lineplot(x=&#39;date&#39;, y=&#39;total_cases_per_million&#39;,hue=&#39;continent&#39;, data=covid_data_continent.reset_index(), ax=ax1)\n\nax2.set(xlabel=&quot; &quot;, ylabel=&quot;Total deaths per million&quot;)\nax2.set_title(&quot;Total deaths per million by continent&quot;, fontsize=15, pad=15)\nsns.lineplot(x=&#39;date&#39;, y=&#39;total_deaths_per_million&#39;,hue=&#39;continent&#39;, data=covid_data_continent.reset_index(), ax=ax2)\n\nfig.show()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/mZPFoDf.png\" alt=\"covid-continent\">\u003C/p>\n\u003Cp>Using the standardized data, the highest cumulative cases were recorded in Europe, and the lowest cumulative cases were in Africa. All five continents excluding Africa escalated rapidly at the beginning of 2022.\u003C/p>\n\u003Cp>The continent with the highest cumulative deaths in South America followed by Europe, while Africa has the lowest cumulative deaths. While the number of cases rises rapidly entering 2022, the number of deaths did not show any changes in trend.\u003C/p>\n\u003Ch2>Vaccination rate and the correlation between vaccination rate and GDP per capita\u003C/h2>\n\u003Cp>I also compared vaccination rates and its correlation with GDP per capita.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">#bar plot\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(28,7))\nplt.subplots_adjust(hspace=0.2)\n\nax1 = sns.barplot(x=covid_data_continent[&#39;continent&#39;][&#39;2022-03-27&#39;], y=covid_data_continent[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;], ax=ax1)\nax1.set(xlabel=&quot; &quot;, ylabel=&quot;People vaccinated per hundred&quot;)\nax1.set_title(&quot;Vaccination rate by continent, Mar 27th, 2022&quot;, fontsize=15, pad=15)\n\n# scatterplot\nsns.scatterplot(x=covid_data[&#39;gdp_per_capita&#39;][&#39;2022-03-27&#39;], y=covid_data[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;], hue=covid_data[&#39;continent&#39;][&#39;2022-03-27&#39;])\nax = sns.regplot(x=covid_data[&#39;gdp_per_capita&#39;][&#39;2022-03-27&#39;], y=covid_data[&#39;people_vaccinated_per_hundred&#39;][&#39;2022-03-27&#39;],scatter=False)\n\nax2.set(xlabel=&quot;GDP per capita&quot;, ylabel=&quot;People Vacinated per Hundred&quot;)\nax2.set_title(&quot;Correlation between vaccination rate and GDP per capita, Mar 27th, 2022&quot;, fontsize=15, pad=15)\n\nplt.show()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/7Xo7QuA.png\" alt=\"vaccination-rate\">\u003C/p>\n\u003Cp>Oceania is showing the highest vaccination rate, while Africa has the lowest vaccination rate. Four other continents are showing similar rates around 60-70%.\u003C/p>\n\u003Cp>The scatter plot between vaccination rate and GDP per capita shows a positive slope. This means GDP per capita plays a role in the vaccination rate. However, many countries with low GDP per capita show high vaccination rates.\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/code/kwangjongchoi/data-visualization-practice-covid-19\">Link to my notebook\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/learn/data-visualization\">Data Visualization Course on Kaggle\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.64aaef93.js"),
+						import("../../../_app/immutable/entry/app.914f13c2.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
