@@ -2,8 +2,10 @@
 Static SvelteKit blog for GitHub Pages.
 
 ## Content
-Post source files live in `src/content/posts`. The static runtime data in
-`src/lib/generated` was generated from the MongoDB BSON dump with:
+Post source files live in `src/content/posts`. Any Markdown file added there
+is rendered into the static blog automatically by `npm run build`.
+
+The original import from the MongoDB BSON dump can be rerun with:
 
 ```sh
 npm run import:mongodb

@@ -5,10 +5,13 @@
 	"scripts": {
 		"dev": "vite dev --host",
 		"import:mongodb": "node scripts/import-mongodb-posts.mjs",
+		"posts:build": "node scripts/build-posts.mjs",
+		"prebuild": "node scripts/prebuild.mjs",
 		"build": "vite build",
 		"postbuild": "npx svelte-sitemap --domain https://kwangjong.github.io/",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d build -t true",
+		"precheck": "npm run posts:build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
@@ -16,6 +19,9 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/kit": "^1.5.0",
+		"js-yaml": "^5.4.1",
+		"marked": "^18.0.11",
+		"marked-katex-extension": "^5.1.12",
 		"sass": "^1.59.3",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",

@@ -18,6 +18,7 @@
 <svelte:head>
 	<title>{post.title} | KJ's Blog</title>
 	<meta name="description" content={post.title}>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css">
 </svelte:head>
 
 <SyntaxHighlight/>

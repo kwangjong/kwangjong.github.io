@@ -1,3 +1,4 @@
+// Generated from src/content/posts by scripts/build-posts.mjs.
 export interface StaticPostSummary {
 	slug: string;
 	title: string;
@@ -298,7 +299,7 @@ export const posts = [
 	},
 	{
 		"slug": "2023-08-30-Blog-Migration-VII-:-Securing-API:-JWT-and-TLS",
-		"title": "Blog Migration VII : Securing API: JWT and TLS",
+		"title": "Blog Migration VII : Securing API: JWT and HTTPS/TLS",
 		"date": "2023-08-30T21:17:56.000Z",
 		"tags": [
 			"security",
@@ -340,6 +341,7 @@ export const posts = [
 		"title": "Dynamic Programming",
 		"date": "2023-03-29T01:36:00.000Z",
 		"tags": [
+			"cscheatsheet",
 			"algorithm"
 		],
 		"visibility": "public"
@@ -602,6 +604,7 @@ export const tags = [
 	"cicd",
 	"cloud",
 	"computervision",
+	"cscheatsheet",
 	"data-engineering",
 	"data-pipeline",
 	"datascience",
