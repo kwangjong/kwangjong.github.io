@@ -1,6 +1,10 @@
 .blog-menu {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(96, 97, 100, 0.25);
 
     a {
         color: var(--primary-color);
@@ -11,12 +15,12 @@
     }
 
     .blog {
-        font-size: 1.8em;
+        font-size: 1.6em;
         font-weight: bold;
     }
 
     .tags {
-        font-size: 1.3em;
+        font-size: 1.05em;
         font-weight: bold;
     }
 }
@@ -25,8 +29,8 @@
     display: inline-block;
     background-color: rgba(26, 129, 255, 0.1);
     color: var(--highlight-color);
-    padding: 5px 10px;
-    border-radius: 15px;
+    padding: 4px 8px;
+    border-radius: 4px;
     font-size: 0.9rem;
     font-weight: 500;
 

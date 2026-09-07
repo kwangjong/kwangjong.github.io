@@ -1,10 +1,16 @@
 .post-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(96, 97, 100, 0.25);
+
     h1, h2, h3, h4, h5, h6 {
         margin-bottom: 0;
     }
 
     .title {
         margin-top: 0;
+        font-size: 2.35rem;
+        line-height: 1.2;
     }
 
     .tags {
@@ -23,14 +29,24 @@
 }
 
 .post {
+    max-width: none;
+    margin: auto;
+    line-height: 1.8;
+
     h1, h2, h3, h4, h5, h6 {
-        margin-bottom: 0;
+        line-height: 1.3;
+        margin-top: 2em;
+        margin-bottom: 0.65em;
     }
 
     p, ul, ol, blockquote {
-        margin-top: 0.7em;
-        margin-bottom: 0.7em;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
+
+    p { margin-top: 1.2em; }
+
+    li { margin: 0.35em 0; }
     
     .date {
         color: var(--secondary-color);
@@ -41,16 +57,24 @@
     img {
 		display: block;
 		max-width: 100%;
+        height: auto;
+        margin: 1.75rem auto;
     }
 
     pre {
         font-size: 0.8em;
+        line-height: 1.4;
+        padding: 1rem;
+        overflow-x: auto;
+        border: 1px solid rgba(96, 97, 100, 0.2);
+        border-radius: 4px;
     }
 
     blockquote {
         border-left: 4px solid var(--highlight-color);
-        padding: 10px 20px;
-        margin: 10px 0;
+        padding: 0.25rem 1.25rem;
+        margin: 1.5rem 0;
+        color: var(--secondary-color);
     }
     
     blockquote p {
@@ -58,6 +82,8 @@
     }
 
     table {
+        display: block;
+        overflow-x: auto;
         width: 100%;
         border-collapse: collapse;
         margin-top: 1em;
