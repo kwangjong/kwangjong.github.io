@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.96b729a5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.bb626269.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.053b83ac.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.fbf06f45.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>🍕Pizza Price Prediction🍕 | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="🍕Pizza Price Prediction🍕"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">🍕Pizza Price Prediction🍕</h1>
+    <time class="date" datetime="2022-06-21T19:03:00.000Z" itemprop="datePublished">June 21, 2022</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=blog">#blog</a><a class="tag" href="/blog/?tag=datascience">#datascience</a><a class="tag" href="/blog/?tag=machinelearning">#machinelearning</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p>Analysis of pizza price data using EDA and Machine Learning</p>
+<p><img src="https://i.imgur.com/P8aqLFy.gif" alt="hungry-homer"></p>
+<p><strong>Pizza</strong> is probably one of the most consumed meals all over the world. Personally, it served a great portion of meals me and my roommate ate back in college. Every Saturday evening, we would get <code>$5.99 three-toppings medium pizza</code> from <strong>Domino&#39;s</strong> located right behind our apartment. It was the <strong>cheapest</strong> and <strong>delicious</strong> food we could get around the campus.</p>
+<p>Although <strong>Domino&#39;s</strong> sells pizzas for a cheap price, pizzas can be <strong>pricy</strong> depending on their <strong>sizes</strong>, <strong>toppings</strong>, and the <strong>restaurant</strong> that makes them. Price can easily go above <code>$20 to $30</code>. To understand factors that affect the price of a pizza, a user on Kaggle gathered data on pizza orders from five different companies.</p>
+<p>The purpose of this project is to use this dataset to obstain interesting insights about pizza orders and prices. The data collected includes sizes, topping variations, price, etc. The data will be analyzed and trained to build a prediction model for pizza prices.</p>
+<p><a href="https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction">Link to the notebook</a>
+<a href="https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction">Link to the dataset</a></p>
+<h2>Variables</h2>
+<pre><code class="language-python">#load data
+pizza_path = &#39;../input/pizza-price-prediction/pizza_v2.csv&#39;
+df_raw = pd.read_csv(pizza_path)
+
+df_raw.head()
+</code></pre>
+<p><img src="https://i.imgur.com/6CuKHup.png" alt="df_raw"></p>
+<pre><code class="language-python">df_raw.info()
+</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 129 entries, 0 to 128
+Data columns (total 9 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   company          129 non-null    object
+ 1   price_rupiah     129 non-null    object
+ 2   diameter         129 non-null    object
+ 3   topping          129 non-null    object
+ 4   variant          129 non-null    object
+ 5   size             129 non-null    object
+ 6   extra_sauce      129 non-null    object
+ 7   extra_cheese     129 non-null    object
+ 8   extra_mushrooms  129 non-null    object
+dtypes: object(9)
+memory usage: 9.2+ KB
+</code></pre>
+<p>It looks like <code>price_rupiah</code> and <code>diameter</code>, which are numeric data,  are stored in strings with the unit attached. <br>
+Let&#39;s convert these two variables into floats.</p>
+<pre><code class="language-python"># covert price and diameter to float
+df = df_raw.copy()
+
+rupiah_to_int = lambda x: float(x[2:].replace(&#39;,&#39;,&#39;&#39;))
+inch_to_float = lambda x: float(x[:-5])
+
+df[&#39;price_rupiah&#39;] = list(map(rupiah_to_int, df.price_rupiah))
+df[&#39;diameter&#39;] = list(map(inch_to_float, df.diameter))
+</code></pre>
+<h4>Variable Overview</h4>
+<ul>
+<li><code>Company</code>: Five unique companies(or restaurants) the pizzas were sold.</li>
+<li><code>Price</code>: prices of piazzas in rupiahs.</li>
+<li><code>Diameter</code>: diameters of piazzas in inches.</li>
+<li><code>Topping</code>: 12 different toppings for pizzas.</li>
+<li><code>Variants</code>: 20 different variants choice for pizzas.</li>
+<li><code>Size</code>: pizza size choices: small, medium, large, xl, jumbo, reguler(or regular).</li>
+<li><code>Extra Sauce</code>: yes or no.</li>
+<li><code>Extra Cheese</code>: yes or no.</li>
+<li><code>Extra Mushrooms</code>: yes or no.</li>
+</ul>
+<h2>Exploring Data</h2>
+<h3>Price</h3>
+<p><img src="https://i.imgur.com/ho5GtzD.png" alt="price-distribution"></p>
+<pre><code>mean: 87151.16279069768
+mode: 72000.0
+min: 23500.0
+max: 248000.0
+</code></pre>
+<p><strong>The price of pizzas</strong> ranges from <code>23500 to 24800 rupiahs</code>, but the <code>majority of the pizza was around 23500 to 150000 rupiahs</code>. The average price of pizza is <code>87151 rupiah</code>, and <code>72000-rupiahs pizzas are sold the most</code>.</p>
+<h3>Company</h3>
+<p><img src="https://i.imgur.com/A9rWrAD.png" alt="companies">
+Five companies sold a fairly even amount of pizzas. <strong>Company D</strong> has the <strong>least</strong> orders, while <strong>Company C</strong> and <strong>E</strong> has the <strong>most</strong> orders. 
+The <strong>most expensive</strong> company is <strong>Company A</strong>, and the <strong>cheapest</strong> companies are <strong>Company C</strong> and <strong>E</strong>. <br></p>
+<p>The <strong>average price</strong> at <strong>Company A</strong> costs <code>131440 rupiahs</code>, and <strong>Company C</strong> and <strong>E</strong> costs almost <strong>half</strong> the average price of <strong>Company A</strong>: <code>66800 rupiahs</code> and <code>73867 rupiahs</code>. <br></p>
+<p>Although <strong>Company C</strong> and <strong>E</strong> sold the most, <strong>Company A</strong> with the highest average price is the <strong>third</strong> in the number of pizzas sold. We can assume that <code>price isn&#39;t the only factor that attracts the customers</code>.</p>
+<h3>Diameter</h3>
+<p><img src="https://i.imgur.com/id07Vxp.png" alt="diameter">
+<strong>Diameters</strong> range from <code>8 to 22 inches</code>, and <strong>12-inch pizzas</strong> are the most popular. <strong>Diameters</strong> shows positive correlations to the <strong>price of the pizzas</strong>. We can infer that generally bigger pizzas will cost more than smaller pizzas. However, take a look at the prices of 12-inch pizzas. They vary up to about 75000 rupiahs. We can conclude that <strong>diameters generally show positive correlations to the prices of pizzas</strong>, however <strong>there are other factors that highly affect the prices of pizzas</strong>.</p>
+<h3>Size</h3>
+<p><img src="https://i.imgur.com/Q0cApT9.png" alt="size">
+Variable<code>Size</code> has six unique values: <code>small</code>, <code>medium</code>, <code>large</code>, <code>XL</code>, <code>reguler (regular)</code>, and <code>jumbo</code>. We can easily compare <strong>small</strong> , <strong>medium</strong>, <strong>large</strong>, and <strong>XL</strong>, but it is unclear if <strong>regular</strong> is smaller than <strong>large</strong> or <strong>jumbo</strong> bigger than <strong>XL</strong>. </p>
+<p>We can assume from the left chart that this is caused by the different size systems used by each company. <strong>Company A</strong> uses <code>regular-jumbo</code> system, while <strong>Company B</strong>, <strong>C</strong>, and <strong>E</strong> use <code>small-medium-large-XL</code> system. And for some reason, <strong>Company D</strong> uses all six sizes.</p>
+<p>Luckily, we can simply ignore <strong>size</strong>. The universal measurement for the size of pizzas is <strong>diameters</strong>. Since we have <strong>diameter</strong> measurements in our dataset, <strong>size</strong> is <strong>redundant</strong> and can be <strong>ignored</strong> in training.</p>
+<h3>Topping and Variant</h3>
+<p><img src="https://i.imgur.com/bZrJXRC.png" alt="toppingnvariant">
+Both <code>topping</code> and <code>variant</code> are broken down into a lot of unique options. Some of them overlap among five companies, but some do not. There are also separate values that describe the same thing: [<code>meat_lover</code>, <code>meat_eater</code>] or [<code>spicy tuna</code>, <code>spicy_tuna</code>].</p>
+<p>When categorical variables are divided into many small subsets, obtaining useful insight can be hard. We can improve the qualities of data analysis by grouping similar categories. Let&#39;s cluster similar categories into bigger groups.</p>
+<pre><code class="language-python"># cluster toppings and variants
+group_topping = {
+    &#39;beef&#39;: [&#39;smoked_beef&#39;,&#39;beef&#39;],
+    &#39;other_meat&#39;: [&#39;meat&#39;,&#39;sausage&#39;,&#39;papperoni&#39;],
+    &#39;vegetables&#39;: [&#39;vegetables&#39;,&#39;onion&#39;]
+}
+
+group_variant = {
+    &#39;meat_lovers&#39;: [&#39;meat_lovers&#39;,&#39;meat_eater&#39;],
+    &#39;double&#39;: [&#39;double_mix&#39;,&#39;double_decker&#39;,&#39;double_signature&#39;],
+    &#39;BBQ&#39;: [&#39;BBQ_meat_fiesta&#39;,&#39;BBQ_sausage&#39;],
+    &#39;extra&#39;: [&#39;super_supreme&#39;,&#39;extravaganza&#39;],
+    &#39;veggie&#39;: [&#39;thai_veggie&#39;,&#39;italian_veggie&#39;],
+    &#39;american&#39;: [&#39;american_classic&#39;,&#39;american_favorite&#39;],
+    &#39;tuna&#39;: [&#39;neptune_tuna&#39;,&#39;spicy tuna&#39;,&#39;spicy_tuna&#39;]
+}
+
+# toppings
+print(&quot;-----toppings-----&quot;)
+for key, value in group_topping.items():
+    df[&#39;topping&#39;] = df[&#39;topping&#39;].apply(lambda x: key if x in value else x)
+    
+    print(key, &quot;: &quot;, value, sep=&quot;&quot;)
+
+# variant
+print(&quot;\n\n-----variant-----&quot;)
+for key, value in group_variant.items():
+    df[&#39;variant&#39;] = df[&#39;variant&#39;].apply(lambda x: key if x in value else x)
+    
+    print(key, &quot;: &quot;, value, sep=&quot;&quot;)
+</code></pre>
+<p><img src="https://i.imgur.com/0yN6RJn.png" alt="toppingnvariant">
+The charts above shows <strong>price distributions</strong> for each <strong>topppings</strong> and <strong>variants</strong>. <strong>Price distributions of toppings</strong> appears to be in the similar range. While there exists few outliers, <code>in most cases, toppings don&#39;t affect the price of the pizza</code>. On the flipside, <strong>double</strong> pizzas are in <strong>the highest price ranges</strong> among other variants, and <strong>classic</strong> are in <strong>the lowest price range</strong>. We can say <code>variants has more affect on the price of pizza then toppings</code>.</p>
+<h3>Extra Sauce, Cheese, and Mushrooms</h3>
+<p><img src="https://i.imgur.com/3UdUj57.png" alt="extras">
+We see that <code>most customers prefer adding extras</code>. The number of pizza orders with extra cheese is <strong>twice</strong> as much as the orders without extra cheese.
+<code>There is a little increase in the average prices with adding extras</code> although it is not a lot.</p>
+<h2>Price Prediction</h2>
+<p>Let&#39;s build price prediction model using <code>XGBoost</code> and <code>RandomForest</code>.</p>
+<h3>Train-Test Split</h3>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+# train_test Split
+y = df.price_rupiah
+X = df.drop(&#39;price_rupiah&#39;, axis=1)
+
+X_train, X_valid, y_train, y_valid = train_test_split(X, y)
+X_train.info()
+</code></pre>
+<h3>Encoding</h3>
+<p>Train data consists of <strong>one numerical variables</strong> <code>diameter</code> and <strong>four categorical variables</strong>. Because there are no missing values, imputer is not nessesary.<br>
+For encoding, we&#39;ll use <code>one-hot encoding</code> for <code>company</code>, <code>toppings</code>, and <code>variant</code>. We&#39;ll use<code>Ordinal-encoding</code> for <code>three &quot;extras&quot; variables</code>.</p>
+<pre><code class="language-python">from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder
+
+ord_cols=[&quot;extra_sauce&quot;, &quot;extra_cheese&quot;, &quot;extra_mushrooms&quot;]
+oh_cols=[&quot;company&quot;, &quot;topping&quot;, &quot;variant&quot;]
+
+X_train_encoded = X_train.copy()
+X_valid_encoded = X_valid.copy()
+
+ord_encoder = OrdinalEncoder()
+X_train_encoded[ord_cols] = ord_encoder.fit_transform(X_train[ord_cols])
+X_valid_encoded[ord_cols] = ord_encoder.transform(X_valid[ord_cols])
+
+oh_encoder = OneHotEncoder(handle_unknown=&#39;ignore&#39;, sparse=False)
+X_train_oh = pd.DataFrame(oh_encoder.fit_transform(X_train[oh_cols]))
+X_valid_oh = pd.DataFrame(oh_encoder.transform(X_valid[oh_cols]))
+
+X_train_oh.columns = oh_encoder.get_feature_names_out()
+X_valid_oh.columns = oh_encoder.get_feature_names_out()
+
+X_train_oh.index = X_train.index
+X_valid_oh.index = X_valid.index
+
+X_train_encoded.drop(oh_cols, axis=1, inplace=True)
+X_valid_encoded.drop(oh_cols, axis=1, inplace=True)
+
+X_train_encoded = pd.concat([X_train_encoded, X_train_oh], axis=1)
+X_valid_encoded = pd.concat([X_valid_encoded, X_valid_oh], axis=1)
+</code></pre>
+<h3>XGBoost</h3>
+<pre><code class="language-python">from xgboost import XGBRegressor
+
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
+# define and train model
+xgb = XGBRegressor(n_estimators=1000, learning_rate=0.05)
+xgb.fit(X_train_encoded, y_train)
+xgb_preds = xgb.predict(X_valid_encoded)
+
+# calculate metrics
+print(&quot;MAE:&quot;, mean_absolute_error(y_valid, xgb_preds))
+print(&quot;RMSE&quot;, mean_squared_error(y_valid, xgb_preds, squared=False))
+print(&quot;R2:&quot;, r2_score(y_valid, xgb_preds))
+</code></pre>
+<pre><code>MAE: 6449.584398674242
+RMSE 12209.138859647359
+R2: 0.9373062066223009
+</code></pre>
+<h3>Random Forest</h3>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestRegressor
+
+# define and train model
+rf = RandomForestRegressor(n_estimators=1000, random_state=0)
+rf.fit(X_train_encoded, y_train)
+rf_preds = rf.predict(X_valid_encoded)
+
+# calculate metrics
+print(&quot;MAE:&quot;, mean_absolute_error(y_valid, rf_preds))
+print(&quot;RMSE&quot;, mean_squared_error(y_valid, rf_preds, squared=False))
+print(&quot;R2:&quot;, r2_score(y_valid, rf_preds))
+</code></pre>
+<pre><code>MAE: 8733.621212121212
+RMSE 15894.109896484142
+R2: 0.8937504975604872
+</code></pre>
+<p><img src="https://i.imgur.com/MpztJ5I.png" alt="truevspred">
+<strong>Xgboost</strong> and <strong>random forest</strong> both shows similar performances yielding R2 score between <code>0.8 to 0.9</code>.</p>
+<p><img src="https://i.imgur.com/81vb4Az.png" alt="featureimportance">
+We can see that, for <strong>xgboost</strong>, <code>variant_double</code> is the most importance features followed by <code>diameter</code>. For <strong>random forest</strong> <code>diameter</code> is the dominant feature with 70% of feature importance.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction">Link to the notebook</a></li>
+<li><a href="https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction">Link to the dataset</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_1cgvsj9 = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2022/06-21-🍕Pizza-Price-Prediction🍕",title:"🍕Pizza Price Prediction🍕",date:"2022-06-21T19:03:00.000Z",tags:["blog","datascience","machinelearning"],visibility:"public",html:"\u003Cp>Analysis of pizza price data using EDA and Machine Learning\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/P8aqLFy.gif\" alt=\"hungry-homer\">\u003C/p>\n\u003Cp>\u003Cstrong>Pizza\u003C/strong> is probably one of the most consumed meals all over the world. Personally, it served a great portion of meals me and my roommate ate back in college. Every Saturday evening, we would get \u003Ccode>$5.99 three-toppings medium pizza\u003C/code> from \u003Cstrong>Domino&#39;s\u003C/strong> located right behind our apartment. It was the \u003Cstrong>cheapest\u003C/strong> and \u003Cstrong>delicious\u003C/strong> food we could get around the campus.\u003C/p>\n\u003Cp>Although \u003Cstrong>Domino&#39;s\u003C/strong> sells pizzas for a cheap price, pizzas can be \u003Cstrong>pricy\u003C/strong> depending on their \u003Cstrong>sizes\u003C/strong>, \u003Cstrong>toppings\u003C/strong>, and the \u003Cstrong>restaurant\u003C/strong> that makes them. Price can easily go above \u003Ccode>$20 to $30\u003C/code>. To understand factors that affect the price of a pizza, a user on Kaggle gathered data on pizza orders from five different companies.\u003C/p>\n\u003Cp>The purpose of this project is to use this dataset to obstain interesting insights about pizza orders and prices. The data collected includes sizes, topping variations, price, etc. The data will be analyzed and trained to build a prediction model for pizza prices.\u003C/p>\n\u003Cp>\u003Ca href=\"https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction\">Link to the notebook\u003C/a>\n\u003Ca href=\"https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction\">Link to the dataset\u003C/a>\u003C/p>\n\u003Ch2>Variables\u003C/h2>\n\u003Cpre>\u003Ccode class=\"language-python\">#load data\npizza_path = &#39;../input/pizza-price-prediction/pizza_v2.csv&#39;\ndf_raw = pd.read_csv(pizza_path)\n\ndf_raw.head()\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/6CuKHup.png\" alt=\"df_raw\">\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">df_raw.info()\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 129 entries, 0 to 128\nData columns (total 9 columns):\n #   Column           Non-Null Count  Dtype \n---  ------           --------------  ----- \n 0   company          129 non-null    object\n 1   price_rupiah     129 non-null    object\n 2   diameter         129 non-null    object\n 3   topping          129 non-null    object\n 4   variant          129 non-null    object\n 5   size             129 non-null    object\n 6   extra_sauce      129 non-null    object\n 7   extra_cheese     129 non-null    object\n 8   extra_mushrooms  129 non-null    object\ndtypes: object(9)\nmemory usage: 9.2+ KB\n\u003C/code>\u003C/pre>\n\u003Cp>It looks like \u003Ccode>price_rupiah\u003C/code> and \u003Ccode>diameter\u003C/code>, which are numeric data,  are stored in strings with the unit attached. \u003Cbr>\nLet&#39;s convert these two variables into floats.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># covert price and diameter to float\ndf = df_raw.copy()\n\nrupiah_to_int = lambda x: float(x[2:].replace(&#39;,&#39;,&#39;&#39;))\ninch_to_float = lambda x: float(x[:-5])\n\ndf[&#39;price_rupiah&#39;] = list(map(rupiah_to_int, df.price_rupiah))\ndf[&#39;diameter&#39;] = list(map(inch_to_float, df.diameter))\n\u003C/code>\u003C/pre>\n\u003Ch4>Variable Overview\u003C/h4>\n\u003Cul>\n\u003Cli>\u003Ccode>Company\u003C/code>: Five unique companies(or restaurants) the pizzas were sold.\u003C/li>\n\u003Cli>\u003Ccode>Price\u003C/code>: prices of piazzas in rupiahs.\u003C/li>\n\u003Cli>\u003Ccode>Diameter\u003C/code>: diameters of piazzas in inches.\u003C/li>\n\u003Cli>\u003Ccode>Topping\u003C/code>: 12 different toppings for pizzas.\u003C/li>\n\u003Cli>\u003Ccode>Variants\u003C/code>: 20 different variants choice for pizzas.\u003C/li>\n\u003Cli>\u003Ccode>Size\u003C/code>: pizza size choices: small, medium, large, xl, jumbo, reguler(or regular).\u003C/li>\n\u003Cli>\u003Ccode>Extra Sauce\u003C/code>: yes or no.\u003C/li>\n\u003Cli>\u003Ccode>Extra Cheese\u003C/code>: yes or no.\u003C/li>\n\u003Cli>\u003Ccode>Extra Mushrooms\u003C/code>: yes or no.\u003C/li>\n\u003C/ul>\n\u003Ch2>Exploring Data\u003C/h2>\n\u003Ch3>Price\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/ho5GtzD.png\" alt=\"price-distribution\">\u003C/p>\n\u003Cpre>\u003Ccode>mean: 87151.16279069768\nmode: 72000.0\nmin: 23500.0\nmax: 248000.0\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cstrong>The price of pizzas\u003C/strong> ranges from \u003Ccode>23500 to 24800 rupiahs\u003C/code>, but the \u003Ccode>majority of the pizza was around 23500 to 150000 rupiahs\u003C/code>. The average price of pizza is \u003Ccode>87151 rupiah\u003C/code>, and \u003Ccode>72000-rupiahs pizzas are sold the most\u003C/code>.\u003C/p>\n\u003Ch3>Company\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/A9rWrAD.png\" alt=\"companies\">\nFive companies sold a fairly even amount of pizzas. \u003Cstrong>Company D\u003C/strong> has the \u003Cstrong>least\u003C/strong> orders, while \u003Cstrong>Company C\u003C/strong> and \u003Cstrong>E\u003C/strong> has the \u003Cstrong>most\u003C/strong> orders. \nThe \u003Cstrong>most expensive\u003C/strong> company is \u003Cstrong>Company A\u003C/strong>, and the \u003Cstrong>cheapest\u003C/strong> companies are \u003Cstrong>Company C\u003C/strong> and \u003Cstrong>E\u003C/strong>. \u003Cbr>\u003C/p>\n\u003Cp>The \u003Cstrong>average price\u003C/strong> at \u003Cstrong>Company A\u003C/strong> costs \u003Ccode>131440 rupiahs\u003C/code>, and \u003Cstrong>Company C\u003C/strong> and \u003Cstrong>E\u003C/strong> costs almost \u003Cstrong>half\u003C/strong> the average price of \u003Cstrong>Company A\u003C/strong>: \u003Ccode>66800 rupiahs\u003C/code> and \u003Ccode>73867 rupiahs\u003C/code>. \u003Cbr>\u003C/p>\n\u003Cp>Although \u003Cstrong>Company C\u003C/strong> and \u003Cstrong>E\u003C/strong> sold the most, \u003Cstrong>Company A\u003C/strong> with the highest average price is the \u003Cstrong>third\u003C/strong> in the number of pizzas sold. We can assume that \u003Ccode>price isn&#39;t the only factor that attracts the customers\u003C/code>.\u003C/p>\n\u003Ch3>Diameter\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/id07Vxp.png\" alt=\"diameter\">\n\u003Cstrong>Diameters\u003C/strong> range from \u003Ccode>8 to 22 inches\u003C/code>, and \u003Cstrong>12-inch pizzas\u003C/strong> are the most popular. \u003Cstrong>Diameters\u003C/strong> shows positive correlations to the \u003Cstrong>price of the pizzas\u003C/strong>. We can infer that generally bigger pizzas will cost more than smaller pizzas. However, take a look at the prices of 12-inch pizzas. They vary up to about 75000 rupiahs. We can conclude that \u003Cstrong>diameters generally show positive correlations to the prices of pizzas\u003C/strong>, however \u003Cstrong>there are other factors that highly affect the prices of pizzas\u003C/strong>.\u003C/p>\n\u003Ch3>Size\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/Q0cApT9.png\" alt=\"size\">\nVariable\u003Ccode>Size\u003C/code> has six unique values: \u003Ccode>small\u003C/code>, \u003Ccode>medium\u003C/code>, \u003Ccode>large\u003C/code>, \u003Ccode>XL\u003C/code>, \u003Ccode>reguler (regular)\u003C/code>, and \u003Ccode>jumbo\u003C/code>. We can easily compare \u003Cstrong>small\u003C/strong> , \u003Cstrong>medium\u003C/strong>, \u003Cstrong>large\u003C/strong>, and \u003Cstrong>XL\u003C/strong>, but it is unclear if \u003Cstrong>regular\u003C/strong> is smaller than \u003Cstrong>large\u003C/strong> or \u003Cstrong>jumbo\u003C/strong> bigger than \u003Cstrong>XL\u003C/strong>. \u003C/p>\n\u003Cp>We can assume from the left chart that this is caused by the different size systems used by each company. \u003Cstrong>Company A\u003C/strong> uses \u003Ccode>regular-jumbo\u003C/code> system, while \u003Cstrong>Company B\u003C/strong>, \u003Cstrong>C\u003C/strong>, and \u003Cstrong>E\u003C/strong> use \u003Ccode>small-medium-large-XL\u003C/code> system. And for some reason, \u003Cstrong>Company D\u003C/strong> uses all six sizes.\u003C/p>\n\u003Cp>Luckily, we can simply ignore \u003Cstrong>size\u003C/strong>. The universal measurement for the size of pizzas is \u003Cstrong>diameters\u003C/strong>. Since we have \u003Cstrong>diameter\u003C/strong> measurements in our dataset, \u003Cstrong>size\u003C/strong> is \u003Cstrong>redundant\u003C/strong> and can be \u003Cstrong>ignored\u003C/strong> in training.\u003C/p>\n\u003Ch3>Topping and Variant\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/bZrJXRC.png\" alt=\"toppingnvariant\">\nBoth \u003Ccode>topping\u003C/code> and \u003Ccode>variant\u003C/code> are broken down into a lot of unique options. Some of them overlap among five companies, but some do not. There are also separate values that describe the same thing: [\u003Ccode>meat_lover\u003C/code>, \u003Ccode>meat_eater\u003C/code>] or [\u003Ccode>spicy tuna\u003C/code>, \u003Ccode>spicy_tuna\u003C/code>].\u003C/p>\n\u003Cp>When categorical variables are divided into many small subsets, obtaining useful insight can be hard. We can improve the qualities of data analysis by grouping similar categories. Let&#39;s cluster similar categories into bigger groups.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\"># cluster toppings and variants\ngroup_topping = {\n    &#39;beef&#39;: [&#39;smoked_beef&#39;,&#39;beef&#39;],\n    &#39;other_meat&#39;: [&#39;meat&#39;,&#39;sausage&#39;,&#39;papperoni&#39;],\n    &#39;vegetables&#39;: [&#39;vegetables&#39;,&#39;onion&#39;]\n}\n\ngroup_variant = {\n    &#39;meat_lovers&#39;: [&#39;meat_lovers&#39;,&#39;meat_eater&#39;],\n    &#39;double&#39;: [&#39;double_mix&#39;,&#39;double_decker&#39;,&#39;double_signature&#39;],\n    &#39;BBQ&#39;: [&#39;BBQ_meat_fiesta&#39;,&#39;BBQ_sausage&#39;],\n    &#39;extra&#39;: [&#39;super_supreme&#39;,&#39;extravaganza&#39;],\n    &#39;veggie&#39;: [&#39;thai_veggie&#39;,&#39;italian_veggie&#39;],\n    &#39;american&#39;: [&#39;american_classic&#39;,&#39;american_favorite&#39;],\n    &#39;tuna&#39;: [&#39;neptune_tuna&#39;,&#39;spicy tuna&#39;,&#39;spicy_tuna&#39;]\n}\n\n# toppings\nprint(&quot;-----toppings-----&quot;)\nfor key, value in group_topping.items():\n    df[&#39;topping&#39;] = df[&#39;topping&#39;].apply(lambda x: key if x in value else x)\n    \n    print(key, &quot;: &quot;, value, sep=&quot;&quot;)\n\n# variant\nprint(&quot;\\n\\n-----variant-----&quot;)\nfor key, value in group_variant.items():\n    df[&#39;variant&#39;] = df[&#39;variant&#39;].apply(lambda x: key if x in value else x)\n    \n    print(key, &quot;: &quot;, value, sep=&quot;&quot;)\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/0yN6RJn.png\" alt=\"toppingnvariant\">\nThe charts above shows \u003Cstrong>price distributions\u003C/strong> for each \u003Cstrong>topppings\u003C/strong> and \u003Cstrong>variants\u003C/strong>. \u003Cstrong>Price distributions of toppings\u003C/strong> appears to be in the similar range. While there exists few outliers, \u003Ccode>in most cases, toppings don&#39;t affect the price of the pizza\u003C/code>. On the flipside, \u003Cstrong>double\u003C/strong> pizzas are in \u003Cstrong>the highest price ranges\u003C/strong> among other variants, and \u003Cstrong>classic\u003C/strong> are in \u003Cstrong>the lowest price range\u003C/strong>. We can say \u003Ccode>variants has more affect on the price of pizza then toppings\u003C/code>.\u003C/p>\n\u003Ch3>Extra Sauce, Cheese, and Mushrooms\u003C/h3>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/3UdUj57.png\" alt=\"extras\">\nWe see that \u003Ccode>most customers prefer adding extras\u003C/code>. The number of pizza orders with extra cheese is \u003Cstrong>twice\u003C/strong> as much as the orders without extra cheese.\n\u003Ccode>There is a little increase in the average prices with adding extras\u003C/code> although it is not a lot.\u003C/p>\n\u003Ch2>Price Prediction\u003C/h2>\n\u003Cp>Let&#39;s build price prediction model using \u003Ccode>XGBoost\u003C/code> and \u003Ccode>RandomForest\u003C/code>.\u003C/p>\n\u003Ch3>Train-Test Split\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.model_selection import train_test_split\n\n# train_test Split\ny = df.price_rupiah\nX = df.drop(&#39;price_rupiah&#39;, axis=1)\n\nX_train, X_valid, y_train, y_valid = train_test_split(X, y)\nX_train.info()\n\u003C/code>\u003C/pre>\n\u003Ch3>Encoding\u003C/h3>\n\u003Cp>Train data consists of \u003Cstrong>one numerical variables\u003C/strong> \u003Ccode>diameter\u003C/code> and \u003Cstrong>four categorical variables\u003C/strong>. Because there are no missing values, imputer is not nessesary.\u003Cbr>\nFor encoding, we&#39;ll use \u003Ccode>one-hot encoding\u003C/code> for \u003Ccode>company\u003C/code>, \u003Ccode>toppings\u003C/code>, and \u003Ccode>variant\u003C/code>. We&#39;ll use\u003Ccode>Ordinal-encoding\u003C/code> for \u003Ccode>three &quot;extras&quot; variables\u003C/code>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.preprocessing import OrdinalEncoder\nfrom sklearn.preprocessing import OneHotEncoder\n\nord_cols=[&quot;extra_sauce&quot;, &quot;extra_cheese&quot;, &quot;extra_mushrooms&quot;]\noh_cols=[&quot;company&quot;, &quot;topping&quot;, &quot;variant&quot;]\n\nX_train_encoded = X_train.copy()\nX_valid_encoded = X_valid.copy()\n\nord_encoder = OrdinalEncoder()\nX_train_encoded[ord_cols] = ord_encoder.fit_transform(X_train[ord_cols])\nX_valid_encoded[ord_cols] = ord_encoder.transform(X_valid[ord_cols])\n\noh_encoder = OneHotEncoder(handle_unknown=&#39;ignore&#39;, sparse=False)\nX_train_oh = pd.DataFrame(oh_encoder.fit_transform(X_train[oh_cols]))\nX_valid_oh = pd.DataFrame(oh_encoder.transform(X_valid[oh_cols]))\n\nX_train_oh.columns = oh_encoder.get_feature_names_out()\nX_valid_oh.columns = oh_encoder.get_feature_names_out()\n\nX_train_oh.index = X_train.index\nX_valid_oh.index = X_valid.index\n\nX_train_encoded.drop(oh_cols, axis=1, inplace=True)\nX_valid_encoded.drop(oh_cols, axis=1, inplace=True)\n\nX_train_encoded = pd.concat([X_train_encoded, X_train_oh], axis=1)\nX_valid_encoded = pd.concat([X_valid_encoded, X_valid_oh], axis=1)\n\u003C/code>\u003C/pre>\n\u003Ch3>XGBoost\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">from xgboost import XGBRegressor\n\nfrom sklearn.metrics import mean_absolute_error\nfrom sklearn.metrics import mean_squared_error\nfrom sklearn.metrics import r2_score\n\n# define and train model\nxgb = XGBRegressor(n_estimators=1000, learning_rate=0.05)\nxgb.fit(X_train_encoded, y_train)\nxgb_preds = xgb.predict(X_valid_encoded)\n\n# calculate metrics\nprint(&quot;MAE:&quot;, mean_absolute_error(y_valid, xgb_preds))\nprint(&quot;RMSE&quot;, mean_squared_error(y_valid, xgb_preds, squared=False))\nprint(&quot;R2:&quot;, r2_score(y_valid, xgb_preds))\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>MAE: 6449.584398674242\nRMSE 12209.138859647359\nR2: 0.9373062066223009\n\u003C/code>\u003C/pre>\n\u003Ch3>Random Forest\u003C/h3>\n\u003Cpre>\u003Ccode class=\"language-python\">from sklearn.ensemble import RandomForestRegressor\n\n# define and train model\nrf = RandomForestRegressor(n_estimators=1000, random_state=0)\nrf.fit(X_train_encoded, y_train)\nrf_preds = rf.predict(X_valid_encoded)\n\n# calculate metrics\nprint(&quot;MAE:&quot;, mean_absolute_error(y_valid, rf_preds))\nprint(&quot;RMSE&quot;, mean_squared_error(y_valid, rf_preds, squared=False))\nprint(&quot;R2:&quot;, r2_score(y_valid, rf_preds))\n\u003C/code>\u003C/pre>\n\u003Cpre>\u003Ccode>MAE: 8733.621212121212\nRMSE 15894.109896484142\nR2: 0.8937504975604872\n\u003C/code>\u003C/pre>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/MpztJ5I.png\" alt=\"truevspred\">\n\u003Cstrong>Xgboost\u003C/strong> and \u003Cstrong>random forest\u003C/strong> both shows similar performances yielding R2 score between \u003Ccode>0.8 to 0.9\u003C/code>.\u003C/p>\n\u003Cp>\u003Cimg src=\"https://i.imgur.com/81vb4Az.png\" alt=\"featureimportance\">\nWe can see that, for \u003Cstrong>xgboost\u003C/strong>, \u003Ccode>variant_double\u003C/code> is the most importance features followed by \u003Ccode>diameter\u003C/code>. For \u003Cstrong>random forest\u003C/strong> \u003Ccode>diameter\u003C/code> is the dominant feature with 70% of feature importance.\u003C/p>\n\u003Ch2>Links\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/code/kwangjongchoi/pizza-price-prediction\">Link to the notebook\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://www.kaggle.com/datasets/knightbearr/pizza-price-prediction\">Link to the dataset\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.96b729a5.js"),
+						import("../../../_app/immutable/entry/app.053b83ac.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="google-site-verification" content="fLtNJKUU9sygRxvqcqCzPmlSqj9yuKMq1S4nRCuGclQ" />
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../../../_app/immutable/assets/0.d46925b9.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/4.08f5bbf2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/posts.d43d5309.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.96b729a5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.b808c012.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.bb626269.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.70615b25.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.053b83ac.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/0.fbf06f45.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.670389f3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/nodes/4.91810d2c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/posts.0a63d4b8.js"><title>Automating Docker Image Builds with GitHub Actions | KJ&#39;s Blog</title><!-- HEAD_svelte-6a2f4k_START --><meta name="description" content="Automating Docker Image Builds with GitHub Actions"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"><!-- HEAD_svelte-6a2f4k_END --><!-- HEAD_svelte-1447p87_START --><link class="highlightjs-css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/stackoverflow-light.min.css"><!-- HEAD_svelte-1447p87_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+
+<div class="container  light"><header><button class="header-button">Home</button>
+        <div class="menu"><button class="header-button">Blog</button>
+            <button class="toggle-button"><div><svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.0972 2.53039C12.2913 2.8649 12.2752 3.28136 12.0557 3.5998C11.3898 4.56594 11 5.73595 11 7.00002C11 10.3137 13.6863 13 17 13C18.2641 13 19.4341 12.6102 20.4002 11.9443C20.7187 11.7249 21.1351 11.7087 21.4696 11.9028C21.8041 12.0969 21.9967 12.4665 21.9642 12.8519C21.5313 17.9765 17.236 22 12 22C6.47715 22 2 17.5229 2 12C2 6.76398 6.02351 2.46874 11.1481 2.03585C11.5335 2.0033 11.9031 2.19588 12.0972 2.53039ZM9.42424 4.42352C6.26994 5.49553 4 8.48306 4 12C4 16.4183 7.58172 20 12 20C15.517 20 18.5045 17.7301 19.5765 14.5758C18.7676 14.8508 17.9008 15 17 15C12.5817 15 9 11.4183 9 7.00002C9 6.09922 9.1492 5.2324 9.42424 4.42352Z" fill="currentColor"></path></svg></div></button></div></header>
+    <main>
+
+
+<div class="post-header"><h1 class="title">Automating Docker Image Builds with GitHub Actions</h1>
+    <time class="date" datetime="2023-10-04T20:16:50.000Z" itemprop="datePublished">October 4, 2023</time>
+    <div class="tags"><a class="tag" href="/blog/?tag=cicd">#cicd</a><a class="tag" href="/blog/?tag=data-pipeline">#data-pipeline</a></div></div>
+<article class="post"><!-- HTML_TAG_START --><p><img src="https://i.imgur.com/LU2iYUF.png" alt="diagram"></p>
+<p>In today&#39;s world of rapid software development, automation is key. One critical aspect of this is the seamless creation and distribution of Docker images, a fundamental building block for containerized applications. GitHub Actions, a powerful CI/CD (Continuous Integration/Continuous Deployment) platform, can simplify and automate this process. In this blog post, we&#39;ll explore how to set up GitHub Actions to automatically build and push Docker images to Docker Hub every time a developer pushes code to the repository.</p>
+<h2>What is CI/CD, and Why Is It Important?</h2>
+<p>Before diving into the technical details, let&#39;s clarify what CI/CD is and why it&#39;s crucial. CI/CD stands for Continuous Integration and Continuous Deployment. It&#39;s a set of principles and practices that help development teams deliver code changes more frequently and reliably.</p>
+<p>Continuous Integration (CI) involves automatically integrating code changes from multiple contributors into a shared repository. This integration triggers automated tests to ensure that the new code doesn&#39;t break existing functionality. The goal is to detect and address issues early in the development process.</p>
+<p>Continuous Deployment (CD) takes CI a step further by automatically deploying code changes to production or staging environments after passing the CI tests. This reduces the time and effort required to release new features or bug fixes.</p>
+<p>By implementing CI/CD, development teams can:</p>
+<ul>
+<li><strong>Speed up development</strong>: Automated testing and deployment save time and reduce manual errors.</li>
+<li><strong>Improve code quality</strong>: CI ensures that code changes don&#39;t introduce bugs or regressions.</li>
+<li><strong>Enable frequent releases</strong>: CD makes it easier to release new features and fixes to users.</li>
+</ul>
+<h2>Setting Up GitHub Actions for Docker</h2>
+<p>GitHub Actions allows you to automate various tasks, and one of its powerful use cases is building and pushing Docker images. Here are the steps to set up this automation:</p>
+<h3>Step 1: Create a Workflow File</h3>
+<p>In your GitHub repository, create a directory named <code>.github/workflows</code> if it doesn&#39;t already exist. Inside this directory, add a YAML file that defines your workflow. You can name it something like <code>ci.yml</code>.</p>
+<h3>Step 2: Define the Workflow</h3>
+<p>In your workflow file, define the steps required to build and push your Docker image. Here&#39;s a simplified example:</p>
+<pre><code class="language-yaml">name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: /my-app-dir
+        push: true
+        tags: username/my-app:latest
+</code></pre>
+<p>This workflow does the following:</p>
+<ul>
+<li>It triggers on every push to the <code>main</code> branch.</li>
+<li>It runs on the latest version of Ubuntu.</li>
+<li>It checks out your repository&#39;s code.</li>
+<li>It logs in to Docker Hub using your credentials stored as GitHub secrets.</li>
+<li>It builds and pushes a Docker image from your code.</li>
+</ul>
+<h3>Step 3: Configure Secrets</h3>
+<p>To securely store your Docker Hub credentials, you need to add them as secrets in your GitHub repository. Navigate to your repository on GitHub, go to &quot;Settings&quot;, &quot;Secrets and variables&quot;, then &quot;Actions&quot; and add two secrets: <code>DOCKERHUB_USERNAME</code> (your Docker Hub username) and <code>DOCKERHUB_PASSWORD</code> (your Docker Hub password or access token).</p>
+<h3>Step 4: Trigger the Workflow</h3>
+<p>Now, whenever a developer pushes code to the <code>main</code> branch of your repository, this GitHub Actions workflow will automatically build a Docker image and push it to Docker Hub.</p>
+<h2>Conclusion</h2>
+<p>Automating Docker image builds with GitHub Actions streamlines your development process, making it faster, more reliable, and less error-prone. With this setup in place, you can focus on writing code, knowing that your Docker images are automatically built, tested, and ready for deployment whenever you make changes. It&#39;s a powerful step toward modernizing your development workflow.</p>
+<h2>Further Reading</h2>
+<ul>
+<li><a href="https://github.com/kwangjong/coinbase-real-time-data-pipeline/blob/main/.github/workflows/ci.yml">My ci.yml for coinbase-real-time-data-pipeline</a></li>
+<li><a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a></li>
+<li><a href="https://hub.docker.com/">Docker Hub</a></li>
+<li><a href="https://github.com/marketplace/actions/build-and-push-docker-images">Build and Push Docker Images</a></li>
+</ul>
+<!-- HTML_TAG_END --></article></main></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_1cgvsj9 = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,{"type":"data","data":{post:{slug:"2023/10-04-Automating-Docker-Image-Builds-with-GitHub-Actions",title:"Automating Docker Image Builds with GitHub Actions",date:"2023-10-04T20:16:50.000Z",tags:["cicd","data-pipeline"],visibility:"public",html:"\u003Cp>\u003Cimg src=\"https://i.imgur.com/LU2iYUF.png\" alt=\"diagram\">\u003C/p>\n\u003Cp>In today&#39;s world of rapid software development, automation is key. One critical aspect of this is the seamless creation and distribution of Docker images, a fundamental building block for containerized applications. GitHub Actions, a powerful CI/CD (Continuous Integration/Continuous Deployment) platform, can simplify and automate this process. In this blog post, we&#39;ll explore how to set up GitHub Actions to automatically build and push Docker images to Docker Hub every time a developer pushes code to the repository.\u003C/p>\n\u003Ch2>What is CI/CD, and Why Is It Important?\u003C/h2>\n\u003Cp>Before diving into the technical details, let&#39;s clarify what CI/CD is and why it&#39;s crucial. CI/CD stands for Continuous Integration and Continuous Deployment. It&#39;s a set of principles and practices that help development teams deliver code changes more frequently and reliably.\u003C/p>\n\u003Cp>Continuous Integration (CI) involves automatically integrating code changes from multiple contributors into a shared repository. This integration triggers automated tests to ensure that the new code doesn&#39;t break existing functionality. The goal is to detect and address issues early in the development process.\u003C/p>\n\u003Cp>Continuous Deployment (CD) takes CI a step further by automatically deploying code changes to production or staging environments after passing the CI tests. This reduces the time and effort required to release new features or bug fixes.\u003C/p>\n\u003Cp>By implementing CI/CD, development teams can:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Speed up development\u003C/strong>: Automated testing and deployment save time and reduce manual errors.\u003C/li>\n\u003Cli>\u003Cstrong>Improve code quality\u003C/strong>: CI ensures that code changes don&#39;t introduce bugs or regressions.\u003C/li>\n\u003Cli>\u003Cstrong>Enable frequent releases\u003C/strong>: CD makes it easier to release new features and fixes to users.\u003C/li>\n\u003C/ul>\n\u003Ch2>Setting Up GitHub Actions for Docker\u003C/h2>\n\u003Cp>GitHub Actions allows you to automate various tasks, and one of its powerful use cases is building and pushing Docker images. Here are the steps to set up this automation:\u003C/p>\n\u003Ch3>Step 1: Create a Workflow File\u003C/h3>\n\u003Cp>In your GitHub repository, create a directory named \u003Ccode>.github/workflows\u003C/code> if it doesn&#39;t already exist. Inside this directory, add a YAML file that defines your workflow. You can name it something like \u003Ccode>ci.yml\u003C/code>.\u003C/p>\n\u003Ch3>Step 2: Define the Workflow\u003C/h3>\n\u003Cp>In your workflow file, define the steps required to build and push your Docker image. Here&#39;s a simplified example:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-yaml\">name: Build and Push Docker Image\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n    - name: Checkout code\n      uses: actions/checkout@v2\n\n    - name: Set up Docker Buildx\n      uses: docker/setup-buildx-action@v3\n\n    - name: Login to Docker Hub\n      uses: docker/login-action@v3\n      with:\n        username: ${{ secrets.DOCKERHUB_USERNAME }}\n        password: ${{ secrets.DOCKERHUB_TOKEN }}\n\n    - name: Build and push\n      uses: docker/build-push-action@v5\n      with:\n        context: /my-app-dir\n        push: true\n        tags: username/my-app:latest\n\u003C/code>\u003C/pre>\n\u003Cp>This workflow does the following:\u003C/p>\n\u003Cul>\n\u003Cli>It triggers on every push to the \u003Ccode>main\u003C/code> branch.\u003C/li>\n\u003Cli>It runs on the latest version of Ubuntu.\u003C/li>\n\u003Cli>It checks out your repository&#39;s code.\u003C/li>\n\u003Cli>It logs in to Docker Hub using your credentials stored as GitHub secrets.\u003C/li>\n\u003Cli>It builds and pushes a Docker image from your code.\u003C/li>\n\u003C/ul>\n\u003Ch3>Step 3: Configure Secrets\u003C/h3>\n\u003Cp>To securely store your Docker Hub credentials, you need to add them as secrets in your GitHub repository. Navigate to your repository on GitHub, go to &quot;Settings&quot;, &quot;Secrets and variables&quot;, then &quot;Actions&quot; and add two secrets: \u003Ccode>DOCKERHUB_USERNAME\u003C/code> (your Docker Hub username) and \u003Ccode>DOCKERHUB_PASSWORD\u003C/code> (your Docker Hub password or access token).\u003C/p>\n\u003Ch3>Step 4: Trigger the Workflow\u003C/h3>\n\u003Cp>Now, whenever a developer pushes code to the \u003Ccode>main\u003C/code> branch of your repository, this GitHub Actions workflow will automatically build a Docker image and push it to Docker Hub.\u003C/p>\n\u003Ch2>Conclusion\u003C/h2>\n\u003Cp>Automating Docker image builds with GitHub Actions streamlines your development process, making it faster, more reliable, and less error-prone. With this setup in place, you can focus on writing code, knowing that your Docker images are automatically built, tested, and ready for deployment whenever you make changes. It&#39;s a powerful step toward modernizing your development workflow.\u003C/p>\n\u003Ch2>Further Reading\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https://github.com/kwangjong/coinbase-real-time-data-pipeline/blob/main/.github/workflows/ci.yml\">My ci.yml for coinbase-real-time-data-pipeline\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://docs.github.com/en/actions\">GitHub Actions Documentation\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://hub.docker.com/\">Docker Hub\u003C/a>\u003C/li>\n\u003Cli>\u003Ca href=\"https://github.com/marketplace/actions/build-and-push-docker-images\">Build and Push Docker Images\u003C/a>\u003C/li>\n\u003C/ul>\n"}},"uses":{"params":["slug"]}}];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.96b729a5.js"),
+						import("../../../_app/immutable/entry/app.053b83ac.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

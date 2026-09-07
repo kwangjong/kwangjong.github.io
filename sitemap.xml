@@ -5,10 +5,10 @@
     <loc>https://kwangjong.github.io/404</loc>
   </url>
   <url>
-    <loc>https://kwangjong.github.io/blog</loc>
+    <loc>https://kwangjong.github.io/</loc>
   </url>
   <url>
-    <loc>https://kwangjong.github.io/</loc>
+    <loc>https://kwangjong.github.io/blog</loc>
   </url>
   <url>
     <loc>https://kwangjong.github.io/tags</loc>
@@ -60,6 +60,54 @@
   </url>
   <url>
     <loc>https://kwangjong.github.io/blog/2022/08-01-🐳Deploying-Flask-app-using-Nginx,-uWSGI,-and-Docker</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-12-Understanding-Microservice-Architecture</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-18-Building-and-Scaling-Applications-with-Kubernetes</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-20-Terraform-Basics</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-20-Transforming-Data-Pipelines-with-HDFS:-A-Scalable-Solution-for-Raw-Data-Storage</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-23-Enhancing-Real-Time-Data-Pipelines-with-HDFS-and-Kafka-Consumer-in-Go</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/06-30-AWS-Load-Balancers:-ALB-vs-NLB</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/07-31-CloudWatch-Agent-in-EKS-Fails-to-Send-Metrics:-Authentication-and-IMDS-Access-Issues</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/08-08-Observability-in-Modern-Application-Design</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-04-슈퍼앱-Super-App</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-05-K8s-Ingress-Strategies-Without-Service-Mesh</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-09-Netflix-Chaos-Monkey</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-11-Prometheus-stack-vs-EFK</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-13-FluentD-vs-FluentBit</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-16-K8s-NodeLocalDNS</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-23-Syslog-local0–local7</loc>
+  </url>
+  <url>
+    <loc>https://kwangjong.github.io/blog/2024/12-24-JVM-Memory-Management</loc>
   </url>
   <url>
     <loc>https://kwangjong.github.io/blog/2023/01-04-Go-Basics-I</loc>
@@ -120,54 +168,6 @@
   </url>
   <url>
     <loc>https://kwangjong.github.io/blog/2023/10-04-Deploying-a-Real-time-Data-Pipeline-in-Minikube-with-Kubernetes</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-12-Understanding-Microservice-Architecture</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-18-Building-and-Scaling-Applications-with-Kubernetes</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-20-Terraform-Basics</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-20-Transforming-Data-Pipelines-with-HDFS:-A-Scalable-Solution-for-Raw-Data-Storage</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-23-Enhancing-Real-Time-Data-Pipelines-with-HDFS-and-Kafka-Consumer-in-Go</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/06-30-AWS-Load-Balancers:-ALB-vs-NLB</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/07-31-CloudWatch-Agent-in-EKS-Fails-to-Send-Metrics:-Authentication-and-IMDS-Access-Issues</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/08-08-Observability-in-Modern-Application-Design</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-04-슈퍼앱-Super-App</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-05-K8s-Ingress-Strategies-Without-Service-Mesh</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-09-Netflix-Chaos-Monkey</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-11-Prometheus-stack-vs-EFK</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-13-FluentD-vs-FluentBit</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-16-K8s-NodeLocalDNS</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-23-Syslog-local0–local7</loc>
-  </url>
-  <url>
-    <loc>https://kwangjong.github.io/blog/2024/12-24-JVM-Memory-Management</loc>
   </url>
   <url>
     <loc>https://kwangjong.github.io/blog/2025/01-31-Configuring-OpenID-Connect-in-AWS</loc>
